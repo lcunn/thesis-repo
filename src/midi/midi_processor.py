@@ -1,4 +1,4 @@
-from typing import str
+# from typing import 
 
 import mido
 
