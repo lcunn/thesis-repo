@@ -75,6 +75,8 @@ def validate_mb_results(df: pd.DataFrame):
         gpt_artist
         gpt_title
         gpt_conf
+        mb_title
+        mb_artist
 
     Returns the same DataFrame with the following columns added:
         correctness_category
@@ -84,7 +86,17 @@ def validate_mb_results(df: pd.DataFrame):
     mb_df['correctness_category'] = None
 
     for i, r in mb_df.iterrows():
-        user_prompt = _format_user_prompt(r['year'], r['case_name'], r['case_title'], r['case_artist'], r['gpt_artist'], r['gpt_title'], r['gpt_conf'] )
+        user_prompt = _format_user_prompt(
+            r['year'], 
+            r['case_name'], 
+            r['case_title'], 
+            r['case_artist'], 
+            r['gpt_artist'], 
+            r['gpt_title'], 
+            r['gpt_conf'], 
+            r['mb_title'], 
+            r['mb_artist']
+            )
         completion = client.beta.chat.completions.parse(
             model="gpt-4o-mini",
             messages=[

@@ -24,10 +24,12 @@ def _reformat_copyright_claims_csv(csv_path: str = COPYRIGHT_CLAIMS_CSV) -> pd.D
     songs = pd.concat([complainers, defendants], ignore_index=True)
     return songs
 
-def _add_mb_data(df: pd.DataFrame, verbose: bool = True) -> pd.DataFrame:
+def _add_mb_data(df: pd.DataFrame, verbose: bool = True, filter: bool = True) -> pd.DataFrame:
     
     songs = df
-    print('Doing musicbrainz processing') if verbose else None
+    if filter:
+        songs = songs[~(songs['gpt_artist'].isna() | songs['gpt_title'].isna())].copy(deep=True)
+        
     t1 = time.time()
     songs['musicbrainz_data'] = songs.apply(
         lambda row: search_musicbrainz(row['gpt_artist'], row['gpt_title']), axis=1
@@ -50,7 +52,7 @@ def process_copyright_songs() -> pd.DataFrame:
     print('Processing copyright songs CSV...')
     if not os.path.exists(COPYRIGHT_SONGS_CSV):
         songs = _reformat_copyright_claims_csv()
-        songs.to_csv(COPYRIGHT_SONGS_CSV)
+        songs.to_csv(COPYRIGHT_SONGS_CSV, index=False)
     else:
         print('Already processed.')
         songs = pd.read_csv(COPYRIGHT_SONGS_CSV)
@@ -58,7 +60,7 @@ def process_copyright_songs() -> pd.DataFrame:
     print('\nProcessing cases into title and artist...')
     if not os.path.exists(COPYRIGHT_SONGS_CSV_GPT):
         songs = process_cases(songs)
-        songs.to_csv(COPYRIGHT_SONGS_CSV_GPT)
+        songs.to_csv(COPYRIGHT_SONGS_CSV_GPT, index=False)
     else:
         print('Already processed.')
         songs = pd.read_csv(COPYRIGHT_SONGS_CSV_GPT)
@@ -66,7 +68,7 @@ def process_copyright_songs() -> pd.DataFrame:
     print('\nAdding mb data...')
     if not os.path.exists(COPYRIGHT_SONGS_CSV_GPT_MB):
         songs = _add_mb_data(songs)
-        songs.to_csv(COPYRIGHT_SONGS_CSV_GPT_MB)
+        songs.to_csv(COPYRIGHT_SONGS_CSV_GPT_MB, index=False)
     else:
         print('Already processed.')
         songs = pd.read_csv(COPYRIGHT_SONGS_CSV_GPT_MB)
@@ -74,7 +76,7 @@ def process_copyright_songs() -> pd.DataFrame:
     print('\nValidating mb data...')
     if not os.path.exists(COPYRIGHT_SONGS_CSV_GPT_MB_V):
         songs = validate_mb_results(songs)
-        songs.to_csv(COPYRIGHT_SONGS_CSV_GPT_MB_V)
+        songs.to_csv(COPYRIGHT_SONGS_CSV_GPT_MB_V, index=False)
     else:
         print('Already processed.')
         songs = pd.read_csv(COPYRIGHT_SONGS_CSV_GPT_MB_V)  

@@ -3,7 +3,6 @@ from openai import OpenAI
 import pandas as pd
 
 from src.defaults import *
-from scripts.database.produce_copyright_songs_base_csv import _reformat_songs_df
 
 client = OpenAI()
 
@@ -62,7 +61,7 @@ def process_single_case(year: str, name: str, work: str, author: str):
     event = completion.choices[0].message.parsed
     return event
 
-def process_cases(df: pd.DataFrame, filter: bool = True):
+def process_cases(df: pd.DataFrame):
     """
     Expects a DataFrame with the following columns:
         case_id
@@ -93,8 +92,5 @@ def process_cases(df: pd.DataFrame, filter: bool = True):
         )
         event = completion.choices[0].message.parsed
         gpt_df.loc[i, ['gpt_artist', 'gpt_title', 'gpt_conf']] = event.artist, event.title, event.confidence
-
-    if filter:
-        gpt_df = gpt_df[~(gpt_df['gpt_artist'].isna() | gpt_df['gpt_title'].isna())]
 
     return gpt_df

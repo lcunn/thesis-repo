@@ -1,4 +1,3 @@
-,case_id,year,case_name,case_artist,case_title,case_role,gpt_artist,gpt_title,gpt_conf
 0,0,1844,Millett v. Snowden,W.J. Wetmore,The Cot Beneath the Hill,complainer,Henry Russell,The Cot Beneath the Hill,0.7
 1,1,1845,Reed v. Carusi,Henry Russell,The Old Arm Chair,complainer,Henry Russell,The Old Arm Chair,0.95
 2,2,1846,Ferrett v. Atwill,"Michael Balfe, arranged by Francis Brown","""Alethia Waltz"", based on a theme from Michael Balfe's ""The Bohemia Girl""",complainer,Michael Balfe,The Bohemian Girl,0.85
@@ -697,3 +696,4 @@ Daniel Hernandez (“Takashi 6ix9ine”)",Stoopid,defendant,6ix9ine feat. Bobby 
 693,345,2024,Chamberlain v. Dolo Entertainment,Isis Naija Gaston a/k/a Ice Spice,In Ha Mood,defendant,Ice Spice,In Ha Mood,0.95
 694,346,2024,"Peabody & Company LLC v. Wayne, et al.",Roddy Ricch,The Box,defendant,Roddy Ricch,The Box,0.99
 695,347,2024,"Johnston v. Kroeger, et al.",Nickelback,Rockstar,defendant,Nickelback,Rockstar,0.95
+,case_id,year,case_name,case_artist,case_title,case_role,gpt_artist,gpt_title,gpt_conf
