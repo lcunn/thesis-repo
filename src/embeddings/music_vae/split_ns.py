@@ -1,6 +1,6 @@
 from typing import Tuple, Dict, Optional, List
 
-from src.defaults.objects import NoteSequence
+from objects import NoteSequence
 
 from magenta.pipelines.note_sequence_pipelines import NoteSequencePipeline, Splitter, Quantizer
 from magenta.pipelines.melody_pipelines import MelodyExtractor

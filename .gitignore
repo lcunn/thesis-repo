@@ -1,3 +1,6 @@
 data/midis
+data/lakh
+data/msd
 data/thesis-web-data.xlsx
 models
+src/private_defaults.py

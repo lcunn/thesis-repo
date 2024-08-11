@@ -2,7 +2,7 @@ from typing import Dict, List, Optional
 
 from src.midi.midi_processor import MidiProcessor
 
-from src.defaults.objects import NoteSequence
+from defaults import *
 from src.embeddings.music_vae.split_ns import split_into_2_bar_segments, extract_2_bar_melodies
 
 from note_seq.sequences_lib import extract_subsequence
