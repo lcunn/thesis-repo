@@ -4,12 +4,16 @@ NoteSequence = object
 
 DATABASE = 'data/music.db'
 
-COPYRIGHT_CLAIMS_CSV = 'data/all_copyright_claims.csv'
+COPYRIGHT_CLAIMS_CSV = 'data/database_csvs/all_copyright_claims.csv'
 
-COPYRIGHT_SONGS_CSV = 'data/all_copyright_songs.csv'
-COPYRIGHT_SONGS_CSV_GPT = 'data/all_copyright_songs_gpt.csv'
-COPYRIGHT_SONGS_CSV_GPT_MB = 'data/all_copyright_songs_gpt_mb.csv'
-COPYRIGHT_SONGS_CSV_GPT_MB_V = 'data/all_copyright_songs_gpt_mb_v.csv'
+COPYRIGHT_SONGS_CSV = 'data/database_csvs/all_copyright_songs.csv'
+COPYRIGHT_SONGS_CSV_GPT = 'data/database_csvs/all_copyright_songs_gpt.csv'
+COPYRIGHT_SONGS_CSV_GPT_MB = 'data/database_csvs/all_copyright_songs_gpt_mb.csv'
+COPYRIGHT_SONGS_CSV_GPT_MB_V = 'data/database_csvs/all_copyright_songs_gpt_mb_v.csv'
+COPYRIGHT_SONGS_ALL_FIELDS = 'data/database_csvs/all_copyright_songs_all_fields.csv'
 
-LAKH_PATH = 'data/lakh'
+MIDI_DATA_PATH = 'data/midi_data'
+COPYRIGHT_MIDI_PATH = 'data/copyright_midis'
+
+LAKH_CLEAN_PATH = 'data/midi_data/lakh_clean'
 

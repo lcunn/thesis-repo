@@ -1,6 +1,4 @@
-data/midis
-data/lakh
-data/msd
-data/thesis-web-data.xlsx
+data/copyright_midis
+data/midi_data
 models
 src/private_defaults.py
