@@ -8,7 +8,7 @@ from src.defaults import *
 
 from scripts.database.midi_searcher import MidiSearcher
 
-def lakh_clean_compare(self, dir_list: List[str], artist: str, title: str) -> List[str]:
+def lakh_clean_compare(dir_list: List[str], artist: str, title: str) -> List[str]:
     """
     lakh_clean directory is formatted as artist/song. 
     Performs fuzzy matching to account for slight inaccuracies in artist/song names.
@@ -36,6 +36,7 @@ config = {
     'lakh_clean': lakh_clean_compare
 }
 
-LakhCleanSearcher = MidiSearcher(config)
-LakhCleanSearcher.search_directory('lakh_clean')
+if __name__ == '__main__':
+    LakhCleanSearcher = MidiSearcher(config)
+    LakhCleanSearcher.search_directory('lakh_clean')
 
