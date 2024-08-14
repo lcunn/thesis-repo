@@ -3,7 +3,6 @@ from openai import OpenAI
 import pandas as pd
 
 from src.defaults import *
-from scripts.database.produce_copyright_songs_base_csv import _reformat_songs_df
 
 client = OpenAI()
 

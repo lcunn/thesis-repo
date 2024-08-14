@@ -1,0 +1,700 @@
+case_id,year,case_name,case_artist,case_title,case_role,gpt_artist,gpt_title,gpt_conf
+0,1844,Millett v. Snowden,W.J. Wetmore,The Cot Beneath the Hill,complainer,Henry Russell,The Cot Beneath the Hill,0.7
+1,1845,Reed v. Carusi,Henry Russell,The Old Arm Chair,complainer,Henry Russell,The Old Arm Chair,0.95
+2,1846,Ferrett v. Atwill,"Michael Balfe, arranged by Francis Brown","""Alethia Waltz"", based on a theme from Michael Balfe's ""The Bohemia Girl""",complainer,Michael Balfe,The Bohemian Girl,0.85
+3,1850,Jollie v. Jacques,Anonymous,Serious Family Polka,complainer,Gottlieb Muffat,Serious Family Polka,0.3
+4,1887,Blume v. Spear,Fannie Beane,My Own Sweet Darling,complainer,Fannie Beane,My Own Sweet Darling,0.7
+5,1888,Kennedy v. McTammanay,Harry Kennedy,Cradle’s Empty Baby’s Gone,complainer,Harry Kennedy,"Cradle's Empty, Baby's Gone",0.8
+6,1898,Broder v. Zeno Mauvais Music Co.,Bert A. Williams,Dora Dean,complainer,Bert Williams,Dora Dean,0.9
+7,1899,Boosey v. Whight,"Alice M. Davis (""Hope Temple"") and Frederick Wetherley","""My Lady's Bower""",complainer,Hope Temple,My Lady's Bower,0.85
+8,1907,White-Smith Music v. Apollo Company,Adam Geibel,Kentucky Babe,complainer,Adam Geibel,Kentucky Babe,0.8
+9,1914,Cooper v. James,W.M.Cooper,Never Turn Back,complainer,W.M. Cooper,Never Turn Back,0.8
+10,1915,Boosey v. Empire Music,Charles Marshall,I Hear You Calling Me,complainer,John McCormack,I Hear You Calling Me,0.95
+11,1916,Haas v. Leo Feist,William Cahalin,You Will Never Know ...,complainer,Albert Von Tilzer,You Will Never Know,0.75
+12,1917,Hart v. Graham,"Alcide Nunez, Ray Lopez",Livery Stable Blues,complainer,Original Dixieland Jass Band,Livery Stable Blues,0.8
+13,1923,Austin v. Columbia Gramophone Co.,John Gay,"Themes from opera ""Polly""",complainer,John Gay,Polly,0.8
+14,1923,Hein v. Harris,Silvio Hein,Maria Cahill's Arab Love Song,complainer,Silvio Hein,Arab Love Song,0.6
+15,1923,"Marks v. Leo Feist, Inc.",Paul Linke,Wedding Dance Waltzes,complainer,Paul Lincke,Wedding Dance Waltzes,0.8
+16,1924,"Fred Fisher, Inc. v. Dillingham",Felix Bernard & Johnny Black,Dardanella,complainer,Bennie Krueger and His Orchestra,Dardanella,0.8
+17,1928,Italian Book Company v. Rossi,Paolo Citorello,Luna Mezzo Mare,complainer,Paolo Citorello,Luna Mezzo Mare,0.95
+18,1932,Gotham Music v. Denton Music Publishing,Anonymous,St. James' Infirmary,complainer,Louis Armstrong,St. James Infirmary,0.85
+19,1933,Arnstein v. Shilkret,Ira Arnstein,Light My Life With Love,complainer,Unknown Artist,Light My Life With Love,0.5
+20,1934,Park v. Warner Brothers,Charles Francis Park,What are Your Intentions?,complainer,Paul Whiteman and His Orchestra,What are Your Intentions?,0.75
+21,1935,Wilkie v. Santly Brothers,W.A. (Bud) Wilkie,Confessing,complainer,Rudy Vallée,Confessin' (That I Love You),0.8
+22,1936,Arnstein v. Edward Marks,Ira Arnstein,I Love You Madly,complainer,Ira Arnstein,I Love You Madly,0.7
+23,1936,Norden v. Oliver Ditson,N. Lindsay Norden (arranger),O Gladsome Light,complainer,Traditional,O Gladsome Light,0.8
+24,1937,Hirsch v. Paramount Pictures,Hortense Hirsch,Lady of Love,complainer,Paramount Pictures,Lady of Love,0.4
+25,1939,Arnstein v. ASCAP,Ira Arnstein,Whisper to Me,complainer,Ira Arnstein,Whisper to Me,0.8
+26,1940,Darrell v. Joe Morris Music,Jack Darrell,Does Anybody Want a Little Kewpie,complainer,Benny Goodman,Does Anybody Want a Little Kewpie,0.5
+27,1940,Davilla v. Harms,Joseph Davila,If I were a Spider...,complainer,Joseph Davilla,If I Were a Spider,0.7
+28,1941,Allen v. Walt Disney,Wadsworth Doster,Old Eli,complainer,Wadsworth Doster,Old Eli,0.7
+29,1941,Marks v. Stasny,Silvano D. Ramos,Allà en el Rancho Grande,complainer,Jorge Negrete,Allá en el Rancho Grande,0.85
+30,1942,Carew v. R.K.O. Radio Pictures,Evelyn Carew,Chatterbox,complainer,Evelyn Carew,Chatterbox,0.8
+31,1942,McMahon v. Harms,Joseph McMahon,In Sunny Kansas,complainer,Joseph McMahon,In Sunny Kansas,0.8
+32,1943,Arnstein v. Broadcast Music,Ira Arnstein,Whisper to Me,complainer,Frank Sinatra,A Sinner Kissed an Angel,0.6
+33,1943,Arnstein v. Twentieth Century Fox,Ira Arnstein,Kalamazoo,complainer,Glenn Miller and His Orchestra,I've Got a Gal in Kalamazoo,0.8
+34,1944,"Gingg v. Twentieth Century Fox Film Corp, et al.",Allamae Britton Gingg,There'll Never Be Another You,complainer,Harry Warren and Mack Gordon,There Will Never Be Another You,0.85
+35,1944,Edward B. Marks Music Corp. v. Jerry Vogel Music Co.,Edward B. Marks,December and May,complainer,Edward B. Marks Music Corporation,December and May,0.8
+36,1945,Brodsky v. Universal Pictures Company,Samuel Brodsky,Prelude in A Major,complainer,Chopin,"Prelude in A Major, Op. 28, No. 7",0.7
+37,1945,Jewel Music v. Leo Feist,Louis Ricca,Carnival in Cotton Town,complainer,Louis Ricca,Carnival in Cotton Town,0.8
+38,1946,Arnstein v. Porter,Ira Arnstein,Modern Messiah,complainer,Ira Arnstein,Modern Messiah,0.7
+39,1946,Heim v. Universal Pictures,Hajdu Imre (Heim),Ma Este Meg Boldog Vagyok,complainer,Zsigmond Vincze,Ma Este Meg Boldog Vagyok,0.85
+40,1948,Baron v. Leo Feist,Lionel Belasco and Massie Patterson,L'Annee Passee,complainer,Lionel Belasco,L'Annee Passee,0.9
+41,1948,Kahn v. Leo Feist,Mohammed H. Kahn,Victory Calypsoes,complainer,Lord Invader,Rum and Coca-Cola,0.8
+42,1950,"Shapiro, Bernstein v. Miracle Record",Meade Lewis,Yancey Special,complainer,Meade Lux Lewis,Yancey Special,0.95
+43,1951,Jones v. Supreme Music,Thelma Jones,Just an Old Fashioned Mother and Dad,complainer,Thelma Jones,Just an Old Fashioned Mother and Dad,0.7
+44,1952,Northern Music v. King Record Distribution,Guy B. Wood and Sol Marcus,Tonight He Sailed Again,complainer,Jerry Vale,Tonight He Sailed Again,0.7
+45,1953,Overman v. Loesser,Robert Overman,Wonderful You,complainer,Frank Loesser,Wonderful You,0.5
+46,1954,Robbins v. Alamo,Walter Schumann,"Theme for TV show ""Dragnet""",complainer,Walter Schumann,Dragnet,0.95
+47,1954,Mills Music v. Cromwell Music,Issachar Miron & Julius Grossman,"Tzena, Tzena",complainer,The Weavers,"Tzena, Tzena, Tzena",0.9
+48,1956,Robertson v. Batten,Donald Irwin Robertson,The Happy Whistler,complainer,Don Robertson,The Happy Whistler,0.95
+49,1956,Smith v. Muehlebach Brewing,Leonard Smith,Proposed Advertising Jingle for Muehlebach Beer,complainer,Not applicable,Proposed Advertising Jingle for Muehlebach Beer,0.3
+50,1956,Wihtol v. Wells,I.B. Sergei (Wihtol),My God and I,complainer,I.B. Sergei,My God and I,0.9
+51,1958,Cholvin v. B & F Music,Homer Cholvin and Norman Stade,When the Sun Bids the Sky Goodnight,complainer,Homer Cholvin and Norman Stade,When the Sun Bids the Sky Goodnight,0.7
+52,1959,Dorchester Music v. National Broadcasting Company,Fred Spielman,Rendezvous,complainer,Fred Spielman,Rendezvous,0.7
+53,1960,Walters v. Shari Music Publishing,Lionel Walters,Iron Bar,complainer,Laurel Aitken,Iron Bar,0.8
+54,1963,Francis Day & Hunter v. Bron,Mabel Wayne,In a Little Spanish Town,complainer,Paul Whiteman and His Ambassador Orchestra,In a Little Spanish Town,0.85
+55,1964,Irving Berlin et al. v. E.C. Publications,Irving Berlin,A Pretty Girl is Like a Melody,complainer,Irving Berlin,A Pretty Girl Is Like a Melody,0.95
+56,1964,"Nom Music, Inc. V. Kaslin",James Sheppard and William Miller,A Thousand Miles Away,complainer,The Heartbeats,A Thousand Miles Away,0.95
+57,1965,Life Music v. Broadcast Music,Patricia Smith and Don Fenton,SUPERCALAFAJALISTICK ESPEEALADOJUS,complainer,Richard M. Sherman and Robert B. Sherman,Supercalifragilisticexpialidocious,0.85
+58,1965,Nordstrom v. R.C.A.,Frank Nordstrom,Mizpah or Shalom,complainer,The Tokens,The Lion Sleeps Tonight,0.6
+59,1967,Packson v. Jobete,"Lorenzo Pack, Harper Evans",I'm Afraid,complainer,Marvin Gaye,Ain't That Peculiar,0.8
+60,1967,In re Geman Collecting Society GEMA,GEMA / Franz Josef Breuer,Schwarzbraun ist die Haselnuss,complainer,Heino,Schwarzbraun ist die Haselnuss,0.8
+61,1969,Leo Feist v. Apollo Records,Gus Kahn et al.,"Toot, Toot, Tootsie",complainer,Al Jolson,"Toot, Toot, Tootsie (Goo' Bye)",0.95
+62,1970,Bote & Bock Musik v. Melodie der Welt GmbH & Co KG,Wilhelm Kienzl,O schöne Jugendtage,complainer,Wilhelm Kienzl,O schöne Jugendtage,0.9
+63,1973,Strachborneo v. Arc Music,Ruth Stratchborneo,MOJO Workout,complainer,Ruth Stratchborneo,Mojo Workout,0.8
+64,1975,Mood Music v. De Wolfe,Armando Sciascia,Sogno Nostalgico,complainer,Armando Sciascia,Sogno Nostalgico,0.85
+65,1976,Bright Tunes Music v. Harrisongs Music,Ronald Mack,He's So Fine,complainer,The Chiffons,He's So Fine,0.99
+66,1976,Granite Music v. United Artists,Leon Pober,Tiny Bubbles,complainer,Don Ho,Tiny Bubbles,0.95
+67,1976,MCA Music v. Earl Wilson,Don Raye and Hughie Prince,Boogie Woogie Bugle Boy,complainer,The Andrews Sisters,Boogie Woogie Bugle Boy,0.95
+68,1978,Ferguson v. National Broadcasting Company,Wilma Ferguson,Jeannie Michele,complainer,Stevie Wonder,Isn't She Lovely,0.8
+69,1978,Herald Square Music v. Living Music,Stephen Schwartz,Day by Day,complainer,Godspell Cast,Day by Day,0.85
+70,1978,Plymouth Music Co. v. Magnus Organ Corp.,Anonymous,Holiday Polka,complainer,Bobby Vinton,Holiday Polka,0.8
+71,1978,Harry v. Suzuki,Harry Warren,The Boulevard of Broken Dreams,complainer,Tony Bennett,Boulevard of Broken Dreams,0.7
+72,1980,Elsmere Music v. N.B.C.,Steve Karman,I Love New York (advertising jingle),complainer,Steve Karmen,I Love New York,0.95
+73,1980,Hanseatic Musikverlag v. Bellver Musikverlag,Pantelis Ghinnis,Dirlada,complainer,Dionysis Savvopoulos,Dirlada,0.8
+74,1980,Testa v. Janssen,Philip J. Lipari,Kept on Singing,complainer,Climax,Life and Breath,0.7
+75,1982,Gondos v. Hardy,Ivan Gondos,Variations,complainer,Andrew Lloyd Webber,Variations,0.8
+76,1984,Selle v. Gibb,Ronald Selle,Let It End,complainer,Bee Gees,How Deep Is Your Love,0.95
+77,1984,Pendleton v. Acuff-Rose,Howard Leslie Pendleton,Just a Blue Box,complainer,Roy Acuff and his Smoky Mountain Boys,Wabash Cannonball,0.7
+78,1985,"Cream Records, Inc. v. Jos. Schlitz Brewing Co.",Isaac Hayes,The Theme From Shaft,complainer,Isaac Hayes,Theme from Shaft,0.95
+79,1985,Lawson v. Dundas,David Lawson,Channel 4 Jingle,complainer,David Dundas,Channel 4 Theme,0.8
+80,1985,Dixon v. Atlantic Recording Corp.,William Dixon,I Need Love,complainer,LL Cool J,I Need Love,0.8
+81,1986,Anheuser Busch v. Elsmere Music,Steve Karmen,Budweiser Beer Commercial (1970s),complainer,Steve Karmen,Here Comes the King,0.95
+82,1986,Benson v. Coca-Cola,John Benson,Don't Cha Know,complainer,Michael Jackson,Wanna Be Startin' Somethin',0.7
+83,1986,Fisher v. Dees,Marvin Fisher and Jack Segal,When Sunny Gets Blue,complainer,Johnny Mathis,When Sunny Gets Blue,0.95
+84,1987,Baxter v. MCA,Leslie Baxter,Joy,complainer,Les Baxter,Joy,0.85
+85,1987,Siskind v. Newton-John,Laura Siskind,Take a Chance on Love,complainer,Olivia Newton-John,Take a Chance,0.8
+86,1987,Verge v. Imperial Oil Ltd.,Cyril Verge,It's a Brand New World,complainer,Cyril Verge,It's a Brand New World,0.8
+87,1987,Warner Bros. v. Dundas,Tom Waits,Martha,complainer,Tom Waits,Martha,0.95
+88,1987,Williamson v. Pearson Partnership,Rogers & Hammerstein,"""There is Nothing Like a Dame""",complainer,Various Artists,There is Nothing Like a Dame,0.85
+89,1988,Gaste v. Morris Kaiserman,Louis Gaste,Pour Toi,complainer,Morris Albert,Feelings,0.95
+90,1988,Magazine-Music Verlag v. Ralph Siegel,Julio Iglesias,Alle Liebe dieser Erde; Un canto a galicia,complainer,Julio Iglesias,Un canto a Galicia,0.95
+91,1988,Edition Magazine Music v. Sony ATV,Katy Kassay,…wie ein Kind,complainer,Sandra,Secret Land,0.8
+92,1989,CBS Records Australia v. Guy Cross,Collette Roberts,Ring My Bell (CBS Version),complainer,Collette,Ring My Bell,0.95
+93,1990,Queen & David Bowie v. Vanilla Ice,Queen & David Bowie,Under Pressure,complainer,Queen & David Bowie,Under Pressure,1.0
+94,1990,Dawson v. Hinshaw Music,William Dawson (Arr.),Ezekiel Saw De Wheel,complainer,"Traditional, arr. William Dawson",Ezekiel Saw De Wheel,0.9
+95,1990,Levine v. McDonald's Corp.,Paul DiFranco and Norman Dolph,Life is a Rock (But the Radio Rolled Me,complainer,Reunion,Life is a Rock (But the Radio Rolled Me),0.95
+96,1990,Black v. Gosdin,Damon Black,The Jukebox,complainer,Vern Gosdin,That Just About Does It,0.7
+97,1991,Grignon v. Roussel,Rene Grignon,Chanson Numero 7,complainer,Rene Grignon,Chanson Numero 7,0.8
+98,1991,Grand Upright v. Warner,"Raymond ""Gilbert"" O'Sullivan",Alone Again (Naturally),complainer,Gilbert O'Sullivan,Alone Again (Naturally),1.0
+99,1991,Intersong-USA v. CBS,Enrique Chia,Es,complainer,Enrique Chia,Es,0.95
+100,1991,McDonald v. Multimedia Entertainment,Gerard McDonald,"Proposed Theme Music for ""Sally Jesse Raphael Show""",complainer,Gerard McDonald,"Proposed Theme Music for ""Sally Jesse Raphael Show""",0.5
+101,1991,Enigma v. Phlegma 1991,Enigma,Sadeness I,complainer,Enigma,Sadeness (Part I),0.95
+102,1991,EMI U Catalog Inc. v. Far Musikverlag,Tony McKay aka Exuma,There´s a Brown Girl in the Ring,complainer,Boney M.,Brown Girl in the Ring,0.9
+103,1991,Herbolzheimer v. Farian,Malcolm’s Lock,Brown Girl,complainer,Boney M.,Brown Girl in the Ring,0.8
+104,1992,Chiate v. Morris,Lloyd Chiate,Hello It's Me / I Just Called to Say,complainer,Stevie Wonder,I Just Called to Say I Love You,0.7
+105,1992,Moore v. Columbia Pictures,Derrick D. Moore,She Can't Stand It,complainer,Public Enemy,She Watch Channel Zero?!,0.8
+106,1993,EMI Music v. Papathanasiou,Stavros Logarides,City of Violets,complainer,Vangelis,City of Violets,0.8
+107,1993,Jarvis v. A & M Records,Boyd Jarvis,The Music's Got Me,complainer,Bassheads,The Music's Got Me,0.8
+108,1993,Tempo Music v. Famous Music,"Duke Ellington, Billy Strayhorn, Johnny Mercer",Satin Doll,complainer,Duke Ellington,Satin Doll,0.95
+109,1993,Sylvestre v. Oswald,Michael Sylvestre and Dougals Richwine,Heaven,complainer,Warrant,Heaven,0.7
+110,1993,Les Inconnus v. Parker,Les Inconnus,Auteuil Neuilly Passy,complainer,Les Inconnus,Auteuil Neuilly Passy,0.95
+111,1994,Drynan v. Rostad,James Drynan,Filion Family Welcome,complainer,James Drynan,Filion Family Welcome,0.8
+112,1994,Campbell v. Acuff-Rose,Williams Dees and Roy Orbison,"Oh, Pretty Woman",complainer,Roy Orbison,"Oh, Pretty Woman",0.9
+113,1994,Fantasy v. Fogerty,John Fogerty,Run Through the Jungle,complainer,Creedence Clearwater Revival,Run Through the Jungle,0.95
+114,1994,Tin Pan Apple v. Miller Brewing,Morales and Robertson [Fat Boys],Stick 'em,complainer,Fat Boys,Stick 'Em,0.95
+115,1995,Crystal Cartier v. Michael Jackson,Crystal Cartier,Dangerous,complainer,Michael Jackson,Dangerous,0.95
+116,1995,La Cienega Music Co. v. ZZ Top,John Hooker and Bernard Besman,Boogie Chillen,complainer,John Lee Hooker,Boogie Chillen',0.95
+117,1995,Woods v. Bourne,Harry Woods,"When the Red, Red, Robin Comes Bob, Bob, Bobbin' Along",complainer,Al Jolson,"When the Red, Red Robin Comes Bob-Bob-Bobbin' Along",0.9
+118,1996,Palmieri v. Estefan,Eddie Palmieri,Paginas De Mujer,complainer,Gloria Estefan,Abriendo Puertas,0.75
+119,1996,Santrayll v. Burrell,Rene Santrayll & Michael Walker,Uh Oh,complainer,MC Hammer,U Can't Touch This,0.8
+120,1996,Smith v. Michael Jackson,Robert Smith and Reynard Jones,Don't Let the Sunshine / Happy Go Lucky Girl,complainer,Michael Jackson,The Girl Is Mine,0.7
+121,1997,Damiano v. Sony,James Damiano,Miscellaneous lyrics and instrumental arrangement,complainer,Bob Dylan,Dignity,0.75
+122,1997,McRae v. Smith,Maree McRae,"Every Minute, Every Hour, Every Day",complainer,Maree McRae,"Every Minute, Every Hour, Every Day",0.9
+123,1997,Repp v. Webber,Ray Repp,Till You,complainer,Andrew Lloyd Webber,The Phantom of the Opera,0.7
+124,1997,Tuff 'N' Rumble v. Profile Records,Robert Plant et al.,Impeach the President,complainer,The Honey Drippers,Impeach the President,0.95
+125,1999,BTE v. Bonnecaze,"Kevin Griffin, et al.",Coyote,complainer,Better Than Ezra,Coyote,0.85
+126,1999,Ellis v. Diffie,Everett Ellis,Lay Me Out By the Jukebox When I Die,complainer,Joe Diffie,Prop Me Up Beside the Jukebox (If I Die),0.95
+127,1999,Selletti v. Carey,Christopher Selletti,Hero,complainer,Mariah Carey,Hero,0.95
+128,1999,Suzane McKinley v. Collin Raye,Suzane McKinley,I Think About You,complainer,Collin Raye,I Think About You,0.95
+129,1999,ZZ Top v. Chrysler Corp.,"Billy Gibbons, et al.",La Grange,complainer,ZZ Top,La Grange,0.95
+130,1999,Anzilotti v. Hildenbeutel,Snap!,Green Grass Grows (Earth follows),complainer,Snap!,Green Grass Grows (Earth follows),0.9
+131,2000,Armstrong v. Virgin Records,"John McLaughlin, et al.",Planetary Citizen,complainer,Mahavishnu Orchestra,Planetary Citizen,0.95
+132,2000,Three Boys Music v. Michael Bolton,Isley Brothers,Love is a Wonderful Thing,complainer,Michael Bolton,Love Is a Wonderful Thing,0.95
+133,2000,Tisi v. Patrick,Michael Tisi,Sell Your Soul,complainer,Michael Tisi,Sell Your Soul,0.8
+134,2000,Bouffard v. Ministère Public,,Various pop songs in SACEM catalog,complainer,nan,Various,0.5
+135,2000,"Cooper v. Ogilvy & Mather, et al.",Matthew Cooper,The Lower we Fly,complainer,Eluvium,The Lower We Fly,0.7
+136,2001,Oliviera v. Frito-Lay,Astrud Gilberto,Girl from Ipenama,complainer,Astrud Gilberto,The Girl from Ipanema,0.9
+137,2001,Albano Carrisi v. Michael Jackson,Albano Carrisi,I cigni di Balaka,complainer,Michael Jackson,Will You Be There,0.9
+138,2001,Marlon Williams v. Calvin Broadus,Marlon Williams,The Symphony,complainer,Marley Marl,The Symphony,0.85
+139,2001,Johnson v. Berry,Chuck Berry and Johnnie Johnson,Wee Wee Hours,complainer,Chuck Berry,Wee Wee Hours,0.95
+140,2001,Toliver v. Sony Music,Paula Toliver,Independent Lady,complainer,Paula Perry,Independent Woman,0.7
+141,2002,Creagh v. Hit and Run Music,Marianne Creagh,Where are You Now,complainer,Jackson Browne,Where Were You,0.6
+142,2002,Jean et al. v. Bug Music,"Leo Nocentelli, et al.",Hand Clapping Song,complainer,The Meters,Hand Clapping Song,0.95
+143,2002,Malmstedt v. EMI Records,Stephan Malmstedt,Jenny and I,complainer,Stephan Malmstedt,Jenny and I,0.8
+144,2002,Weh v. Universal Music Publishing,WEH,Heartbeat,complainer,Enrique Iglesias,Heartbeat,0.7
+145,2003,Cottrill v. Spears,Michael Cottrill and Lawrence Wnukowski,What You See is What You Get,complainer,Britney Spears,What U See (Is What U Get),0.95
+146,2003,Newton v. Diamond,James W. Newton,Choir,complainer,Beastie Boys,Pass the Mic,0.9
+147,2003,Ory v. Country Joe McDonald,"Edward ""Kid"" Ory",Muskrat Ramble,complainer,Country Joe McDonald,Muskrat Ramble,0.95
+148,2003,Jorgensen v. Epic/Sony Records,John L. Jorgensen,Long Lost Lover,complainer,Michael Bolton,Love Is a Wonderful Thing,0.7
+149,2003,Ergin v. Kershaw,"Mehmet Ergin, Christoph Lienemann",Jingle of German bank: “Wenn’s ums Geld geht-Sparkasse”,complainer,Mehmet Ergin,"Jingle of German bank: ""Wenn’s ums Geld geht-Sparkasse""",0.85
+150,2003,Kobayashi v. Hatorri,Asei Kobayashi,Dokomademo Ikou [Let's Go Anywhere],complainer,Asei Kobayashi,Dokomademo Ikou,0.95
+151,2004,Apollo v. Coca Cola,Apollo Inc.,When the Sun Rises,complainer,Yanni,When the Sun Rises,0.6
+152,2004,Swirsky v. Carey,Seth Swirsky and Warryn Campbell,One of Those Love Songs,complainer,Mariah Carey,Thank God I Found You,0.9
+153,2004,"Disney Enterprises, Inc. v. S.G. Griesel",Soloman Ntsele [p/k/a/ Linda],Mbube,complainer,The Tokens,The Lion Sleeps Tonight,0.9
+154,2004,Ulloa v. Universal,Demme Ulloa,Brief countermelody to defendant's song,complainer,Jennifer Lopez,I'm Real,0.6
+155,2005,BMS Entertainment v. Bridges,"Ramid Brown, et al.",Straight Like That,complainer,Ludacris,Get Back,0.8
+156,2005,"Bridgeport Music v. Dimension Films, et al.",George Clinton,Get Off Your Ass and Jam,complainer,Funkadelic,Get Off Your Ass and Jam,0.95
+157,2005,Coffey v. Warner/Chappell Music,Elizabeth Coffey,Forever After,complainer,TobyMac,Gone,0.7
+158,2005,Griffin v. J-Records,Tia Griffin,Heart of Gold,complainer,Neil Young,Heart of Gold,0.6
+159,2005,Johnson v. Gordon,Calvin R. Johnson,You’re the One (For Me),complainer,D-Train,You're the One for Me,0.9
+160,2005,Positive Black Talk v. Cash Money Records,"Jerome Temple (""Jubilee"")",Back That Ass Up,complainer,Juvenile,Back That Azz Up,0.95
+161,2005,Vargas v. Pfizer,Ralph Vargas and Bland-Ricky Roberts,Bust Dat Groove Without Ride,complainer,Ralph Vargas,Bust Dat Groove Without Ride,0.9
+162,2005,Yong Wang v. Zhengben Zhu,Yong Wang,Send My Comrade to Beijing,complainer,Yong Wang,Send My Comrade to Beijing,0.8
+163,2005,Bacalov v. Endrigo,Sergio Endrigo,Nelle mie notti,complainer,Sergio Endrigo,Nelle mie notti,0.95
+164,2006,Boone v. Jackson,"Carl Boone (""Trajik"")",Holla Back,complainer,Trajik,Holla Back,0.8
+165,2006,Tilford v. Jones,Bradley Tilford,Still Tippin',complainer,Mike Jones feat. Slim Thug and Paul Wall,Still Tippin',0.95
+166,2007,Armour v. Knowles,Jennifer Armour,Got a Little Bit of Love for You,complainer,Beyoncé,Baby Boy,0.7
+167,2007,Bridgeport Music v. Combs,"Robert Jones, et al.",Singing in the Morning,complainer,Notorious B.I.G.,Ready to Die,0.6
+168,2007,"Lil' Joe Wein Music, Inc. v. Jackson",Luther Campbell,It's Your Birthday,complainer,2 Live Crew,It's Your Birthday,0.85
+169,2007,People v. Hu,Lo,Lianshang Love Song,complainer,Lo Ta-yu,Love Song 1990,0.7
+170,2007,Vargas v. Transeau,Ralph Vargas and Bland-Ricky Roberts,Aparthenonia,complainer,BT,Aparthenonia,0.8
+171,2007,Velez v. Sony Discos,Victor Velez,Hasta Hoy,complainer,Marc Anthony,Hasta Ayer,0.7
+172,2007,Lester v. U2,Chris Lester,Nowhere Fast,complainer,U2,Vertigo,0.8
+173,2007,"Huang Nenghua, et al. v. China Record Shanghai Co., Ltd.",Xu Ruhui,"Arrangements of Chinese Operas, including: The Mother as Slave",complainer,Traditional,The Mother as Slave,0.6
+174,2008,Glover v. Austin,Corey Glover,Make Up Your Mind,complainer,Corey Glover,Make Up Your Mind,0.85
+175,2008,"Winter v. Moore, et al.","Jurgen Winter, et al., (a.k.a. ""Jud's Gallery"")",Nordrach,complainer,Jud's Gallery,Nordrach,0.85
+176,2008,Sampath v. Roshan,Ram Sampath,The Thump,complainer,Ram Sampath,The Thump,0.9
+177,2009,Allen v. Destiny's Child,Rickey Allen,Cater 2 U,complainer,Destiny's Child,Cater 2 U,0.95
+178,2009,Brainard v. Vassar,Dustin Evans,Good Ol' Days to Come,complainer,Dustin Evans,Good Ol' Days to Come,0.9
+179,2009,"Steele v. Bongiovi, et al.",Samuel Steele,Man I Really Love This Team,complainer,Bon Jovi,I Love This Town,0.8
+180,2009,"Bridgeport Music, Inc. v. UMG Recordings, Inc",George Clinton,Atomic Dog,complainer,George Clinton,Atomic Dog,0.95
+181,2009,Jones v. Blige,Leonard Jones and James E. White,Party Ain't Crunk,complainer,Mary J. Blige,Enough Cryin',0.7
+182,2009,"Joe Satriani v. Christopher Martin, et al. [Coldplay]",Joe Satriani,If I Could Fly,complainer,Joe Satriani,If I Could Fly,1.0
+183,2009,Weh v. Universal Music Publishing,WEH,Heartbeat,complainer,Nneka,Heartbeat,0.7
+184,2010,"Currin v. Pharrell Williams, et al.",David & Peter Currin,I'm Frontin',complainer,Pharrell Williams feat. Jay-Z,Frontin',0.9
+185,2010,Larrikin Music Publishing Ltd. v. EMI Songs Australia Ltd.,Marion Sinclair,Kookaburra Sits in the Old Gum Tree,complainer,Men at Work,Down Under,0.95
+186,2010,Marshall v. Huffman,Preston Marshall,You are the One,complainer,Shiny Toy Guns,You Are the One,0.7
+187,2010,"Prunte v. Universal Music Group Inc., et al.",Robert R. Prunte,"Fire in Da Hole, Plus Others",complainer,Nelly,N Dey Say,0.4
+188,2010,Martel Ellis v. Wyclef Jean,Martel Ellis,Danger,complainer,Wyclef Jean,Danger,0.8
+189,2010,"Ebony Latrice Batts v. William Adams, et al. [“Black Eyed Peas”]",Ebony Latrice Batts aka “Phoenix Phenom”,Boom Dynamite,complainer,The Black Eyed Peas,Boom Boom Pow,0.85
+190,2010,"Holmes v. Page, et al.",Jake Holmes,Dazed and Confused,complainer,Led Zeppelin,Dazed and Confused,0.95
+191,2011,"Ernest Straughter v. Usher Raymond, et al.",Ernest Straughter,The Reasons Why,complainer,Usher,Burn,0.85
+192,2011,Pyatt v. Raymond,Wadena Pyatt,Caught Up,complainer,Usher,Caught Up,0.95
+193,2011,Lessem v. Taylor,"Ryan Lessem, Douglas Johnson",Elevator,complainer,Flo Rida,Elevator,0.9
+194,2011,"Saregama India v. Timothy Mosley, et al.",Anonymous,Baghon Mein Behar Hai,complainer,Timberland,Put You on the Game,0.8
+195,2011,"Eight Mile Style [Marshall Mathers, aka Eminem” v. Audi GmbH",Marshall Mathers [aka “Eminem”],Advertisement for Chrysler Corp.,complainer,Eminem,Lose Yourself,0.95
+196,2011,Obinger v. McDonald's,Stephan Obinger,,complainer,Stephan Obinger,Unknown,0.1
+197,2011,Stokes v. Stephens,Anthony Stokes,Where are You Now?,complainer,Justin Bieber feat. Diplo and Skrillex,Where Are Ü Now,0.7
+198,2012,"Lyles v. Capital - EMI Music, Inc., et al.",Bruce Lyles,Without You,complainer,David Guetta feat. Usher,Without You,0.6
+199,2012,Peters v. West,Vince Peters,Stronger,complainer,Kanye West,Stronger,0.95
+200,2012,People v. Xinru Wang,Meiru Huang,What Is Wrong with Love,complainer,Xinru Wang,What Is Wrong with Love,0.8
+201,2012,Done Deal v. Carter,William Keith,Bedrock,complainer,Young Money,Bedrock,0.95
+202,2012,Poindexter v. EMI Record Group,"Robert Poindexter, et al.",Thin Line Between Love and Hate,complainer,The Persuaders,Thin Line Between Love and Hate,0.9
+203,2012,Rui Hua Wang v. Qi Gang Chen,Rui Hua Wang,You and Me,complainer,Lifehouse,You and Me,0.5
+204,2012,Black Keys v. Home Depot and Pizza Hut,Daniel Auerbach and Patrick Carney,Lonely Boy; Gold on the Ceiling,complainer,The Black Keys,Lonely Boy,0.95
+205,2012,Erickson v. Blake,Lars Erickson,Pi Symphony,complainer,Lars Erickson,Pi Symphony,0.95
+206,2012,"Barobax v. Chakraborty, et al.",Kevian Haghgoo et al.,Soosan Khanoom,complainer,Barobax,Soosan Khanoom,0.9
+207,2013,Hobbs v. John,Guy Hobbs,Natasha,complainer,Elton John,Nikita,0.9
+208,2013,Loomis v. Cornish,Will Loomis,Bright Red Chords,complainer,Christina Aguilera,Ain't No Other Man,0.8
+209,2013,"Twilight Records v. Raymond, et al.",Usher Raymond,Syl Johnson,complainer,Usher,Climax,0.8
+210,2013,"Love v. Universal Music Group, Inc.",Bloodstone,I'm Doing My Job,complainer,Bloodstone,I'm Just Doing My Job,0.8
+211,2014,"Francescatti v. Germanotta [""Lady Gaga""]",Rebecca Francescatti,Juda,complainer,Lady Gaga,Judas,0.95
+212,2014,"Pringle v. Adams [""Black Eyed Peas""]",Brian Pringle,Take a Drive,complainer,The Black Eyed Peas,I Gotta Feeling,0.9
+213,2014,Steward v. Kanye West,David Pryor,Bumpin' Bus Stop,complainer,Kanye West,Gold Digger,0.8
+214,2014,"TufAmerica, Inc. v. Warner Bros Music Corp., et al",Eddie Bo & The Soul Finders,"Hook & Sling, Pt. I",complainer,Eddie Bo,Hook and Sling - Part I,0.9
+215,2014,Mayimba Music v. Sony,Ramon Arias Vasquez,Loca con su Tiguere,complainer,Shakira,Loca,0.95
+216,2014,Paul Batiste v. Faheem Rasheed Najm,Paul Batiste,I Like Your Way; Blues Man,complainer,Paul Batiste,I Like Your Way,0.6
+217,2014,Musikverlag Richard Birnbach v. ZDF,"Klaus Wüsthoff, Hans Günter Wagener",Fanfaren-Blues,complainer,Klaus Wüsthoff,Fanfaren-Blues,0.8
+218,2015,Lane v. Knowles-Carter,Ahmad Javon Lane,X.O.X.O.,complainer,Beyoncé,XO,0.9
+219,2015,"New Old Music v. Gottwald, et al.",Lenny Lee Goldsmith,Zimba ku,complainer,Pitbull,Timber,0.8
+220,2015,"Devin Copeland v. Justin Bieber, et al.",Devin Copeland,Someone to Love,complainer,Justin Bieber,Somebody to Love,0.9
+221,2015,"TufAmerica v. Diamond, et al.",Trouble Funk [band],Say What; Drop the Bomb,complainer,Beastie Boys,Say What,0.8
+222,2015,"Miles Floyd v. Rod Stewart, et al.","American folk song, as performed by Bo Carter",Corrine Corrina,complainer,Rod Stewart,"Corrina, Corrina",0.85
+223,2015,"Daniel Marino v. Usher, et al.",Daniel Marino,,complainer,Usher,Bad Girl,0.8
+224,2015,Tom Petty v. Sam Smith,Tom Petty and Jeff Lynne,I Won't Back Down,complainer,Tom Petty,I Won't Back Down,1.0
+225,2015,Richard Friedman v. Hans Zimmer,Richard Friedman,To Our Fallen,complainer,Hans Zimmer,To Our Fallen,0.6
+226,2015,Dark Sanctuary v. Bushido,Dark Sanctuary,Les Memoires Blessées,complainer,Bushido,Janine,0.9
+227,2015,Johnson v. Goldman,Jefferson/Jean-François Johnson,Forever,complainer,Drake,Forever,0.85
+228,2015,"Guzman v. Hacienda Records, et al.",Jose Guzman,"Triste Adventura, alternatively known as Cartas de Amor",complainer,Jose Guzman,Triste Aventura,0.8
+229,2015,Universal Music Publishing v. Sony BMG Music Entertainment,Enrico Riccardi and Luigi Albertelli,Zingara,complainer,Bobby Solo,Zingara,0.85
+230,2016,Fahmy v. Jay Z et al.,Baligh Hamdi,"Khosara, Khosara",complainer,Jay-Z,Big Pimpin',0.95
+231,2016,Bowen v. Paisley,Amy Bowen,Remind Me,complainer,Brad Paisley with Carrie Underwood,Remind Me,0.9
+232,2016,"VMG Salsoul v Madonna Ciccone, et al.","Vincent Montana, Richard Pettibone",Chicago Bus Stop,complainer,Salsoul Orchestra,"Chicago Bus Stop (Ooh, I Love It)",0.95
+233,2016,"McDonald v. West, et al.",Joel McDonald,Made in America,complainer,"Kanye West, Jay-Z, Frank Ocean",Made in America,0.95
+234,2016,We Shall Overcome Foundation v. Richmond Foundation & Ludlow Music,African-American Spiritual,We Shall Overcome,complainer,Pete Seeger,We Shall Overcome,0.75
+235,2016,"Alisa Apps v. Universal Music, et al.",Alisa Apps,Need to Know,complainer,Alisa Apps,Need to Know,0.8
+236,2016,Arnett v. Alan Jackson & Sony Music,Timothy Arnett,Remember Me,complainer,Alan Jackson,Remember When,0.7
+237,2016,"BMG v. Atlantic Recording Organization, et al.","Joseph Bereal, et al.",Came to Do,complainer,Chris Brown,Came To Do,0.95
+238,2016,"Eric Smith, et al. v. Amanda Jiroux, et al.","Eric  Smith, et al.",No Rain,complainer,Blind Melon,No Rain,0.95
+239,2016,"Gabor Presser v. Kanye West, et al.",Gabor Presser & Anna Adamis,Gyongyhaju Lany,complainer,Omega,Gyöngyhajú lány,0.95
+240,2016,"Mattie Music Group v. Lamar, Warner/Chappell, et al.","Bill Withers, et al.",Don't You Want to Stay,complainer,Jason Aldean and Kelly Clarkson,Don't You Wanna Stay,0.7
+241,2016,"McElroy, et al. v. Eriksen, et al.","Thomas McElroy, Denzil Delano, Jay King",Why You Treat Me So Bad,complainer,Club Nouveau,Why You Treat Me So Bad,0.95
+242,2016,"Songs Music Publishing v. Porsche, et al.",Members of  the band “X Ambassadors”,Jungle,complainer,X Ambassadors,Jungle,0.95
+243,2016,"Yours, Mine & Ours v. Sony, et al.",Members of  “electro-funk” band Collage,Young Girls,complainer,Bruno Mars,Young Girls,0.9
+244,2016,"Estate of Armetia Chatmon v. Eric Clapton, et al.",Public domain blues number performed by Bo Carter (Chatmon),"Corrine, Corrina",complainer,Eric Clapton,Alberta,0.7
+245,2016,"Miller, et al. dba “Sleigh Bells” v. Demi Lovato",“Sleigh Bells” [band],Infinity Guitars,complainer,Sleigh Bells,Infinity Guitars,0.95
+246,2016,"Greggs v. Grande, et al.",Alex Greggs,Takes All Night,complainer,Ariana Grande,One Last Time,0.85
+247,2016,"HaloSongs, Inc., Martin Harrington, Thomas Leonard v. Ed Sheeran, et al.",Martin Harrington & Thomas Leonard,Amazing,complainer,Matt Cardle,Amazing,0.95
+248,2016,"Darlene Love v. Scripps Network, Inc.","Jeff Barry, et al.",Christmas (Baby Please Come Home),complainer,Darlene Love,Christmas (Baby Please Come Home),0.95
+249,2016,"Casey Dienel v. Justin Bieber, et al.",Casey Dienel,Ring the Bell,complainer,Justin Bieber,Sorry,0.95
+250,2016,"Cirque du Soleil v. Justin Timberlake, et al.",Cirque du Soleil,Steel Dream,complainer,Justin Timberlake,Don't Hold the Wall,0.9
+251,2016,"PK Music v. Justin Timberlake, et al.",Perry Kibble,A New Day is Here at Last,complainer,Justin Timberlake,Suit & Tie,0.9
+252,2016,Feriol v. Maurici,Laurent Feriol,Les Chansons d’artiste,complainer,Laurent Feriol,Les Chansons d’artiste,0.9
+253,2017,"Parker, et al. v. Winwood, et al.",Willia Dean Parker & Homer Banks,Ain't That a Lot of Loving,complainer,Taj Mahal,Ain't That a Lot of Love,0.85
+254,2017,Roberts v. Gordy,"Wiliam Roberts, Andrew Harr, Jermaine Jackson",Hustlin,complainer,Rick Ross,Hustlin',0.95
+255,2017,Mitchell v. Priority Records,Leroy Mitchell,Star in the Ghetto,complainer,Luther Ingram,To the Other Man,0.7
+256,2017,Abdul Muhammad v. Chancellor Bennett,Abdul Muhammad (Erik Saunders),Bridge Through Time,complainer,Chance the Rapper,All We Got,0.8
+257,2017,"Lastrada Entertainment v. Mark Ronson, et al.",Roger Troutman,More Bounce to the Ounce,complainer,Mark Ronson feat. Bruno Mars,Uptown Funk,0.95
+258,2017,"Enclosed Music v. Steinman, et al.","Jon Dunmore, Mike Molina",[I’d do] Anything for You,complainer,Meat Loaf,I'd Do Anything for Love (But I Won't Do That),0.7
+259,2017,"Sean Hall, et al. v. Taylor Swift, et al.",Sean Hall,Playas Gon’ Play,complainer,3LW,Playas Gon' Play,0.95
+260,2017,"Estate of Barre v. Beyoncé Knowles Carter, Sony Music, et al.",Anthony Barre aka “Messy Mya”,Booking the Hoes from New Wildings; A 27 Piece Huh?,complainer,Beyoncé,Formation,0.95
+261,2017,"Golden Crown Publishing v. Sony Music, Jonathan Smithy [aka “Lil’ Jon”], et al.","Fredley Saurel [aka “Freddy GZ”], et al.",Turn Down for What?,complainer,DJ Snake & Lil Jon,Turn Down for What,0.95
+262,2017,"Bosh v. Univision Communications, Inc.",Joel Bosh,Yo Soy Boricua,complainer,Joel Bosh,Yo Soy Boricua,0.85
+263,2017,Super Cassettes v. Trimurti Films,Kishore Kumar & Asha Bhosle,Kehdoon Tumhe,complainer,Kishore Kumar & Asha Bhosle,Kehdoon Tumhe,0.95
+264,2017,"Stone et al. v. TIG7 Publishing, LLC et al.",The Sequence,Funk You Up,complainer,The Sequence,Funk You Up,0.95
+265,2018,"Paul Rose v. Paul David Hewson, aka “Bono”, et al.",Paul Rose,Nae Slappin',complainer,U2,The Fly,0.7
+266,2018,"Abiodun Oyewole v. Rita Ora, et al.",Abiodun Oyewole,When the Revolution Comes,complainer,The Last Poets,When the Revolution Comes,0.95
+267,2018,"Wilson v. Dynatone Pub., et al.","John Wilson, Charles Still, Terrance Stubbs",Sho' Nuff,complainer,"Sly, Slick & Wicked",Sho' Nuff,0.8
+268,2018,"Cortes-Ramos v. Enrique Martin-Morales (""Ricky Martin"")",Luis Cortes-Ramos,World Cup Song Contest Entry,complainer,Ricky Martin,La Copa de la Vida,0.8
+269,2018,"Fahmy v. Jay Z, et al.",Baligh Hamdi,"Khosara, Khosara",complainer,Jay-Z,Big Pimpin',0.95
+270,2018,"Pharrell Williams, et al. v. Frankie Gaye, et al.",Marvin Gaye,Got to Give it Up,complainer,Marvin Gaye,Got to Give It Up,1.0
+271,2018,"Lela Weems v. Odd Future Records, et al.",Herman Weems,Why Can't There Be Love,complainer,Dee Edwards,Why Can't There Be Love,0.85
+272,2018,"Michael May v. Miley Ray Cyrus, et al.",Michael May,We Run Things,complainer,Miley Cyrus,We Can't Stop,0.9
+273,2018,[INPLAY] Platinum Jack Entertainment v. ESPN and Chick-Fil-A,Drayter [Band],Best I Had,complainer,Drayter,Best I Had,0.9
+274,2018,Carey v. Sheeran,"Sean Carey, Beau Golden, Jasmine Rae",When I Found You,complainer,Jasmine Rae,When I Found You,0.95
+275,2018,"Del Rio v. Virgin America, et al.",Neomi Del Rio,Flight Safety Video,complainer,Virgin America,Flight Safety Video,0.7
+276,2018,"Jamie Ciero v. Disney, et al.",Jamie Ciero,Volar,complainer,Jamie Ciero,Volar,0.9
+277,2018,Tracy Chapman v. Nicki Minaj,Tracy Chapman,Baby Can I Hold You,complainer,Tracy Chapman,Baby Can I Hold You,0.95
+278,2018,"[INPLAY] Brighter Sky Productions LLC, et al. v. Marriott International, Inc., et al.","Dan Tramon, Diana Belkowski, and Carl Anthony Tramon",Rocket Boys Musical,complainer,Elton John,Rocket Man,0.5
+279,2018,"Benny Mardones, et al. v. Cyndi Lauper, et al.",Benny Mardones & Robert Tepper,Into the Night,complainer,Benny Mardones,Into the Night,0.95
+280,2018,"Richard Morrill v. Gwen Stefani, Pharrell Williams, et al.",Richard Morrill,Who's Got My Lightah (1996) / Who's Got My Lighter (2009),complainer,Gwen Stefani,Spark the Fire,0.8
+281,2018,Stahlgewitter v. Frei.Wild,Stahlgewitter,Auftrag Deutsches Reich,complainer,Stahlgewitter,Auftrag Deutsches Reich,0.95
+282,2018,Harumaki Gohan v. Mori,Harumaki Gohan,Hachigatsu no Rainy [August Rainy],complainer,Harumaki Gohan,Hachigatsu no Rainy,0.95
+283,2019,Eight Mile Style v. New Zealand National Party,"Marshall Mathers, et al.",Lose Yourself,complainer,Eminem,Lose Yourself,0.99
+284,2019,The Rolling Stones v. The Verve,The Rolling Stones,The Last Time,complainer,The Rolling Stones,The Last Time,0.95
+285,2019,"Andrew Green v. Kanye West, et al.",Alice T. Johnson and N.G (minor child),Video Recording of child praying,complainer,Kanye West,Ultralight Beam,0.8
+286,2019,"William Smith et al. v. ""The Weeknd""","William Smith, Brian Clover, Scott McCulloch",I Need to Love,complainer,The Weeknd,A Lonely Night,0.7
+287,2019,"Song-a-tron Music, et al. v. Jones, et al.",Song-A-Tron Music,Back it Up,complainer,Prince Royce,Back It Up,0.7
+288,2019,[INPLAY] Hütter v. Pelha,Kraftwerk,Metall auf Metall,complainer,Kraftwerk,Metall auf Metall,0.95
+289,2019,Mimi Korman v. Julio Iglesias,Mimi Korman,Me Olvide de Vivir,complainer,Julio Iglesias,Me Olvidé de Vivir,0.95
+290,2019,"Rodriguez v. Avalos, et al.",Esmeralda Lucy Rodriguez,Pediré,complainer,Olga Tañón,Pediré,0.8
+291,2019,"[INPLAY] Nicholas v. Pigott, et al.","Samuel Nicholas III (""Sam Scully"")",Roll Call (Instrumental),complainer,Slim Thug,Still Tippin',0.8
+292,2019,"[INPLAY] Brandon Lee (""Don Lee""), et al. v. Hill (""Lil Nas X""), et al.","Brandon Lee (""Don Lee"") & Glen Demeritt",gwenXdonlee4-142,complainer,Lil Nas X,Old Town Road,0.9
+293,2019,Zachry Brown v. Ryan Tedder,Zachry Brown,Nowhere Left to Go,complainer,OneRepublic,Wherever I Go,0.85
+294,2019,"Mark Halper v. Sony/ATV Music Publishing, LLC, et al.",Mark Halper,Don't Throw Our Love Away,complainer,Mark Halper,Don't Throw Our Love Away,0.8
+295,2019,New Day Worldwide v. Taylor Swift,Jesse Graham,Haters gone Hate,complainer,Taylor Swift,Shake It Off,0.95
+296,2019,"[INPLAY] Key, et al. (""Yellowcard"") v. Higgins, et al. (""Juice WRLD"")","Ryan Key, et al. (""Yellowcard"")",Holly Wood Died,complainer,Yellowcard,Holly Wood Died,0.95
+297,2019,Brown v. Netflix,"Tamita Brown, et al.",Fish Sticks n' Tater Tots (song),complainer,Tamita Brown,Fish Sticks n' Tater Tots,0.8
+298,2019,Guity v. Santos,Nazim Guity,Eres Mia,complainer,Romeo Santos,Eres Mía,0.95
+299,2019,"Pickett v. Migos Touring, Inc., et al.","Leander C. Pickett (""M.O.S."")",Walk It Like I Talk It,complainer,Migos feat. Drake,Walk It Talk It,0.95
+300,2019,Stone v. Dudley,Sharon Stone,,complainer,nan,nan,0.0
+301,2019,"Batiste v. Lewis, et al.",Paul Batiste,Hip Jazz; World of Blues; Salsa 4 Elise; I Got the Rhythm On,complainer,Paul Batiste,I Got the Rhythm On,0.8
+302,2019,[INPLAY] Richardson v. Kharbouch,Eddie Lee Richardson aka Hotwire the Producer,*Hood* Pushin’ Weight,complainer,French Montana,Pushin' Weight,0.7
+303,2019,Hines v. Roc-A-Fella Records Inc. et al.,Ernie Hines,Help Me Put Out The Flame (In My Heart),complainer,Kanye West,Good Life,0.8
+304,2019,"Jefferson v. Raisen, et al.","Melissa Jefferson (""Lizzo"")",Truth Hurts,complainer,Lizzo,Truth Hurts,1.0
+305,2019,Saregama India v. Balaji,Dada Kondke,Var Dhagala Lagli Kal,complainer,Dada Kondke,Var Dhagala Lagli Kal,0.95
+306,2020,Estate of James Oscar Smith v. Cash Money Records,Jimmy Smith,Jimmy Smith Rap,complainer,Drake,Pound Cake / Paris Morton Music 2,0.95
+307,2020,"Yeasayer v. Tesfaye (""The Weeknd"")","Yeasayer, LLC",Sunrise,complainer,Yeasayer,Sunrise,0.9
+308,2020,Michael Skidmore v. Led Zeppelin,Randy Wolfe,Taurus,complainer,Led Zeppelin,Stairway to Heaven,0.95
+309,2020,"Marcus Gray, et al. v. Katy Perry","Marcus Gray, et al.",Joyful Noise,complainer,Flame,Joyful Noise,0.95
+310,2020,[INPLAY] Armes v. Post,Tyler Armes,Circles,complainer,Post Malone,Circles,0.95
+311,2020,[INPLAY] Gordon v. Chambers,"Seth Gordon (""Yung Gordon"")",Yung Gordon Intro,complainer,Yung Gordon,Yung Gordon Intro,0.95
+312,2020,"[INPLAY] Griffin v. Sheeran, et al.",Marvin Gaye,Let's Get It On,complainer,Marvin Gaye,Let's Get It On,0.95
+313,2020,"[INPLAY] Jackson v. Apple, Inc.",Darell Jackson,Side Show,complainer,Khia,"My Neck, My Back (Lick It)",0.8
+314,2020,[INPLAY] Basil v. AMC,Toni Basil,Mickey,complainer,Toni Basil,Mickey,0.95
+315,2020,"[INPLAY] Stines v. Knowles, et. al.",,,complainer,,,0.0
+316,2020,"Jackson (""50 Cent"") v. Roberts","Curtis James Jackson (""50 Cent"")",In Da Club,complainer,50 Cent,In Da Club,0.99
+317,2020,[INPLAY] Hayes v. Lamar,Terrance Hayes,,complainer,Kendrick Lamar,Fear,0.2
+318,2020,Stone v. Grande,Josh Stone,"You Need It, I Got It",complainer,Ariana Grande,7 rings,0.9
+319,2020,Sheeran v. Chokri,Sam Chokri,Oh Why,complainer,Sam Chokri,Oh Why,0.9
+320,2020,Structured Asset Sales v. Sheeran,Marvin Gaye,Let's Get It On,complainer,Marvin Gaye,Let's Get It On,0.95
+321,2020,"Norwood v. Quality Control Music, LLC",Barbara Norwood,Martian,complainer,Lil Baby,We Paid,0.7
+322,2021,"Nwosuocha v. Glover, et al.",Emelike Nwosuocha,Made in America,complainer,Childish Gambino,This is America,0.9
+323,2021,"[INPLAY] Cooper, et al. v. Brown, et al.",Mr. Cooper,I Love Your Dress,complainer,Mr. Cooper,I Love Your Dress,0.8
+324,2021,"[INPLAY] Cates v. Shlemovitz, et al.",Cameron Cates,She Loves Her Job,complainer,Alan Jackson,She Loves Me All The Way,0.7
+325,2021,Robinson v. Wilburn,Gutta,When U Think About It,complainer,Michael Jackson,You Rock My World,0.4
+326,2021,Johannsongs-Publishing Ltd. v. Lovland,Jóhann Helgason,Söknuður,complainer,Secret Garden,You Raise Me Up,0.8
+327,2021,[InPlay] Cleveland Constantine Browne et al. v. Rodney Sebastian Clark Donalds et al.,Cleveland Browne & Wycliffe Johnson,Fish Market,complainer,Rupee,Tempted to Touch,0.8
+328,2021,"AOM Music, Inc v. Benito Antonio Martínez Ocasio (p/k/a Bad Bunny)","AOM Music, Inc.",Playero Works,complainer,Bad Bunny,Playero,0.85
+329,2022,[INPLAY] Ultra v. West,Marshall Jefferson,Move Your Body,complainer,Marshall Jefferson,Move Your Body,0.95
+330,2022,Frisby v. Sony,G-Money,Shawty So Cold,complainer,G-Money,Shawty So Cold,0.8
+331,2022,"Cope v. Dua Lipa, et al",Artikel Sound,Live Your Life,complainer,Dua Lipa,Levitating,0.95
+332,2022,[InPlay} Quinn et al v. Powell et al.,"Darwin Quinn, Mitchelle'l Sium,",Back N Forth,complainer,Aaliyah,Back & Forth,0.8
+333,2022,[InPlay] Larball Publ'g Co. v. Lipa,"Russell Brown, Sandy Linzer",Wiggle and Giggle All Night,complainer,Dua Lipa,Levitating,0.95
+334,2022,[InPlay] Phase One Network v. Kanye West,"Lawrence Parker, Scott Sterling",South Bronx,complainer,Boogie Down Productions,South Bronx,0.95
+335,2022,Moten v. Def Jam,Bishop David Paul Moten,Unspecified Sermon,complainer,,,0.0
+336,2022,Patrick v. Poree,Yolanda Patrick,I Do What I Want,complainer,Yolanda Patrick,I Do What I Want,0.9
+337,2022,Grigson v. Lopez,Daniel Grigson,That Girl,complainer,Frankie J,That Girl,0.7
+338,2022,Sound & Color v. Sam Smith,"Jordan Vincent, Christopher Miranda",Dancing with Strangers,complainer,Sam Smith,Dancing with a Stranger,0.95
+339,2022,[InPlay] Third Side Music v. Evenflo Co.,Sofi Tukker,Best Friend,complainer,Sofi Tukker,Best Friend,0.95
+340,2023,Astley v. Hauri,Rick Astley,Never Gonna Give You Up,complainer,Rick Astley,Never Gonna Give You Up,1.0
+341,2023,Stone v. Carey,"Andy Stone, AKA Vinnie Vance",All I Want for Christmas is You,complainer,Mariah Carey,All I Want for Christmas Is You,0.95
+342,2023,[InPlay] Formal Entertainment v. Zayn Malik,"Patrick Simmons p/k/a ""Havyn""",Somebody Tonight,complainer,Zayn,Somebody Tonight,0.8
+343,2023,"[InPlay] Darko v. Grahm, et al.",Obrafour,Oye Ohene,complainer,Obrafour,Oye Ohene,0.9
+344,2023,"[InPlay] Concord Music Group, et al. v. Anthropic PBC","Concord Music, Universal Music Group and ABKCO Music",,complainer,,Unknown,0.5
+345,2024,Chamberlain v. Dolo Entertainment,Duvall Chamberlain,In That Mood,complainer,Lil Rekk,In That Mood,0.85
+346,2024,"Peabody & Company LLC v. Wayne, et al.",Greg Perry,Come On Down,complainer,Greg Perry,Come On Down,0.9
+347,2024,"Johnston v. Kroeger, et al.",Snowblind,Rockstar,complainer,Nickelback,Rockstar,0.9
+0,1844,Millett v. Snowden,W. J. Wetmore,The Cot Beneath the Hill,defendant,W. J. Wetmore,The Cot Beneath the Hill,0.7
+1,1845,Reed v. Carusi,Samuel Carusi,The Old Arm Chair,defendant,Eliza Cook,The Old Arm Chair,0.8
+2,1846,Ferrett v. Atwill,,,defendant,N/A,N/A,0.0
+3,1850,Jollie v. Jacques,Anonymous,Serious Family Polka,defendant,Anonymous,Serious Family Polka,0.5
+4,1887,Blume v. Spear,W.D.Hendrickson,Call Me Back Again,defendant,Traditional,Call Me Back Again,0.5
+5,1888,Kennedy v. McTammanay,,,defendant,Unknown,Unknown,0.0
+6,1898,Broder v. Zeno Mauvais Music Co.,Charles Sidney O'Brien,Ma Angeline,defendant,Charles K. Harris,Ma Angeline,0.75
+7,1899,Boosey v. Whight,Player piano rolls produced by defendant Whight,,defendant,Various,Player Piano Rolls,0.25
+8,1907,White-Smith Music v. Apollo Company,Adam Geibel,Little Cotton Dolly,defendant,Adam Geibel,Little Cotton Dolly,0.8
+9,1914,Cooper v. James,Joseph James,Never Turn Back,defendant,Wilbur Sweatman,Never Turn Back,0.7
+10,1915,Boosey v. Empire Music,Jeff Godfrey,"Tennessee, I Hear You Calling Me",defendant,Jeff Godfrey,"Tennessee, I Hear You Calling Me",0.7
+11,1916,Haas v. Leo Feist,Al Piantadosi,I Didn't Raise My Boy to be a Soldier,defendant,Al Piantadosi,I Didn't Raise My Boy to be a Soldier,0.95
+12,1917,Hart v. Graham,,,defendant,,,0.0
+13,1923,Austin v. Columbia Gramophone Co.,John Gay,"Themes from opera ""Polly""",defendant,John Gay,Polly,0.9
+14,1923,Hein v. Harris,Joseph Howard,I Think I Hear a Woodpecker,defendant,Joseph E. Howard,I Think I Hear a Woodpecker,0.9
+15,1923,"Marks v. Leo Feist, Inc.",H. Pitman Clarke,Swanee River Moon,defendant,H. Pitman Clarke,Swanee River Moon,0.8
+16,1924,"Fred Fisher, Inc. v. Dillingham",Jerome Kern,Ka-lu-a,defendant,Jerome Kern,Ka-lu-a,0.9
+17,1928,Italian Book Company v. Rossi,A. A.Galasso,Mamma Mia M'ha Maritan,defendant,Beniamino Gigli,"Mamma mia, che vo' sapé?",0.6
+18,1932,Gotham Music v. Denton Music Publishing,Anonymous,St. James' Infirmary or Gambler's Blues,defendant,Louis Armstrong,St. James Infirmary Blues,0.8
+19,1933,Arnstein v. Shilkret,Nathaniel Shilkret,Lady Divine,defendant,Nathaniel Shilkret,Lady Divine,0.8
+20,1934,Park v. Warner Brothers,"Harry Warren, Al Dubin",What are Your Intentions?,defendant,Harry Warren & Al Dubin,What Are Your Intentions?,0.75
+21,1935,Wilkie v. Santly Brothers,Bernice Petkere,Starlight,defendant,Jeff Beal featuring Bernice Petkere,Close Your Eyes,0.6
+22,1936,Arnstein v. Edward Marks,Emery Deutsch and Arthur Altman,"Play, Fiddle, Play",defendant,Emery Deutsch and Arthur Altman,"Play, Fiddle, Play",0.9
+23,1936,Norden v. Oliver Ditson,Anonymous arranger,O Gladsome Light,defendant,Anonymous,O Gladsome Light,0.8
+24,1937,Hirsch v. Paramount Pictures,Harry Revel,Without a Word of Warning,defendant,Bing Crosby,Without a Word of Warning,0.8
+25,1939,Arnstein v. ASCAP,Joe Burke,My Wishing Song,defendant,Joe Burke,My Wishing Song,0.85
+26,1940,Darrell v. Joe Morris Music,"Sherman, Meskill, and Silver",On the Beach at Bali-Bali,defendant,Tommy Dorsey,On the Beach at Bali Bali,0.8
+27,1940,Davilla v. Harms,Sigmund Romberg,Desert Song,defendant,Sigmund Romberg,The Desert Song,0.85
+28,1941,Allen v. Walt Disney,Frank Churchill,Someday My Prince Will Come,defendant,Adriana Caselotti,Someday My Prince Will Come,0.95
+29,1941,Marks v. Stasny,Anonymous,Allà en el Rancho Grande,defendant,Jorge Negrete,Allá en el Rancho Grande,0.8
+30,1942,Carew v. R.K.O. Radio Pictures,Jerome Brainan,Chatterbox,defendant,Jerome Brainin,Chatterbox,0.7
+31,1942,McMahon v. Harms,John Openshaw,Love Sends A Little Gift of Roses,defendant,John Openshaw,Love Sends a Little Gift of Roses,0.9
+32,1943,Arnstein v. Broadcast Music,Hy Zaret et al.,It All Comes Back to Me Now,defendant,Gene Austin,It All Comes Back to Me Now,0.7
+33,1943,Arnstein v. Twentieth Century Fox,Harry Warren,I've Got a Gal in Kalamazoo,defendant,Glenn Miller and His Orchestra,(I've Got a Gal in) Kalamazoo,0.95
+34,1944,"Gingg v. Twentieth Century Fox Film Corp, et al.",Mack Gordon and Harry Warren,There Will Never Be Another You,defendant,Nat King Cole,There Will Never Be Another You,0.85
+35,1944,Edward B. Marks Music Corp. v. Jerry Vogel Music Co.,,,defendant,Unknown,Unknown,0.0
+36,1945,Brodsky v. Universal Pictures Company,Hans Salter,Bad Lands of Dakota,defendant,Hans J. Salter,Badlands of Dakota,0.8
+37,1945,Jewel Music v. Leo Feist,Roger Edens,Drummer Boy,defendant,Roger Edens,The Little Drummer Boy,0.6
+38,1946,Arnstein v. Porter,Cole Porter,Don't Fence Me In,defendant,Bing Crosby and The Andrews Sisters,Don't Fence Me In,0.8
+39,1946,Heim v. Universal Pictures,Aldo Franchetti,Perhaps,defendant,Vera Lynn,Perhaps,0.6
+40,1948,Baron v. Leo Feist,Jeri Sullivan and Paul Baron,Rum and Coca-Cola,defendant,The Andrews Sisters,Rum and Coca-Cola,0.95
+41,1948,Kahn v. Leo Feist,Leo Feist,Rum and Coca-Cola,defendant,The Andrews Sisters,Rum and Coca-Cola,0.95
+42,1950,"Shapiro, Bernstein v. Miracle Record",Alphonso Tompkins and Lewis Simpkins,Long Gone,defendant,Sonny Thompson,Long Gone,0.85
+43,1951,Jones v. Supreme Music,Francis Craig,Near You,defendant,Francis Craig,Near You,0.95
+44,1952,Northern Music v. King Record Distribution,Henry B. Glover,"I Love You, Yes I Do",defendant,Bull Moose Jackson,I Love You Yes I Do,0.9
+45,1953,Overman v. Loesser,Frank Loesser,On a Slow Boat to China,defendant,Frank Loesser,On a Slow Boat to China,0.95
+46,1954,Robbins v. Alamo,Miklos Rozsa,"Theme for 1946 movie, ""The Killers""",defendant,Miklós Rózsa,The Killers (1946 film score),0.95
+47,1954,Mills Music v. Cromwell Music,Issachar Miron & Julius Grossman,"Tzena, Tzena",defendant,The Weavers,"Tzena, Tzena, Tzena",0.95
+48,1956,Robertson v. Batten,"Song Ads, Inc.",Ad for San Francisco Brewing Company,defendant,Andrews Sisters,Rum and Coca-Cola,0.6
+49,1956,Smith v. Muehlebach Brewing,Muehlebach Brewing,Time for Muehlebach,defendant,Unknown Artist,Time for Muehlebach,0.2
+50,1956,Wihtol v. Wells,Kenneth H. Wells,My God and I,defendant,Don Cornell,My God and I,0.6
+51,1958,Cholvin v. B & F Music,Kaczmarek,While We Dream,defendant,The Crests,16 Candles,0.8
+52,1959,Dorchester Music v. National Broadcasting Company,Charles Green,I Dreamed,defendant,Charles Green,I Dreamed,0.8
+53,1960,Walters v. Shari Music Publishing,Erving Burgie,Jamaica Farewell,defendant,Harry Belafonte,Jamaica Farewell,0.95
+54,1963,Francis Day & Hunter v. Bron,Peter de Angelis,Why,defendant,Frankie Avalon,Why,0.9
+55,1964,Irving Berlin et al. v. E.C. Publications,Frank Jacobs and Larry Siegel,Louella Schwartz Describes Her Malady,defendant,Mad Magazine (parody),Lorelei (Parody Version: Louella Schwartz Describes Her Malady),0.7
+56,1964,"Nom Music, Inc. V. Kaslin",James Sheppard and William Miller,Daddy's Home,defendant,Shep and the Limelites,Daddy's Home,0.95
+57,1965,Life Music v. Broadcast Music,Robert Sherman,SUPERCALIFRAGILISTIC EXPIALIDOCIOUS,defendant,Julie Andrews and Dick Van Dyke,Supercalifragilisticexpialidocious,0.95
+58,1965,Nordstrom v. R.C.A.,Jerry Herman,Shalom,defendant,Jerry Herman,Shalom,0.7
+59,1967,Packson v. Jobete,"Eddie Holland, Brian Holland, Lamont Dozier",Baby Love,defendant,The Supremes,Baby Love,0.98
+60,1967,In re Geman Collecting Society GEMA,,,defendant,The Beatles,Help!,0.4
+61,1969,Leo Feist v. Apollo Records,Gene Sayet & Sidney Feldman,"Toot, Toot, Tootsie",defendant,Al Jolson,"Toot, Toot, Tootsie (Goodbye)",0.9
+62,1970,Bote & Bock Musik v. Melodie der Welt GmbH & Co KG,Gerhard Wendland,Tanze mit mir in den Morgen (Mitternachtstango),defendant,Gerhard Wendland,Tanze mit mir in den Morgen,0.95
+63,1973,Strachborneo v. Arc Music,McKinley Morganfield,Got My Mojo Working,defendant,Muddy Waters,Got My Mojo Working,0.95
+64,1975,Mood Music v. De Wolfe,Jack Trombey,Girl in the Dark,defendant,Jack Trombey,Girl in the Dark,0.85
+65,1976,Bright Tunes Music v. Harrisongs Music,George Harrison,My Sweet Lord,defendant,George Harrison,My Sweet Lord,0.95
+66,1976,Granite Music v. United Artists,Ernest Gold,Hiding the Wine,defendant,Ernest Gold,Exodus,0.7
+67,1976,MCA Music v. Earl Wilson,Earl Wilson and Billy Cunningham,The Cunnilingus Champion of Co. C,defendant,Dr. Hook & the Medicine Show,The Cover of 'Rolling Stone',0.6
+68,1978,Ferguson v. National Broadcasting Company,John Williams,"Theme from ""A Time to Love""",defendant,John Williams,A Time to Love,0.85
+69,1978,Herald Square Music v. Living Music,Ray Ellis,"Theme for N.B.C.'s ""Today Show""",defendant,Ray Ellis,The Today Show Theme,0.8
+70,1978,Plymouth Music Co. v. Magnus Organ Corp.,Anonymous,Holiday Polka,defendant,Bobby Vinton,My Song of Love (Holiday Polka),0.7
+71,1978,Harry v. Suzuki,Doumei Suzuki,One Rainy Night in Tokyo,defendant,Doumei Suzuki,One Rainy Night in Tokyo,0.9
+72,1980,Elsmere Music v. N.B.C.,National Broadcasting Company,National Broadcasting Company,defendant,Lou Reed,Walk on the Wild Side,0.8
+73,1980,Hanseatic Musikverlag v. Bellver Musikverlag,Juan Bastos,Loop Di Love,defendant,Juan Bastos,Loop Di Love,0.85
+74,1980,Testa v. Janssen,Danny Janssen and Bobby Hart,Keep on Singing,defendant,Helen Reddy,Keep on Singing,0.9
+75,1982,Gondos v. Hardy,"Hagood Hardy, Rudy and Jerry Toth","The Homecoming, Moment of Love",defendant,Hagood Hardy,The Homecoming,0.95
+76,1984,Selle v. Gibb,Barry Gibb et al.,Barry Gibb et al.,defendant,Bee Gees,How Deep Is Your Love,0.8
+77,1984,Pendleton v. Acuff-Rose,Elizabeth Jane Anderson,Mama’s Shoe Box,defendant,John Anderson,Mama's Don't Let Your Babies Grow Up to Be Cowboys,0.5
+78,1985,"Cream Records, Inc. v. Jos. Schlitz Brewing Co.",Benton and Bowles,TV Ad for Schlitz Beer,defendant,Cream,Sunshine of Your Love,0.7
+79,1985,Lawson v. Dundas,David Dundas,Channel 4 Jingle,defendant,David Dundas and Roger Greenaway,Channel 4 (Fourscore),0.9
+80,1985,Dixon v. Atlantic Recording Corp.,Led Zeppelin,Whole Lotta Love,defendant,Led Zeppelin,Whole Lotta Love,1.0
+81,1986,Anheuser Busch v. Elsmere Music,Gavin Spencer,Budweiser Beer Commercial (1985),defendant,Steve Karmen,Budweiser Commercial (Here Comes the King),0.6
+82,1986,Benson v. Coca-Cola,Coca-Cola Company,I'd Like to Buy the World a Coke,defendant,The New Seekers,I'd Like to Teach the World to Sing (In Perfect Harmony),0.95
+83,1986,Fisher v. Dees,Rick Dees,When Sonny Sniffs Glue,defendant,Rick Dees,When Sonny Sniffs Glue,0.8
+84,1987,Baxter v. MCA,John Williams,Theme from 'E.T.',defendant,John Williams,Theme from E.T. the Extra-Terrestrial,0.95
+85,1987,Siskind v. Newton-John,Olivia Newton-John,Take a Chance,defendant,Olivia Newton-John,Take a Chance,0.9
+86,1987,Verge v. Imperial Oil Ltd.,Steven Benderoth,Hockey Night Theme,defendant,Dolores Claman,The Hockey Theme,0.95
+87,1987,Warner Bros. v. Dundas,David Dundas,Advertisement for Kenco Coffee,defendant,David Dundas,Jeans On,0.9
+88,1987,Williamson v. Pearson Partnership,Denis King,Advertisement for Rapid Coach Service,defendant,Not Applicable,Not Applicable,0.3
+89,1988,Gaste v. Morris Kaiserman,Morris Kaiserman,Feelings,defendant,Morris Albert,Feelings,0.95
+90,1988,Magazine-Music Verlag v. Ralph Siegel,Nicole,Ein bisschen Frieden,defendant,Nicole,Ein bisschen Frieden,0.95
+91,1988,Edition Magazine Music v. Sony ATV,"Earth, Wind & Fire",Fantasy,defendant,"Earth, Wind & Fire",Fantasy,1.0
+92,1989,CBS Records Australia v. Guy Cross,Guy Cross,Ring My Bell (Trackdown Version),defendant,Anita Ward,Ring My Bell,0.8
+93,1990,Queen & David Bowie v. Vanilla Ice,Vanilla Ice,Ice Ice Baby,defendant,Vanilla Ice,Ice Ice Baby,0.99
+94,1990,Dawson v. Hinshaw Music,Gilbert Martin (Arr.),Ezekiel Saw De Wheel,defendant,Traditional,Ezekiel Saw De Wheel,0.85
+95,1990,Levine v. McDonald's Corp.,McDonalds Corp.,Menu Song,defendant,McDonald's Corporation,Menu Song,0.8
+96,1990,Black v. Gosdin,Vern Gosdin,Set 'Em Up Joe,defendant,Vern Gosdin,Set 'Em Up Joe,0.95
+97,1991,Grignon v. Roussel,Jean-Alain Roussel,Tous Les Juke-box,defendant,Jean-Alain Roussel,Tous Les Juke-box,0.85
+98,1991,Grand Upright v. Warner,Biz Markie,Alone Again,defendant,Biz Markie,Alone Again,0.95
+99,1991,Intersong-USA v. CBS,"Mario Balducci, Julio Iglesias",Hey,defendant,Julio Iglesias,Hey,0.95
+100,1991,McDonald v. Multimedia Entertainment,Dan Radlauer,"Theme Music for ""Sally Jesse Raphael Show""",defendant,Dan Radlauer,Theme from The Sally Jessy Raphael Show,0.8
+101,1991,Enigma v. Phlegma 1991,Phlegma,Madness I,defendant,Enigma,Sadeness (Part I),0.8
+102,1991,EMI U Catalog Inc. v. Far Musikverlag,Boney M.,Brown Girl in the Ring,defendant,Boney M.,Brown Girl in the Ring,1.0
+103,1991,Herbolzheimer v. Farian,Boney M.,Brown Girl in the Ring,defendant,Boney M.,Brown Girl in the Ring,0.95
+104,1992,Chiate v. Morris,Stevland Morris,I Just Called to Say I Love You,defendant,Stevie Wonder,I Just Called to Say I Love You,0.95
+105,1992,Moore v. Columbia Pictures,Antonio Reid and Kenny Edmonds,"On Our Own (from ""Ghostbusters II"")",defendant,Bobby Brown,On Our Own,0.95
+106,1993,EMI Music v. Papathanasiou,Evangelos Papathanasiou,"Theme from ""Chariots of Fire""",defendant,Vangelis,Chariots of Fire,0.95
+107,1993,Jarvis v. A & M Records,Robert Clivilles and David Cole,Get Dumb! (Free Your Body),defendant,The Crew,Get Dumb! (Free Your Body),0.85
+108,1993,Tempo Music v. Famous Music,,,defendant,N/A,N/A,0.0
+109,1993,Sylvestre v. Oswald,Jani Lane,Heaven,defendant,Warrant,Heaven,0.95
+110,1993,Les Inconnus v. Parker,Maceo And All The King's Men,Southwick,defendant,Maceo and All the King's Men,Southwick,0.9
+111,1994,Drynan v. Rostad,Wayne Rostad,Here We Are On the Road Again,defendant,Wayne Rostad,Here We Are On the Road Again,0.95
+112,1994,Campbell v. Acuff-Rose,Luther Campbell,"Oh, Pretty Woman",defendant,2 Live Crew,Pretty Woman,0.95
+113,1994,Fantasy v. Fogerty,John Fogerty,The Old Man Down the Road,defendant,John Fogerty,The Old Man Down the Road,0.95
+114,1994,Tin Pan Apple v. Miller Brewing,Miller Brewing Co.,TV ad for Miller Lite,defendant,Miller Brewing Company,Miller Lite Commercial,0.5
+115,1995,Crystal Cartier v. Michael Jackson,Michael Jackson,Dangerous,defendant,Michael Jackson,Dangerous,0.95
+116,1995,La Cienega Music Co. v. ZZ Top,"William Gibbons, et al.",La Grange,defendant,ZZ Top,La Grange,0.95
+117,1995,Woods v. Bourne,,,defendant,Shaggy,Boombastic,0.7
+118,1996,Palmieri v. Estefan,Gloria Estefan,Oye Mi Canto,defendant,Gloria Estefan,Oye Mi Canto (Hear My Voice),0.95
+119,1996,Santrayll v. Burrell,Stanley Kirk Burrell,"Pepsi Ad featuring ""Hammer""",defendant,MC Hammer,U Can't Touch This,0.9
+120,1996,Smith v. Michael Jackson,Michael Jackson,The Girl is Mine,defendant,Michael Jackson and Paul McCartney,The Girl Is Mine,0.95
+121,1997,Damiano v. Sony,Bob Dylan,Dignity,defendant,Bob Dylan,Dignity,0.95
+122,1997,McRae v. Smith,Wayne Perry and Gerald Smith,Every Second,defendant,Collin Raye,Every Second,0.9
+123,1997,Repp v. Webber,Andrew Lloyd-Webber,Phantom Song,defendant,Andrew Lloyd Webber,The Phantom of the Opera,0.8
+124,1997,Tuff 'N' Rumble v. Profile Records,Joseph Simmonds et al.,Back from Hell,defendant,Run-D.M.C.,Back from Hell,0.95
+125,1999,BTE v. Bonnecaze,,,defendant,Better Than Ezra,Good,0.8
+126,1999,Ellis v. Diffie,Joe Diffie,Prop Me Up Beside the Jukebox (If I Die),defendant,Joe Diffie,Prop Me Up Beside the Jukebox (If I Die),0.95
+127,1999,Selletti v. Carey,Mariah Carey,Hero,defendant,Mariah Carey,Hero,0.95
+128,1999,Suzane McKinley v. Collin Raye,Steve Seskin & Collin Raye,I Think About You,defendant,Collin Raye,I Think About You,0.95
+129,1999,ZZ Top v. Chrysler Corp.,Chrysler Corporation,Promotional video for Plymouth Prowler,defendant,ZZ Top,La Grange,0.8
+130,1999,Anzilotti v. Hildenbeutel,Cygnus X,Superstring,defendant,Cygnus X,Superstring,0.95
+131,2000,Armstrong v. Virgin Records,"Robert Del Naja, et al",Unfinished Sympathy,defendant,Massive Attack,Unfinished Sympathy,0.95
+132,2000,Three Boys Music v. Michael Bolton,Michael Bolton and Andrew Goldmark,Love is a Wonderful Thing,defendant,Michael Bolton,Love Is a Wonderful Thing,0.95
+133,2000,Tisi v. Patrick,Richard Patrick,Take A Picture,defendant,Filter,Take a Picture,0.95
+134,2000,Bouffard v. Ministère Public,,Mashups of various songs in SACEM catalog,defendant,Various Artists,Mashups,0.7
+135,2000,"Cooper v. Ogilvy & Mather, et al.",Ogilvy & Mather,"""Pond's Nutrivits"" ads",defendant,Ogilvy & Mather,Pond's Nutrivits,0.5
+136,2001,Oliviera v. Frito-Lay,Frito-Lay Corp.,Frito-Lay TV ad,defendant,Katrina and the Waves,Walking on Sunshine,0.9
+137,2001,Albano Carrisi v. Michael Jackson,Michael Jackson,Will You be There?,defendant,Michael Jackson,Will You Be There,0.95
+138,2001,Marlon Williams v. Calvin Broadus,Calvin Broadus,Ghetto Symphony,defendant,Snoop Dogg,Ghetto Symphony,0.9
+139,2001,Johnson v. Berry,,,defendant,Unknown,Unknown,0.0
+140,2001,Toliver v. Sony Music,Destiny's Child,Independent Women,defendant,Destiny's Child,Independent Women Part I,0.95
+141,2002,Creagh v. Hit and Run Music,"Simon Stirling, et al.",Where are You,defendant,U2,Where Are You Now,0.7
+142,2002,Jean et al. v. Bug Music,Nel Wyclef Jean and Jerry Duplessis,My Love is Your Love,defendant,Whitney Houston,My Love Is Your Love,0.95
+143,2002,Malmstedt v. EMI Records,Per Gessle,Sleeping in my Car,defendant,Roxette,Sleeping in My Car,0.95
+144,2002,Weh v. Universal Music Publishing,Sophie Ellis-Bextor,Get Over You,defendant,Sophie Ellis-Bextor,Get Over You,0.95
+145,2003,Cottrill v. Spears,"Jorgen Elufsson, David Kreuger, Per Magnusson, Rami Yacoub","What U See is What U Get, Can't Make You Love Me",defendant,Britney Spears,What U See (Is What U Get),0.95
+146,2003,Newton v. Diamond,"Adam Yauch, et al.",Pass the Mic,defendant,Beastie Boys,Pass the Mic,0.95
+147,2003,Ory v. Country Joe McDonald,Joe McDonald,I Feel Like I'm Fixin' to  Die Rag,defendant,Country Joe McDonald,I-Feel-Like-I'm-Fixin'-to-Die Rag,0.95
+148,2003,Jorgensen v. Epic/Sony Records,"James Horner, Will Jennings, Chris Lindsey, Aimee Mayo and Marv Green","My Heart Will Go On, Amazed",defendant,Céline Dion,My Heart Will Go On,0.95
+149,2003,Ergin v. Kershaw,[Unknown Composer],Wouldn't It Be Good,defendant,Nik Kershaw,Wouldn't It Be Good,0.95
+150,2003,Kobayashi v. Hatorri,Katsuhisa Hattori,Kinenju [Memorial Tree],defendant,Kobayashi Hiroyuki,Kinenju,0.7
+151,2004,Apollo v. Coca Cola,Coca-Cola (China) Inc.,Sunrise,defendant,Norah Jones,Sunrise,0.85
+152,2004,Swirsky v. Carey,Mariah Carey,Thank God I Found You,defendant,Mariah Carey,Thank God I Found You,0.95
+153,2004,"Disney Enterprises, Inc. v. S.G. Griesel","Pete Seger et al. (From Disney's 1997 Broadway musical ""The Lion King"")",The Lion Sleeps Tonight,defendant,The Tokens,The Lion Sleeps Tonight,0.95
+154,2004,Ulloa v. Universal,Shawn Carter,Izzo (H.O.V.A.),defendant,JAY-Z,Izzo (H.O.V.A.),0.95
+155,2005,BMS Entertainment v. Bridges,Christopher Bridges,Stand Up,defendant,Ludacris,Stand Up,0.95
+156,2005,"Bridgeport Music v. Dimension Films, et al.","Eric Wright, et al.",100 Miles and Runnin',defendant,N.W.A,100 Miles and Runnin',0.95
+157,2005,Coffey v. Warner/Chappell Music,Patrick Leonard & Madonna Ciccone,Nothing Really Mattters,defendant,Madonna,Nothing Really Matters,0.95
+158,2005,Griffin v. J-Records,"Richard Marx, Luther Vandross",Dance With My Father,defendant,Luther Vandross,Dance with My Father,0.99
+159,2005,Johnson v. Gordon,"Allen Gordon Jr., et al.",You’re the One,defendant,SWV,You're the One,0.7
+160,2005,Positive Black Talk v. Cash Money Records,"Terius Gray (""Juvenile"")",Back That Azz Up,defendant,Juvenile,Back That Thang Up,0.9
+161,2005,Vargas v. Pfizer,"Brian Transeau, et al.",Advertisement for Celebrex,defendant,BT,Simply Being Loved (Somnambulist),0.7
+162,2005,Yong Wang v. Zhengben Zhu,Zhengben Zhu,Farewell to the Red Army,defendant,Zhu Zhengben,Farewell to the Red Army,0.6
+163,2005,Bacalov v. Endrigo,Luis Bacalov,Il Postino,defendant,Luis Bacalov,Il Postino,0.9
+164,2006,Boone v. Jackson,"John Jackson (""Fabolous"")",Young 'N,defendant,Fabolous,Young'n (Holla Back),0.95
+165,2006,Tilford v. Jones,"Michael Jones, et al.",Still Tippin',defendant,Mike Jones,Still Tippin',0.95
+166,2007,Armour v. Knowles,Beyoncé Knowles,Baby Boy,defendant,Beyoncé,Baby Boy,0.95
+167,2007,Bridgeport Music v. Combs,Christopher Wallace,Ready to Die,defendant,The Notorious B.I.G.,Ready to Die,0.95
+168,2007,"Lil' Joe Wein Music, Inc. v. Jackson","Curtis James Jackson aka ""50 Cent""",In Da Club,defendant,50 Cent,In da Club,0.99
+169,2007,People v. Hu,Hu,Bye Bye My Lover!,defendant,James Blunt,Goodbye My Lover,0.7
+170,2007,Vargas v. Transeau,Brian Transeau,Bust Dat Groove Without Ride,defendant,BT,Bust Dat Groove Without Ride,0.8
+171,2007,Velez v. Sony Discos,Victor Manuelle,Tengo Ganas,defendant,Víctor Manuelle,Tengo Ganas,0.95
+172,2007,Lester v. U2,U2 (band),Vertigo,defendant,U2,Vertigo,0.99
+173,2007,"Huang Nenghua, et al. v. China Record Shanghai Co., Ltd.",Yang Feifei,"Recording of popular vocal numbers from Chinese Operas, including a portion of The Mother as Slave",defendant,Yang Feifei,The Mother as Slave,0.6
+174,2008,Glover v. Austin,"Tionne Watkins, et al.",Unpretty,defendant,TLC,Unpretty,0.95
+175,2008,"Winter v. Moore, et al.",Gary Moore,Still Got the Blues,defendant,Gary Moore,Still Got the Blues,1.0
+176,2008,Sampath v. Roshan,Vishal Dadlani,Krazzy 4 (Remix) & Breakfree (Remix),defendant,Vishal-Shekhar,Krazzy 4 (Remix),0.7
+177,2009,Allen v. Destiny's Child,Destiny's Child,Cater 2 U,defendant,Destiny's Child,Cater 2 U,0.95
+178,2009,Brainard v. Vassar,Phil Vassar,Good Ole Days,defendant,Phil Vassar,Good Ole Days,0.95
+179,2009,"Steele v. Bongiovi, et al.",Jon Bongiovi,I Love This Town,defendant,Bon Jovi,I Love This Town,0.95
+180,2009,"Bridgeport Music, Inc. v. UMG Recordings, Inc","Robert Kelly, et al. (""Public Announcement"")",D.O.G. In Me,defendant,Public Announcement,D.O.G. In Me,0.85
+181,2009,Jones v. Blige,Mary J. Blige,Family Affair,defendant,Mary J. Blige,Family Affair,0.95
+182,2009,"Joe Satriani v. Christopher Martin, et al. [Coldplay]",Christopher Martin et al. [Coldplay],Viva la Vida,defendant,Coldplay,Viva la Vida,0.95
+183,2009,Weh v. Universal Music Publishing,Sophie Ellis-Bextor,Get Over You,defendant,Sophie Ellis-Bextor,Get Over You,0.95
+184,2010,"Currin v. Pharrell Williams, et al.",Pharrell Williams,Frontin,defendant,Pharrell Williams feat. Jay-Z,Frontin',0.95
+185,2010,Larrikin Music Publishing Ltd. v. EMI Songs Australia Ltd.,"Colin Hay (""Men At Work"")",Down Under,defendant,Men at Work,Down Under,0.95
+186,2010,Marshall v. Huffman,"John Huffman, Real Content Media Group, Mariah Carey",My Love,defendant,Justin Timberlake,My Love,0.7
+187,2010,"Prunte v. Universal Music Group Inc., et al.","Black Rob, et al.","Fire in the Hole, Plus Others",defendant,Black Rob,Fire in the Hole,0.7
+188,2010,Martel Ellis v. Wyclef Jean,Wyclef Jean,Welcome to the East,defendant,Wyclef Jean,Welcome to the East,0.85
+189,2010,"Ebony Latrice Batts v. William Adams, et al. [“Black Eyed Peas”]","William Adams, et al. [“Black Eyed Peas”]",Boom Boom Pow,defendant,The Black Eyed Peas,Boom Boom Pow,0.99
+190,2010,"Holmes v. Page, et al.",Led Zeppelin,Dazed and Confused,defendant,Led Zeppelin,Dazed and Confused,0.95
+191,2011,"Ernest Straughter v. Usher Raymond, et al.","Usher Raymond, et al.",Burn,defendant,Usher,Burn,0.95
+192,2011,Pyatt v. Raymond,Usher Raymond,Caught Up,defendant,Usher,Caught Up,0.95
+193,2011,Lessem v. Taylor,"Jayceon Taylor (“The Game”), Andre Young (“Dr. Dre”), Michael Elizondo, Curtis Jackson (“50 Cent”)",How We Do,defendant,The Game feat. 50 Cent,How We Do,0.95
+194,2011,"Saregama India v. Timothy Mosley, et al.","Timothy Mosley, aka ""Timbaland""",Put You on the Game,defendant,The Game,Put You on the Game,0.95
+195,2011,"Eight Mile Style [Marshall Mathers, aka Eminem” v. Audi GmbH",Audi GmbH,​Advertisement for Audi A6 “Avant”,defendant,Eminem,Lose Yourself,0.9
+196,2011,Obinger v. McDonald's,McDonald's Corporation,McDonald's-Jingle,defendant,Justin Timberlake,I'm Lovin' It,0.8
+197,2011,Stokes v. Stephens,John Legend,Maxine's Interlude,defendant,John Legend,Maxine's Interlude,0.95
+198,2012,"Lyles v. Capital - EMI Music, Inc., et al.",David Guetta,Without You,defendant,David Guetta feat. Usher,Without You,0.9
+199,2012,Peters v. West,Kanye West,Stronger,defendant,Kanye West,Stronger,0.95
+200,2012,People v. Xinru Wang,Xinru Wang,Sleeping Beauty,defendant,Tchaikovsky,Sleeping Beauty,0.85
+201,2012,Done Deal v. Carter,"Dwayne Carter, aka Lil Wayne",Bedrock,defendant,Young Money featuring Lloyd,BedRock,0.95
+202,2012,Poindexter v. EMI Record Group,EMI Record Group,Washed Away,defendant,"Joe ""Bean"" Esposito",You're the Best,0.5
+203,2012,Rui Hua Wang v. Qi Gang Chen,Qi Gang Chen,You and Me,defendant,Lifehouse,You and Me,0.8
+204,2012,Black Keys v. Home Depot and Pizza Hut,,Advertisement for Home Depot; Advertisement for Pizza Hut,defendant,The Black Keys,Gold on the Ceiling,0.8
+205,2012,Erickson v. Blake,Michael John Blake,What Pi Sounds Like,defendant,Michael John Blake,What Pi Sounds Like,0.95
+206,2012,"Barobax v. Chakraborty, et al.",Pritam Chakraborty,Pyaar Ki Pungi,defendant,Pritam,Pyaar Ki Pungi,0.9
+207,2013,Hobbs v. John,Elton John,Nikita,defendant,Elton John,Nikita,0.95
+208,2013,Loomis v. Cornish,Jessica Cornish,Domino,defendant,Jessie J,Domino,0.95
+209,2013,"Twilight Records v. Raymond, et al.",Call Me a Mack,Different Strokes,defendant,Usher,Call Me a Mack,0.9
+210,2013,"Love v. Universal Music Group, Inc.",Kanye West,Doin My Job,defendant,T.I.,Doin' My Job,0.95
+211,2014,"Francescatti v. Germanotta [""Lady Gaga""]",Stefani Germanotta,Judas,defendant,Lady Gaga,Judas,0.95
+212,2014,"Pringle v. Adams [""Black Eyed Peas""]","William Adams, et al.",I Gotta Feeling,defendant,The Black Eyed Peas,I Gotta Feeling,0.99
+213,2014,Steward v. Kanye West,Kanye West,Gold Digger,defendant,Kanye West feat. Jamie Foxx,Gold Digger,0.95
+214,2014,"TufAmerica, Inc. v. Warner Bros Music Corp., et al","Shawn Carter (""Jay-Z"") et al.",Run This Town,defendant,Jay-Z feat. Rihanna & Kanye West,Run This Town,0.95
+215,2014,Mayimba Music v. Sony,Eduard Edwin Bello Pou,Loca con su Tiguere,defendant,Shakira feat. El Cata,Loca,0.95
+216,2014,Paul Batiste v. Faheem Rasheed Najm,Faheem Rasheed Najm (p/k/a T-Pain),Put It Down; Reggae Nigh,defendant,T-Pain,Put It Down,0.85
+217,2014,Musikverlag Richard Birnbach v. ZDF,ZDF,"""Today"" Jingle",defendant,John Williams,The Mission: Theme from NBC News,0.8
+218,2015,Lane v. Knowles-Carter,Beyonce Knowles-Carter,X.O.,defendant,Beyoncé,XO,0.95
+219,2015,"New Old Music v. Gottwald, et al.","Jessica Cornish, et al.",Price Tag,defendant,Jessie J feat. B.o.B,Price Tag,0.95
+220,2015,"Devin Copeland v. Justin Bieber, et al.","Justin Bieber, et al.",Someone to Love,defendant,Justin Bieber,Somebody to Love,0.9
+221,2015,"TufAmerica v. Diamond, et al.","Diamond, Horovitz, et al. [Beastie Boys]",Shadrach; Car Thief; Hold It,defendant,Beastie Boys,Shadrach,0.95
+222,2015,"Miles Floyd v. Rod Stewart, et al.","American folk song, as performed by Rod Stewart",Corrina Corrina,defendant,Rod Stewart,Corina Corina,0.85
+223,2015,"Daniel Marino v. Usher, et al.",Usher Raymond,Bad Girl,defendant,Usher,Bad Girl,0.95
+224,2015,Tom Petty v. Sam Smith,Sam Smith,Stay With Me,defendant,Sam Smith,Stay With Me,0.95
+225,2015,Richard Friedman v. Hans Zimmer,Hans Zimmer,Music score for “12 Years a Slave”,defendant,Hans Zimmer,12 Years a Slave (Original Score),0.9
+226,2015,Dark Sanctuary v. Bushido,Bushido,Janine,defendant,Bushido,Janine,0.95
+227,2015,Johnson v. Goldman,Jean-Jacques Goldman,Aicha,defendant,Khaled,Aïcha,0.9
+228,2015,"Guzman v. Hacienda Records, et al.",Hacienda Records,Cartas de Amor,defendant,,Cartas de Amor,0.6
+229,2015,Universal Music Publishing v. Sony BMG Music Entertainment,Francesco De Gregori,"Prendi questa mano, zingara",defendant,Iva Zanicchi,Zingara,0.9
+230,2016,Fahmy v. Jay Z et al.,Jay Z et al.,Big Pimpin',defendant,JAY-Z,Big Pimpin',0.95
+231,2016,Bowen v. Paisley,"Brad Paisley, et al",Remind Me,defendant,Brad Paisley and Carrie Underwood,Remind Me,0.95
+232,2016,"VMG Salsoul v Madonna Ciccone, et al.","Madonna Ciccone, Richard Pettibone",Vogue,defendant,Madonna,Vogue,0.95
+233,2016,"McDonald v. West, et al.","Kanye West, et al.",Made in America,defendant,Kanye West,Made in America,0.9
+234,2016,We Shall Overcome Foundation v. Richmond Foundation & Ludlow Music,,,defendant,Pete Seeger,We Shall Overcome,0.85
+235,2016,"Alisa Apps v. Universal Music, et al.",John Newman,Love Me Again,defendant,John Newman,Love Me Again,0.95
+236,2016,Arnett v. Alan Jackson & Sony Music,Alan Jackson,Remember When,defendant,Alan Jackson,Remember When,0.99
+237,2016,"BMG v. Atlantic Recording Organization, et al.","Omari Ishmael Grandberry, aka “Omarion”",Post to Be,defendant,Omarion feat. Chris Brown & Jhené Aiko,Post to Be,0.95
+238,2016,"Eric Smith, et al. v. Amanda Jiroux, et al.",Amanda Jiroux,Insane,defendant,Amanda Jiroux,Insane,0.7
+239,2016,"Gabor Presser v. Kanye West, et al.",Kanye West,New Slaves,defendant,Kanye West,New Slaves,0.95
+240,2016,"Mattie Music Group v. Lamar, Warner/Chappell, et al.","Kendrick Lamar, et al.",I Do This,defendant,Kendrick Lamar,I Do This,0.9
+241,2016,"McElroy, et al. v. Eriksen, et al.","Mikkel Eriksen, et al.",I'm Worth It,defendant,Fifth Harmony feat. Kid Ink,Worth It,0.95
+242,2016,"Songs Music Publishing v. Porsche, et al.",Cramer-Krasselt advertising agency,Advertisement for Porsche’s Cayman 718 automobile,defendant,,,0.0
+243,2016,"Yours, Mine & Ours v. Sony, et al.",Peter Hernandez (“Bruno Mars”) et al.,Uptown Funk,defendant,Mark Ronson feat. Bruno Mars,Uptown Funk,0.95
+244,2016,"Estate of Armetia Chatmon v. Eric Clapton, et al.",Public domain blues number performed by Eric Clapton,"Alberta, Alberta",defendant,Eric Clapton,Alberta,0.95
+245,2016,"Miller, et al. dba “Sleigh Bells” v. Demi Lovato",Demi Lovato,Stars,defendant,Demi Lovato,Stars,0.9
+246,2016,"Greggs v. Grande, et al.",Ariana Grande,One Last Time,defendant,Ariana Grande,One Last Time,0.95
+247,2016,"HaloSongs, Inc., Martin Harrington, Thomas Leonard v. Ed Sheeran, et al.",Ed Sheeran & John McDaid,Photograph,defendant,Ed Sheeran,Photograph,0.98
+248,2016,"Darlene Love v. Scripps Network, Inc.",,,defendant,,,0.1
+249,2016,"Casey Dienel v. Justin Bieber, et al.","Julia Michael, Justin Tranter, Justin Bieber, Thomas Pentz, et al.",Sorry,defendant,Justin Bieber,Sorry,0.95
+250,2016,"Cirque du Soleil v. Justin Timberlake, et al.","Justin Timberlake, et al.",Don't Hold the Wall,defendant,Justin Timberlake,Don't Hold the Wall,0.95
+251,2016,"PK Music v. Justin Timberlake, et al.","Justin Timberlake, et al.",Damn Girl,defendant,Justin Timberlake,Damn Girl,0.9
+252,2016,Feriol v. Maurici,Calogero Joseph Salvatore Maurici (“Calogero”),Si seulement je pouvais lui manquait,defendant,Calogero,Si seulement je pouvais lui manquer,0.95
+253,2017,"Parker, et al. v. Winwood, et al.","Mervyn Winwood, et al.",Gimmee Some Lovin,defendant,The Spencer Davis Group,Gimme Some Lovin',0.95
+254,2017,Roberts v. Gordy,"Stefan & Skyler Gordy (""LMFAO"")",Party Rock Anthem,defendant,LMFAO,Party Rock Anthem,0.95
+255,2017,Mitchell v. Priority Records,"Andre Young( ""Dr. Dre"")",If It Ain't Ruff,defendant,N.W.A,If It Ain't Ruff,0.95
+256,2017,Abdul Muhammad v. Chancellor Bennett,Chancellor Bennett (“Chance Rapper”),Windows,defendant,Chance the Rapper,Windows,0.8
+257,2017,"Lastrada Entertainment v. Mark Ronson, et al.",Mark Ronson,Uptown Funk,defendant,Mark Ronson feat. Bruno Mars,Uptown Funk,0.95
+258,2017,"Enclosed Music v. Steinman, et al.",James Steinman,I’d do Anything for Love,defendant,Meat Loaf,I'd Do Anything for Love (But I Won't Do That),0.95
+259,2017,"Sean Hall, et al. v. Taylor Swift, et al.",Taylor Swift,Shake It Off,defendant,Taylor Swift,Shake It Off,0.99
+260,2017,"Estate of Barre v. Beyoncé Knowles Carter, Sony Music, et al.",Beyoncé Knowles Carter,Formation,defendant,Beyoncé,Formation,1.0
+261,2017,"Golden Crown Publishing v. Sony Music, Jonathan Smithy [aka “Lil’ Jon”], et al.","Jonathan Smith [aka Lil’ Jon”], et al.",Turn Down for What?,defendant,DJ Snake & Lil Jon,Turn Down for What,0.95
+262,2017,"Bosh v. Univision Communications, Inc.","Univision Communications, Inc.",Advertisement for Spanish language Sesame Street,defendant,,Spanish language Sesame Street,0.7
+263,2017,Super Cassettes v. Trimurti Films,Jumin Nautiyal & Neeti Mohan,Socha Hai (Kehdoon Tumhe Remix,defendant,Jubin Nautiyal & Neeti Mohan,Socha Hai,0.9
+264,2017,"Stone et al. v. TIG7 Publishing, LLC et al.",Bruno Mars & Mark Ronson,Uptown Funk,defendant,Mark Ronson feat. Bruno Mars,Uptown Funk,0.95
+265,2018,"Paul Rose v. Paul David Hewson, aka “Bono”, et al.","Paul Hewson, aka “Bono”, et al.",The Fly,defendant,U2,The Fly,0.95
+266,2018,"Abiodun Oyewole v. Rita Ora, et al.",Rita Ora; Christopher Wallace; Marshall Mathers & Trevor Smith,How We do Party; Party and Bullshit; Calm Down,defendant,Rita Ora,How We Do (Party),0.95
+267,2018,"Wilson v. Dynatone Pub., et al.",Justin Timberlake,Suit & Tie,defendant,Justin Timberlake,Suit & Tie,0.95
+268,2018,"Cortes-Ramos v. Enrique Martin-Morales (""Ricky Martin"")",Ricky Martin,Vida,defendant,Ricky Martin,Vida,0.95
+269,2018,"Fahmy v. Jay Z, et al.","Jay Z, et al.",Big Pimpin',defendant,JAY-Z,Big Pimpin',0.95
+270,2018,"Pharrell Williams, et al. v. Frankie Gaye, et al.","Robin Thicke, Pharrell Williams",Blurred Lines,defendant,Robin Thicke feat. Pharrell & T.I.,Blurred Lines,0.95
+271,2018,"Lela Weems v. Odd Future Records, et al.",Tyler Okonma,Deathcamp,defendant,"Tyler, the Creator",DEATHCAMP,0.95
+272,2018,"Michael May v. Miley Ray Cyrus, et al.",Miley Ray Cyrus,We Can't Stop,defendant,Miley Cyrus,We Can't Stop,0.95
+273,2018,[INPLAY] Platinum Jack Entertainment v. ESPN and Chick-Fil-A,Chick-Fil-A Advertising Agency,Ads Aired on ESPN,defendant,Not Applicable,Not Applicable,0.0
+274,2018,Carey v. Sheeran,Edward Sheeran,The Rest of Our Life,defendant,Tim McGraw & Faith Hill,The Rest of Our Life,0.95
+275,2018,"Del Rio v. Virgin America, et al.",Virgin America,,defendant,N/A,N/A,0.0
+276,2018,"Jamie Ciero v. Disney, et al.",Disney,Let It Go,defendant,Idina Menzel,Let It Go,1.0
+277,2018,Tracy Chapman v. Nicki Minaj,Nicki Minaj ft. Nas,Sorry,defendant,Nicki Minaj,Sorry,0.9
+278,2018,"[INPLAY] Brighter Sky Productions LLC, et al. v. Marriott International, Inc., et al.","Marriott International, Inc, and Universal Pictures",October Sky Musical,defendant,Steve Margoshes,October Sky: The Musical,0.7
+279,2018,"Benny Mardones, et al. v. Cyndi Lauper, et al.",Cyndi Lauper,Raise You Up,defendant,Cyndi Lauper,Raise You Up,0.9
+280,2018,"Richard Morrill v. Gwen Stefani, Pharrell Williams, et al.",Gwen Stefani & Pharrell Williams,Spark the Fire,defendant,Gwen Stefani,Spark the Fire,0.98
+281,2018,Stahlgewitter v. Frei.Wild,Frei.Wild,"Schenkt uns Dummheit, kein Niveau",defendant,Frei.Wild,Schenker Uns Dummheit Kein Niveau,0.95
+282,2018,Harumaki Gohan v. Mori,Yamato Mori,M.A.K.E.,defendant,Harumaki Gohan,M.A.K.E.,0.8
+283,2019,Eight Mile Style v. New Zealand National Party,Michael Cohen,Eminem Esque,defendant,Eminem,Lose Yourself,0.9
+284,2019,The Rolling Stones v. The Verve,The Verve,Bittersweet Symphony,defendant,The Verve,Bitter Sweet Symphony,0.95
+285,2019,"Andrew Green v. Kanye West, et al.",Kanye West,Ultralight Beam,defendant,Kanye West,Ultralight Beam,0.95
+286,2019,"William Smith et al. v. ""The Weeknd""",Abel M. Tesfaye (“The Weeknd”),A Lonely Night,defendant,The Weeknd,A Lonely Night,0.95
+287,2019,"Song-a-tron Music, et al. v. Jones, et al.","Christian Jones (""TeeFLii"")",24 Hours,defendant,TeeFLii,24 Hours,0.95
+288,2019,[INPLAY] Hütter v. Pelha,Sabrina Setlur,Nur mir,defendant,Sabrina Setlur,Nur mir,0.95
+289,2019,Mimi Korman v. Julio Iglesias,Julio Iglesias,Me Olvide de Vivir,defendant,Julio Iglesias,Me Olvidé de Vivir,0.95
+290,2019,"Rodriguez v. Avalos, et al.","Eric Avalos, Courtney Rico, Chavalos Music, Inc.",Pediré,defendant,La Sonora Dinamita,Pediré,0.7
+291,2019,"[INPLAY] Nicholas v. Pigott, et al.","Adam J. Pigott (""BlaqNmilD""); Aubrey Drake Graham (""Drake"")",That beat; In my feelings; Nice for what,defendant,Drake,In My Feelings,0.95
+292,2019,"[INPLAY] Brandon Lee (""Don Lee""), et al. v. Hill (""Lil Nas X""), et al.","Montero Lamar Hill (""Lil Nas X""), et al.",Rodeo,defendant,Lil Nas X & Cardi B,Rodeo,0.95
+293,2019,Zachry Brown v. Ryan Tedder,Ryan Tedder,,defendant,OneRepublic,nan,0.5
+294,2019,"Mark Halper v. Sony/ATV Music Publishing, LLC, et al.","Sam Smith, et al.",Stay With Me,defendant,Sam Smith,Stay With Me,0.95
+295,2019,New Day Worldwide v. Taylor Swift,Taylor Swift,Shake it Off,defendant,Taylor Swift,Shake It Off,0.99
+296,2019,"[INPLAY] Key, et al. (""Yellowcard"") v. Higgins, et al. (""Juice WRLD"")","Jared A. Higgins (""Juice WRLD""), et al.",Lucid Dreams,defendant,Juice WRLD,Lucid Dreams,0.99
+297,2019,Brown v. Netflix,"Netflix, et al.",Burlesque: Heart of the Glitter Tribe (film),defendant,Christina Aguilera,Burlesque,0.7
+298,2019,Guity v. Santos,Anthony Santos,Eres Mia,defendant,Romeo Santos,Eres Mía,0.95
+299,2019,"Pickett v. Migos Touring, Inc., et al.","Migos Touring, Inc. (""Migos""), et al.",Walk It Talk IT,defendant,Migos,Walk It Talk It,0.95
+300,2019,Stone v. Dudley,Chelsea Dudley a/k/a/ Chanel West Coast,Sharon Stoned,defendant,Chanel West Coast,Sharon Stoned,0.95
+301,2019,"Batiste v. Lewis, et al.","Ryan Lewis; Ben Haggerty (""Macklemore"")",Thrift Shop; Neon Cathedral,defendant,Macklemore & Ryan Lewis,Neon Cathedral,0.95
+302,2019,[INPLAY] Richardson v. Kharbouch,"Karim Kharbouch aka French Montana;
+Excuse My French",Ain’t Worried About Nothin,defendant,French Montana,Ain't Worried About Nothin',0.95
+303,2019,Hines v. Roc-A-Fella Records Inc. et al.,Jay-Z; Timbaland,Paper Chase; Toe 2 Toe,defendant,Jay-Z,Paper Chase,0.95
+304,2019,"Jefferson v. Raisen, et al.",Justin Raisen; Jeremiah Raisen,Healthy (Demo),defendant,Lizzo,Truth Hurts,0.9
+305,2019,Saregama India v. Balaji,"Meet Bros, et al.",Dhagala Lagali Kala,defendant,Meet Bros,Dhagala Lagali Kala,0.9
+306,2020,Estate of James Oscar Smith v. Cash Money Records,"Aubrey Drake Graham aka ""Drake""",Pound Cake,defendant,Drake,Pound Cake / Paris Morton Music 2,0.95
+307,2020,"Yeasayer v. Tesfaye (""The Weeknd"")",Abel Makkonen Tesfaye (“The Weeknd”); Kendrick Lamar Duckworth,Pray for Me,defendant,The Weeknd & Kendrick Lamar,Pray for Me,0.95
+308,2020,Michael Skidmore v. Led Zeppelin,Jimmy Page,Stairway to Heaven,defendant,Led Zeppelin,Stairway to Heaven,1.0
+309,2020,"Marcus Gray, et al. v. Katy Perry","Katy Perry, et al.",Dark Horse,defendant,Katy Perry,Dark Horse,0.99
+310,2020,[INPLAY] Armes v. Post,"Austin Post (aka ""Post Malone"")",,defendant,Post Malone,Circles,0.95
+311,2020,[INPLAY] Gordon v. Chambers,"Brytavious Chambers (“Tay Keith”);
+Daniel Hernandez (“Takashi 6ix9ine”)",Stoopid,defendant,6ix9ine feat. Bobby Shmurda,STOOPID,0.95
+312,2020,"[INPLAY] Griffin v. Sheeran, et al.","Amy Wadge, Ed Sheeran",Thinking Out Loud,defendant,Ed Sheeran,Thinking Out Loud,1.0
+313,2020,"[INPLAY] Jackson v. Apple, Inc.","Apple, Inc., et al.",,defendant,Apple Inc.,Unknown,0.2
+314,2020,[INPLAY] Basil v. AMC,,,defendant,Boogie Down Productions,My Philosophy,0.7
+315,2020,"[INPLAY] Stines v. Knowles, et. al.",The Carters,Black Effect,defendant,The Carters,Black Effect,0.95
+316,2020,"Jackson (""50 Cent"") v. Roberts","William Leonard Roberts II (""Rick Ross"")",Renzel Remixes,defendant,Rick Ross,Renzel Remixes,0.98
+317,2020,[INPLAY] Hayes v. Lamar,Kendrick Lamar,Loyalty,defendant,Kendrick Lamar feat. Rihanna,LOYALTY.,0.95
+318,2020,Stone v. Grande,Ariana Grande,7 Rings,defendant,Ariana Grande,7 rings,0.95
+319,2020,Sheeran v. Chokri,Ed Sheeran,Shape of You,defendant,Ed Sheeran,Shape of You,0.99
+320,2020,Structured Asset Sales v. Sheeran,Ed Sheeran,Thinking Out Loud,defendant,Ed Sheeran,Thinking Out Loud,1.0
+321,2020,"Norwood v. Quality Control Music, LLC",Offset,How Did I Get Here ft. J. Cole,defendant,Offset feat. J. Cole,How Did I Get Here,0.95
+322,2021,"Nwosuocha v. Glover, et al.",Donald Glover,This Is America,defendant,Childish Gambino,This Is America,1.0
+323,2021,"[INPLAY] Cooper, et al. v. Brown, et al.",Chris Brown & Drake,No Guidance,defendant,Chris Brown feat. Drake,No Guidance,0.98
+324,2021,"[INPLAY] Cates v. Shlemovitz, et al.","Shlemovitz, et al.",FeBreze Tagline,defendant,Shlomo Shlemovitz,Febreze Tagline,0.4
+325,2021,Robinson v. Wilburn,Future,When I Think About It,defendant,Future,Thought It Was a Drought,0.6
+326,2021,Johannsongs-Publishing Ltd. v. Lovland,Rolf Løvland,You Raised Me Up,defendant,Josh Groban,You Raise Me Up,0.9
+327,2021,[InPlay] Cleveland Constantine Browne et al. v. Rodney Sebastian Clark Donalds et al.,Luis Fonsi,Despacito,defendant,Luis Fonsi & Daddy Yankee,Despacito,0.95
+328,2021,"AOM Music, Inc v. Benito Antonio Martínez Ocasio (p/k/a Bad Bunny)",Benito Antonio Martínez Ocasio p/k/a Bad Bunny,Safaera,defendant,"Bad Bunny, Jowell & Randy, and Ñengo Flow",Safaera,0.95
+329,2022,[INPLAY] Ultra v. West,Kanye West,Flowers,defendant,Kanye West,Flowers,0.9
+330,2022,Frisby v. Sony,J. Cole; Bryson Tiller,Deja Vu; Exchange,defendant,Bryson Tiller,Exchange,0.95
+331,2022,"Cope v. Dua Lipa, et al",Dua Lipa,Levitating,defendant,Dua Lipa,Levitating,0.95
+332,2022,[InPlay} Quinn et al v. Powell et al.,"Roland Powell p/k/a Lil' Duvall, Rich Broke Entertainment, LLC",Living My Best Life,defendant,Lil Duval feat. Snoop Dogg & Ball Greezy,Smile B*tch (Living My Best Life),0.95
+333,2022,[InPlay] Larball Publ'g Co. v. Lipa,Dua Lipa,Levitating,defendant,Dua Lipa,Levitating,0.95
+334,2022,[InPlay] Phase One Network v. Kanye West,Kanye West,Life of the Party,defendant,Kanye West,Life of the Party,0.95
+335,2022,Moten v. Def Jam,Kanye West,Come to Life,defendant,Kanye West,Come to Life,0.95
+336,2022,Patrick v. Poree,April Louise Poree,,defendant,April Louise Poree,Unknown,0.2
+337,2022,Grigson v. Lopez,Kristen Anderson Lopez,Some Things Never Change,defendant,"Kristen Bell, Idina Menzel, Josh Gad, Jonathan Groff",Some Things Never Change,0.85
+338,2022,Sound & Color v. Sam Smith,"Sam Smith, Normani",Dancing with a Stranger,defendant,Sam Smith & Normani,Dancing with a Stranger,0.99
+339,2022,[InPlay] Third Side Music v. Evenflo Co.,Evenflo,Ad Background Music,defendant,Unknown Artist,Unknown Title,0.2
+340,2023,Astley v. Hauri,Yung Gravy,Betty (Get Money),defendant,Yung Gravy,Betty (Get Money),0.95
+341,2023,Stone v. Carey,Mariah Carey,All I Want for Christmas is You,defendant,Mariah Carey,All I Want for Christmas Is You,0.99
+342,2023,[InPlay] Formal Entertainment v. Zayn Malik,"Zayn Malik p/k/a ""Zayn""",Better,defendant,ZAYN,Better,0.95
+343,2023,"[InPlay] Darko v. Grahm, et al.",Drake,Calling My Name,defendant,Drake,Calling My Name,0.9
+344,2023,"[InPlay] Concord Music Group, et al. v. Anthropic PBC",Anthropic PBC,,defendant,Concord Music Group,[Various Artists],0.2
+345,2024,Chamberlain v. Dolo Entertainment,Isis Naija Gaston a/k/a Ice Spice,In Ha Mood,defendant,Ice Spice,In Ha Mood,0.95
+346,2024,"Peabody & Company LLC v. Wayne, et al.",Roddy Ricch,The Box,defendant,Roddy Ricch,The Box,0.99
+347,2024,"Johnston v. Kroeger, et al.",Nickelback,Rockstar,defendant,Nickelback,Rockstar,0.95
+case_id,year,case_name,case_artist,case_title,case_role,gpt_artist,gpt_title,gpt_conf

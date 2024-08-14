@@ -10,6 +10,7 @@ COPYRIGHT_SONGS_CSV = 'data/database_csvs/all_copyright_songs.csv'
 COPYRIGHT_SONGS_CSV_GPT = 'data/database_csvs/all_copyright_songs_gpt.csv'
 COPYRIGHT_SONGS_CSV_GPT_MB = 'data/database_csvs/all_copyright_songs_gpt_mb.csv'
 COPYRIGHT_SONGS_CSV_GPT_MB_V = 'data/database_csvs/all_copyright_songs_gpt_mb_v.csv'
+COPYRIGHT_SONGS_CSV_GPT_MB_V_ID = 'data/database_csvs/all_copyright_songs_gpt_mb_v_id.csv'
 COPYRIGHT_SONGS_ALL_FIELDS = 'data/database_csvs/all_copyright_songs_all_fields.csv'
 
 MIDI_DATA_PATH = 'data/midi_data'
