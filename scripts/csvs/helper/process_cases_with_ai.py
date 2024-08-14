@@ -26,8 +26,9 @@ You will receive the following 8 fields of information:
 - defending: the court-given name of the defender
 - additional information: more information about the case; this could be comments/opinions/summaries
 Note that:
-- complaining and defending work  will mostly be the titles of songs, but can also describe multiple songs
-Your job is, using analytical thinking and your own knowledge of copyright history, to extract the title and artist strings that will be likely to come up in the MusicBrainz database. 
+- complaining and defending work will mostly be descriptors of individual songs, but can also contain reference several songs
+- complaining author and defending can be the stage names of artists, or government names, and can also include lawyers. You will have to correctly infer the stage name of the artist.
+Your job is, using analytical thinking, the all the fields and the additional information, and your own deep knowledge of copyright history, to extract the title and artist strings that will be likely to come up in the MusicBrainz database. 
 You will also give a confidence, between 0 and 1, of how likely you think it is that you're right.
 
 Example:
