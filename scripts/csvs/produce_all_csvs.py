@@ -11,7 +11,8 @@ from scripts.csvs.helper.retrieve_copyright_claims import produce_table
 
 from scripts.csvs.helper.filter_claims import filter_unwanted_cases, reformat_copyright_claims
 
-from scripts.csvs.helper.process_court_works import process_cases
+from scripts.csvs.helper.process_cases_with_ai import process_cases
+
 from scripts.csvs.helper.add_song_ids import add_song_ids
 from scripts.csvs.helper.add_mb_data import add_mb_data
 from scripts.csvs.helper.process_mb_result import validate_mb_results
@@ -54,10 +55,24 @@ def process_copyright_songs() -> pd.DataFrame:
     )
 
     conduct_step(
-        'Applying GPT to extract songs...',
-
-
+        'Applying AI to extract songs...',
+        process_cases,
+        COPYRIGHT_SONGS_PKL
     )
+
+    conduct_step(
+        'Adding MB information...',
+        process_cases,
+        COPYRIGHT_SONGS_PKL_MB
+    )
+
+    print('\nAdding mb data...')
+    if not os.path.exists(COPYRIGHT_SONGS_CSV_GPT_MB):
+        songs = add_mb_data(songs)
+        songs.to_csv(COPYRIGHT_SONGS_CSV_GPT_MB, index=False)
+    else:
+        print('Already processed.')
+        songs = pd.read_csv(COPYRIGHT_SONGS_CSV_GPT_MB)
 
     logger.info('Processing copyright songs CSV...')
     if not os.path.exists(COPYRIGHT_SONGS_CSV):

@@ -14,7 +14,9 @@ COPYRIGHT_SONGS_CSV_GPT_MB_V_ID = 'data/database_csvs/all_copyright_songs_gpt_mb
 COPYRIGHT_SONGS_ALL_FIELDS = 'data/database_csvs/all_copyright_songs_all_fields.csv'
 
 COPYRIGHT_CLAIMS_PKL_F = 'data/database_csvs/all_copyright_claims_filtered.pkl'
-COPYRIGHT_SONGS_PKL_GPT_MB = 'data/database_csvs/all_copyright_songs_gpt_mb.pkl'
+COPYRIGHT_SONGS_PKL = 'data/database_csvs/all_copyright_songs.pkl'
+COPYRIGHT_SONGS_PKL_MB = 'data/database_csvs/all_copyright_songs_mb.pkl'
+
 COPYRIGHT_SONGS_PKL_GPT_MB_V = 'data/database_csvs/all_copyright_songs_gpt_mb_v.pkl'
 COPYRIGHT_SONGS_PKL_GPT_MB_V_ID = 'data/database_csvs/all_copyright_songs_gpt_mb_v_id.pkl'
 COPYRIGHT_SONGS_ALL_FIELDS = 'data/database_csvs/all_copyright_songs_all_fields.pkl'
