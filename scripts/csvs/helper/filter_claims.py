@@ -26,22 +26,22 @@ def filter_unwanted_cases(csv_path: str = COPYRIGHT_CLAIMS_CSV) -> pd.DataFrame:
     ]
     return filtered_df
 
-def reformat_copyright_claims(cases_df: pd.DataFrame) -> pd.DataFrame:
+# def reformat_copyright_claims(cases_df: pd.DataFrame) -> pd.DataFrame:
     
-    df = cases_df.copy(deep=True)
-    complainers = df[['case_id', 'year', 'case_name', 'complaining_author', 'complaining_work']].rename(
-        columns={'complaining_author': 'case_artist', 'complaining_work': 'case_title'})
-    complainers['case_role'] = 'complainer'
+#     df = cases_df.copy(deep=True)
+#     complainers = df[['case_id', 'year', 'case_name', 'complaining_author', 'complaining_work']].rename(
+#         columns={'complaining_author': 'case_artist', 'complaining_work': 'case_title'})
+#     complainers['case_role'] = 'complainer'
     
-    defendants = df[['case_id', 'year', 'case_name', 'defending', 'defending_work']].rename(
-        columns={'defending': 'case_artist', 'defending_work': 'case_title'})
-    defendants['case_role'] = 'defendant'
+#     defendants = df[['case_id', 'year', 'case_name', 'defending', 'defending_work']].rename(
+#         columns={'defending': 'case_artist', 'defending_work': 'case_title'})
+#     defendants['case_role'] = 'defendant'
 
-    songs = pd.concat([complainers, defendants], ignore_index=True)
-    return songs
+#     songs = pd.concat([complainers, defendants], ignore_index=True)
+#     return songs
 
-def process_into_songs(csv_path: str = COPYRIGHT_CLAIMS_CSV):
+# def process_into_songs(csv_path: str = COPYRIGHT_CLAIMS_CSV):
 
-    wanted_cases = filter_unwanted_cases(csv_path)
-    songs = reformat_copyright_claims(wanted_cases)
-    return songs
+#     wanted_cases = filter_unwanted_cases(csv_path)
+#     songs = reformat_copyright_claims(wanted_cases)
+#     return songs

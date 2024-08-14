@@ -1,24 +1,65 @@
 import pandas as pd
 import os
+import pickle as pkl
+import logging
 
-from typing import Optional, Dict, Any
+from typing import Optional, Dict, Any, Callable
 
 from src.defaults import *
 
-from scripts.csvs.retrieve_copyright_claims import produce_table
+from scripts.csvs.helper.retrieve_copyright_claims import produce_table
 
-from scripts.csvs.process_into_songs import reformat_copyright_claims
-from scripts.csvs.process_court_works import process_cases
-from scripts.csvs.add_song_ids import add_song_ids
-from scripts.csvs.add_mb_data import add_mb_data
-from scripts.csvs.process_mb_result import validate_mb_results
+from scripts.csvs.helper.filter_claims import filter_unwanted_cases, reformat_copyright_claims
+
+from scripts.csvs.helper.process_court_works import process_cases
+from scripts.csvs.helper.add_song_ids import add_song_ids
+from scripts.csvs.helper.add_mb_data import add_mb_data
+from scripts.csvs.helper.process_mb_result import validate_mb_results
+
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
+
+def conduct_step(
+        message: str, 
+        func: Callable[[Any], pd.DataFrame],
+        dest: str, 
+        ) -> pd.DataFrame:
+    
+    dest_is_pkl = dest.endswith('.pkl')
+    logger.info(message)
+    if not os.path.exists(dest):
+        df = func()
+        if dest_is_pkl:
+            df.to_pickle(dest)
+        else:
+            df.to_csv(dest, index=False)
+    else:
+        logger.info('Already processed.')
+        if dest_is_pkl:
+            df = pd.read_pickle(dest)
+        else:
+            df = pd.read_csv(dest)
+    return dest
 
 def process_copyright_songs() -> pd.DataFrame:
     """Process the copyright cases DataFrame and create a new DataFrame for songs."""
+
     if not os.path.exists(COPYRIGHT_CLAIMS_CSV):
         produce_table()
 
-    print('Processing copyright songs CSV...')
+    conduct_step(
+        'Filtering unwanted cases...',
+        filter_unwanted_cases,
+        COPYRIGHT_CLAIMS_PKL_F
+    )
+
+    conduct_step(
+        'Applying GPT to extract songs...',
+
+
+    )
+
+    logger.info('Processing copyright songs CSV...')
     if not os.path.exists(COPYRIGHT_SONGS_CSV):
         songs = reformat_copyright_claims()
         songs.to_csv(COPYRIGHT_SONGS_CSV, index=False)

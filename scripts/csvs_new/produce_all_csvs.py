@@ -7,11 +7,11 @@ from src.defaults import *
 
 from scripts.csvs_new.retrieve_copyright_claims import produce_table
 
-from scripts.csvs.process_into_songs import reformat_copyright_claims
-from scripts.csvs.process_court_works import process_cases
-from scripts.csvs.add_song_ids import add_song_ids
-from scripts.csvs.add_mb_data import add_mb_data
-from scripts.csvs.process_mb_result import validate_mb_results
+from scripts.csvs.helper.filter_claims import reformat_copyright_claims
+from scripts.csvs.helper.process_court_works import process_cases
+from scripts.csvs.helper.add_song_ids import add_song_ids
+from scripts.csvs.helper.add_mb_data import add_mb_data
+from scripts.csvs.helper.process_mb_result import validate_mb_results
 
 def produce_csvs() -> pd.DataFrame:
     """Process the copyright cases DataFrame and create a new DataFrame for songs."""

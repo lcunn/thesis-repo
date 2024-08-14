@@ -39,7 +39,7 @@ def produce_table(path: str = COPYRIGHT_CLAIMS_CSV):
     headers = [header.lower().replace(' ', '_') for header in headers]
     # Create DataFrame
     df = pd.DataFrame(rows, columns=headers)
-    df.to_csv(path, index=False)
+    df.to_csv(path, index_label='case_id')
 
 if __name__ == "__main__":
     produce_table()
