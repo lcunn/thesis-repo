@@ -1,4 +1,4 @@
-data/copyright_midis
-data/midi_data
-models
-src/private_defaults.py
+plagdet/data/copyright_midis
+plagdet/data/midi_data
+plagdet/models
+plagdet/src/private_defaults.py
