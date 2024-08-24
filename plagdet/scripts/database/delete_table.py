@@ -1,5 +1,5 @@
 import sqlite3
-from src.defaults import *
+from plagdet.src.defaults import *
 
 def delete_table(table_name: str) -> None:
     """Deletes the specified table from DATABASE."""

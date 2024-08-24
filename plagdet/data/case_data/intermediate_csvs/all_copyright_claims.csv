@@ -1,0 +1,351 @@
+case_id,year,country,case_name,link,court,complaining_work,complaining_author,defending_work,defending
+0,1844,US,Millett v. Snowden,https://blogs.law.gwu.edu/mcir/case/millett-v-snowden/,C.C.S.D.N.Y.,The Cot Beneath the Hill,W.J. Wetmore,The Cot Beneath the Hill,W. J. Wetmore
+1,1845,US,Reed v. Carusi,https://blogs.law.gwu.edu/mcir/case/reed-v-carusi/,C.C. Md.,The Old Arm Chair,Henry Russell,The Old Arm Chair,Samuel Carusi
+2,1846,US,Ferrett v. Atwill,https://blogs.law.gwu.edu/mcir/case/ferrett-v-atwill/,S.D.N.Y.,"""Alethia Waltz"", based on a theme from Michael Balfe's ""The Bohemia Girl""","Michael Balfe, arranged by Francis Brown",,
+3,1850,US,Jollie v. Jacques,https://blogs.law.gwu.edu/mcir/case/jollie-v-jacques/,C.C.S.D.N.Y.,Serious Family Polka,Anonymous,Serious Family Polka,Anonymous
+4,1887,US,Blume v. Spear,https://blogs.law.gwu.edu/mcir/case/blume-v-spear/,C.C.S.D.N.Y.,My Own Sweet Darling,Fannie Beane,Call Me Back Again,W.D.Hendrickson
+5,1888,US,Kennedy v. McTammanay,https://blogs.law.gwu.edu/mcir/case/kennedy-v-mctammanay/,C.C.D. Mass.,Cradle’s Empty Baby’s Gone,Harry Kennedy,,
+6,1898,US,Broder v. Zeno Mauvais Music Co.,https://blogs.law.gwu.edu/mcir/case/broder-v-zeno-mauvais-music-co/,C.C.N.D. Cal.,Dora Dean,Bert A. Williams,Ma Angeline,Charles Sidney O'Brien
+7,1899,UK,Boosey v. Whight,https://blogs.law.gwu.edu/mcir/case/boosey-v-whight/,Ch. D.,"""My Lady's Bower""","Alice M. Davis (""Hope Temple"") and Frederick Wetherley",,Player piano rolls produced by defendant Whight
+8,1907,US,White-Smith Music v. Apollo Company,https://blogs.law.gwu.edu/mcir/case/white-smith-music-publishing-company-v-apollo-company/,Supreme Court,Kentucky Babe,Adam Geibel,Little Cotton Dolly,Adam Geibel
+9,1914,US,Cooper v. James,https://blogs.law.gwu.edu/mcir/case/cooperjames/,N.D. Ga.,Never Turn Back,W.M.Cooper,Never Turn Back,Joseph James
+10,1915,US,Boosey v. Empire Music,https://blogs.law.gwu.edu/mcir/case/booseyempire/,S.D.N.Y.,I Hear You Calling Me,Charles Marshall,"Tennessee, I Hear You Calling Me",Jeff Godfrey
+11,1916,US,Haas v. Leo Feist,https://blogs.law.gwu.edu/mcir/case/haas-v-leo-feist/,S.D.N.Y.,You Will Never Know ...,William Cahalin,I Didn't Raise My Boy to be a Soldier,Al Piantadosi
+12,1917,US,Hart v. Graham,https://blogs.law.gwu.edu/mcir/case/hart-v-graham/,N.D. Ill.,Livery Stable Blues,"Alcide Nunez, Ray Lopez",,
+13,1923,UK,Austin v. Columbia Gramophone Co.,https://blogs.law.gwu.edu/mcir/case/austin-v-columbia-gramophone-co/,Ch. D.,"Themes from opera ""Polly""",John Gay,"Themes from opera ""Polly""",John Gay
+14,1923,US,Hein v. Harris,https://blogs.law.gwu.edu/mcir/case/hein-v-harris/,2d Cir.,Maria Cahill's Arab Love Song,Silvio Hein,I Think I Hear a Woodpecker,Joseph Howard
+15,1923,US,"Marks v. Leo Feist, Inc.",https://blogs.law.gwu.edu/mcir/case/marks-v-leo-feist-inc/,2d Cir.,Wedding Dance Waltzes,Paul Linke,Swanee River Moon,H. Pitman Clarke
+16,1924,US,"Fred Fisher, Inc. v. Dillingham",https://blogs.law.gwu.edu/mcir/case/fred-fisher-inc-v-dillingham/,S.D.N.Y.,Dardanella,Felix Bernard & Johnny Black,Ka-lu-a,Jerome Kern
+17,1928,US,Italian Book Company v. Rossi,https://blogs.law.gwu.edu/mcir/case/italian-book-company-v-rossi/,S.D.N.Y.,Luna Mezzo Mare,Paolo Citorello,Mamma Mia M'ha Maritan,A. A.Galasso
+18,1932,US,Gotham Music v. Denton Music Publishing,https://blogs.law.gwu.edu/mcir/case/gotham-music-service-v-denton-music-publishing-co/,N.Y. Ct. App.,St. James' Infirmary,Anonymous,St. James' Infirmary or Gambler's Blues,Anonymous
+19,1933,US,Arnstein v. Shilkret,https://blogs.law.gwu.edu/mcir/case/arnsteinshilkret/,S.D.N.Y.,Light My Life With Love,Ira Arnstein,Lady Divine,Nathaniel Shilkret
+20,1934,US,Park v. Warner Brothers,https://blogs.law.gwu.edu/mcir/case/park-v-warner-brothers/,S.D.N.Y.,What are Your Intentions?,Charles Francis Park,What are Your Intentions?,"Harry Warren, Al Dubin"
+21,1935,US,Wilkie v. Santly Brothers,https://blogs.law.gwu.edu/mcir/case/wilkie-v-santly-brothers/,S.D.N.Y.,Confessing,W.A. (Bud) Wilkie,Starlight,Bernice Petkere
+22,1936,US,Arnstein v. Edward Marks,https://blogs.law.gwu.edu/mcir/case/arnstein-v-edward-b-marks-music-corp/,2d Cir.,I Love You Madly,Ira Arnstein,"Play, Fiddle, Play",Emery Deutsch and Arthur Altman
+23,1936,US,Norden v. Oliver Ditson,https://blogs.law.gwu.edu/mcir/case/norden-v-oliver-ditson/,D. Mass.,O Gladsome Light,N. Lindsay Norden (arranger),O Gladsome Light,Anonymous arranger
+24,1937,US,Hirsch v. Paramount Pictures,https://blogs.law.gwu.edu/mcir/case/hirsch-v-paramount-pictures/,S.D. Cal.,Lady of Love,Hortense Hirsch,Without a Word of Warning,Harry Revel
+25,1939,US,Arnstein v. ASCAP,https://blogs.law.gwu.edu/mcir/case/arnstein-v-ascap/,S.D.N.Y.,Whisper to Me,Ira Arnstein,My Wishing Song,Joe Burke
+26,1940,US,Darrell v. Joe Morris Music,https://blogs.law.gwu.edu/mcir/case/darrell-v-joe-morris-music/,2d Cir.,Does Anybody Want a Little Kewpie,Jack Darrell,On the Beach at Bali-Bali,"Sherman, Meskill, and Silver"
+27,1940,US,Davilla v. Harms,https://blogs.law.gwu.edu/mcir/case/davilla-v-harms/,S.D.N.Y.,If I were a Spider...,Joseph Davila,Desert Song,Sigmund Romberg
+28,1941,US,Allen v. Walt Disney,https://blogs.law.gwu.edu/mcir/case/allen-v-walt-disney/,S.D.N.Y.,Old Eli,Wadsworth Doster,Someday My Prince Will Come,Frank Churchill
+29,1941,US,Marks v. Stasny,https://blogs.law.gwu.edu/mcir/case/marks-v-stasny/,S.D.N.Y.,Allà en el Rancho Grande,Silvano D. Ramos,Allà en el Rancho Grande,Anonymous
+30,1942,US,Carew v. R.K.O. Radio Pictures,https://blogs.law.gwu.edu/mcir/case/carew-v-r-k-o-radio-pictures/,S.D. Cal.,Chatterbox,Evelyn Carew,Chatterbox,Jerome Brainan
+31,1942,US,McMahon v. Harms,https://blogs.law.gwu.edu/mcir/case/mcmahon-v-harms/,S.D.N.Y.,In Sunny Kansas,Joseph McMahon,Love Sends A Little Gift of Roses,John Openshaw
+32,1943,US,Arnstein v. Broadcast Music,https://blogs.law.gwu.edu/mcir/case/arnstein-v-broadcast-music/,2d Cir.,Whisper to Me,Ira Arnstein,It All Comes Back to Me Now,Hy Zaret et al.
+33,1943,US,Arnstein v. Twentieth Century Fox,https://blogs.law.gwu.edu/mcir/case/arnstein-v-twentieth-century-fox-film/,S.D.N.Y.,Kalamazoo,Ira Arnstein,I've Got a Gal in Kalamazoo,Harry Warren
+34,1944,US,"Gingg v. Twentieth Century Fox Film Corp, et al.",https://blogs.law.gwu.edu/mcir/case/gingg-v-twentieth-century-fox-film-corp-et-al/,S.D. Cal.,There'll Never Be Another You,Allamae Britton Gingg,There Will Never Be Another You,Mack Gordon and Harry Warren
+35,1944,US,Edward B. Marks Music Corp. v. Jerry Vogel Music Co.,https://blogs.law.gwu.edu/mcir/case/edward-b-marks-music-corp-v-jerry-vogel-music-co/,2d Cir.,December and May,Edward B. Marks,,
+36,1945,US,Brodsky v. Universal Pictures Company,https://blogs.law.gwu.edu/mcir/case/brodsky-v-universal-pictures-company/,2d Cir.,Prelude in A Major,Samuel Brodsky,Bad Lands of Dakota,Hans Salter
+37,1945,US,Jewel Music v. Leo Feist,https://blogs.law.gwu.edu/mcir/case/jewel-music-v-leo-feist/,S.D.N.Y.,Carnival in Cotton Town,Louis Ricca,Drummer Boy,Roger Edens
+38,1946,US,Arnstein v. Porter,https://blogs.law.gwu.edu/mcir/case/arnstein-v-porter/,2d Cir.,Modern Messiah,Ira Arnstein,Don't Fence Me In,Cole Porter
+39,1946,US,Heim v. Universal Pictures,https://blogs.law.gwu.edu/mcir/case/heim-v-universal-pictures/,2d Cir.,Ma Este Meg Boldog Vagyok,Hajdu Imre (Heim),Perhaps,Aldo Franchetti
+40,1948,US,Baron v. Leo Feist,https://blogs.law.gwu.edu/mcir/case/baron-v-leo-feist/,S.D.N.Y.,L'Annee Passee,Lionel Belasco and Massie Patterson,Rum and Coca-Cola,Jeri Sullivan and Paul Baron
+41,1948,US,Kahn v. Leo Feist,https://blogs.law.gwu.edu/mcir/case/kahn-v-leo-feist-inc/,2d Cir.,Victory Calypsoes,Mohammed H. Kahn,Rum and Coca-Cola,Leo Feist
+42,1950,US,"Shapiro, Bernstein v. Miracle Record",https://blogs.law.gwu.edu/mcir/case/shapiro-bernstein-v-miracle-record/,N.D. Ill.,Yancey Special,Meade Lewis,Long Gone,Alphonso Tompkins and Lewis Simpkins
+43,1951,US,Jones v. Supreme Music,https://blogs.law.gwu.edu/mcir/case/jones-v-supreme-music/,S.D.N.Y.,Just an Old Fashioned Mother and Dad,Thelma Jones,Near You,Francis Craig
+44,1952,US,Northern Music v. King Record Distribution,https://blogs.law.gwu.edu/mcir/case/northern-music-v-king-record-distribution/,S.D.N.Y.,Tonight He Sailed Again,Guy B. Wood and Sol Marcus,"I Love You, Yes I Do",Henry B. Glover
+45,1953,US,Overman v. Loesser,https://blogs.law.gwu.edu/mcir/case/overman-v-loesser/,9th Cir.,Wonderful You,Robert Overman,On a Slow Boat to China,Frank Loesser
+46,1954,US,Robbins v. Alamo,https://blogs.law.gwu.edu/mcir/robbins-v-alamo,S.D.N.Y.,"Theme for TV show ""Dragnet""",Walter Schumann,"Theme for 1946 movie, ""The Killers""",Miklos Rozsa
+47,1954,US,Mills Music v. Cromwell Music,https://blogs.law.gwu.edu/mcir/case/mills-music-inc-v-cromwell-music-inc/,S.D.N.Y.,"Tzena, Tzena",Issachar Miron & Julius Grossman,"Tzena, Tzena",Issachar Miron & Julius Grossman
+48,1956,US,Robertson v. Batten,https://blogs.law.gwu.edu/mcir/case/robertson-v-batten-barton-durstine-osborne/,S.D. Cal.,The Happy Whistler,Donald Irwin Robertson,Ad for San Francisco Brewing Company,"Song Ads, Inc."
+49,1956,US,Smith v. Muehlebach Brewing,https://blogs.law.gwu.edu/mcir/case/smith-v-muehlebach-brewing/,W.D. Mo.,Proposed Advertising Jingle for Muehlebach Beer,Leonard Smith,Time for Muehlebach,Muehlebach Brewing
+50,1956,US,Wihtol v. Wells,https://blogs.law.gwu.edu/mcir/case/wihtol-v-wells/,7th Cir.,My God and I,I.B. Sergei (Wihtol),My God and I,Kenneth H. Wells
+51,1958,US,Cholvin v. B & F Music,https://blogs.law.gwu.edu/mcir/case/cholvin-v-b-f-music-co/,7th Cir.,When the Sun Bids the Sky Goodnight,Homer Cholvin and Norman Stade,While We Dream,Kaczmarek
+52,1959,US,Dorchester Music v. National Broadcasting Company,https://blogs.law.gwu.edu/mcir/case/dorchester-music-v-national-broadcasting-company/,S.D. Cal.,Rendezvous,Fred Spielman,I Dreamed,Charles Green
+53,1960,US,Walters v. Shari Music Publishing,https://blogs.law.gwu.edu/mcir/case/walters-v-shari-music-publishing-corp/,S.D.N.Y.,Iron Bar,Lionel Walters,Jamaica Farewell,Erving Burgie
+54,1963,UK,Francis Day & Hunter v. Bron,https://blogs.law.gwu.edu/mcir/case/francis-day-hunter-v-bron/,Ch. App.,In a Little Spanish Town,Mabel Wayne,Why,Peter de Angelis
+55,1964,US,Irving Berlin et al. v. E.C. Publications,https://blogs.law.gwu.edu/mcir/case/irving-berlin-et-al-v-e-c-publications-inc/,2d Cir.,A Pretty Girl is Like a Melody,Irving Berlin,Louella Schwartz Describes Her Malady,Frank Jacobs and Larry Siegel
+56,1964,US,"Nom Music, Inc. V. Kaslin",https://blogs.law.gwu.edu/mcir/case/nom-music-inc-v-kaslin/,S.D.N.Y.,A Thousand Miles Away,James Sheppard and William Miller,Daddy's Home,James Sheppard and William Miller
+57,1965,US,Life Music v. Broadcast Music,https://blogs.law.gwu.edu/mcir/case/life-music-inc-v-broadcast-music-inc/,S.D.N.Y.,SUPERCALAFAJALISTICK ESPEEALADOJUS,Patricia Smith and Don Fenton,SUPERCALIFRAGILISTIC EXPIALIDOCIOUS,Robert Sherman
+58,1965,US,Nordstrom v. R.C.A.,https://blogs.law.gwu.edu/mcir/case/nordstrom-v-r-c-a/,D. Colo.,Mizpah or Shalom,Frank Nordstrom,Shalom,Jerry Herman
+59,1967,US,Packson v. Jobete,https://blogs.law.gwu.edu/mcir/case/packson-v-jobete-music/,E.D. Mich.,I'm Afraid,"Lorenzo Pack, Harper Evans",Baby Love,"Eddie Holland, Brian Holland, Lamont Dozier"
+60,1967,DE,In re Geman Collecting Society GEMA,https://blogs.law.gwu.edu/mcir/case/in-re-gema/,BGH [Federal Court of Justice],Schwarzbraun ist die Haselnuss,GEMA / Franz Josef Breuer,,
+61,1969,US,Leo Feist v. Apollo Records,https://blogs.law.gwu.edu/mcir/case/leo-feist-v-apollo-records/,S.D.N.Y.,"Toot, Toot, Tootsie",Gus Kahn et al.,"Toot, Toot, Tootsie",Gene Sayet & Sidney Feldman
+62,1970,DE,Bote & Bock Musik v. Melodie der Welt GmbH & Co KG,https://blogs.law.gwu.edu/mcir/case/bote-bock-musik-v-melodie-der-welt-gmbh-co-kg/,BGH [Federal Court of Justice],O schöne Jugendtage,Wilhelm Kienzl,Tanze mit mir in den Morgen (Mitternachtstango),Gerhard Wendland
+63,1973,US,Strachborneo v. Arc Music,https://blogs.law.gwu.edu/mcir/case/strachborneo-v-arc-music/,S.D.N.Y.,MOJO Workout,Ruth Stratchborneo,Got My Mojo Working,McKinley Morganfield
+64,1975,UK,Mood Music v. De Wolfe,https://blogs.law.gwu.edu/mcir/case/mood-music-v-de-wolfe/,Ch. D.,Sogno Nostalgico,Armando Sciascia,Girl in the Dark,Jack Trombey
+65,1976,US,Bright Tunes Music v. Harrisongs Music,https://blogs.law.gwu.edu/mcir/case/bright-tunes-music-v-harrisongs-music/,S.D.N.Y.,He's So Fine,Ronald Mack,My Sweet Lord,George Harrison
+66,1976,US,Granite Music v. United Artists,https://blogs.law.gwu.edu/mcir/case/granite-music-v-united-artists/,9th Cir.,Tiny Bubbles,Leon Pober,Hiding the Wine,Ernest Gold
+67,1976,US,MCA Music v. Earl Wilson,https://blogs.law.gwu.edu/mcir/case/mca-music-v-earl-wilson/,S.D.N.Y.,Boogie Woogie Bugle Boy,Don Raye and Hughie Prince,The Cunnilingus Champion of Co. C,Earl Wilson and Billy Cunningham
+68,1978,US,Ferguson v. National Broadcasting Company,https://blogs.law.gwu.edu/mcir/case/ferguson-v-national-broadcasting-company/,5th Cir.,Jeannie Michele,Wilma Ferguson,"Theme from ""A Time to Love""",John Williams
+69,1978,US,Herald Square Music v. Living Music,https://blogs.law.gwu.edu/mcir/case/herald-square-music-v-living-music/,S.D.N.Y.,Day by Day,Stephen Schwartz,"Theme for N.B.C.'s ""Today Show""",Ray Ellis
+70,1978,US,Plymouth Music Co. v. Magnus Organ Corp.,https://blogs.law.gwu.edu/mcir/case/plymouth-music-co-v-magnus-organ-corp/,S.D.N.Y.,Holiday Polka,Anonymous,Holiday Polka,Anonymous
+71,1978,JP,Harry v. Suzuki,https://blogs.law.gwu.edu/mcir/case/harry-v-suzuki/,Supreme Court of Japan,The Boulevard of Broken Dreams,Harry Warren,One Rainy Night in Tokyo,Doumei Suzuki
+72,1980,US,Elsmere Music v. N.B.C.,https://blogs.law.gwu.edu/mcir/case/elsmere-music-v-n-b-c/,2d Cir.,I Love New York (advertising jingle),Steve Karman,National Broadcasting Company,National Broadcasting Company
+73,1980,DE,Hanseatic Musikverlag v. Bellver Musikverlag,https://blogs.law.gwu.edu/mcir/case/hanseatic-musikverlag-v-bellver-musikverlag/,BGH [Federal Court of Justice],Dirlada,Pantelis Ghinnis,Loop Di Love,Juan Bastos
+74,1980,US,Testa v. Janssen,https://blogs.law.gwu.edu/mcir/case/testa-v-janssen/,W.D. Pa.,Kept on Singing,Philip J. Lipari,Keep on Singing,Danny Janssen and Bobby Hart
+75,1982,CA,Gondos v. Hardy,https://blogs.law.gwu.edu/mcir/case/gondos-v-hardy/,Ontario Supreme Court,Variations,Ivan Gondos,"The Homecoming, Moment of Love","Hagood Hardy, Rudy and Jerry Toth"
+76,1984,US,Selle v. Gibb,https://blogs.law.gwu.edu/mcir/case/selle-v-gibb/,7th Cir.,Let It End,Ronald Selle,Barry Gibb et al.,Barry Gibb et al.
+77,1984,US,Pendleton v. Acuff-Rose,https://blogs.law.gwu.edu/mcir/case/pendleton-v-acuff-rose/,M.D. Tenn.,Just a Blue Box,Howard Leslie Pendleton,Mama’s Shoe Box,Elizabeth Jane Anderson
+78,1985,US,"Cream Records, Inc. v. Jos. Schlitz Brewing Co.",https://blogs.law.gwu.edu/mcir/case/cream-records-inc-v-jos-schlitz-brewing-co/,9th Cir.,The Theme From Shaft,Isaac Hayes,TV Ad for Schlitz Beer,Benton and Bowles
+79,1985,UK,Lawson v. Dundas,https://blogs.law.gwu.edu/mcir/case/lawson-v-dundas/,,Channel 4 Jingle,David Lawson,Channel 4 Jingle,David Dundas
+80,1985,US,Dixon v. Atlantic Recording Corp.,https://blogs.law.gwu.edu/mcir/case/dixon-v-atlantic-recording-corp-2/,S.D.N.Y.,I Need Love,William Dixon,Whole Lotta Love,Led Zeppelin
+81,1986,US,Anheuser Busch v. Elsmere Music,https://blogs.law.gwu.edu/mcir/case/anheuser-busch-v-elsmere-music/,S.D.N.Y.,Budweiser Beer Commercial (1970s),Steve Karmen,Budweiser Beer Commercial (1985),Gavin Spencer
+82,1986,US,Benson v. Coca-Cola,https://blogs.law.gwu.edu/mcir/case/benson-v-coca-cola/,11th Cir.,Don't Cha Know,John Benson,I'd Like to Buy the World a Coke,Coca-Cola Company
+83,1986,US,Fisher v. Dees,https://blogs.law.gwu.edu/mcir/case/fisher-v-dees/,9th Cir.,When Sunny Gets Blue,Marvin Fisher and Jack Segal,When Sonny Sniffs Glue,Rick Dees
+84,1987,US,Baxter v. MCA,https://blogs.law.gwu.edu/mcir/case/baxter-v-mca-inc/,9th Cir.,Joy,Leslie Baxter,Theme from 'E.T.',John Williams
+85,1987,US,Siskind v. Newton-John,https://blogs.law.gwu.edu/mcir/case/laura-siskind-v-olivia-newton-john/,S.D.N.Y.,Take a Chance on Love,Laura Siskind,Take a Chance,Olivia Newton-John
+86,1987,CA,Verge v. Imperial Oil Ltd.,https://blogs.law.gwu.edu/mcir/case/verge-v-imperial-oil-ltd/,,It's a Brand New World,Cyril Verge,Hockey Night Theme,Steven Benderoth
+87,1987,UK,Warner Bros. v. Dundas,https://blogs.law.gwu.edu/mcir/case/warner-bros-v-dundas/,Ch. D.,Martha,Tom Waits,Advertisement for Kenco Coffee,David Dundas
+88,1987,UK,Williamson v. Pearson Partnership,https://blogs.law.gwu.edu/mcir/case/williamson-v-pearson-partnership/,Ch. D.,"""There is Nothing Like a Dame""",Rogers & Hammerstein,Advertisement for Rapid Coach Service,Denis King
+89,1988,US,Gaste v. Morris Kaiserman,https://blogs.law.gwu.edu/mcir/case/gaste-v-morris-kaiserman/,2d Cir.,Pour Toi,Louis Gaste,Feelings,Morris Kaiserman
+90,1988,DE,Magazine-Music Verlag v. Ralph Siegel,https://blogs.law.gwu.edu/mcir/case/magazine-music-verlag-v-ralph-siegel/,BGH [Federal Court of Justice],Alle Liebe dieser Erde; Un canto a galicia,Julio Iglesias,Ein bisschen Frieden,Nicole
+91,1988,DE,Edition Magazine Music v. Sony ATV,https://blogs.law.gwu.edu/mcir/case/edition-magazine-music-v-sony-atv/,BGH [Federal Court of Justice],…wie ein Kind,Katy Kassay,Fantasy,"Earth, Wind & Fire"
+92,1989,AU,CBS Records Australia v. Guy Cross,https://blogs.law.gwu.edu/mcir/case/cbs-records-australia-v-guy-cross/,Fed. Ct. Aus.,Ring My Bell (CBS Version),Collette Roberts,Ring My Bell (Trackdown Version),Guy Cross
+93,1990,US,Queen & David Bowie v. Vanilla Ice,https://blogs.law.gwu.edu/mcir/case/queen-david-bowie-v-vanilla-ice/,,Under Pressure,Queen & David Bowie,Ice Ice Baby,Vanilla Ice
+94,1990,US,Dawson v. Hinshaw Music,https://blogs.law.gwu.edu/mcir/case/dawson-v-hinshaw-music/,4th Cir.,Ezekiel Saw De Wheel,William Dawson (Arr.),Ezekiel Saw De Wheel,Gilbert Martin (Arr.)
+95,1990,US,Levine v. McDonald's Corp.,https://blogs.law.gwu.edu/mcir/case/levine-v-mcdonalds-corp/,S.D.N.Y.,Life is a Rock (But the Radio Rolled Me,Paul DiFranco and Norman Dolph,Menu Song,McDonalds Corp.
+96,1990,US,Black v. Gosdin,https://blogs.law.gwu.edu/mcir/case/black-v-gosdin/,M.D. Tenn.,The Jukebox,Damon Black,Set 'Em Up Joe,Vern Gosdin
+97,1991,CA,Grignon v. Roussel,https://blogs.law.gwu.edu/mcir/case/grignon-v-roussel/,Federal Court of Canada,Chanson Numero 7,Rene Grignon,Tous Les Juke-box,Jean-Alain Roussel
+98,1991,US,Grand Upright v. Warner,https://blogs.law.gwu.edu/mcir/case/grand-upright-v-warner/,S.D.N.Y.,Alone Again (Naturally),"Raymond ""Gilbert"" O'Sullivan",Alone Again,Biz Markie
+99,1991,US,Intersong-USA v. CBS,https://blogs.law.gwu.edu/mcir/case/intersong-usa-v-cbs/,S.D.N.Y.,Es,Enrique Chia,Hey,"Mario Balducci, Julio Iglesias"
+100,1991,US,McDonald v. Multimedia Entertainment,https://blogs.law.gwu.edu/mcir/case/mcdonald-v-multimedia-entertainment-inc/,S.D.N.Y.,"Proposed Theme Music for ""Sally Jesse Raphael Show""",Gerard McDonald,"Theme Music for ""Sally Jesse Raphael Show""",Dan Radlauer
+101,1991,DE,Enigma v. Phlegma 1991,https://blogs.law.gwu.edu/mcir/case/enigma-v-phlegma-parties-names-still-tbd/,OLG Munich,Sadeness I,Enigma,Madness I,Phlegma
+102,1991,DE,EMI U Catalog Inc. v. Far Musikverlag,https://blogs.law.gwu.edu/mcir/case/emi-u-catalog-inc-v-far-musikverlag/,BGH [Federal Court of Justice],There´s a Brown Girl in the Ring,Tony McKay aka Exuma,Brown Girl in the Ring,Boney M.
+103,1991,DE,Herbolzheimer v. Farian,https://blogs.law.gwu.edu/mcir/case/peter-herbolzheimer-v-frank-farian/,BGH [Federal Court of Justice],Brown Girl,Malcolm’s Lock,Brown Girl in the Ring,Boney M.
+104,1992,US,Chiate v. Morris,https://blogs.law.gwu.edu/mcir/case/chiate-v-morris/,9th Cir.,Hello It's Me / I Just Called to Say,Lloyd Chiate,I Just Called to Say I Love You,Stevland Morris
+105,1992,US,Moore v. Columbia Pictures,https://blogs.law.gwu.edu/mcir/case/moore-v-columbia-pictures/,8th Cir.,She Can't Stand It,Derrick D. Moore,"On Our Own (from ""Ghostbusters II"")",Antonio Reid and Kenny Edmonds
+106,1993,UK,EMI Music v. Papathanasiou,https://blogs.law.gwu.edu/mcir/case/emi-music-v-papathanasiou/,Ch. D.,City of Violets,Stavros Logarides,"Theme from ""Chariots of Fire""",Evangelos Papathanasiou
+107,1993,US,Jarvis v. A & M Records,https://blogs.law.gwu.edu/mcir/case/jarvis-v-a-m-records/,D.N.J.,The Music's Got Me,Boyd Jarvis,Get Dumb! (Free Your Body),Robert Clivilles and David Cole
+108,1993,US,Tempo Music v. Famous Music,https://blogs.law.gwu.edu/mcir/case/tempo-music-v-famous-music/,S.D.N.Y.,Satin Doll,"Duke Ellington, Billy Strayhorn, Johnny Mercer",,
+109,1993,US,Sylvestre v. Oswald,https://blogs.law.gwu.edu/mcir/case/sylvestre-v-oswald/,S.D.N.Y.,Heaven,Michael Sylvestre and Dougals Richwine,Heaven,Jani Lane
+110,1993,FR,Les Inconnus v. Parker,https://blogs.law.gwu.edu/mcir/case/les-inconnus-v-parker/,TGI [Tribunale de grande instance] Paris,Auteuil Neuilly Passy,Les Inconnus,Southwick,Maceo And All The King's Men
+111,1994,CA,Drynan v. Rostad,https://blogs.law.gwu.edu/mcir/case/drynan-v-rostad/,Ontario Court of Justice,Filion Family Welcome,James Drynan,Here We Are On the Road Again,Wayne Rostad
+112,1994,US,Campbell v. Acuff-Rose,https://blogs.law.gwu.edu/mcir/case/campbell-v-acuff-rose/,Supreme Court,"Oh, Pretty Woman",Williams Dees and Roy Orbison,"Oh, Pretty Woman",Luther Campbell
+113,1994,US,Fantasy v. Fogerty,https://blogs.law.gwu.edu/mcir/case/fantasy-v-fogerty/,Supreme Court,Run Through the Jungle,John Fogerty,The Old Man Down the Road,John Fogerty
+114,1994,US,Tin Pan Apple v. Miller Brewing,https://blogs.law.gwu.edu/mcir/case/tin-pan-apple-v-miller-brewing/,S.D.N.Y.,Stick 'em,Morales and Robertson [Fat Boys],TV ad for Miller Lite,Miller Brewing Co.
+115,1995,US,Crystal Cartier v. Michael Jackson,https://blogs.law.gwu.edu/mcir/case/crystal-cartier-v-michael-jackson/,10th Cir.,Dangerous,Crystal Cartier,Dangerous,Michael Jackson
+116,1995,US,La Cienega Music Co. v. ZZ Top,https://blogs.law.gwu.edu/mcir/case/la-cienega-music-co-v-zz-top/,9th Cir.,Boogie Chillen,John Hooker and Bernard Besman,La Grange,"William Gibbons, et al."
+117,1995,US,Woods v. Bourne,https://blogs.law.gwu.edu/mcir/case/woods-v-bourne/,2d Cir.,"When the Red, Red, Robin Comes Bob, Bob, Bobbin' Along",Harry Woods,,
+118,1996,US,Palmieri v. Estefan,https://blogs.law.gwu.edu/mcir/case/palmieri-v-estefan/,2d Cir.,Paginas De Mujer,Eddie Palmieri,Oye Mi Canto,Gloria Estefan
+119,1996,US,Santrayll v. Burrell,https://blogs.law.gwu.edu/mcir/case/santrayll-v-burrell/,S.D.N.Y.,Uh Oh,Rene Santrayll & Michael Walker,"Pepsi Ad featuring ""Hammer""",Stanley Kirk Burrell
+120,1996,US,Smith v. Michael Jackson,https://blogs.law.gwu.edu/mcir/case/smith-v-michael-jackson/,9th Cir.,Don't Let the Sunshine / Happy Go Lucky Girl,Robert Smith and Reynard Jones,The Girl is Mine,Michael Jackson
+121,1997,US,Damiano v. Sony,https://blogs.law.gwu.edu/mcir/case/damiano-v-sony/,D.N.J.,Miscellaneous lyrics and instrumental arrangement,James Damiano,Dignity,Bob Dylan
+122,1997,US,McRae v. Smith,https://blogs.law.gwu.edu/mcir/case/mcrae-v-smith/,D. Colo.,"Every Minute, Every Hour, Every Day",Maree McRae,Every Second,Wayne Perry and Gerald Smith
+123,1997,US,Repp v. Webber,https://blogs.law.gwu.edu/mcir/case/repp-v-webber/,2d Cir.,Till You,Ray Repp,Phantom Song,Andrew Lloyd-Webber
+124,1997,US,Tuff 'N' Rumble v. Profile Records,https://blogs.law.gwu.edu/mcir/case/tuff-n-rumble-v-profile-records/,S.D.N.Y.,Impeach the President,Robert Plant et al.,Back from Hell,Joseph Simmonds et al.
+125,1999,US,BTE v. Bonnecaze,https://blogs.law.gwu.edu/mcir/case/bte-v-bonnecaze/,E.D. La.,Coyote,"Kevin Griffin, et al.",,
+126,1999,US,Ellis v. Diffie,https://blogs.law.gwu.edu/mcir/case/ellis-v-diffie/,6th Cir.,Lay Me Out By the Jukebox When I Die,Everett Ellis,Prop Me Up Beside the Jukebox (If I Die),Joe Diffie
+127,1999,US,Selletti v. Carey,https://blogs.law.gwu.edu/mcir/case/selletti-v-carey/,2d Cir.,Hero,Christopher Selletti,Hero,Mariah Carey
+128,1999,US,Suzane McKinley v. Collin Raye,https://blogs.law.gwu.edu/mcir/case/suzane-mckinley-v-collin-raye/,N.D.Tex.,I Think About You,Suzane McKinley,I Think About You,Steve Seskin & Collin Raye
+129,1999,US,ZZ Top v. Chrysler Corp.,https://blogs.law.gwu.edu/mcir/case/zz-top-v-chrysler-corp/,W.D. Wa.,La Grange,"Billy Gibbons, et al.",Promotional video for Plymouth Prowler,Chrysler Corporation
+130,1999,DE,Anzilotti v. Hildenbeutel,https://blogs.law.gwu.edu/mcir/case/luca-anzilotti-et-al-v-ralf-hildenbeutel-et-al/,OLG [Higher State Court] Munich,Green Grass Grows (Earth follows),Snap!,Superstring,Cygnus X
+131,2000,US,Armstrong v. Virgin Records,https://blogs.law.gwu.edu/mcir/case/armstrong-v-virgin-records/,S.D.N.Y.,Planetary Citizen,"John McLaughlin, et al.",Unfinished Sympathy,"Robert Del Naja, et al"
+132,2000,US,Three Boys Music v. Michael Bolton,https://blogs.law.gwu.edu/mcir/case/three-boys-music-v-michael-bolton/,9th Cir.,Love is a Wonderful Thing,Isley Brothers,Love is a Wonderful Thing,Michael Bolton and Andrew Goldmark
+133,2000,US,Tisi v. Patrick,https://blogs.law.gwu.edu/mcir/case/tisi-v-patrick/,S.D.N.Y.,Sell Your Soul,Michael Tisi,Take A Picture,Richard Patrick
+134,2000,FR,Bouffard v. Ministère Public,https://blogs.law.gwu.edu/mcir/case/bouffard-v-ministere-public/,Cour d’Appel [Regional Court of Appeal] Toulouse,Various pop songs in SACEM catalog,,Mashups of various songs in SACEM catalog,
+135,2000,FR,"Cooper v. Ogilvy & Mather, et al.",https://blogs.law.gwu.edu/mcir/case/cooper-v-ogilvy-mather-et-al/,Tribunal de grande instance,The Lower we Fly,Matthew Cooper,"""Pond's Nutrivits"" ads",Ogilvy & Mather
+136,2001,US,Oliviera v. Frito-Lay,https://blogs.law.gwu.edu/mcir/case/oliviera-v-frito-lay-et-al/,2nd Cir.,Girl from Ipenama,Astrud Gilberto,Frito-Lay TV ad,Frito-Lay Corp.
+137,2001,IT,Albano Carrisi v. Michael Jackson,https://blogs.law.gwu.edu/mcir/case/albano-carrisi-v-michael-jackson/,Corte app. (Rome),I cigni di Balaka,Albano Carrisi,Will You be There?,Michael Jackson
+138,2001,US,Marlon Williams v. Calvin Broadus,https://blogs.law.gwu.edu/mcir/case/marlon-williams-v-calvin-broadus/,S.D.N.Y.,The Symphony,Marlon Williams,Ghetto Symphony,Calvin Broadus
+139,2001,US,Johnson v. Berry,https://blogs.law.gwu.edu/mcir/case/johnson-v-berry-2/,E.D. Mo.,Wee Wee Hours,Chuck Berry and Johnnie Johnson,N/A,N/A
+140,2001,US,Toliver v. Sony Music,https://blogs.law.gwu.edu/mcir/case/toliver-v-sony-music/,D. Alaska,Independent Lady,Paula Toliver,Independent Women,Destiny's Child
+141,2002,UK,Creagh v. Hit and Run Music,https://blogs.law.gwu.edu/mcir/case/creagh-v-hit-and-run-music/,Ch. Div.,Where are You Now,Marianne Creagh,Where are You,"Simon Stirling, et al."
+142,2002,US,Jean et al. v. Bug Music,https://blogs.law.gwu.edu/mcir/case/jean-et-al-v-bug-music/,S.D.N.Y.,Hand Clapping Song,"Leo Nocentelli, et al.",My Love is Your Love,Nel Wyclef Jean and Jerry Duplessis
+143,2002,UK,Malmstedt v. EMI Records,https://blogs.law.gwu.edu/mcir/case/malmstedt-v-emi-records/,Ch. D.,Jenny and I,Stephan Malmstedt,Sleeping in my Car,Per Gessle
+144,2002,DE,Weh v. Universal Music Publishing,https://blogs.law.gwu.edu/mcir/case/weh-v-universal-music-publishing-2/,LG [State Court] Munich,Heartbeat,WEH,Get Over You,Sophie Ellis-Bextor
+145,2003,US,Cottrill v. Spears,https://blogs.law.gwu.edu/mcir/case/cottrill-v-spears/,E.D. Pa.,What You See is What You Get,Michael Cottrill and Lawrence Wnukowski,"What U See is What U Get, Can't Make You Love Me","Jorgen Elufsson, David Kreuger, Per Magnusson, Rami Yacoub"
+146,2003,US,Newton v. Diamond,https://blogs.law.gwu.edu/mcir/case/newton-v-diamond/,9th Cir.,Choir,James W. Newton,Pass the Mic,"Adam Yauch, et al."
+147,2003,US,Ory v. Country Joe McDonald,https://blogs.law.gwu.edu/mcir/case/ory-v-country-joe-mcdonald/,C.D. Cal.,Muskrat Ramble,"Edward ""Kid"" Ory",I Feel Like I'm Fixin' to  Die Rag,Joe McDonald
+148,2003,US,Jorgensen v. Epic/Sony Records,https://blogs.law.gwu.edu/mcir/case/jorgensen-v-epicsony-records/,2d Cir.,Long Lost Lover,John L. Jorgensen,"My Heart Will Go On, Amazed","James Horner, Will Jennings, Chris Lindsey, Aimee Mayo and Marv Green"
+149,2003,DE,Ergin v. Kershaw,https://blogs.law.gwu.edu/mcir/case/in-re-ergin/,OLG [Higher State Court] Hamburg,Jingle of German bank: “Wenn’s ums Geld geht-Sparkasse”,"Mehmet Ergin, Christoph Lienemann",Wouldn't It Be Good,[Unknown Composer]
+150,2003,JP,Kobayashi v. Hatorri,https://blogs.law.gwu.edu/mcir/case/kobayashi-v-hatorri/,Supreme Court of Japan,Dokomademo Ikou [Let's Go Anywhere],Asei Kobayashi,Kinenju [Memorial Tree],Katsuhisa Hattori
+151,2004,PRC,Apollo v. Coca Cola,https://blogs.law.gwu.edu/mcir/case/apollo-inc-v-coca-cola-china-inc/,Beijing District Court,When the Sun Rises,Apollo Inc.,Sunrise,Coca-Cola (China) Inc.
+152,2004,US,Swirsky v. Carey,https://blogs.law.gwu.edu/mcir/case/swirsky-v-carey/,9th Cir.,One of Those Love Songs,Seth Swirsky and Warryn Campbell,Thank God I Found You,Mariah Carey
+153,2004,ZU,"Disney Enterprises, Inc. v. S.G. Griesel",https://blogs.law.gwu.edu/mcir/case/sample-griesel-v-disney-inc/,High Court of South Africa,Mbube,Soloman Ntsele [p/k/a/ Linda],The Lion Sleeps Tonight,"Pete Seger et al. (From Disney's 1997 Broadway musical ""The Lion King"")"
+154,2004,US,Ulloa v. Universal,https://blogs.law.gwu.edu/mcir/case/ulloa-v-universal/,S.D.N.Y.,Brief countermelody to defendant's song,Demme Ulloa,Izzo (H.O.V.A.),Shawn Carter
+155,2005,US,BMS Entertainment v. Bridges,https://blogs.law.gwu.edu/mcir/case/bms-entertainment-v-bridges/,S.D.N.Y.,Straight Like That,"Ramid Brown, et al.",Stand Up,Christopher Bridges
+156,2005,US,"Bridgeport Music v. Dimension Films, et al.",https://blogs.law.gwu.edu/mcir/case/bridgeport-music-v-dimension-films-et-al/,6th Cir.,Get Off Your Ass and Jam,George Clinton,100 Miles and Runnin',"Eric Wright, et al."
+157,2005,UK,Coffey v. Warner/Chappell Music,https://blogs.law.gwu.edu/mcir/case/coffey-v-warnerchappell-music/,Ch. D.,Forever After,Elizabeth Coffey,Nothing Really Mattters,Patrick Leonard & Madonna Ciccone
+158,2005,US,Griffin v. J-Records,https://blogs.law.gwu.edu/mcir/case/griffin-v-j-records/,E.D. Wash.,Heart of Gold,Tia Griffin,Dance With My Father,"Richard Marx, Luther Vandross"
+159,2005,US,Johnson v. Gordon,https://blogs.law.gwu.edu/mcir/case/johnson-v-gordon/,1st Cir.,You’re the One (For Me),Calvin R. Johnson,You’re the One,"Allen Gordon Jr., et al."
+160,2005,US,Positive Black Talk v. Cash Money Records,https://blogs.law.gwu.edu/mcir/case/positive-black-talk-v-cash-money-records/,5th Cir.,Back That Ass Up,"Jerome Temple (""Jubilee"")",Back That Azz Up,"Terius Gray (""Juvenile"")"
+161,2005,US,Vargas v. Pfizer,https://blogs.law.gwu.edu/mcir/case/vargas-v-pfizer/,S.D.N.Y.,Bust Dat Groove Without Ride,Ralph Vargas and Bland-Ricky Roberts,Advertisement for Celebrex,"Brian Transeau, et al."
+162,2005,PRC,Yong Wang v. Zhengben Zhu,https://blogs.law.gwu.edu/mcir/case/yong-wang-v-zhengben-zhu/,"Beijing Court of Appeals, First District",Send My Comrade to Beijing,Yong Wang,Farewell to the Red Army,Zhengben Zhu
+163,2005,IT,Bacalov v. Endrigo,https://blogs.law.gwu.edu/mcir/case/bacalov-v-enrigo/,Cass. civ.,Nelle mie notti,Sergio Endrigo,Il Postino,Luis Bacalov
+164,2006,US,Boone v. Jackson,https://blogs.law.gwu.edu/mcir/case/boone-v-jackson/,2d Cir.,Holla Back,"Carl Boone (""Trajik"")",Young 'N,"John Jackson (""Fabolous"")"
+165,2006,US,Tilford v. Jones,https://blogs.law.gwu.edu/mcir/case/tilford-v-jones-2/ ,S.D. Tex,Still Tippin',Bradley Tilford,Still Tippin',"Michael Jones, et al."
+166,2007,US,Armour v. Knowles,https://blogs.law.gwu.edu/mcir/case/armour-v-knowles/,5th Cir.,Got a Little Bit of Love for You,Jennifer Armour,Baby Boy,Beyoncé Knowles
+167,2007,US,Bridgeport Music v. Combs,https://blogs.law.gwu.edu/mcir/case/bridgeport-music-v-combs/,6th Cir.,Singing in the Morning,"Robert Jones, et al.",Ready to Die,Christopher Wallace
+168,2007,US,"Lil' Joe Wein Music, Inc. v. Jackson",https://blogs.law.gwu.edu/mcir/case/lil-joe-wein-music-inc-v-jackson/,11th Cir.,It's Your Birthday,Luther Campbell,In Da Club,"Curtis James Jackson aka ""50 Cent"""
+169,2007,TWN,People v. Hu,https://blogs.law.gwu.edu/mcir/case/people-v-hu/,Taiwan Pingtong Appellate Court,Lianshang Love Song,Lo,Bye Bye My Lover!,Hu
+170,2007,US,Vargas v. Transeau,https://blogs.law.gwu.edu/mcir/case/vargas-v-transeau/,S.D.N.Y.,Aparthenonia,Ralph Vargas and Bland-Ricky Roberts,Bust Dat Groove Without Ride,Brian Transeau
+171,2007,US,Velez v. Sony Discos,https://blogs.law.gwu.edu/mcir/case/velez-v-sony-discos/,S.D.N.Y.,Hasta Hoy,Victor Velez,Tengo Ganas,Victor Manuelle
+172,2007,US,Lester v. U2,https://blogs.law.gwu.edu/mcir/case/lester-v-u2/,C.D. Cal.,Nowhere Fast,Chris Lester,Vertigo,U2 (band)
+173,2007,PRC,"Huang Nenghua, et al. v. China Record Shanghai Co., Ltd.",https://blogs.law.gwu.edu/mcir/case/huang-nenghua-et-al-v-china-record-shanghai-co-ltd/,Shanghai Interm. People’s Court,"Arrangements of Chinese Operas, including: The Mother as Slave",Xu Ruhui,"Recording of popular vocal numbers from Chinese Operas, including a portion of The Mother as Slave",Yang Feifei
+174,2008,US,Glover v. Austin,https://blogs.law.gwu.edu/mcir/case/glover-v-austin/,2d Cir.,Make Up Your Mind,Corey Glover,Unpretty,"Tionne Watkins, et al."
+175,2008,DE,"Winter v. Moore, et al.",https://blogs.law.gwu.edu/mcir/case/winter-v-moore-et-al/,Munich Distr. Ct.,Nordrach,"Jurgen Winter, et al., (a.k.a. ""Jud's Gallery"")",Still Got the Blues,Gary Moore
+176,2008,IN,Sampath v. Roshan,https://blogs.law.gwu.edu/mcir/case/ram-sampath-v-rakesh-roshan-ors/,Bom. HC,The Thump,Ram Sampath,Krazzy 4 (Remix) & Breakfree (Remix),Vishal Dadlani
+177,2009,US,Allen v. Destiny's Child,https://blogs.law.gwu.edu/mcir/case/allen-v-destinys-child/,N.D. Ill.,Cater 2 U,Rickey Allen,Cater 2 U,Destiny's Child
+178,2009,US,Brainard v. Vassar,https://blogs.law.gwu.edu/mcir/case/brainard-v-vassar/,M.D.Tenn.,Good Ol' Days to Come,Dustin Evans,Good Ole Days,Phil Vassar
+179,2009,US,"Steele v. Bongiovi, et al.",https://blogs.law.gwu.edu/mcir/case/samuel-steele-v-jon-bongiovi-et-al/,D. Mass.,Man I Really Love This Team,Samuel Steele,I Love This Town,Jon Bongiovi
+180,2009,US,"Bridgeport Music, Inc. v. UMG Recordings, Inc",https://blogs.law.gwu.edu/mcir/case/bridgeport-music-inc-v-umg-recordings-inc/,6th Cir.,Atomic Dog,George Clinton,D.O.G. In Me,"Robert Kelly, et al. (""Public Announcement"")"
+181,2009,US,Jones v. Blige,https://blogs.law.gwu.edu/mcir/case/jones-v-blige/,6th Cir.,Party Ain't Crunk,Leonard Jones and James E. White,Family Affair,Mary J. Blige
+182,2009,US,"Joe Satriani v. Christopher Martin, et al. [Coldplay]",https://blogs.law.gwu.edu/mcir/case/inplay-joe-satriani-v-christopher-martin-et-al-coldplay/,C.D. Cal.,If I Could Fly,Joe Satriani,Viva la Vida,Christopher Martin et al. [Coldplay]
+183,2009,DE,Weh v. Universal Music Publishing,https://blogs.law.gwu.edu/mcir/case/weh-v-universal-music-publishing/,KG [Higher State Court] Berlin,Heartbeat,WEH,Get Over You,Sophie Ellis-Bextor
+184,2010,US,"Currin v. Pharrell Williams, et al.",https://blogs.law.gwu.edu/mcir/case/currin-et-al-v-arista-records-inc-et-al/,D. Conn.,I'm Frontin',David & Peter Currin,Frontin,Pharrell Williams
+185,2010,AU,Larrikin Music Publishing Ltd. v. EMI Songs Australia Ltd.,https://blogs.law.gwu.edu/mcir/case/larrikin-music-publishing-ltd-v-emi-songs-australia-plty-ltd/,Fed. Ct. Aus.,Kookaburra Sits in the Old Gum Tree,Marion Sinclair,Down Under,"Colin Hay (""Men At Work"")"
+186,2010,US,Marshall v. Huffman,https://blogs.law.gwu.edu/mcir/case/marshall-v-huffman/,N.D. Cal.,You are the One,Preston Marshall,My Love,"John Huffman, Real Content Media Group, Mariah Carey"
+187,2010,US,"Prunte v. Universal Music Group Inc., et al.",https://blogs.law.gwu.edu/mcir/case/prunte-v-universal-music-group-inc-et-al/,D.C. Cir.,"Fire in Da Hole, Plus Others",Robert R. Prunte,"Fire in the Hole, Plus Others","Black Rob, et al."
+188,2010,US,Martel Ellis v. Wyclef Jean,https://blogs.law.gwu.edu/mcir/case/inplay-martel-ellis-v-wyclef-jean/,S.D.N.Y.,Danger,Martel Ellis,Welcome to the East,Wyclef Jean
+189,2010,US,"Ebony Latrice Batts v. William Adams, et al. [“Black Eyed Peas”]",https://blogs.law.gwu.edu/mcir/case/inplay-ebony-latrice-batts-v-william-adams-et-al-black-eyed-peas/,C.D. Cal.,Boom Dynamite,Ebony Latrice Batts aka “Phoenix Phenom”,Boom Boom Pow,"William Adams, et al. [“Black Eyed Peas”]"
+190,2010,US,"Holmes v. Page, et al.",https://blogs.law.gwu.edu/mcir/case/holmes-v-page-et-al/,C.D. Cal.,Dazed and Confused,Jake Holmes,Dazed and Confused,Led Zeppelin
+191,2011,US,"Ernest Straughter v. Usher Raymond, et al.",https://blogs.law.gwu.edu/mcir/case/inplay-ernest-straughter-v-usher-raymond-et-al/,C.D. Cal.,The Reasons Why,Ernest Straughter,Burn,"Usher Raymond, et al."
+192,2011,US,Pyatt v. Raymond,https://blogs.law.gwu.edu/mcir/case/pyatt-v-raymond/,S.D.N.Y.,Caught Up,Wadena Pyatt,Caught Up,Usher Raymond
+193,2011,US,Lessem v. Taylor,https://blogs.law.gwu.edu/mcir/case/lessem-v-taylor2/,S.D.N.Y.,Elevator,"Ryan Lessem, Douglas Johnson",How We Do,"Jayceon Taylor (“The Game”), Andre Young (“Dr. Dre”), Michael Elizondo, Curtis Jackson (“50 Cent”)"
+194,2011,US,"Saregama India v. Timothy Mosley, et al.",https://blogs.law.gwu.edu/mcir/case/saregama-india-v-timothy-mosley-et-al/,11th Cir.,Baghon Mein Behar Hai,Anonymous,Put You on the Game,"Timothy Mosley, aka ""Timbaland"""
+195,2011,DE,"Eight Mile Style [Marshall Mathers, aka Eminem” v. Audi GmbH",https://blogs.law.gwu.edu/mcir/case/inplay-eight-mile-style-marshall-mathers-aka-eminem-v-audi-gmbh/,Hamburg Regional Court,Advertisement for Chrysler Corp.,Marshall Mathers [aka “Eminem”],​Advertisement for Audi A6 “Avant”,Audi GmbH
+196,2011,DE,Obinger v. McDonald's,https://blogs.law.gwu.edu/mcir/case/obinger-v-mcdonalds/,OLG [Higher State Court] Munich,,Stephan Obinger,McDonald's-Jingle,McDonald's Corporation
+197,2011,US,Stokes v. Stephens,https://blogs.law.gwu.edu/mcir/case/stokes-v-stephens/,D.N.J.,Where are You Now?,Anthony Stokes,Maxine's Interlude,John Legend
+198,2012,US,"Lyles v. Capital - EMI Music, Inc., et al.",https://blogs.law.gwu.edu/mcir/case/lyles-v-capital-emi-music-inc-et-al/,S.D. Ohio,Without You,Bruce Lyles,Without You,David Guetta
+199,2012,US,Peters v. West,https://blogs.law.gwu.edu/mcir/case/vincent-peters-v-kanye-west-et-al/,7th Cir.,Stronger,Vince Peters,Stronger,Kanye West
+200,2012,TWN,People v. Xinru Wang,https://blogs.law.gwu.edu/mcir/case/people-v-xinru-wang/,Taiwan Shilin District Court,What Is Wrong with Love,Meiru Huang,Sleeping Beauty,Xinru Wang
+201,2012,US,Done Deal v. Carter,https://blogs.law.gwu.edu/mcir/case/done-deal-ent-v-carter/,S.D.N.Y.,Bedrock,William Keith,Bedrock,"Dwayne Carter, aka Lil Wayne"
+202,2012,US,Poindexter v. EMI Record Group,https://blogs.law.gwu.edu/mcir/case/robert-poindexter-v-emi-record-group/,S.D.N.Y.,Thin Line Between Love and Hate,"Robert Poindexter, et al.",Washed Away,EMI Record Group
+203,2012,PRC,Rui Hua Wang v. Qi Gang Chen,https://blogs.law.gwu.edu/mcir/case/rui-hua-wang-v-qi-gang-chen-et-al/,Sup. Ct. Beijing,You and Me,Rui Hua Wang,You and Me,Qi Gang Chen
+204,2012,US,Black Keys v. Home Depot and Pizza Hut,https://blogs.law.gwu.edu/mcir/case/inplay-black-keys-v-home-depot-and-pizza-hut/,C.D. Cal.,Lonely Boy; Gold on the Ceiling,Daniel Auerbach and Patrick Carney,Advertisement for Home Depot; Advertisement for Pizza Hut,
+205,2012,US,Erickson v. Blake,https://blogs.law.gwu.edu/mcir/case/erickson-v-blake/,D. Or.,Pi Symphony,Lars Erickson,What Pi Sounds Like,Michael John Blake
+206,2012,,"Barobax v. Chakraborty, et al.",https://blogs.law.gwu.edu/mcir/case/inplay-barobax-v-chakraborty-et-al/,,Soosan Khanoom,Kevian Haghgoo et al.,Pyaar Ki Pungi,Pritam Chakraborty
+207,2013,US,Hobbs v. John,https://blogs.law.gwu.edu/mcir/case/hobbs-v-john/,7th Cir.,Natasha,Guy Hobbs,Nikita,Elton John
+208,2013,US,Loomis v. Cornish,https://blogs.law.gwu.edu/mcir/case/loomis-v-cornish/,C.D. Cal.,Bright Red Chords,Will Loomis,Domino,Jessica Cornish
+209,2013,US,"Twilight Records v. Raymond, et al.",https://blogs.law.gwu.edu/mcir/case/twilight-records-v-raymond-et-al/,N.D. Ill.,Syl Johnson,Usher Raymond,Different Strokes,Call Me a Mack
+210,2013,US,"Love v. Universal Music Group, Inc.",https://blogs.law.gwu.edu/mcir/case/love-et-al-v-universal-music-group-inc/ ,W.D. Mo.,I'm Doing My Job,Bloodstone,Doin My Job,Kanye West
+211,2014,US,"Francescatti v. Germanotta [""Lady Gaga""]",https://blogs.law.gwu.edu/mcir/case/rebecca-francescatti-v-stefani-germanotta-aka-lady-gaga/,N.D. Ill.,Juda,Rebecca Francescatti,Judas,Stefani Germanotta
+212,2014,US,"Pringle v. Adams [""Black Eyed Peas""]",https://blogs.law.gwu.edu/mcir/case/bryan-pringle-v-william-adams-et-al-black-eyed-peas/,9th Cir.,Take a Drive,Brian Pringle,I Gotta Feeling,"William Adams, et al."
+213,2014,US,Steward v. Kanye West,https://blogs.law.gwu.edu/mcir/?post_type=case&p=14270&preview=true,C.D. Cal.,Bumpin' Bus Stop,David Pryor,Gold Digger,Kanye West
+214,2014,US,"TufAmerica, Inc. v. Warner Bros Music Corp., et al",https://blogs.law.gwu.edu/mcir/case/tufamerica-inc-v-warner-bros-music-corp-et-al/,S.D.N.Y.,"Hook & Sling, Pt. I",Eddie Bo & The Soul Finders,Run This Town,"Shawn Carter (""Jay-Z"") et al."
+215,2014,US,Mayimba Music v. Sony,https://blogs.law.gwu.edu/mcir/case/mayimba-music-v-sony-corp-of-america/,S.D.N.Y.,Loca con su Tiguere,Ramon Arias Vasquez,Loca con su Tiguere,Eduard Edwin Bello Pou
+216,2014,US,Paul Batiste v. Faheem Rasheed Najm,https://blogs.law.gwu.edu/mcir/?post_type=case&p=10824&preview=true,E.D. La.,I Like Your Way; Blues Man,Paul Batiste,Put It Down; Reggae Nigh,Faheem Rasheed Najm (p/k/a T-Pain)
+217,2014,DE,Musikverlag Richard Birnbach v. ZDF,https://blogs.law.gwu.edu/mcir/case/musikverlag-richard-birnbach-v-zdf/,OLG [Higher State Court] Munich,Fanfaren-Blues,"Klaus Wüsthoff, Hans Günter Wagener","""Today"" Jingle",ZDF
+218,2015,US,Lane v. Knowles-Carter,https://blogs.law.gwu.edu/mcir/case/lane-v-knowles-carter/,S.D.N.Y.,X.O.X.O.,Ahmad Javon Lane,X.O.,Beyonce Knowles-Carter
+219,2015,US,"New Old Music v. Gottwald, et al.",https://blogs.law.gwu.edu/mcir/case/new-old-music-v-gottwald-et-al/,S.D.N.Y.,Zimba ku,Lenny Lee Goldsmith,Price Tag,"Jessica Cornish, et al."
+220,2015,US,"Devin Copeland v. Justin Bieber, et al.",https://blogs.law.gwu.edu/mcir/case/devin-copeland-v-justin-bieber-et-al/,4th Cir.,Someone to Love,Devin Copeland,Someone to Love,"Justin Bieber, et al."
+221,2015,US,"TufAmerica v. Diamond, et al.",https://blogs.law.gwu.edu/mcir/case/tufamerica-v-diamond-et-al-beastie-boys/,S.D.N.Y.,Say What; Drop the Bomb,Trouble Funk [band],Shadrach; Car Thief; Hold It,"Diamond, Horovitz, et al. [Beastie Boys]"
+222,2015,US,"Miles Floyd v. Rod Stewart, et al.",https://blogs.law.gwu.edu/mcir/case/inplay-miles-floyd-v-rod-stewart-et-al/,N.D. Ga.,Corrine Corrina,"American folk song, as performed by Bo Carter",Corrina Corrina,"American folk song, as performed by Rod Stewart"
+223,2015,US,"Daniel Marino v. Usher, et al.",https://blogs.law.gwu.edu/mcir/case/inplay-daniel-marino-v-usher-et-al/,E.D. Pa.,,Daniel Marino,Bad Girl,Usher Raymond
+224,2015,US,Tom Petty v. Sam Smith,https://blogs.law.gwu.edu/mcir/case/inplay-tom-petty-v-sam-smith/,,I Won't Back Down,Tom Petty and Jeff Lynne,Stay With Me,Sam Smith
+225,2015,US,Richard Friedman v. Hans Zimmer,https://blogs.law.gwu.edu/mcir/case/inplay-richard-friedman-v-hans-zimmer/,C.D. Cal.,To Our Fallen,Richard Friedman,Music score for “12 Years a Slave”,Hans Zimmer
+226,2015,DE,Dark Sanctuary v. Bushido,https://blogs.law.gwu.edu/mcir/case/dark-sanctuary-v-bushido/,BGH [Federal Court of Justice],Les Memoires Blessées,Dark Sanctuary,Janine,Bushido
+227,2015,FR,Johnson v. Goldman,https://blogs.law.gwu.edu/mcir/case/johnson-v-goldman/,Cour de cassation [supreme court for judicial matters],Forever,Jefferson/Jean-François Johnson,Aicha,Jean-Jacques Goldman
+228,2015,US,"Guzman v. Hacienda Records, et al.",https://blogs.law.gwu.edu/mcir/case/guzman-v-hacienda-records-inc/,5th Cir.,"Triste Adventura, alternatively known as Cartas de Amor",Jose Guzman,Cartas de Amor,Hacienda Records
+229,2015,IT,Universal Music Publishing v. Sony BMG Music Entertainment,https://blogs.law.gwu.edu/mcir/case/universal-music-publishing-v-sony-bmg-music-entertainment/,Cass. civ.,Zingara,Enrico Riccardi and Luigi Albertelli,"Prendi questa mano, zingara",Francesco De Gregori
+230,2016,US,Fahmy v. Jay Z et al.,https://blogs.law.gwu.edu/mcir/case/fahmy-v-jay-z-et-al/,C.D. Cal.,"Khosara, Khosara",Baligh Hamdi,Big Pimpin',Jay Z et al.
+231,2016,US,Bowen v. Paisley,https://blogs.law.gwu.edu/mcir/case/bowen-v-paisley/,M.D. Tenn.,Remind Me,Amy Bowen,Remind Me,"Brad Paisley, et al"
+232,2016,US,"VMG Salsoul v Madonna Ciccone, et al.",https://blogs.law.gwu.edu/mcir/case/vmg-salsoul-llc-v-madonna-louise-ciccone-et-al/,9th Cir.,Chicago Bus Stop,"Vincent Montana, Richard Pettibone",Vogue,"Madonna Ciccone, Richard Pettibone"
+233,2016,US,"McDonald v. West, et al.",https://blogs.law.gwu.edu/mcir/case/joel-mcdonald-v-kanye-west-et-al/,2d Cir.,Made in America,Joel McDonald,Made in America,"Kanye West, et al."
+234,2016,US,We Shall Overcome Foundation v. Richmond Foundation & Ludlow Music,https://blogs.law.gwu.edu/mcir/case/we-shall-overcome-foundation-v-richmond-organization-ludlow-music/,S.D.N.Y,We Shall Overcome,African-American Spiritual,NA,NA
+235,2016,US,"Alisa Apps v. Universal Music, et al.",https://blogs.law.gwu.edu/mcir/case/inplay-alisa-apps-v-universal-music-et-al/,D. Nev.,Need to Know,Alisa Apps,Love Me Again,John Newman
+236,2016,US,Arnett v. Alan Jackson & Sony Music,https://blogs.law.gwu.edu/mcir/case/inplay-arnett-v-alan-jackson-sony-music/,E.D.N.C.,Remember Me,Timothy Arnett,Remember When,Alan Jackson
+237,2016,US,"BMG v. Atlantic Recording Organization, et al.",https://blogs.law.gwu.edu/mcir/case/inplay-bmg-v-atlantic-recording-organization-et-al/,S.D.N.Y.,Came to Do,"Joseph Bereal, et al.",Post to Be,"Omari Ishmael Grandberry, aka “Omarion”"
+238,2016,US,"Eric Smith, et al. v. Amanda Jiroux, et al.",https://blogs.law.gwu.edu/mcir/case/inplay-eric-smith-et-al-v-amanda-jiroux-et-al/,C.D. Cal.,No Rain,"Eric  Smith, et al.",Insane,Amanda Jiroux
+239,2016,US,"Gabor Presser v. Kanye West, et al.",https://blogs.law.gwu.edu/mcir/case/inplay-gabor-presser-v-kanye-west-et-al/,S.D.N.Y.,Gyongyhaju Lany,Gabor Presser & Anna Adamis,New Slaves,Kanye West
+240,2016,US,"Mattie Music Group v. Lamar, Warner/Chappell, et al.",https://blogs.law.gwu.edu/mcir/case/inplay-mattie-music-group-v-lamar-warnerchappell-et-al/,C.D. Cal.,Don't You Want to Stay,"Bill Withers, et al.",I Do This,"Kendrick Lamar, et al."
+241,2016,US,"McElroy, et al. v. Eriksen, et al.",https://blogs.law.gwu.edu/mcir/case/inplay-mcelroy-et-al-v-eriksen-et-al/,C.D. Cal.,Why You Treat Me So Bad,"Thomas McElroy, Denzil Delano, Jay King",I'm Worth It,"Mikkel Eriksen, et al."
+242,2016,US,"Songs Music Publishing v. Porsche, et al.",https://blogs.law.gwu.edu/mcir/case/inplay-songs-music-publishing-v-porsche-et-al/,M.D. Tenn.,Jungle,Members of  the band “X Ambassadors”,Advertisement for Porsche’s Cayman 718 automobile,Cramer-Krasselt advertising agency
+243,2016,US,"Yours, Mine & Ours v. Sony, et al.",https://blogs.law.gwu.edu/mcir/case/inplay-yours-mine-ours-v-sony-et-al/,C.D. Cal.,Young Girls,Members of  “electro-funk” band Collage,Uptown Funk,Peter Hernandez (“Bruno Mars”) et al.
+244,2016,US,"Estate of Armetia Chatmon v. Eric Clapton, et al.",https://blogs.law.gwu.edu/mcir/case/inplay-estate-of-armetia-chatmon-v-eric-clapton-et-al/,M.D. Tenn.,"Corrine, Corrina",Public domain blues number performed by Bo Carter (Chatmon),"Alberta, Alberta",Public domain blues number performed by Eric Clapton
+245,2016,US,"Miller, et al. dba “Sleigh Bells” v. Demi Lovato",https://blogs.law.gwu.edu/mcir/case/inplay-miller-et-al-dba-sleigh-bells-v-demi-lovato/,C.D. Cal.,Infinity Guitars,“Sleigh Bells” [band],Stars,Demi Lovato
+246,2016,US,"Greggs v. Grande, et al.",https://blogs.law.gwu.edu/mcir/case/inplay-greggs-v-grande-et-al/,C.D. Cal.,Takes All Night,Alex Greggs,One Last Time,Ariana Grande
+247,2016,US,"HaloSongs, Inc., Martin Harrington, Thomas Leonard v. Ed Sheeran, et al.",https://blogs.law.gwu.edu/mcir/case/inplay-halosongs-inc-martin-harrington-thomas-leonard-v-ed-sheeran-et-al/,C.D. Cal.,Amazing,Martin Harrington & Thomas Leonard,Photograph,Ed Sheeran & John McDaid
+248,2016,US,"Darlene Love v. Scripps Network, Inc.",https://blogs.law.gwu.edu/mcir/case/inplay-darlene-love-v-scripps-network-inc/,N.D. Cal.,Christmas (Baby Please Come Home),"Jeff Barry, et al.",,
+249,2016,US,"Casey Dienel v. Justin Bieber, et al.",https://blogs.law.gwu.edu/mcir/case/inplay-casey-dienel-v-justin-bieber-et-al/,M.D. Tenn.,Ring the Bell,Casey Dienel,Sorry,"Julia Michael, Justin Tranter, Justin Bieber, Thomas Pentz, et al."
+250,2016,US,"Cirque du Soleil v. Justin Timberlake, et al.",https://blogs.law.gwu.edu/mcir/case/inplay-cirque-du-soleil-v-justin-timberlake-et-al/,S.D.N.Y.,Steel Dream,Cirque du Soleil,Don't Hold the Wall,"Justin Timberlake, et al."
+251,2016,US,"PK Music v. Justin Timberlake, et al.",https://blogs.law.gwu.edu/mcir/case/inplay-pk-music-v-justin-timberlake-et-al/,S.D.N.Y.,A New Day is Here at Last,Perry Kibble,Damn Girl,"Justin Timberlake, et al."
+252,2016,FR,Feriol v. Maurici,https://blogs.law.gwu.edu/mcir/case/feriol-v-maurici/,Cour de cassation [supreme court for judicial matters],Les Chansons d’artiste,Laurent Feriol,Si seulement je pouvais lui manquait,Calogero Joseph Salvatore Maurici (“Calogero”)
+253,2017,US,"Parker, et al. v. Winwood, et al.",https://blogs.law.gwu.edu/mcir/case/parker-v-winwood-et-al/,M.D. Tenn.,Ain't That a Lot of Loving,Willia Dean Parker & Homer Banks,Gimmee Some Lovin,"Mervyn Winwood, et al."
+254,2017,US,Roberts v. Gordy,https://blogs.law.gwu.edu/mcir/case/roberts-v-gordy/,11th Cir.,Hustlin,"Wiliam Roberts, Andrew Harr, Jermaine Jackson",Party Rock Anthem,"Stefan & Skyler Gordy (""LMFAO"")"
+255,2017,US,Mitchell v. Priority Records,https://blogs.law.gwu.edu/mcir/case/mitchell-v-priority-records-et-al/,W.D. Ky.,Star in the Ghetto,Leroy Mitchell,If It Ain't Ruff,"Andre Young( ""Dr. Dre"")"
+256,2017,US,Abdul Muhammad v. Chancellor Bennett,https://blogs.law.gwu.edu/mcir/case/inplay-abdul-muhammad-v-chancellor-bennett/,N.D. Ill.,Bridge Through Time,Abdul Muhammad (Erik Saunders),Windows,Chancellor Bennett (“Chance Rapper”)
+257,2017,US,"Lastrada Entertainment v. Mark Ronson, et al.",https://blogs.law.gwu.edu/mcir/case/inplay-lastrada-entertainment-v-mark-ronson-et-al/,S.D.N.Y.,More Bounce to the Ounce,Roger Troutman,Uptown Funk,Mark Ronson
+258,2017,US,"Enclosed Music v. Steinman, et al.",https://blogs.law.gwu.edu/mcir/case/inplay-enclosed-music-v-james-steinman-et-al/,C.D. Cal.,[I’d do] Anything for You,"Jon Dunmore, Mike Molina",I’d do Anything for Love,James Steinman
+259,2017,US,"Sean Hall, et al. v. Taylor Swift, et al.",https://blogs.law.gwu.edu/mcir/case/inplay-sean-hall-et-al-v-taylor-swift-et-al/,C.D. Cal.,Playas Gon’ Play,Sean Hall,Shake It Off,Taylor Swift
+260,2017,US,"Estate of Barre v. Beyoncé Knowles Carter, Sony Music, et al.",https://blogs.law.gwu.edu/mcir/case/inplay-barre-v-beyonce-knowles-carter-sony-music-et-al/,E.D. La.,Booking the Hoes from New Wildings; A 27 Piece Huh?,Anthony Barre aka “Messy Mya”,Formation,Beyoncé Knowles Carter
+261,2017,US,"Golden Crown Publishing v. Sony Music, Jonathan Smithy [aka “Lil’ Jon”], et al.",https://blogs.law.gwu.edu/mcir/case/inplay-golden-crown-publishing-v-sony-music-jonathan-smithy-aka-lil-jon-et-al/,S.D.N.Y.,Turn Down for What?,"Fredley Saurel [aka “Freddy GZ”], et al.",Turn Down for What?,"Jonathan Smith [aka Lil’ Jon”], et al."
+262,2017,US,"Bosh v. Univision Communications, Inc.",https://blogs.law.gwu.edu/mcir/case/inplay-joel-bosh-v-univision-communications/,S.D. Fla.,Yo Soy Boricua,Joel Bosh,Advertisement for Spanish language Sesame Street,"Univision Communications, Inc."
+263,2017,IN,Super Cassettes v. Trimurti Films,https://blogs.law.gwu.edu/mcir/case/super-cassetes-industries-pvt-ors-vs-trimurti-films-pvt-ltd/,Bom. HC,Kehdoon Tumhe,Kishore Kumar & Asha Bhosle,Socha Hai (Kehdoon Tumhe Remix,Jumin Nautiyal & Neeti Mohan
+264,2017,US,"Stone et al. v. TIG7 Publishing, LLC et al.",https://blogs.law.gwu.edu/mcir/case/stone-et-al-v-tig7-publishing-llc-et-al/,N.D. Ga.,Funk You Up,The Sequence,Uptown Funk,Bruno Mars & Mark Ronson
+265,2018,US,"Paul Rose v. Paul David Hewson, aka “Bono”, et al.",https://blogs.law.gwu.edu/mcir/case/inplay-rose-hewson/,S.D.N.Y.,Nae Slappin',Paul Rose,The Fly,"Paul Hewson, aka “Bono”, et al."
+266,2018,US,"Abiodun Oyewole v. Rita Ora, et al.",https://blogs.law.gwu.edu/mcir/case/abiodun-oyewole-vs-rita-ora-et-al/,S.D.N.Y.,When the Revolution Comes,Abiodun Oyewole,How We do Party; Party and Bullshit; Calm Down,Rita Ora; Christopher Wallace; Marshall Mathers & Trevor Smith
+267,2018,US,"Wilson v. Dynatone Pub., et al.",https://blogs.law.gwu.edu/mcir/case/wilson-v-dynatone-pub-et-al/,2d Cir.,Sho' Nuff,"John Wilson, Charles Still, Terrance Stubbs",Suit & Tie,Justin Timberlake
+268,2018,US,"Cortes-Ramos v. Enrique Martin-Morales (""Ricky Martin"")",https://blogs.law.gwu.edu/mcir/case/luis-cortes-ramos-v-sony-ricky-martin-et-al/,1st Cir.,World Cup Song Contest Entry,Luis Cortes-Ramos,Vida,Ricky Martin
+269,2018,US,"Fahmy v. Jay Z, et al.",https://blogs.law.gwu.edu/mcir/case/fahmy-v-jay-z-et-al/,9th Cir.,"Khosara, Khosara",Baligh Hamdi,Big Pimpin',"Jay Z, et al."
+270,2018,US,"Pharrell Williams, et al. v. Frankie Gaye, et al.",https://blogs.law.gwu.edu/mcir/case/pharrell-williams-et-al-v-frankie-gaye-et-al/,9th Cir.,Got to Give it Up,Marvin Gaye,Blurred Lines,"Robin Thicke, Pharrell Williams"
+271,2018,US,"Lela Weems v. Odd Future Records, et al.",https://blogs.law.gwu.edu/mcir/case/inplay-lela-weems-v-odd-future-records-et-al/,C.D. Cal.,Why Can't There Be Love,Herman Weems,Deathcamp,Tyler Okonma
+272,2018,US,"Michael May v. Miley Ray Cyrus, et al.",https://blogs.law.gwu.edu/mcir/case/inplay-michael-may-v-miley-ray-cyrus-et-al/,S.D.N.Y.,We Run Things,Michael May,We Can't Stop,Miley Ray Cyrus
+273,2018,US,[INPLAY] Platinum Jack Entertainment v. ESPN and Chick-Fil-A,https://blogs.law.gwu.edu/mcir/case/inplay-platinum-jack-entertainment-v-espn-and-chick-fil-a/,N.D. Tex.,Best I Had,Drayter [Band],Ads Aired on ESPN,Chick-Fil-A Advertising Agency
+274,2018,US,Carey v. Sheeran,https://blogs.law.gwu.edu/mcir/case/inplay-carey-v-sheeran/,S.D.N.Y.,When I Found You,"Sean Carey, Beau Golden, Jasmine Rae",The Rest of Our Life,Edward Sheeran
+275,2018,US,"Del Rio v. Virgin America, et al.",https://blogs.law.gwu.edu/mcir/case/inplay-del-rio-v-virgin-america-et-al/,C.D. Cal.,Flight Safety Video,Neomi Del Rio,,Virgin America
+276,2018,US,"Jamie Ciero v. Disney, et al.",https://blogs.law.gwu.edu/mcir/case/inplay-jamie-ciero-v-disney-et-al/,C.D. Cal.,Volar,Jamie Ciero,Let It Go,Disney
+277,2018,US,Tracy Chapman v. Nicki Minaj,https://blogs.law.gwu.edu/mcir/case/tracy-chapman-v-nicki-minaj/,C.D. Cal.,Baby Can I Hold You,Tracy Chapman,Sorry,Nicki Minaj ft. Nas
+278,2018,US,"[INPLAY] Brighter Sky Productions LLC, et al. v. Marriott International, Inc., et al.",https://blogs.law.gwu.edu/mcir/?post_type=case&p=10076&preview=true,N.D.Ill.,Rocket Boys Musical,"Dan Tramon, Diana Belkowski, and Carl Anthony Tramon",October Sky Musical,"Marriott International, Inc, and Universal Pictures"
+279,2018,US,"Benny Mardones, et al. v. Cyndi Lauper, et al.",https://blogs.law.gwu.edu/mcir/?post_type=case&p=10000&preview=true,S.D.N.Y.,Into the Night,Benny Mardones & Robert Tepper,Raise You Up,Cyndi Lauper
+280,2018,US,"Richard Morrill v. Gwen Stefani, Pharrell Williams, et al.",https://blogs.law.gwu.edu/mcir/?post_type=case&p=9569&preview=true,C.D. Cal.,Who's Got My Lightah (1996) / Who's Got My Lighter (2009),Richard Morrill,Spark the Fire,Gwen Stefani & Pharrell Williams
+281,2018,DE,Stahlgewitter v. Frei.Wild,https://blogs.law.gwu.edu/mcir/case/stahlgewitter-v-frei-wild/,OLG [Higher State Court] Hamburg,Auftrag Deutsches Reich,Stahlgewitter,"Schenkt uns Dummheit, kein Niveau",Frei.Wild
+282,2018,JP,Harumaki Gohan v. Mori,https://blogs.law.gwu.edu/mcir/case/harumaki-gohan-v-mori/,,Hachigatsu no Rainy [August Rainy],Harumaki Gohan,M.A.K.E.,Yamato Mori
+283,2019,NZ,Eight Mile Style v. New Zealand National Party,https://blogs.law.gwu.edu/mcir/case/eight-mile-style-v-new-zealand-national-party-et-al/,H.C. N.Z.,Lose Yourself,"Marshall Mathers, et al.",Eminem Esque,Michael Cohen
+284,2019,US,The Rolling Stones v. The Verve,https://blogs.law.gwu.edu/mcir/case/the-rolling-stones-v-the-verve/,,The Last Time,The Rolling Stones,Bittersweet Symphony,The Verve
+285,2019,US,"Andrew Green v. Kanye West, et al.",https://blogs.law.gwu.edu/mcir/case/andrew-green-v-kanye-west/,D.S.C.,Video Recording of child praying,Alice T. Johnson and N.G (minor child),Ultralight Beam,Kanye West
+286,2019,US,"William Smith et al. v. ""The Weeknd""",https://blogs.law.gwu.edu/mcir/case/william-smith-et-al-v-the-weeknd-et-al/,C.D. Cal,I Need to Love,"William Smith, Brian Clover, Scott McCulloch",A Lonely Night,Abel M. Tesfaye (“The Weeknd”)
+287,2019,US,"Song-a-tron Music, et al. v. Jones, et al.",https://blogs.law.gwu.edu/mcir/case/song-a-tron-music-et-al-v-jones-et-al/,S.D.N.Y,Back it Up,Song-A-Tron Music,24 Hours,"Christian Jones (""TeeFLii"")"
+288,2019,DE,[INPLAY] Hütter v. Pelha,https://blogs.law.gwu.edu/mcir/case/hutter-v-pelham/,Court of Justice of EU,Metall auf Metall,Kraftwerk,Nur mir,Sabrina Setlur
+289,2019,US,Mimi Korman v. Julio Iglesias,https://blogs.law.gwu.edu/mcir/?post_type=case&p=10083&preview=true,11th Cir.,Me Olvide de Vivir,Mimi Korman,Me Olvide de Vivir,Julio Iglesias
+290,2019,US,"Rodriguez v. Avalos, et al.",https://blogs.law.gwu.edu/mcir/case/rodriguez-v-avalos/,W.D. Tex.,Pediré,Esmeralda Lucy Rodriguez,Pediré,"Eric Avalos, Courtney Rico, Chavalos Music, Inc."
+291,2019,US,"[INPLAY] Nicholas v. Pigott, et al.",https://blogs.law.gwu.edu/mcir/case/nicholas-v-pigott-et-al/,E.D. La.,Roll Call (Instrumental),"Samuel Nicholas III (""Sam Scully"")",That beat; In my feelings; Nice for what,"Adam J. Pigott (""BlaqNmilD""); Aubrey Drake Graham (""Drake"")"
+292,2019,US,"[INPLAY] Brandon Lee (""Don Lee""), et al. v. Hill (""Lil Nas X""), et al.",https://blogs.law.gwu.edu/mcir/case/brandon-lee-don-lee-et-al-v-hill-lil-nas-x-et-al/,S.D.N.Y.,gwenXdonlee4-142,"Brandon Lee (""Don Lee"") & Glen Demeritt",Rodeo,"Montero Lamar Hill (""Lil Nas X""), et al."
+293,2019,US,Zachry Brown v. Ryan Tedder,https://blogs.law.gwu.edu/mcir/case/zachary-brown-v-ryan-tedder-inplay/,C.D. Cal.,Nowhere Left to Go,Zachry Brown,,Ryan Tedder
+294,2019,US,"Mark Halper v. Sony/ATV Music Publishing, LLC, et al.",https://blogs.law.gwu.edu/mcir/?post_type=case&p=10280&preview=true,6th Cir.,Don't Throw Our Love Away,Mark Halper,Stay With Me,"Sam Smith, et al."
+295,2019,US,New Day Worldwide v. Taylor Swift,https://blogs.law.gwu.edu/mcir/case/new-day-worldwide-v-taylor-swift-2/,C.D. Cal.,Haters gone Hate,Jesse Graham,Shake it Off,Taylor Swift
+296,2019,US,"[INPLAY] Key, et al. (""Yellowcard"") v. Higgins, et al. (""Juice WRLD"")",https://blogs.law.gwu.edu/mcir/case/key-et-al-yellowcard-v-higgins-et-al-juice-wrld/,C.D. Cal,Holly Wood Died,"Ryan Key, et al. (""Yellowcard"")",Lucid Dreams,"Jared A. Higgins (""Juice WRLD""), et al."
+297,2019,US,Brown v. Netflix,https://blogs.law.gwu.edu/mcir/case/brown-v-netflix-2/,S.D.N.Y.,Fish Sticks n' Tater Tots (song),"Tamita Brown, et al.",Burlesque: Heart of the Glitter Tribe (film),"Netflix, et al."
+298,2019,US,Guity v. Santos,https://blogs.law.gwu.edu/mcir/case/guity-v-santos/ ,S.D.N.Y.,Eres Mia,Nazim Guity,Eres Mia,Anthony Santos
+299,2019,US,"Pickett v. Migos Touring, Inc., et al.",https://blogs.law.gwu.edu/mcir/case/pickett-v-migos-touring-inc-et-al/,S.D.N.Y.,Walk It Like I Talk It,"Leander C. Pickett (""M.O.S."")",Walk It Talk IT,"Migos Touring, Inc. (""Migos""), et al."
+300,2019,US,Stone v. Dudley,https://blogs.law.gwu.edu/mcir/case/stone-v-dudley/,C.D. Cal.,,Sharon Stone,Sharon Stoned,Chelsea Dudley a/k/a/ Chanel West Coast
+301,2019,US,"Batiste v. Lewis, et al.",https://blogs.law.gwu.edu/mcir/case/inplay-batiste-v-ben-haggerty-aka-macklemore-et-al/,E.D. La.,Hip Jazz; World of Blues; Salsa 4 Elise; I Got the Rhythm On,Paul Batiste,Thrift Shop; Neon Cathedral,"Ryan Lewis; Ben Haggerty (""Macklemore"")"
+302,2019,US,[INPLAY] Richardson v. Kharbouch,https://blogs.law.gwu.edu/mcir/case/richardson-v-kharbouch/,N.D. Ill.,*Hood* Pushin’ Weight,Eddie Lee Richardson aka Hotwire the Producer,Ain’t Worried About Nothin,"Karim Kharbouch aka French Montana;
+Excuse My French"
+303,2019,US,Hines v. Roc-A-Fella Records Inc. et al.,https://blogs.law.gwu.edu/mcir/case/hines-v-roc-a-fella-records-inc-et-al/,S.D.N.Y.,Help Me Put Out The Flame (In My Heart),Ernie Hines,Paper Chase; Toe 2 Toe,Jay-Z; Timbaland
+304,2019,US,"Jefferson v. Raisen, et al.",https://blogs.law.gwu.edu/mcir/case/jefferson-v-raisen-et-al-inplay/,C.D. Cal.,Truth Hurts,"Melissa Jefferson (""Lizzo"")",Healthy (Demo),Justin Raisen; Jeremiah Raisen
+305,2019,IN,Saregama India v. Balaji,https://blogs.law.gwu.edu/mcir/case/saregama-india-limited-v-balaji-motion-pictures-limited-ors/,Delhi H.C.,Var Dhagala Lagli Kal,Dada Kondke,Dhagala Lagali Kala,"Meet Bros, et al."
+306,2020,US,Estate of James Oscar Smith v. Cash Money Records,https://blogs.law.gwu.edu/mcir/case/estate-of-james-oscar-smith-v-cash-money-records-et-al/,2d Cir.,Jimmy Smith Rap,Jimmy Smith,Pound Cake,"Aubrey Drake Graham aka ""Drake"""
+307,2020,US,"Yeasayer v. Tesfaye (""The Weeknd"")",https://blogs.law.gwu.edu/mcir/case/yeasayer-v-tesfaye-the-weeknd-inplay/,S.D.N.Y.,Sunrise,"Yeasayer, LLC",Pray for Me,Abel Makkonen Tesfaye (“The Weeknd”); Kendrick Lamar Duckworth
+308,2020,US,Michael Skidmore v. Led Zeppelin,https://blogs.law.gwu.edu/mcir/case/inplay-michael-skidmore-v-led-zeppelin/,9th Cir.,Taurus,Randy Wolfe,Stairway to Heaven,Jimmy Page
+309,2020,US,"Marcus Gray, et al. v. Katy Perry",https://blogs.law.gwu.edu/mcir/case/marcus-gray-et-al-v-katy-perry-et-al/,C.D. Cal.,Joyful Noise,"Marcus Gray, et al.",Dark Horse,"Katy Perry, et al."
+310,2020,US,[INPLAY] Armes v. Post,https://blogs.law.gwu.edu/mcir/case/armes-v-post-inplay/,C.D. Cal.,Circles,Tyler Armes,,"Austin Post (aka ""Post Malone"")"
+311,2020,US,[INPLAY] Gordon v. Chambers,https://blogs.law.gwu.edu/mcir/case/gordon-v-chambers-inplay/,E.D.N.Y.,Yung Gordon Intro,"Seth Gordon (""Yung Gordon"")",Stoopid,"Brytavious Chambers (“Tay Keith”);
+Daniel Hernandez (“Takashi 6ix9ine”)"
+312,2020,US,"[INPLAY] Griffin v. Sheeran, et al.",https://blogs.law.gwu.edu/mcir/case/inplay-griffin-v-sheeran-et-al/,S.D.N.Y.,Let's Get It On,Marvin Gaye,Thinking Out Loud,"Amy Wadge, Ed Sheeran"
+313,2020,US,"[INPLAY] Jackson v. Apple, Inc.",https://blogs.law.gwu.edu/mcir/case/jackson-v-apple-inc/,N.D. Cal.,Side Show,Darell Jackson,,"Apple, Inc., et al."
+314,2020,US,[INPLAY] Basil v. AMC,https://blogs.law.gwu.edu/mcir/case/basil-v-amc-inplay/,C.D. Cal.,Mickey,Toni Basil,,
+315,2020,US,"[INPLAY] Stines v. Knowles, et. al.",https://blogs.law.gwu.edu/mcir/case/stines-v-knowles-et-al/,C.D. Cal.,,,Black Effect,The Carters
+316,2020,US,"Jackson (""50 Cent"") v. Roberts",https://blogs.law.gwu.edu/mcir/case/jackson-50-cent-v-roberts/,2d Cir.,In Da Club,"Curtis James Jackson (""50 Cent"")",Renzel Remixes,"William Leonard Roberts II (""Rick Ross"")"
+317,2020,US,[INPLAY] Hayes v. Lamar,https://blogs.law.gwu.edu/mcir/case/hayes-v-lamar/,C.D. Cal.,,Terrance Hayes,Loyalty,Kendrick Lamar
+318,2020,US,Stone v. Grande,https://blogs.law.gwu.edu/mcir/case/stone-v-grande/,S.D.N.Y.,"You Need It, I Got It",Josh Stone,7 Rings,Ariana Grande
+319,2020,UK,Sheeran v. Chokri,https://blogs.law.gwu.edu/mcir/case/sheeran-et-al-v-chokri-et-al/,EWHC [High Court of Justice],Oh Why,Sam Chokri,Shape of You,Ed Sheeran
+320,2020,US,Structured Asset Sales v. Sheeran,https://blogs.law.gwu.edu/mcir/case/inplay-griffin-v-sheeran-et-al/,S.D.N.Y.,Let's Get It On,Marvin Gaye,Thinking Out Loud,Ed Sheeran
+321,2020,US,"Norwood v. Quality Control Music, LLC",https://blogs.law.gwu.edu/mcir/case/norwood-v-quality-control-music-llc/,N.D. Ga.,Martian,Barbara Norwood,How Did I Get Here ft. J. Cole,Offset
+322,2021,US,"Nwosuocha v. Glover, et al.",https://blogs.law.gwu.edu/mcir/case/nwosuocha-v-glover-et-al/,S.D.N.Y.,Made in America,Emelike Nwosuocha,This Is America,Donald Glover
+323,2021,US,"[INPLAY] Cooper, et al. v. Brown, et al.",https://blogs.law.gwu.edu/mcir/case/cooper-et-al-v-brown-et-al-inplay/,S.D. Fla.,I Love Your Dress,Mr. Cooper,No Guidance,Chris Brown & Drake
+324,2021,US,"[INPLAY] Cates v. Shlemovitz, et al.",https://blogs.law.gwu.edu/mcir/case/cates-v-shlemovitz-et-al-inplay/,N.D.N.Y.,She Loves Her Job,Cameron Cates,FeBreze Tagline,"Shlemovitz, et al."
+325,2021,US,Robinson v. Wilburn,https://blogs.law.gwu.edu/mcir/case/robinson-v-wilburn/,N.D. Ill.,When U Think About It,Gutta,When I Think About It,Future
+326,2021,US,Johannsongs-Publishing Ltd. v. Lovland,https://blogs.law.gwu.edu/mcir/case/johannsongs-publishing-ltd-v-lovland/,9th Cir.,Söknuður,Jóhann Helgason,You Raised Me Up,Rolf Løvland
+327,2021,US,[InPlay] Cleveland Constantine Browne et al. v. Rodney Sebastian Clark Donalds et al.,https://blogs.law.gwu.edu/mcir/case/cleveland-constantine-browne-et-al-v-rodney-sebastian-clark-donalds-et-al/,C.D. Cal.,Fish Market,Cleveland Browne & Wycliffe Johnson,Despacito,Luis Fonsi
+328,2021,US,"AOM Music, Inc v. Benito Antonio Martínez Ocasio (p/k/a Bad Bunny)",https://blogs.law.gwu.edu/mcir/case/aom-music-inc-v-benito-antonio-martinez-ocasio-p-k-a-bad-bunny-jd-draft/,C.D. Cal.,Playero Works,"AOM Music, Inc.",Safaera,Benito Antonio Martínez Ocasio p/k/a Bad Bunny
+329,2022,US,[INPLAY] Ultra v. West,https://blogs.law.gwu.edu/mcir/case/ultra-v-west-inplay/,S.D.N.Y.,Move Your Body,Marshall Jefferson,Flowers,Kanye West
+330,2022,US,Frisby v. Sony,https://blogs.law.gwu.edu/mcir/case/frisby-v-sony/,9th Cir.,Shawty So Cold,G-Money,Deja Vu; Exchange,J. Cole; Bryson Tiller
+331,2022,US,"Cope v. Dua Lipa, et al",https://blogs.law.gwu.edu/mcir/case/cope-v-dua-lipa-et-al-inplay/,E.D. La.,Live Your Life,Artikel Sound,Levitating,Dua Lipa
+332,2022,US,[InPlay} Quinn et al v. Powell et al.,https://blogs.law.gwu.edu/mcir/case/quinn-et-al-v-powell-et-al/,N.D. Ga.,Back N Forth,"Darwin Quinn, Mitchelle'l Sium,",Living My Best Life,"Roland Powell p/k/a Lil' Duvall, Rich Broke Entertainment, LLC"
+333,2022,US,[InPlay] Larball Publ'g Co. v. Lipa,https://blogs.law.gwu.edu/mcir/case/larball-publg-co-v-lipa/,S.D.N.Y.,Wiggle and Giggle All Night,"Russell Brown, Sandy Linzer",Levitating,Dua Lipa
+334,2022,US,[InPlay] Phase One Network v. Kanye West,https://blogs.law.gwu.edu/mcir/case/phase-one-network-v-kanye-west-inplay/,S.D.N.Y,South Bronx,"Lawrence Parker, Scott Sterling",Life of the Party,Kanye West
+335,2022,US,Moten v. Def Jam,https://blogs.law.gwu.edu/mcir/case/moten-v-def-jam/,N.D. Tex.,Unspecified Sermon,Bishop David Paul Moten,Come to Life,Kanye West
+336,2022,US,Patrick v. Poree,https://blogs.law.gwu.edu/mcir/case/patrick-v-poree/,N.D. Ga.,I Do What I Want,Yolanda Patrick,,April Louise Poree
+337,2022,US,Grigson v. Lopez,https://blogs.law.gwu.edu/mcir/case/grigson-v-lopez-et-al-inplay/,C.D. Cal.,That Girl,Daniel Grigson,Some Things Never Change,Kristen Anderson Lopez
+338,2022,US,Sound & Color v. Sam Smith,https://blogs.law.gwu.edu/mcir/case/sound-color-v-sam-smith/,C.D. Cal.,Dancing with Strangers,"Jordan Vincent, Christopher Miranda",Dancing with a Stranger,"Sam Smith, Normani"
+339,2022,US,[InPlay] Third Side Music v. Evenflo Co.,https://blogs.law.gwu.edu/mcir/case/third-side-music-v-evenflo-co/,S.D. Ohio,Best Friend,Sofi Tukker,Ad Background Music,Evenflo
+340,2023,US,Astley v. Hauri,https://blogs.law.gwu.edu/mcir/case/astley-v-hauri/,"Cal.Super.Ct., Los Angeles County",Never Gonna Give You Up,Rick Astley,Betty (Get Money),Yung Gravy
+341,2023,US,Stone v. Carey,https://blogs.law.gwu.edu/mcir/case/stone-v-carey/,C.D. CA,All I Want for Christmas is You,"Andy Stone, AKA Vinnie Vance",All I Want for Christmas is You,Mariah Carey
+342,2023,US,[InPlay] Formal Entertainment v. Zayn Malik,https://blogs.law.gwu.edu/mcir/case/formal-entertainment-v-zayn-malik/,C.D. CA,Somebody Tonight,"Patrick Simmons p/k/a ""Havyn""",Better,"Zayn Malik p/k/a ""Zayn"""
+343,2023,US,"[InPlay] Darko v. Grahm, et al.",https://blogs.law.gwu.edu/mcir/case/darko-v-graham-et-al-inplay/ ,S.D.N.Y.,Oye Ohene,Obrafour,Calling My Name,Drake
+344,2023,US,"[InPlay] Concord Music Group, et al. v. Anthropic PBC",https://blogs.law.gwu.edu/mcir/case/concord-music-group-et-al-v-anthropic-pbc/,M.D. Tenn.,NA,"Concord Music, Universal Music Group and ABKCO Music",NA,Anthropic PBC
+345,2024,US,Chamberlain v. Dolo Entertainment,https://blogs.law.gwu.edu/mcir/case/chamberlain-v-dolo-entertainment/,E.D.N.Y.,In That Mood,Duvall Chamberlain,In Ha Mood,Isis Naija Gaston a/k/a Ice Spice
+346,2024,US,"Peabody & Company LLC v. Wayne, et al.",https://blogs.law.gwu.edu/mcir/case/peabody-company-llc-v-wayne-et-al/,S.D.N.Y.,Come On Down,Greg Perry,The Box,Roddy Ricch
+347,2024,US,"Johnston v. Kroeger, et al.",https://blogs.law.gwu.edu/mcir/case/johnston-v-kroeger-et-al/ ,5th Cir.,Rockstar,Snowblind,Rockstar,Nickelback
