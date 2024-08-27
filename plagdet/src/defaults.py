@@ -15,6 +15,10 @@ VALIDATED_SONGS_CSV = 'plagdet/data/case_data/intermediate_csvs/validated_songs.
 COPYRIGHT_SONGS_CSV = 'plagdet/data/case_data/final_csvs/final_copyright_songs.csv'
 COPYRIGHT_PAIRS_CSV = 'plagdet/data/case_data/final_csvs/final_copyright_pairs.csv'
 
+# MIDI search log path
+
+MIDI_SEARCH_LOG_PATH = 'plagdet/data/midi_search_logs'
+
 # MIDI data paths
 
 DATABASE = 'plagdet/data/music.db'

@@ -42,7 +42,7 @@ def process_copyright_pairs(file_path: str = VALIDATED_SONGS_CSV) -> Tuple[pd.Da
     pairs = pd.read_csv(file_path)
 
     copyright_songs = pd.DataFrame(columns=['song_id', 'artist', 'title'])
-    copyright_cases = pd.DataFrame(columns=['case_id', 'complaining_id', 'defending_id', 'is_melodic_comparison', 'pair_evidence', 'pair_evidence_source', 'case_won'])
+    copyright_cases = pd.DataFrame(columns=['case_id', 'complaining_id', 'defending_id', 'is_melodic_comparison', 'case_won'])
 
     song_id = 0
 
@@ -54,22 +54,24 @@ def process_copyright_pairs(file_path: str = VALIDATED_SONGS_CSV) -> Tuple[pd.Da
             # if the song is not stored, store it
             if song_id_existing is None:
                 song_ids.append(song_id)
-                copyright_songs = copyright_songs.append({
-                    'song_id': song_id, 
-                    'artist': case[f'{prefix}_artist'], 
-                    'title': case[f'{prefix}_title']
-                }, ignore_index=True)
+                new_song = pd.DataFrame({
+                    'song_id': [song_id],
+                    'artist': [case[f'{prefix}_artist']],
+                    'title': [case[f'{prefix}_title']]
+                })
+                copyright_songs = pd.concat([copyright_songs, new_song], ignore_index=True)
                 song_id += 1
             else:
                 song_ids.append(song_id_existing)
 
-        copyright_cases = copyright_cases.append({
-            'case_id': case['case_id'],
-            'complaining_id': song_ids[0],
-            'defending_id': song_ids[1],
-            'is_melodic_comparison': case['is_melodic_comparison'],
-            'case_won': case['was_case_won']
-        }, ignore_index=True)
+        new_case = pd.DataFrame({
+            'case_id': [case['case_id']],
+            'complaining_id': [song_ids[0]],
+            'defending_id': [song_ids[1]],
+            'is_melodic_comparison': [case['is_melodic_comparison']],
+            'case_won': [case['was_case_won']]
+        })
+        copyright_cases = pd.concat([copyright_cases, new_case], ignore_index=True)
 
     return copyright_songs, copyright_cases
 
