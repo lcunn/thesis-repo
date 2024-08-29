@@ -2,6 +2,11 @@ from typing import List
 
 NoteSequence = object
 
+# Model paths
+
+MUSICVAE_2BAR_BIG_CONFIG = 'cat-mel_2bar_big'
+MUSICVAE_2BAR_BIG_PATH = 'plagdet/models/music_vae/2_bar_melody/cat-mel_2bar_big.ckpt'
+
 # Database CSV file paths
 
 COPYRIGHT_CLAIMS_CSV = 'plagdet/data/case_data/intermediate_csvs/all_copyright_claims.csv'
@@ -22,10 +27,16 @@ MIDI_SEARCH_LOG_PATH = 'plagdet/data/midi_search_logs'
 # MIDI data paths
 
 DATABASE = 'plagdet/data/music.db'
-
 MIDI_DATA_PATH = 'plagdet/data/midi_databases'
 COPYRIGHT_MIDI_PATH = 'plagdet/data/copyright_midis'
 
 LAKH_CLEAN_PATH = 'plagdet/data/midi_databases/lakh_clean'
 
+BIMMUDA_PATH = 'plagdet/data/midi_databases/bimmuda'
+BIMMUDA_METADATA_PATH = 'plagdet/data/midi_databases/bimmuda/bimmuda_per_song_metadata.csv'
+
+METAMIDI_PATH = 'plagdet/data/midi_databases/metamidi/MMD_MIDI'
+METAMIDI_METADATA_PATH = 'plagdet/data/midi_databases/metamidi/MMD_scraped_title_artist.jsonl'
+
+MPD_PATH = 'plagdet/data/midi_databases/MPDSet'
 

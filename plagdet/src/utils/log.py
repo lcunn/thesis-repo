@@ -5,7 +5,8 @@ from typing import Optional
 from plagdet.src.defaults import *
 
 def configure_logging(
-    level: int = logging.INFO,
+    console_level: int = logging.DEBUG,
+    file_level: int = logging.INFO,
     to_console: bool = True,
     to_file: bool = False,
     log_file: Optional[str] = None,
@@ -16,14 +17,16 @@ def configure_logging(
     
     if to_console:
         console_handler = logging.StreamHandler()
+        console_handler.setLevel(console_level)
         handlers.append(console_handler)
     
     if to_file and log_file:
         file_handler = logging.FileHandler(log_file)
+        file_handler.setLevel(file_level)
         handlers.append(file_handler)
     
     logging.basicConfig(
-        level=level,
+        level=min(console_level, file_level),
         format=format,
         datefmt=datefmt,
         handlers=handlers

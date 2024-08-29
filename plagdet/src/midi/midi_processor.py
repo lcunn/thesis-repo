@@ -7,7 +7,7 @@ class MidiProcessor:
     """
     Base class for midi processing.
     """
-    def __init__(self, file_path):
+    def __init__(self, file_path: str):
         self._file_path = file_path
         self._midi_file = self.load_midi()
 
