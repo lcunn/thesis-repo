@@ -40,3 +40,9 @@ METAMIDI_METADATA_PATH = 'plagdet/data/midi_databases/metamidi/MMD_scraped_title
 
 MPD_PATH = 'plagdet/data/midi_databases/MPDSet'
 
+MAESTRO_PATH = 'plagdet/data/midi_databases/maestro'
+
+# Synthetic data paths
+
+MONOPHONIC_MIDIS_PATH = 'plagdet/data/synthetic_dataset/monophonic_midis/melodies'
+PROCESSED_MELODY_TRACKER = 'plagdet/data/synthetic_dataset/monophonic_midis/processed_files.csv'
