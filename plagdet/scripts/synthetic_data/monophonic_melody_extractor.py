@@ -94,7 +94,7 @@ class MonophonicMelodyExtractor:
             return False
         
         self.melody_to_file(melody, dest_file)
-        set_midi_tempo(dest_file, tempo) 
+        set_midi_tempo(dest_file, tempo)
         return True
 
 def produce_monophonic_dataset(evaluable_directory_path: str) -> None:
@@ -142,8 +142,6 @@ def produce_monophonic_dataset(evaluable_directory_path: str) -> None:
                 logger.info(f'{file} successfully made monophonic')
 
     log.to_csv(PROCESSED_MELODY_TRACKER, index=False)
-
-produce_monophonic_dataset('MAESTRO_PATH')
     
 if __name__ == '__main__':
     produce_monophonic_dataset('MAESTRO_PATH')

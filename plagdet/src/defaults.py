@@ -24,9 +24,13 @@ COPYRIGHT_PAIRS_CSV = 'plagdet/data/case_data/final_csvs/final_copyright_pairs.c
 
 MIDI_SEARCH_LOG_PATH = 'plagdet/data/midi_search_logs'
 
+# Databases
+
+DATABASE = 'plagdet/data/copyright_music.db'
+SYNTHETIC_DATABASE = 'plagdet/data/synthetic_music.db'
+
 # MIDI data paths
 
-DATABASE = 'plagdet/data/music.db'
 MIDI_DATA_PATH = 'plagdet/data/midi_databases'
 COPYRIGHT_MIDI_PATH = 'plagdet/data/copyright_midis'
 
@@ -46,3 +50,7 @@ MAESTRO_PATH = 'plagdet/data/midi_databases/maestro'
 
 MONOPHONIC_MIDIS_PATH = 'plagdet/data/synthetic_dataset/monophonic_midis/melodies'
 PROCESSED_MELODY_TRACKER = 'plagdet/data/synthetic_dataset/monophonic_midis/processed_files.csv'
+
+ORIGINAL_MIDIS_PATH = 'plagdet/data/synthetic_dataset/pairs/original'
+PLAGIARISED_MIDIS_PATH = 'plagdet/data/synthetic_dataset/pairs/plagiarised'
+PAIR_TRACKER_PATH = 'plagdet/data/synthetic_dataset/pairs/synthetic_pairs_tracker.csv'

@@ -69,8 +69,7 @@ def set_midi_tempo(file: str, tempo: float) -> None:
         new_track = MidiTrack()
         for msg in track:
             if msg.type == 'set_tempo' and not tempo_set:
-                new_tempo = mido.bpm2tempo(tempo)
-                new_track.append(MetaMessage('set_tempo', tempo=new_tempo, time=msg.time))
+                new_track.append(MetaMessage('set_tempo', tempo=tempo, time=msg.time))
                 tempo_set = True
                 logger.info(f"Adjusted tempo to original: {tempo} BPM")
             else:
