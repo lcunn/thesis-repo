@@ -10,7 +10,7 @@ from magenta.models.music_vae import data
 
 from plagdet.src.defaults import *
 from plagdet.src.utils.log import configure_logging
-from plagdet.scripts.synthetic_data.utils import calculate_total_bars, get_midi_info,calculate_bars_for_x_minutes, set_midi_tempo
+from plagdet.scripts.synthetic_data.utils import calculate_total_bars, get_midi_info, calculate_bars_for_x_minutes, set_midi_tempo
 
 configure_logging()
 logger = logging.getLogger(__name__)

@@ -33,8 +33,10 @@ def get_midi_info(midi_file_path):
 
 def calculate_bar_duration(tempo, time_signature, ticks_per_beat):
     microseconds_per_beat = tempo
+    beats_per_minute = 60000000 / microseconds_per_beat
     beats_per_bar = time_signature[0]
-    return (microseconds_per_beat * beats_per_bar) / (ticks_per_beat * 1000000)  # Duration in seconds
+    seconds_per_beat = 60 / beats_per_minute
+    return seconds_per_beat * beats_per_bar
 
 def calculate_bars_for_x_minutes(midi_file_path: str, x: float) -> float:
     tempo, time_signature, _ = get_midi_info(midi_file_path)

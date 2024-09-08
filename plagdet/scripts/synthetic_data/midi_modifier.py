@@ -7,7 +7,6 @@ from mido import MidiFile, MidiTrack, MetaMessage
 
 from typing import Optional, Union, List, Tuple
 
-from plagdet.scripts.synthetic_data.utils import calculate_total_bars, get_midi_info, set_midi_tempo, calculate_bar_duration
 from plagdet.src.utils.log import configure_logging
 
 configure_logging()
@@ -79,7 +78,8 @@ class MidiModifier:
         if use_shift_selected_notes_pitch:
             config.use_shift_selected_notes_pitch = True
             # randomly select to x% of the notes to shift
-            num_shifts = np.random.randint(1, np.floor(num_notes*NOTES_TO_PITCH_SHIFT_PERCENTAGE))
+            num_shifts = np.random.randint(1, max(2, np.floor(num_notes*NOTES_TO_PITCH_SHIFT_PERCENTAGE)))
+
             logger.info(f'Pitch shifting {num_shifts} notes')
             # randomly select which notes to shift
             shift_idxs = np.random.choice(num_notes, num_shifts, replace=False)
@@ -94,7 +94,7 @@ class MidiModifier:
         if use_change_note_durations:
             config.use_change_note_durations = True
             # randomly select to x% of the notes to shift
-            num_shifts = np.random.randint(1, np.floor(num_notes*NOTES_TO_SCALE_PERCENTAGE))
+            num_shifts = np.random.randint(1, max(2, np.floor(num_notes*NOTES_TO_SCALE_PERCENTAGE)))
             logger.info(f'Scaling {num_shifts} notes')
             # randomly select which notes to shift
             shift_idxs = np.random.choice(num_notes, num_shifts, replace=False)
@@ -109,7 +109,7 @@ class MidiModifier:
         if use_delete_notes:
             config.use_delete_notes = True
             # randomly select to x% of the notes to delete
-            num_deletes = np.random.randint(1, np.floor(num_notes*NOTES_TO_DELETE_PERCENTAGE))
+            num_deletes = np.random.randint(1, max(2, np.floor(num_notes*NOTES_TO_DELETE_PERCENTAGE)))
             logger.info(f'Deleting {num_deletes} notes')
             # randomly select which notes to delete
             delete_idxs = np.random.choice(num_notes, num_deletes, replace=False)
