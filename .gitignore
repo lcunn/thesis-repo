@@ -1,6 +1,4 @@
-plagdet/data/copyright_midis
-plagdet/data/midi_databases
-plagdet/data/synthetic_dataset
-plagdet/models
-plagdet/src/private_defaults.py
+models
+data
+sms/src/private_defaults.py
 !**/__pycache__
