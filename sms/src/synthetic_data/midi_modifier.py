@@ -225,21 +225,21 @@ class MidiModifier:
     @staticmethod
     def change_note_durations(midi: MidiFile, notes_to_scale: List[Tuple[Note, float]]) -> MidiFile:
         """
-        Changes the duration of the notes described by each ((note_on_idx, note_off_idx), duration_multiplier) tuple.
+        Changes the duration of the notes described by each (Note, duration_multiplier) tuple.
+        Note is (note_on_idx, note_off_idx) referring to indices in the track's message list.
         """
         new_midi = MidiFile(ticks_per_beat=midi.ticks_per_beat)
         new_track = MidiTrack()
         new_midi.tracks.append(new_track)
 
-        note_off_dict = {(note_off_idx,note_on_idx):scale for ((note_on_idx, note_off_idx), scale) in notes_to_scale}
+        note_scale_dict = {note_on_idx+1: scale for (note_on_idx, note_off_idx), scale in notes_to_scale}
 
         for idx, msg in enumerate(midi.tracks[0]):
             new_msg = msg.copy()
-            if idx in note_on_dict.keys():
-                scale = note_on_dict[idx]
-                new_msg.time = int(new_msg.time * scale)
+            if idx in note_scale_dict.keys():
+                new_msg.time = int(new_msg.time * note_scale_dict[idx])
             new_track.append(new_msg)
-        
+
         return new_midi
     
     @staticmethod
