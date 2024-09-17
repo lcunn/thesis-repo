@@ -10,8 +10,8 @@ import torch
 from torch.utils.data import Dataset
 
 from sms.src.log import configure_logging
-from sms.src.synthetic_data.midi_inserter import MidiInserter
-from sms.src.synthetic_data.midi_modifier import MidiModifier, MidiModifierConfig
+from sms.src.synthetic_data.mido_midi_inserter import MidiInserter
+from sms.src.synthetic_data.mido_midi_modifier import MidiModifier, MidiModifierConfig
 from sms.src.synthetic_data.pair_generator import SegmentPerturber
 from sms.src.embeddings.music_vae.two_bar_encoder import Mel2barEncoderCustom
 

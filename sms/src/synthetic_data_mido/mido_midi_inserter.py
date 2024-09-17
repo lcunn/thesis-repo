@@ -7,7 +7,7 @@ from mido import MidiFile, MidiTrack, MetaMessage
 
 from typing import Optional, Union, List, Tuple
 
-from sms.src.synthetic_data.utils import calculate_total_bars, get_midi_info, set_midi_tempo, calculate_bar_duration
+from sms.src.synthetic_data_mido.utils import calculate_total_bars, get_midi_info, set_midi_tempo, calculate_bar_duration
 from sms.src.log import configure_logging
 
 configure_logging()

@@ -6,9 +6,9 @@ from mido import MidiFile
 
 from typing import Optional, Union, List, Tuple, Any, Dict
 
-from sms.src.synthetic_data.utils import calculate_total_bars, get_midi_info, calculate_bar_duration
-from sms.src.synthetic_data.midi_inserter import MidiInserter
-from sms.src.synthetic_data.midi_modifier import MidiModifier
+from sms.src.synthetic_data_mido.utils import calculate_total_bars, get_midi_info, calculate_bar_duration
+from sms.src.synthetic_data_mido.mido_midi_inserter import MidiInserter
+from sms.src.synthetic_data_mido.mido_midi_modifier import MidiModifier
 from sms.src.log import configure_logging
 from sms.defaults import *
 

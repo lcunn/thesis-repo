@@ -19,8 +19,8 @@ class Note:
 
 @dataclass
 class MidiModifierConfig:
-    use_shift_entire_midi_pitch: bool = False
-    entire_shift_semitone: Optional[int] = None
+    use_transposition: bool = False
+    transposition_semitone: Optional[int] = None
 
     use_shift_selected_notes_pitch: bool = False
     selected_notes_pitch_shifts: Optional[List[Tuple[Note, int]]] = None
@@ -31,7 +31,7 @@ class MidiModifierConfig:
     use_delete_notes: bool = False
     notes_to_delete: Optional[List[Note]] = None
 
-WHOLE_MIDI_PITCH_SHIFT_RANGE = (-16, 16)
+TRANSPOSITION_SEMITONE_RANGE = (-16, 16)
 
 NOTES_TO_PITCH_SHIFT_PERCENTAGE = 0.2
 NOTE_PITCH_SHIFT_RANGE = (-12, 12)
@@ -56,7 +56,7 @@ class MidiModifier:
 
     def generate_and_set_midi_modifier_config(
             self,
-            use_shift_entire_midi_pitch: bool = False,
+            use_transposition: bool = False,
             use_shift_selected_notes_pitch: bool = False,
             use_change_note_durations: bool = False,
             use_delete_notes: bool = False,
@@ -69,11 +69,11 @@ class MidiModifier:
         num_notes = len(notes_in_midi)
         config = MidiModifierConfig()
 
-        if use_shift_entire_midi_pitch:
-            config.use_shift_entire_midi_pitch = True
+        if use_transposition:
+            config.use_transposition = True
             # randomly select to shift semitones by max 24 semitones up or down
-            config.entire_shift_semitone = int(np.random.randint(WHOLE_MIDI_PITCH_SHIFT_RANGE[0], WHOLE_MIDI_PITCH_SHIFT_RANGE[1]))
-            logger.info(f'Shifting entire MIDI pitch by {config.entire_shift_semitone} semitones')
+            config.transposition_semitone = int(np.random.randint(TRANSPOSITION_SEMITONE_RANGE[0], TRANSPOSITION_SEMITONE_RANGE[1]))
+            logger.info(f'Transposing entire MIDI by {config.transposition_semitone} semitones')
         
         if use_shift_selected_notes_pitch:
             config.use_shift_selected_notes_pitch = True
@@ -135,8 +135,8 @@ class MidiModifier:
         midi = midi or self.midi
         config = config or self.config
         
-        if config.use_shift_entire_midi_pitch:
-            midi = self.shift_entire_midi_pitch(midi, config.entire_shift_semitone)
+        if config.use_transposition:
+            midi = self.transpose_midi(midi, config.transposition_semitone)
 
         if config.use_shift_selected_notes_pitch:
             midi = self.shift_selected_notes_pitch(midi, config.selected_notes_pitch_shifts)
@@ -182,7 +182,7 @@ class MidiModifier:
     # modification methods
     # ---------------------------------------------------------------------------------------- 
     @staticmethod
-    def shift_entire_midi_pitch(midi: MidiFile, semitone_shift: int) -> MidiFile:
+    def transpose_midi(midi: MidiFile, semitone_shift: int) -> MidiFile:
         """
         Shifts the pitch of the entire MIDI file by a given number of semitones.
         """
@@ -221,7 +221,6 @@ class MidiModifier:
         
         return new_midi
 
-    # TODO: fix this, doesnt properly change the durations.
     @staticmethod
     def change_note_durations(midi: MidiFile, notes_to_scale: List[Tuple[Note, float]]) -> MidiFile:
         """

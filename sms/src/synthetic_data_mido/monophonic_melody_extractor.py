@@ -10,7 +10,7 @@ from magenta.models.music_vae import data
 
 from sms.defaults import *
 from sms.src.log import configure_logging
-from sms.src.synthetic_data.utils import calculate_total_bars, get_midi_info, calculate_bars_for_x_minutes, set_midi_tempo
+from sms.src.synthetic_data_mido.utils import calculate_total_bars, get_midi_info, calculate_bars_for_x_minutes, set_midi_tempo
 
 configure_logging()
 logger = logging.getLogger(__name__)
