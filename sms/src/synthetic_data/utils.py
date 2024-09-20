@@ -1,4 +1,5 @@
 import logging
+from typing import Optional
 import partitura as pt
 import numpy as np
 
@@ -7,15 +8,22 @@ from sms.src.log import configure_logging
 logger = logging.getLogger(__name__)
 configure_logging()
 
-def midi_to_note_array(midi_path: str, num_bars: int, start_bar: int) -> np.ndarray:
+def midi_to_note_array(
+        midi_path: str, 
+        num_bars: int, 
+        start_bar: Optional[int] = None,
+        start_bar_as_proportion: Optional[float] = None
+    ) -> np.ndarray:
     """
     Extracts bars from a MIDI file.
+    We assume a bar is 4 beats, regardless of the time signature, for consistency across files.
+    Exactly one of start_bar and start_bar_as_proportion must be provided.
 
     Args:
         midi_path (str): Path to the MIDI file.
         num_bars (int): Number of bars to extract.
         start_bar (int): Starting bar number.
-
+        start_bar_as_proportion (float): Starting bar as a proportion of the total number of bars.
     Returns:
         np.ndarray: Array with columns [duration_beat, pitch].
     """
@@ -26,18 +34,25 @@ def midi_to_note_array(midi_path: str, num_bars: int, start_bar: int) -> np.ndar
         raise ValueError("No parts found in the score.")
     part = score.parts[0]
 
-    if not part.time_sigs:
-        # default to 4/4
-        beats_per_bar = 4
-    else:
-        time_sig = part.time_sigs[0]
-        beats_per_bar = time_sig.beats
-
-    # calculate start and end beats
-    start_beats = start_bar * beats_per_bar
-    end_beats = start_beats + num_bars * beats_per_bar
+    # we extract 4 beats each time, regardless of the time signature
+    beats_per_bar = 4
 
     note_arr = part.note_array()
+    last_note = note_arr[-1]
+    last_note_end = last_note[0] + last_note[1]
+    # if there is an incomplete bar at the end, we discount it
+    bars_in_song = np.floor(last_note_end/4)
+
+    # calculate start beats
+    if start_bar:
+        start_beats = start_bar * beats_per_bar
+    elif start_bar_as_proportion:
+        start_beats = start_bar_as_proportion * bars_in_song * beats_per_bar
+    else:
+        raise ValueError("Exactly one of start_bar and start_bar_as_proportion must be provided.")
+
+    # calculate start and end beats
+    end_beats = start_beats + num_bars * beats_per_bar
 
     # filter notes that start within the range or overlap the start
     extracted_notes = note_arr[

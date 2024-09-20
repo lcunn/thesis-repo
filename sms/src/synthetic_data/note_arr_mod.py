@@ -141,15 +141,15 @@ class NoteArrayModifier:
         difference = original_total_duration - modified_total_duration
 
         # if sequence now shorter
-        if difference > 1e-6:
+        if difference > 0:
             # add a rest at the end
             modified_array = np.vstack([modified_array, [difference, 0]])
             logger.info(f'Added a rest of duration {difference} to maintain total duration.')
-        elif difference < -1e-6:
+        elif difference < 0:
             # cut off/truncate notes until total duration is reached
             remaining_diff = -difference
             i = len(modified_array) - 1
-            while remaining_diff > 1e-6 and i >= 0:
+            while remaining_diff > 0 and i >= 0:
                 current_duration = modified_array[i, 0]
                 if current_duration > remaining_diff:
                     modified_array[i, 0] -= remaining_diff
@@ -160,11 +160,10 @@ class NoteArrayModifier:
                     logger.info(f'Removed note {i} with duration {current_duration} to adjust total duration.')
                     modified_array = np.delete(modified_array, i, axis=0)
                     i -= 1
-            if remaining_diff > 1e-6:
+            if remaining_diff > 0:
                 # add a rest for any remaining difference
                 modified_array = np.vstack([modified_array, [remaining_diff, 0]])
                 logger.info(f'Added a rest of duration {remaining_diff} to maintain total duration.')
-
 
         self.note_array = modified_array
 
