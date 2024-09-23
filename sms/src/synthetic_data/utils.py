@@ -12,7 +12,8 @@ def midi_to_note_array(
         midi_path: str, 
         num_bars: int, 
         start_bar: Optional[int] = None,
-        start_bar_as_proportion: Optional[float] = None
+        start_bar_as_proportion: Optional[float] = None,
+        rest_pitch: float = -1
     ) -> np.ndarray:
     """
     Extracts bars from a MIDI file.
@@ -24,6 +25,7 @@ def midi_to_note_array(
         num_bars (int): Number of bars to extract.
         start_bar (int): Starting bar number.
         start_bar_as_proportion (float): Starting bar as a proportion of the total number of bars.
+        rest_pitch (float): Pitch value for rests.
     Returns:
         np.ndarray: Array with columns [duration_beat, pitch].
     """
@@ -82,7 +84,7 @@ def midi_to_note_array(
         if adjusted_onset > previous_end:
             rest_duration = adjusted_onset - previous_end
             # add rest to the array with pitch 0
-            duration_pitch.append([rest_duration, 0])
+            duration_pitch.append([rest_duration, rest_pitch])
 
         # append note with adjusted duration
         duration_pitch.append([actual_duration, note_pitch])
@@ -91,7 +93,7 @@ def midi_to_note_array(
     # handle end rest
     if previous_end < end_beats:
         rest_duration = end_beats - previous_end
-        duration_pitch.append([rest_duration, 0])
+        duration_pitch.append([rest_duration, rest_pitch])
 
     # Convert to numpy array
     duration_pitch_array = np.array(duration_pitch, dtype=float)

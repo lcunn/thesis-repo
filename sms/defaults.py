@@ -56,6 +56,8 @@ PLAGIARISED_SYNTHETIC_MIDIS_PATH = 'sms/data/synthetic_dataset/pairs/plagiarised
 SYNTHETIC_PAIR_TRACKER_PATH = 'sms/data/synthetic_dataset/pairs/synthetic_pairs_tracker.csv'
 SYNTHETIC_PAIR_METADATA_PATH = 'sms/data/synthetic_dataset/pairs/synthetic_pair_metadata.pkl'
 
+# MONOPHONIC MIDI PATHS
+
 MAESTRO_PATH = r"C:\Users\cunn2\OneDrive\DSML\Project\thesis-repo\data\synthetic_dataset\monophonic_midis\maestro"
 MTC_PATH = r"C:\Users\cunn2\OneDrive\DSML\Project\thesis-repo\data\synthetic_dataset\monophonic_midis\midi_mono"
 
@@ -66,4 +68,5 @@ MUSIC_BERT_DB = "sms/data/vector_databases/musicbert_embeddings.db"
 
 # EXP1
 
-EXP1_SEGMENTS_PATH = "data/exp1/one_bar_segments.pt"
+MAESTRO_SEGMENTS_PATH = "data/exp1/maestro_one_bar_segments.pt"
+MTC_SEGMENTS_PATH = "data/exp1/mtc_one_bar_segments.pt"
