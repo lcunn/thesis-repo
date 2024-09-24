@@ -1,7 +1,7 @@
 import logging
 import numpy as np
 from dataclasses import dataclass, field
-from typing import Optional, List, Tuple
+from typing import Optional, List, Tuple, Dict
 from sms.src.log import configure_logging
 
 configure_logging()
@@ -25,20 +25,42 @@ class NoteArrayModifierConfig:
     # list of note_idx:
     notes_to_delete: Optional[List[int]] = field(default_factory=list)
 
+    use_insert_notes: bool = False
+    # list of (location, duration, relative_pitch):
+    notes_to_insert: Optional[List[Tuple[int, float, int]]] = field(default_factory=list)
+
 @dataclass
 class NoteArrayModifierSettings:
     transposition_semitone_range: Tuple[int, int] = (-16, 16)
+
     notes_to_pitch_shift: int = 1
     note_pitch_shift_range: Tuple[int, int] = (-12, 12)
+
     notes_to_scale: int = 1
     note_duration_scale_options: Tuple[float, ...] = (0.5, 1.5, 2, 3)
+
     notes_to_delete: int = 1
 
+    notes_to_insert: int = 1
+    insert_note_duration_options: Tuple[float, ...] = (0.25, 0.5, 1,)
+    insert_note_relative_pitch_range: Tuple[int, int] = (-6, 6)
+
 class NoteArrayModifier:
-    def __init__(self, settings: NoteArrayModifierSettings = NoteArrayModifierSettings()):
+    def __init__(self, settings: NoteArrayModifierSettings = NoteArrayModifierSettings(), rest_pitch: int = -1):
         self.note_array: Optional[np.ndarray] = None
         self.config: Optional[NoteArrayModifierConfig] = None
         self.settings: NoteArrayModifierSettings = settings
+        self.rest_pitch: int = rest_pitch
+
+    def __call__(
+            self, 
+            note_array: np.ndarray, 
+            augmentation_choices: Dict[str, bool]
+            ) -> np.ndarray:
+        self.set_note_array(note_array)
+        self.generate_and_set_config(**augmentation_choices)
+        self.modify_note_array()
+        return self.get_modified_note_array()
 
     def set_note_array(self, note_array: np.ndarray):
         if note_array.ndim != 2 or note_array.shape[1] != 2:
@@ -50,8 +72,12 @@ class NoteArrayModifier:
         use_transposition: bool = False,
         use_shift_selected_notes_pitch: bool = False,
         use_change_note_durations: bool = False,
-        use_delete_notes: bool = False
+        use_delete_notes: bool = False,
+        use_insert_notes: bool = False
     ) -> None:
+        """
+        Randomly generates the augmentation and sets the config.
+        """
         if self.note_array is None:
             raise ValueError("Note array is not set.")
 
@@ -60,7 +86,8 @@ class NoteArrayModifier:
             use_transposition=use_transposition,
             use_shift_selected_notes_pitch=use_shift_selected_notes_pitch,
             use_change_note_durations=use_change_note_durations,
-            use_delete_notes=use_delete_notes
+            use_delete_notes=use_delete_notes,
+            use_insert_notes=use_insert_notes
         )
 
         if use_transposition:
@@ -74,7 +101,7 @@ class NoteArrayModifier:
         
         if use_shift_selected_notes_pitch:
             # get indices of non-rest notes (pitch != 0)
-            non_rest_indices = np.where(self.note_array[:, 1] != 0)[0]
+            non_rest_indices = np.where(self.note_array[:, 1] != self.rest_pitch)[0]
             num_non_rest = len(non_rest_indices)
             num_shifts = min(self.settings.notes_to_pitch_shift, num_non_rest)
             if num_shifts > 0:
@@ -107,6 +134,22 @@ class NoteArrayModifier:
                 delete_indices = np.random.choice(num_notes, num_deletes, replace=False)
                 config.notes_to_delete = list(delete_indices)
         
+        if use_insert_notes:
+            non_rest_indices = np.where(self.note_array[:, 1] != self.rest_pitch)[0]
+            num_inserts = min(self.settings.notes_to_insert, len(non_rest_indices))
+            if num_inserts > 0:
+                # randomly choose num_inserts locations from the note array
+                insert_locations = np.random.choice(non_rest_indices, num_inserts, replace=False)
+                # randomly choose a duration from the options
+                insert_durations = np.random.choice(self.settings.insert_note_duration_options, num_inserts)
+                # randomly choose a relative pitch from the range
+                insert_relative_pitches = np.random.randint(
+                    self.settings.insert_note_relative_pitch_range[0],
+                    self.settings.insert_note_relative_pitch_range[1],
+                    size=num_inserts
+                )
+                config.notes_to_insert = list(zip(insert_locations, insert_durations, insert_relative_pitches))
+
         self.config = config
 
     def modify_note_array(self) -> None:
@@ -118,7 +161,7 @@ class NoteArrayModifier:
 
         if self.config.use_transposition and self.config.transposition_semitone is not None:
             # apply transposition to all non-rest notes
-            non_rest_mask = modified_array[:, 1] != 0
+            non_rest_mask = modified_array[:, 1] != self.rest_pitch
             modified_array[non_rest_mask, 1] += self.config.transposition_semitone
             logger.info(f'Transposing non-rest notes by {self.config.transposition_semitone} semitones.')
 
@@ -135,6 +178,12 @@ class NoteArrayModifier:
         if self.config.use_delete_notes and self.config.notes_to_delete:
             modified_array = np.delete(modified_array, self.config.notes_to_delete, axis=0)
             logger.info(f'Deleting notes at indices {self.config.notes_to_delete}.')
+
+        if self.config.use_insert_notes and self.config.notes_to_insert:
+            for location, duration, relative_pitch in self.config.notes_to_insert:
+                new_note = np.array([duration, modified_array[location, 1] + relative_pitch])
+                modified_array = np.insert(modified_array, location, new_note, axis=0)
+                logger.info(f'Inserting note at index {location} with duration {duration} and relative pitch {relative_pitch}.')
 
         # ensure total duration remains the same
         modified_total_duration = np.sum(modified_array[:, 0])
@@ -164,6 +213,10 @@ class NoteArrayModifier:
                 # add a rest for any remaining difference
                 modified_array = np.vstack([modified_array, [remaining_diff, 0]])
                 logger.info(f'Added a rest of duration {remaining_diff} to maintain total duration.')
+            
+        # ensure pitch is within 0-127
+        non_rest_mask = modified_array[:, 1] != -1
+        modified_array[non_rest_mask, 1] = np.clip(modified_array[non_rest_mask, 1], 0, 127)
 
         self.note_array = modified_array
 
