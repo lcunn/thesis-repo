@@ -46,10 +46,11 @@ class NoteArrayModifierSettings:
     insert_note_relative_pitch_range: Tuple[int, int] = (-6, 6)
 
 class NoteArrayModifier:
-    def __init__(self, settings: NoteArrayModifierSettings = NoteArrayModifierSettings(), rest_pitch: int = -1):
+    def __init__(self, settings: NoteArrayModifierSettings = NoteArrayModifierSettings(), use_rests: bool = False, rest_pitch: int = -1):
         self.note_array: Optional[np.ndarray] = None
         self.config: Optional[NoteArrayModifierConfig] = None
         self.settings: NoteArrayModifierSettings = settings
+        self.use_rests: bool = use_rests
         self.rest_pitch: int = rest_pitch
 
     def __call__(
@@ -191,9 +192,14 @@ class NoteArrayModifier:
 
         # if sequence now shorter
         if difference > 0:
-            # add a rest at the end
-            modified_array = np.vstack([modified_array, [difference, 0]])
-            logger.info(f'Added a rest of duration {difference} to maintain total duration.')
+            if self.use_rests:
+                # add a rest at the end
+                modified_array = np.vstack([modified_array, [difference, self.rest_pitch]])
+                logger.info(f'Added a rest of duration {difference} to maintain total duration.')
+            else:
+                # elongate last note
+                modified_array[-1, 0] += difference
+                logger.info(f'Elongated last note by {difference} to maintain total duration.')
         elif difference < 0:
             # cut off/truncate notes until total duration is reached
             remaining_diff = -difference
@@ -209,10 +215,6 @@ class NoteArrayModifier:
                     logger.info(f'Removed note {i} with duration {current_duration} to adjust total duration.')
                     modified_array = np.delete(modified_array, i, axis=0)
                     i -= 1
-            if remaining_diff > 0:
-                # add a rest for any remaining difference
-                modified_array = np.vstack([modified_array, [remaining_diff, 0]])
-                logger.info(f'Added a rest of duration {remaining_diff} to maintain total duration.')
             
         # ensure pitch is within 0-127
         non_rest_mask = modified_array[:, 1] != -1

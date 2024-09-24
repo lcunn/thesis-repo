@@ -56,3 +56,61 @@ def vicreg_loss(
         + loss_cov * weight_cov
 
     return train_loss, loss_inv, loss_var, loss_cov
+
+def contrastive_loss(
+        anchor,
+        positive,
+        negative,
+        temperature=0.1
+        ):
+    """
+    Implementation of the contrastive loss function using Euclidean distance.
+    
+    Args:
+        anchor (torch.Tensor): The anchor embeddings.
+        positive (torch.Tensor): The positive embeddings.
+        negative (torch.Tensor): The negative embeddings.
+        temperature (float): Temperature parameter to scale the loss.
+    
+    Returns:
+        torch.Tensor: The computed contrastive loss.
+    """
+    # Compute Euclidean distances
+    pos_dist = torch.norm(anchor - positive, dim=1)
+    neg_dist = torch.norm(anchor - negative, dim=1)
+    
+    # Compute exponentials
+    exp_pos = torch.exp(-pos_dist / temperature)
+    exp_neg = torch.exp(-neg_dist / temperature)
+    
+    # Compute loss
+    loss = -torch.log(exp_pos / (exp_pos + exp_neg))
+    
+    return loss.mean()
+
+def triplet_loss(
+        anchor,
+        positive,
+        negative,
+        margin=1.0
+        ):
+    """
+    Implementation of the triplet loss function using Euclidean distance.
+    
+    Args:
+        anchor (torch.Tensor): The anchor embeddings.
+        positive (torch.Tensor): The positive embeddings.
+        negative (torch.Tensor): The negative embeddings.
+        margin (float): The margin for the triplet loss.
+    
+    Returns:
+        torch.Tensor: The computed triplet loss.
+    """
+    # Compute Euclidean distances
+    pos_dist = torch.norm(anchor - positive, dim=1)
+    neg_dist = torch.norm(anchor - negative, dim=1)
+    
+    # Compute triplet loss
+    loss = torch.clamp(pos_dist - neg_dist + margin, min=0.0)
+    
+    return loss.mean()

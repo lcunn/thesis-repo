@@ -8,6 +8,53 @@ from sms.exp1.data.dataloader import OneBarChunkDataset, get_dataloader
 from sms.exp1.models.encoders_conv import ConvPianoRollConfig, ConvQuantizedTimeConfig
 from sms.exp1.models.siamese import SiameseModel
 
+"""
+config has the following structure:
+
+input: {
+    format: {
+        normalize_octave: bool
+        make_relative_pitch: bool
+        quantize: bool
+        piano_roll: bool
+        steps_per_bar: int
+        rest_pitch: int
+    }
+    input_size: 
+}
+encoder: {
+    type: str
+    layers: List[Dict]
+}
+projector: List[Dict] 
+training: {
+    pretraining_loss: {
+        type: str
+        params: Dict
+    }
+    finetuning_loss: {
+        type: str
+        params: Dict
+    }
+}
+optimizer: {}
+scheduler: {}
+metrics: {}
+device: str
+num_epochs: int
+batch_size: int
+num_workers: int
+data_paths: [str]
+hp: {
+    d_latent: int
+    d_projected: int
+}
+
+
+
+
+"""
+
 def load_config(config_path: str) -> dict:
     with open(config_path, 'r') as f:
         config = yaml.safe_load(f)

@@ -4,28 +4,23 @@ import math
 import numpy as np
 import torch
 import torch.nn as nn
-from typing import Optional
-
-default_config = {
-    "d_latent": 128,
-    "d_projector": 128
-}
+from typing import Optional, Dict
 
 class ProjectionHead(nn.Module):
-    def __init__(self, config: Optional[dict] = None):
+    def __init__(self, proj_cfg: Dict, d_latent: int, d_projected: int):
         super().__init__()
-        if not config:
-            config = default_config
-        d_latent = config["d_latent"]
-        d_projector = config["d_projector"]
+        self.d_latent = d_latent
+        self.d_projected = d_projected
         
-        self.projector = nn.Sequential(
-            nn.Linear(d_latent, d_projector),
-            nn.ReLU(),
-            nn.Linear(d_projector, d_projector),
-            nn.ReLU(),
-            nn.Linear(d_projector, d_projector)
-        )
+        layers = []
+        in_features = d_latent
+        for layer in proj_cfg["layers"]:
+            layers.append(nn.Linear(in_features, layer["out_features"]))
+            in_features = layer["out_features"]
+            layers.append(nn.ReLU())
+        layers.append(nn.Linear(in_features, d_projected))
+
+        self.projector = nn.Sequential(*layers)
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
         return self.projector(x)

@@ -26,11 +26,19 @@ class OneBarChunkDataset(Dataset):
         split: str = 'train',
         split_ratio: float = 0.8,
         use_transposition: bool = False,
-        neg_enhance = False):
+        return_negative_example: bool = False,
+        neg_enhance = False
+        ):
 
         self.formatter = InputFormatter(**format_config)
         self.use_transposition = use_transposition
-        self.neg_enhance = neg_enhance #currently doesn't do anything
+        self.return_negative_example = return_negative_example
+        
+        if neg_enhance:
+            self.negative_sample = self.low_edit_distance_sample
+        else:
+            self.negative_sample = self.new_sample
+
         self.augmentation_dict = {
             1: 'use_transposition',
             2: 'use_shift_selected_notes_pitch',
@@ -55,6 +63,29 @@ class OneBarChunkDataset(Dataset):
 
     def __len__(self):
         return len(self.loaded_data)
+    
+    def new_sample(self, idx) -> int:
+        """
+        Samples an idx from loaded_data other than the input idx.
+        """
+        new_idx = idx
+        while new_idx == idx:
+            new_idx = random.randint(0, len(self.loaded_data) - 1)
+        return new_idx
+        
+    def negative_enhance_sample(self, idx):
+        """
+        Uses rejection sampling to sample a sufficiently negative sample from the dataset.
+        Calculates a rough approximation of similarity between the anchor by taking difference between the quantized relative bars.
+        """
+        formatter = InputFormatter(make_relative_pitch=True, quantize=True)
+        anchor = formatter(self.loaded_data[idx])
+        new_idx = self.new_sample(idx)
+        
+        negative = self.loaded_data[new_idx]
+        negative_quantized = self.formatter(negative)
+        return anchor_quantized, negative_quantized
+        
 
     def __getitem__(self, idx):
         chunk = self.loaded_data[idx]
@@ -67,6 +98,9 @@ class OneBarChunkDataset(Dataset):
         # apply the augmentation
         modifier = NoteArrayModifier()
         augmented_chunk = modifier(chunk, augmentation)
+
+        if self.negative_example:
+            negative_idx = 
         
         return self.formatter(chunk), self.formatter(augmented_chunk)
 

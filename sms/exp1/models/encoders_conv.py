@@ -18,125 +18,104 @@ import math
 import numpy as np
 import torch
 import torch.nn as nn
-from typing import Optional, Dict
-
-## convolutional encoders --------------------------------------------------------------------------------------------
-
-# network seen in the siamese CNN for plagiarism paper
-ConvPianoRollConfig = {
-    "input_size": (128, 64),
-    "in_channels": 1,
-    "conv_layers": [
-        {"out_channels": 16, "kernel_size": (3, 3), "stride": (2, 2), "padding": (1, 1), "batch_norm": True},  # Conv2d-1
-        {"out_channels": 64, "kernel_size": (3, 3), "stride": (2, 2), "padding": (1, 1), "batch_norm": True},  # Conv2d-2
-        {"out_channels": 128, "kernel_size": (3, 3), "stride": (2, 2), "padding": (1, 1), "batch_norm": True}, # Conv2d-3
-        {"out_channels": 128, "kernel_size": (3, 3), "stride": (1, 1), "padding": (1, 1), "batch_norm": True}, # Conv2d-4
-        {"out_channels": 256, "kernel_size": (3, 3), "stride": (1, 1), "padding": (1, 1), "batch_norm": True}, # Conv2d-5
-    ],
-    "linear_layers": [
-        {"out_features": 4096, "batch_norm": True},  # Linear-1
-        {"out_features": 512, "batch_norm": True},   # Linear-2
-        {"out_features": 1, "batch_norm": False},    # Linear-3
-    ]
-}
-
-ConvQuantizedTimeConfig = {
-    "input_size": 32,
-    "in_channels": 128,
-    "conv_layers": [
-        {"out_channels": 256, "kernel_size": 3, "stride": 1, "padding": 1, "batch_norm": True},  # Conv1d-1
-        {"out_channels": 512, "kernel_size": 3, "stride": 1, "padding": 1, "batch_norm": True},  # Conv1d-2
-        {"out_channels": 512, "kernel_size": 3, "stride": 1, "padding": 1, "batch_norm": True},  # Conv1d-3
-        {"out_channels": 1024, "kernel_size": 3, "stride": 1, "padding": 1, "batch_norm": True}, # Conv1d-4
-    ],
-    "linear_layers": [
-        {"out_features": 2048, "batch_norm": True},  # Linear-1
-        {"out_features": 512, "batch_norm": True},   # Linear-2
-        {"out_features": 1, "batch_norm": False},    # Linear-3
-    ]
-}
+from typing import Optional, Dict, Tuple
 
 def calculate_conv_output_size(input_size, kernel_size, stride, padding):
     return ((input_size - kernel_size + 2 * padding) // stride) + 1
 
+## convolutional encoders --------------------------------------------------------------------------------------------
+
 class QuantizedConvEncoder(nn.Module):
-    def __init__(self, input_size=32, output_size=64):
+    def __init__(self, encoder_cfg: Dict, input_length: int = 32, output_size: int = 64):
         super(QuantizedConvEncoder, self).__init__()
-        self.input_size = input_size
+        self.input_length = input_length
         self.output_size = output_size
         
-        # Define the 1D CNN layers
-        self.conv1 = nn.Conv1d(in_channels=1, out_channels=16, kernel_size=3, stride=1, padding=1)
-        self.conv2 = nn.Conv1d(in_channels=16, out_channels=32, kernel_size=3, stride=1, padding=1)
-        self.conv3 = nn.Conv1d(in_channels=32, out_channels=64, kernel_size=3, stride=1, padding=1)
+        # Define the CNN layers based on the config
+        layers = []
+        in_channels = 1
+        for layer_cfg in encoder_cfg['layers']:
+            layers.append(nn.Conv1d(in_channels=in_channels, 
+                                    out_channels=layer_cfg['out_channels'], 
+                                    kernel_size=layer_cfg['kernel_size'], 
+                                    stride=layer_cfg['stride'], 
+                                    padding=layer_cfg['padding']))
+            if layer_cfg.get('batch_norm', False):
+                layers.append(nn.BatchNorm1d(layer_cfg['out_channels']))
+            layers.append(nn.ReLU())
+            # layers.append(nn.MaxPool1d(kernel_size=2, stride=2))
+            in_channels = layer_cfg['out_channels']
         
-        # Define fully connected layer to output the final embedding
-        self.fc = nn.Linear(64 * (input_size // 8), output_size)
+        self.conv_layers = nn.Sequential(*layers)
         
-        # Max pooling layer
-        self.pool = nn.MaxPool1d(kernel_size=2, stride=2)
+        # Calculate the size of the output from the conv layers
+        conv_output_size = self._get_conv_output_size(self.input_length, encoder_cfg['layers'])
         
-        # Activation function
-        self.relu = nn.ReLU()
+        # Define a fully connected layer to produce the output embedding
+        self.fc = nn.Linear(conv_output_size, output_size)
+
+    def _get_conv_output_size(self, input_size, conv_layers):
+        size = input_size
+        for layer_cfg in conv_layers:
+            size = calculate_conv_output_size(size, layer_cfg['kernel_size'], layer_cfg['stride'], layer_cfg['padding'])
+            # size //= 2  # MaxPool1d
+        return size * conv_layers[-1]['out_channels']
 
     def forward(self, x):
-        # Assuming input x has shape [batch_size, 1, 32]
-        
-        # Apply conv layers with ReLU and MaxPooling
-        x = self.relu(self.conv1(x))  # [batch_size, 16, 32]
-        x = self.pool(x)              # [batch_size, 16, 16]
-        
-        x = self.relu(self.conv2(x))  # [batch_size, 32, 16]
-        x = self.pool(x)              # [batch_size, 32, 8]
-        
-        x = self.relu(self.conv3(x))  # [batch_size, 64, 8]
-        x = self.pool(x)              # [batch_size, 64, 4]
-        
+        # assuming input x has shape [batch_size, 1, 32]
+        # apply conv layers
+        x = self.conv_layers(x)
         # Flatten the tensor
-        x = x.view(x.size(0), -1)     # [batch_size, 64 * 4]
-        
-        # Apply fully connected layer to produce 64-dimensional embedding
+        x = x.view(x.size(0), -1)     # [batch_size, conv_output_size]
+        # apply fully connected layer to produce 64-dimensional embedding
         x = self.fc(x)                # [batch_size, 64]
         
         return x
 
 class PianoRollConvEncoder(nn.Module):
-    def __init__(self, input_shape=(128, 32), output_size=64):
+    def __init__(self, encoder_cfg: Dict, input_shape: Tuple[int, int] = (128, 32), output_size: int = 64):
         super(PianoRollConvEncoder, self).__init__()
         self.input_shape = input_shape
         self.output_size = output_size
         
-        # Define the CNN layers
-        self.conv1 = nn.Conv2d(in_channels=1, out_channels=16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
-        self.conv2 = nn.Conv2d(in_channels=16, out_channels=32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
-        self.conv3 = nn.Conv2d(in_channels=32, out_channels=64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        # Define the CNN layers based on the config
+        layers = []
+        in_channels = 1
+        for layer_cfg in encoder_cfg['conv_layers']:
+            layers.append(nn.Conv2d(in_channels=in_channels, 
+                                    out_channels=layer_cfg['out_channels'], 
+                                    kernel_size=tuple(layer_cfg['kernel_size']), 
+                                    stride=tuple(layer_cfg['stride']), 
+                                    padding=tuple(layer_cfg['padding'])))
+            if layer_cfg.get('batch_norm', False):
+                layers.append(nn.BatchNorm2d(layer_cfg['out_channels']))
+            layers.append(nn.ReLU())
+            # layers.append(nn.MaxPool2d(kernel_size=(2, 2), stride=(2, 2)))
+            in_channels = layer_cfg['out_channels']
+        
+        self.conv_layers = nn.Sequential(*layers)
+        
+        # Calculate the size of the output from the conv layers
+        conv_output_size = self._get_conv_output_size(input_shape, encoder_cfg['conv_layers'])
         
         # Define a fully connected layer to produce the output embedding
-        self.fc = nn.Linear(64 * (input_shape[0] // 8) * (input_shape[1] // 8), output_size)
-        
-        # Define max pooling layer
-        self.pool = nn.MaxPool2d(kernel_size=(2, 2), stride=(2, 2))
-        
-        # Activation function
-        self.relu = nn.ReLU()
+        self.fc = nn.Linear(conv_output_size, output_size)
+
+    def _get_conv_output_size(self, input_shape, conv_layers):
+        h, w = input_shape
+        for layer_cfg in conv_layers:
+            h = calculate_conv_output_size(h, layer_cfg['kernel_size'][0], layer_cfg['stride'][0], layer_cfg['padding'][0])
+            w = calculate_conv_output_size(w, layer_cfg['kernel_size'][1], layer_cfg['stride'][1], layer_cfg['padding'][1])
+            # h //= 2  # MaxPool2d
+            # w //= 2  # MaxPool2d
+        return h * w * conv_layers[-1]['out_channels']
 
     def forward(self, x):
         # Assuming input x has shape [batch_size, 1, 128, 32]
-        
-        # Apply conv layers with ReLU and MaxPooling
-        x = self.relu(self.conv1(x))  # [batch_size, 16, 128, 32]
-        x = self.pool(x)              # [batch_size, 16, 64, 16]
-        
-        x = self.relu(self.conv2(x))  # [batch_size, 32, 64, 16]
-        x = self.pool(x)              # [batch_size, 32, 32, 8]
-        
-        x = self.relu(self.conv3(x))  # [batch_size, 64, 32, 8]
-        x = self.pool(x)              # [batch_size, 64, 16, 4]
-        
+        # Apply conv layers
+        x = self.conv_layers(x)
         # Flatten the tensor
-        x = x.view(x.size(0), -1)     # [batch_size, 64 * 16 * 4]
-        
+        x = x.view(x.size(0), -1)     # [batch_size, conv_output_size]
         # Apply fully connected layer to produce 64-dimensional embedding
         x = self.fc(x)                # [batch_size, 64]
-        
         return x

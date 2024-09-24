@@ -1,61 +1,72 @@
 import torch
+import logging
 from torch.optim import Adam
 from torch.optim.lr_scheduler import ReduceLROnPlateau
 from torch.utils.data import DataLoader
 import wandb
 
-from sms.exp1.training.loss_functions import vicreg_loss
+import sms.exp1.training.loss_functions as loss_functions
 from sms.src.log import configure_logging
-from sms.exp1.models.siamese import SiameseModel
 
 class Trainer:
-    def __init__(self, config, model: SiameseModel, train_loader, val_loader):
+    def __init__(self, config, loss, optimizer, scheduler, model, train_loader, val_loader, mode='pretrain'):
         self.config = config
+        self.loss = loss
+        self.model = model
         self.train_loader = train_loader
         self.val_loader = val_loader
+        self.optimizer = optimizer
+        self.scheduler = scheduler
+
+        if mode not in ['pretrain', 'finetune']:
+            raise ValueError("Mode must be either 'pretrain' or 'finetune'")
+
+        if mode == 'pretrain':
+            self.step = self.pretrain_step
+        else:
+            self.step = self.finetune_step
+        
+        self.logger = logging.getLogger(mode)
         configure_logging()
 
         # Initialize Weights & Biases
         wandb.init(project=config['wandb']['project'], config=config)
         self.device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
         self.model = model.to(self.device)
-        
-        self.criterion = vicreg_loss(
-            weight_inv=config['loss']['weight_inv'],
-            weight_var=config['loss']['weight_var'],
-            weight_cov=config['loss']['weight_cov']
-        )
-        self.optimizer = Adam(
-            self.model.parameters(),
-            lr=config['training']['learning_rate'],
-            weight_decay=config['training']['optimizer']['weight_decay']
-        )
-        self.scheduler = ReduceLROnPlateau(
-            self.optimizer,
-            mode='min',
-            factor=config['training']['scheduler']['factor'],
-            patience=config['training']['scheduler']['patience'],
-            verbose=True
-        )
 
         self.best_val_loss = float('inf')
         self.early_stopping_counter = 0
+    
+    def pretrain_step(self, batch):
+        """
+        Uses VICReg loss with a positive example.
+        """
+        anchor, positive = batch['anchors'].to(self.device), batch['positives'].to(self.device)
+        embed_anchor, embed_positive = self.model(anchor, positive)
+        loss = self.loss(embed_anchor, embed_positive)
+        loss.backward()
+        self.optimizer.step()
+        self.optimizer.zero_grad()
+        return loss.item()
+    
+    def finetune_step(self, batch):
+        """
+        Uses contrastive loss with a positive and negative example.
+        """
+        anchor, positive, negative = batch['anchors'].to(self.device), batch['positives'].to(self.device), batch['negatives'].to(self.device)
+        embed_anchor, embed_positive, embed_negative = self.model(anchor, positive, negative)
+        loss = self.loss(embed_anchor, embed_positive, embed_negative)
+        loss.backward()
+        self.optimizer.step()
+        self.optimizer.zero_grad()
+        return loss.item()
 
     def train_epoch(self):
         self.model.train()
         running_loss = 0.0
         for batch in self.train_loader:
-            anchor, positive = batch['anchors'].to(self.device), batch['positives'].to(self.device)
-
-            self.optimizer.zero_grad()
-            embed_anchor, embed_positive = self.model(anchor, positive)
-
-            loss = self.criterion(embed_anchor, embed_positive)
-            loss.backward()
-            self.optimizer.step()
-
-            running_loss += loss.item()
-        
+            loss = self.step(batch)
+            running_loss += loss
         avg_loss = running_loss / len(self.train_loader)
         return avg_loss
 
@@ -64,12 +75,8 @@ class Trainer:
         running_loss = 0.0
         with torch.no_grad():
             for batch in self.val_loader:
-                anchor, positive = batch['anchors'].to(self.device), batch['positives'].to(self.device)
-
-                embed_anchor, embed_positive = self.model(anchor, positive)
-                loss = self.criterion(embed_anchor, embed_positive)
-                running_loss += loss.item()
-        
+                loss = self.step(batch)
+                running_loss += loss
         avg_loss = running_loss / len(self.val_loader)
         return avg_loss
 

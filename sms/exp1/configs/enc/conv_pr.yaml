@@ -1,0 +1,17 @@
+type: "PianoRollConvEncoder"
+layers:
+  - out_channels: 2
+    kernel_size: [10, 10]
+    stride: [1, 1]
+    padding: [1, 1]
+    batch_norm: true
+  - out_channels: 4
+    kernel_size: [6, 6]
+    stride: [1, 1]
+    padding: [1, 1]
+    batch_norm: true
+  - out_channels: 8
+    kernel_size: [3, 3]
+    stride: [1, 1]
+    padding: [1, 1]
+    batch_norm: true

@@ -1,0 +1,8 @@
+format:
+  normalize_octave: false
+  make_relative_pitch: false
+  quantize: false
+  piano_roll: true
+  steps_per_bar: 32
+  rest_pitch: -1
+input_size: [32]

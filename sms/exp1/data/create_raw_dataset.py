@@ -14,6 +14,7 @@ def monophonic_midis_to_note_arrays(
         input_output_dict: Dict[str, str],
         num_bars: int = 1, 
         start_bar_proportion: float = 0.4,
+        remove_rests: bool = False
         ) -> None:
     """
     Takes a directories of monophonic MIDI files and converts them to note arrays.
@@ -22,6 +23,7 @@ def monophonic_midis_to_note_arrays(
         input_output_dict (Dict[str, str]): Dictionary with keys as input paths and values as output paths.
         num_bars (int): Number of bars to extract.
         start_bar_proportion (float): Proportion of the way through the song to start.
+        remove_rests (bool): Whether to remove rests from the note array. 'Removes' rests by elongating the previous note.
     """
 
     for input_path, output_path in input_output_dict.items():
@@ -32,7 +34,7 @@ def monophonic_midis_to_note_arrays(
         logger.info(f"Processing {num_files} files in {input_path}")
         for i, path in enumerate(file_paths):
             try:
-                note_array = midi_to_note_array(path, num_bars, start_bar_as_proportion=start_bar_proportion)
+                note_array = midi_to_note_array(path, num_bars, start_bar_as_proportion=start_bar_proportion, remove_rests=remove_rests)
                 note_arrays[path] = note_array
                 logger.info(f"Processed {i+1}/{num_files} files")
             except Exception as e:
@@ -42,5 +44,8 @@ def monophonic_midis_to_note_arrays(
         torch.save(note_arrays, output_path)
 
 if __name__ == "__main__":
-    monophonic_midis_to_note_arrays({MAESTRO_PATH: MAESTRO_SEGMENTS_PATH, MTC_PATH: MTC_SEGMENTS_PATH})
+    monophonic_midis_to_note_arrays(
+        {MAESTRO_PATH: 'data/exp1/maestro_one_bar_segments_nr.pt', MTC_PATH: 'data/exp1/mtc_one_bar_segments_nr.pt'},
+        remove_rests=True
+        )
 

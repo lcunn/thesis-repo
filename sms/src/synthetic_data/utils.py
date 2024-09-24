@@ -13,7 +13,8 @@ def midi_to_note_array(
         num_bars: int, 
         start_bar: Optional[int] = None,
         start_bar_as_proportion: Optional[float] = None,
-        rest_pitch: float = -1
+        rest_pitch: float = -1,
+        remove_rests: bool = False
     ) -> np.ndarray:
     """
     Extracts bars from a MIDI file.
@@ -26,6 +27,7 @@ def midi_to_note_array(
         start_bar (int): Starting bar number.
         start_bar_as_proportion (float): Starting bar as a proportion of the total number of bars.
         rest_pitch (float): Pitch value for rests.
+        remove_rests (bool): Whether to remove rests from the note array. 'Removes' rests by elongating the previous note.
     Returns:
         np.ndarray: Array with columns [duration_beat, pitch].
     """
@@ -83,8 +85,11 @@ def midi_to_note_array(
         # if there was a rest
         if adjusted_onset > previous_end:
             rest_duration = adjusted_onset - previous_end
-            # add rest to the array with pitch 0
-            duration_pitch.append([rest_duration, rest_pitch])
+            if remove_rests:
+                # elongates previous note to account for the rest
+                actual_duration += rest_duration
+            else:
+                duration_pitch.append([rest_duration, rest_pitch])
 
         # append note with adjusted duration
         duration_pitch.append([actual_duration, note_pitch])
@@ -93,15 +98,22 @@ def midi_to_note_array(
     # handle end rest
     if previous_end < end_beats:
         rest_duration = end_beats - previous_end
-        duration_pitch.append([rest_duration, rest_pitch])
+        if remove_rests:
+            # elongates last note to account for the rest
+            duration_pitch[-1][0] += rest_duration
+        else:
+            duration_pitch.append([rest_duration, rest_pitch])
 
     # Convert to numpy array
     duration_pitch_array = np.array(duration_pitch, dtype=float)
 
+    # Round the duration values to 3 decimal points
+    duration_pitch_array[:, 0] = np.round(duration_pitch_array[:, 0], decimals=3)
+
     # validate that the sum of the durations is equal to beats_per_bar
     total_duration = np.sum(duration_pitch_array[:, 0])
     expected_duration = num_bars * beats_per_bar
-    if not np.isclose(total_duration, expected_duration, atol=1e-6):
+    if not np.isclose(total_duration, expected_duration, atol=1e-8):
         logger.warning(f"Total duration {total_duration} does not match expected duration {expected_duration}")
         # adjust the last note/rest to make the total duration exactly 4
         duration_diff = expected_duration - total_duration

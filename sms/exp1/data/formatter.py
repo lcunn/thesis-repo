@@ -1,12 +1,5 @@
-import os
-import torch
-from torch.utils.data import Dataset
 import numpy as np
-from typing import List
-
-from sms.src.synthetic_data.note_arr_mod import NoteArrayModifier
-from sms.src.synthetic_data.utils import midi_to_note_array
-from sms.defaults import EXP1_SEGMENTS_PATH
+from typing import List, Optional
 
 class InputFormatter:
     """
@@ -17,13 +10,19 @@ class InputFormatter:
         normalize_octave: bool = False,
         make_relative_pitch: bool = False,
         quantize: bool = False,
-        piano_roll: bool = False
+        piano_roll: bool = False,
+        steps_per_bar: int = 32,
+        bars: int = 1,
+        rest_pitch: int = -1
     ):
         """
         The first three can all be used simultaneously.
         If piano_roll is True, then then rest are forced to False.
         """
         # removes possiblity of errors
+        self.bars = bars
+        self.steps_per_bar = steps_per_bar
+        self.rest_pitch = rest_pitch
         if piano_roll:
             self.config_piano_roll = True
             self.config_normalize_octave = False
@@ -59,7 +58,7 @@ class InputFormatter:
         returns a note_array in form [duration, pitch_normalized_to_octave].
         """
         normalized_note_array = np.copy(note_array)
-        non_rest_mask = normalized_note_array[:, 1] != -1
+        non_rest_mask = normalized_note_array[:, 1] != self.rest_pitch
         normalized_note_array[non_rest_mask, 1] = (normalized_note_array[non_rest_mask, 1] % 12) + 12
         return normalized_note_array
 
@@ -75,14 +74,15 @@ class InputFormatter:
             relative_pitch_note_array[idx][1] = relative_pitch_note_array[idx][1] - relative_pitch_note_array[idx-1][1]
         return relative_pitch_note_array
 
-    def quantize(self, note_array: np.ndarray, steps_per_bar: int = 32) -> np.ndarray:
+    def quantize(self, note_array: np.ndarray) -> np.ndarray:
         """
         note_array where notes are in form [duration, pitch].
         transforms by dividing each bar into steps_per_bar bins. the value of each bin is the pitch of the note playing at the start.
         returns a (steps_per_bar * num_bars) length array.
         """
-        note_array_bars = np.rint(np.sum(note_array[:, 0]) / 4)
-        quantized_note_array = np.zeros(steps_per_bar * int(note_array_bars), dtype=int)
+        steps_per_bar = self.steps_per_bar
+        length = int(steps_per_bar * self.bars)
+        quantized_note_array = np.zeros(length, dtype=int)
 
         # change the duration to 4 units per bar to steps_per_bar per bar
         note_array = np.copy(note_array)
@@ -93,12 +93,13 @@ class InputFormatter:
         note_array = np.column_stack((note_array, cumulative_duration))
 
         quantized_note_array = [note_array[0, 1]]
+        # for each duration step, find the latest onsetting note that starts before or on that step
         quantized_note_array.extend([note_array[note_array[:, 2] <= i+1][-1][1] 
-                                for i in range(steps_per_bar * int(note_array_bars)-1)])
+                                for i in range(length-1)])
 
         return np.array(quantized_note_array)
     
-    def make_piano_roll(self, note_array: np.ndarray, steps_per_bar: int = 32) -> np.ndarray:
+    def make_piano_roll(self, note_array: np.ndarray) -> np.ndarray:
         """
         Converts a note_array in form [duration, pitch] to a piano roll representation.
         
@@ -109,12 +110,14 @@ class InputFormatter:
         Returns:
         np.ndarray: A 2D numpy array representing the piano roll.
         """
+        steps_per_bar = self.steps_per_bar
+
         quantized = self.quantize(note_array, steps_per_bar)
         
         piano_roll = np.zeros((127, steps_per_bar), dtype=int)
         
         for step, pitch in enumerate(quantized):
-            if pitch != -1:  # not a rest
+            if pitch != self.rest_pitch:  # not a rest
                 pitch_idx = int(pitch) - 1  # Adjust for 1-127 range
                 if 0 <= pitch_idx < 127:
                     piano_roll[pitch_idx, step] = 1
