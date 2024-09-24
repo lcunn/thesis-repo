@@ -1,5 +1,5 @@
-models
-data
+/models
+/data
 sms/src/private_defaults.py
 !**/__pycache__
-ex
+/ex

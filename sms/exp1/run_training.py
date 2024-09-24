@@ -2,47 +2,46 @@ import argparse
 import yaml
 import torch
 from torch.utils.data import DataLoader
-from wandb_utils import WandbCallback  # Assumes you have a wandb_utils module
 
-from training.trainer import Trainer
-from sms.exp1.data.preprocess import MelodyDataset, collate_fn
-from sms.exp1.models.siamese_model import SiameseModel
+from sms.exp1.training.trainer import Trainer
+from sms.exp1.data.dataloader import OneBarChunkDataset, get_dataloader
+from sms.exp1.models.encoders_conv import ConvPianoRollConfig, ConvQuantizedTimeConfig
+from sms.exp1.models.siamese import SiameseModel
 
-def load_config(config_path):
+def load_config(config_path: str) -> dict:
     with open(config_path, 'r') as f:
         config = yaml.safe_load(f)
     return config
 
-def main(config_path):
+def main(config_path: str):
     # Load configuration
     config = load_config(config_path)
 
-    # Initialize Datasets and DataLoaders
-    train_dataset = MelodyDataset(
-        data_dir=config['data_dir'],
+    train_loader = get_dataloader(
+        data_paths=config['data_paths'], 
+        format_config=config['format_config'], 
+        use_transposition=config['use_transposition'], 
+        neg_enhance=config['neg_enhance'], 
         split='train',
-        transform=config['transforms']
-    )
-    val_dataset = MelodyDataset(
-        data_dir=config['data_dir'],
+        split_ratio=config['split_ratio'],
+        batch_size=config['batch_size'], 
+        num_workers=config['num_workers'],
+        use_sequence_collate_fn=False,
+        shuffle=True
+        )
+    
+    val_loader = get_dataloader(
+        data_paths=config['data_paths'], 
+        format_config=config['format_config'], 
+        use_transposition=config['use_transposition'], 
+        neg_enhance=config['neg_enhance'], 
         split='val',
-        transform=config['transforms']
-    )
-
-    train_loader = DataLoader(
-        train_dataset,
-        batch_size=config['batch_size'],
-        shuffle=True,
+        split_ratio=config['split_ratio'],
+        batch_size=config['batch_size'], 
         num_workers=config['num_workers'],
-        collate_fn=collate_fn
-    )
-    val_loader = DataLoader(
-        val_dataset,
-        batch_size=config['batch_size'],
-        shuffle=False,
-        num_workers=config['num_workers'],
-        collate_fn=collate_fn
-    )
+        use_sequence_collate_fn=False,
+        shuffle=True
+        )
 
     # Initialize Model
     model = SiameseModel(
