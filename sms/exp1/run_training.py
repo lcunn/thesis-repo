@@ -1,120 +1,121 @@
 import argparse
+import os
+import shutil
 import yaml
+import json
+from datetime import datetime
 import torch
-from torch.utils.data import DataLoader
+import torch.optim as optim
+from functools import partial
+from typing import Optional
 
+from sms.exp1.config_classes import load_config_from_launchplan, LaunchPlanConfig
 from sms.exp1.training.trainer import Trainer
-from sms.exp1.data.dataloader import OneBarChunkDataset, get_dataloader
-from sms.exp1.models.encoders_conv import ConvPianoRollConfig, ConvQuantizedTimeConfig
-from sms.exp1.models.siamese import SiameseModel
+from sms.exp1.data.dataloader import get_dataloader
 
-"""
-config has the following structure:
+import sms.exp1.models.encoders as encoders
+import sms.exp1.models.projector as projectors
+import sms.exp1.models.siamese as siamese
+import sms.exp1.training.loss_functions as loss_functions
 
-input: {
-    format: {
-        normalize_octave: bool
-        make_relative_pitch: bool
-        quantize: bool
-        piano_roll: bool
-        steps_per_bar: int
-        rest_pitch: int
-    }
-    input_size: 
-}
-encoder: {
-    type: str
-    layers: List[Dict]
-}
-projector: List[Dict] 
-training: {
-    pretraining_loss: {
-        type: str
-        params: Dict
-    }
-    finetuning_loss: {
-        type: str
-        params: Dict
-    }
-}
-optimizer: {}
-scheduler: {}
-metrics: {}
-device: str
-num_epochs: int
-batch_size: int
-num_workers: int
-data_paths: [str]
-hp: {
-    d_latent: int
-    d_projected: int
-}
+def main(lp_path: str, run_folder: Optional[str] = None):
+    config = load_config_from_launchplan(lp_path)
+    # create unique folder for this run
+    if run_folder is None:
+        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+        run_folder = f"sms/exp1/runs/run_{timestamp}"
+    os.makedirs(run_folder, exist_ok=True)
 
+    # save the original launchplan and the loaded config (in case pointed-to files are changed)
+    shutil.copy(lp_path, os.path.join(run_folder, "original_launchplan.yaml"))
+    with open(os.path.join(run_folder, "loaded_config.yaml"), 'w') as f:
+        yaml.dump(config, f)    
 
+    run_training(config=config, mode='pretrain', run_folder=run_folder)
+    run_training(config=config, mode='finetune', run_folder=run_folder)
 
+def run_training(config: LaunchPlanConfig, mode: str, run_folder: str):
 
-"""
+    if mode == 'pretrain':
+        dl_cfg = config.pt_dl
+        loss_cfg = config.pt_loss
+        opt_cfg = config.pt_optimizer
+        sch_cfg = config.pt_scheduler
 
-def load_config(config_path: str) -> dict:
-    with open(config_path, 'r') as f:
-        config = yaml.safe_load(f)
-    return config
-
-def main(config_path: str):
-    # Load configuration
-    config = load_config(config_path)
+    elif mode == 'finetune':
+        dl_cfg = config.ft_dl
+        loss_cfg = config.ft_loss
+        opt_cfg = config.ft_optimizer
+        sch_cfg = config.ft_scheduler
 
     train_loader = get_dataloader(
-        data_paths=config['data_paths'], 
-        format_config=config['format_config'], 
-        use_transposition=config['use_transposition'], 
-        neg_enhance=config['neg_enhance'], 
-        split='train',
-        split_ratio=config['split_ratio'],
-        batch_size=config['batch_size'], 
-        num_workers=config['num_workers'],
-        use_sequence_collate_fn=False,
-        shuffle=True
-        )
+        data_paths=dl_cfg.train_data_path,
+        format_config=config.input,
+        mode=mode,
+        use_transposition=dl_cfg.use_transposition,
+        neg_enhance=dl_cfg.neg_enhance,
+        batch_size=dl_cfg.batch_size,
+        num_workers=dl_cfg.num_workers,
+        use_sequence_collate_fn=dl_cfg.use_sequence_collate_fn,
+        shuffle=dl_cfg.shuffle
+    )
     
     val_loader = get_dataloader(
-        data_paths=config['data_paths'], 
-        format_config=config['format_config'], 
-        use_transposition=config['use_transposition'], 
-        neg_enhance=config['neg_enhance'], 
-        split='val',
-        split_ratio=config['split_ratio'],
-        batch_size=config['batch_size'], 
-        num_workers=config['num_workers'],
-        use_sequence_collate_fn=False,
-        shuffle=True
-        )
-
-    # Initialize Model
-    model = SiameseModel(
-        input_dim=config['model']['input_dim'],
-        embedding_dim=config['model']['embedding_dim'],
-        architecture=config['model']['architecture']
+        data_paths=dl_cfg.val_data_path,
+        format_config=config.input,
+        mode=mode,
+        use_transposition=dl_cfg.use_transposition,
+        neg_enhance=dl_cfg.neg_enhance,
+        batch_size=dl_cfg.batch_size,
+        num_workers=dl_cfg.num_workers,
+        use_sequence_collate_fn=dl_cfg.use_sequence_collate_fn,
+        shuffle=dl_cfg.shuffle
     )
 
-    # Initialize Trainer
+    encoder = getattr(encoders, config.encoder.type)(**config.encoder.params, input_shape=config.dims.input_shape, d_latent=config.dims.d_latent)
+    projector = projectors.ProjectionHead(**config.projector.params, d_latent=config.dims.d_latent, d_projected=config.dims.d_projected)
+    model = siamese.SiameseModel(encoder, projector)
+
+    if mode == 'finetune':
+        model.load_state_dict(torch.load(config.model_paths.pretrained_model_path))
+        model = model.get_encoder()
+
+    loss = partial(getattr(loss_functions, loss_cfg.type), **loss_cfg.params)
+
+    optimizer = getattr(optim, opt_cfg.type)(model.parameters(), **opt_cfg.params)
+    scheduler = getattr(optim.lr_scheduler, sch_cfg.type)(optimizer, **sch_cfg.params)
+
     trainer = Trainer(
-        config=config,
+        loss=loss,
+        optimizer=optimizer,
+        scheduler=scheduler,
         model=model,
         train_loader=train_loader,
-        val_loader=val_loader
+        val_loader=val_loader,
+        mode=mode,
+        run_folder=run_folder,
+        model_save_path=os.path.join(run_folder, f'{mode}_saved_model.pth')
     )
 
-    # Start Training
-    trainer.train()
+    metrics = trainer.train()
+    metrics_path = os.path.join(run_folder, f'{mode}_metrics.json')
+    with open(metrics_path, 'w') as f:
+        json.dump(metrics, f)
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Run Training for Siamese Network with VICReg Loss")
+    parser = argparse.ArgumentParser(description="Run Training for Siamese Network")
     parser.add_argument(
-        '--config',
+        '--lp', '--launchplan',
         type=str,
-        default='config/train_config.yaml',
-        help='Path to the training configuration file.'
+        default='sms/exp1/launchplans/01.yaml',
+        help='Path to the training launchplan yaml file.'
+    )
+    parser.add_argument(
+        '--rf', '--run_folder',
+        type=str,
+        default=None,
+        help='Path to the folder where the run will be saved.',
+        required=False
     )
     args = parser.parse_args()
-    main(args.config)
+    main(args.lp, args.rf)

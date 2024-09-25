@@ -82,7 +82,6 @@ class InputFormatter:
         """
         steps_per_bar = self.steps_per_bar
         length = int(steps_per_bar * self.bars)
-        quantized_note_array = np.zeros(length, dtype=int)
 
         # change the duration to 4 units per bar to steps_per_bar per bar
         note_array = np.copy(note_array)
@@ -92,12 +91,16 @@ class InputFormatter:
         cumulative_duration = np.cumsum(note_array[:, 0])
         note_array = np.column_stack((note_array, cumulative_duration))
 
-        quantized_note_array = [note_array[0, 1]]
-        # for each duration step, find the latest onsetting note that starts before or on that step
-        quantized_note_array.extend([note_array[note_array[:, 2] <= i+1][-1][1] 
-                                for i in range(length-1)])
-
-        return np.array(quantized_note_array)
+        # for each duration step, pick the first note with a cumulative duration greater than the current step increment; 
+        #this guarantees it was playing after the start of the increment
+        quantized_note_array = np.array(
+            [
+                note_array[note_array[:, 2] > i][0][1] 
+                for i in range(length)
+            ]
+        )
+        
+        return quantized_note_array
     
     def make_piano_roll(self, note_array: np.ndarray) -> np.ndarray:
         """

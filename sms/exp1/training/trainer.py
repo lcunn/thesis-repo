@@ -1,22 +1,41 @@
+import os
 import torch
 import logging
-from torch.optim import Adam
-from torch.optim.lr_scheduler import ReduceLROnPlateau
+from typing import Callable
+
 from torch.utils.data import DataLoader
 import wandb
 
 import sms.exp1.training.loss_functions as loss_functions
+from sms.exp1.config_classes import LaunchPlanConfig
 from sms.src.log import configure_logging
 
 class Trainer:
-    def __init__(self, config, loss, optimizer, scheduler, model, train_loader, val_loader, mode='pretrain'):
-        self.config = config
+    def __init__(
+            self,
+            config: LaunchPlanConfig,
+            loss: Callable,
+            optimizer: torch.optim.Optimizer,
+            model: torch.nn.Module,
+            train_loader: DataLoader,
+            val_loader: DataLoader,
+            epochs: int,
+            scheduler: torch.optim.lr_scheduler,
+            early_stopping_patience: int = 5,
+            mode='pretrain',
+            run_folder: str = None,
+            model_save_path: str = None
+        ):
+        self.epochs = epochs
         self.loss = loss
         self.model = model
         self.train_loader = train_loader
         self.val_loader = val_loader
         self.optimizer = optimizer
         self.scheduler = scheduler
+        self.early_stopping_patience = early_stopping_patience
+        self.run_folder = run_folder
+        self.model_path = model_save_path if model_save_path else os.path.join(self.run_folder, f'best_model_{mode}.pth')
 
         if mode not in ['pretrain', 'finetune']:
             raise ValueError("Mode must be either 'pretrain' or 'finetune'")
@@ -81,34 +100,46 @@ class Trainer:
         return avg_loss
 
     def train(self):
-        for epoch in range(1, self.config['training']['epochs'] + 1):
+        metrics = {
+            'epochs': [],
+            'train_loss': [],
+            'val_loss': []
+        }
+        for epoch in range(1, self.epochs + 1):
             train_loss = self.train_epoch()
             val_loss = self.validate_epoch()
             self.scheduler.step(val_loss)
 
+            metrics['epochs'].append(epoch)
+            metrics['train_loss'].append(train_loss)
+            metrics['val_loss'].append(val_loss)
+
             self.logger.info(
-                f'Epoch {epoch}/{self.config["training"]["epochs"]} | '
+                f'Epoch {epoch}/{self.epochs} | '
                 f'Train Loss: {train_loss:.4f} | Val Loss: {val_loss:.4f}'
             )
 
             # Log metrics to wandb
-            wandb.log({
-                'epoch': epoch,
-                'train_loss': train_loss,
-                'val_loss': val_loss
-            })
+            if wandb.run is not None:
+                wandb.log({
+                    'epoch': epoch,
+                    'train_loss': train_loss,
+                    'val_loss': val_loss
+                })
 
             if val_loss < self.best_val_loss:
                 self.best_val_loss = val_loss
                 self.early_stopping_counter = 0
-                torch.save(self.model.state_dict(), 'best_model.pth')
+                torch.save(self.model.state_dict(), self.model_path)
                 self.logger.info('Best model saved.')
-                wandb.save('best_model.pth')
             else:
                 self.early_stopping_counter += 1
                 self.logger.info(f'No improvement. Early Stopping Counter: {self.early_stopping_counter}')
-                if self.early_stopping_counter >= self.config['training']['early_stopping_patience']:
+                if self.early_stopping_counter >= self.early_stopping_patience:
                     self.logger.info('Early stopping triggered.')
                     break
 
-        wandb.finish()
+        if wandb.run is not None:
+            wandb.finish()
+
+        return metrics

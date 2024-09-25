@@ -34,7 +34,7 @@ class NoteArrayModifierSettings:
     transposition_semitone_range: Tuple[int, int] = (-16, 16)
 
     notes_to_pitch_shift: int = 1
-    note_pitch_shift_range: Tuple[int, int] = (-12, 12)
+    note_pitch_shift_range: Tuple[int, int] = (-8, 8)
 
     notes_to_scale: int = 1
     note_duration_scale_options: Tuple[float, ...] = (0.5, 1.5, 2, 3)

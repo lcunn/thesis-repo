@@ -18,4 +18,5 @@ class SiameseModel(nn.Module):
         embed2 = self.forward_once(x2)
         return embed1, embed2
     
-
+    def get_encoder(self) -> nn.Module:
+        return self.encoder

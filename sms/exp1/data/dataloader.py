@@ -6,7 +6,7 @@ import datetime
 import glob
 import random
 import argparse
-from typing import List, Dict
+from typing import List, Dict, Tuple
 
 import numpy as np
 import torch
@@ -21,23 +21,20 @@ from sms.src.synthetic_data.note_arr_mod import NoteArrayModifier
 class OneBarChunkDataset(Dataset):
     def __init__(
         self,
-        data_paths: List[str],
-        format_config: Dict[str, bool],
-        split: str = 'train',
-        split_ratio: float = 0.8,
+        data_path: str,
+        formatter_config: Dict[str, bool],
+        mode: str = 'pretrain',
         use_transposition: bool = False,
-        return_negative_example: bool = False,
-        neg_enhance = False
+        use_negative_enhance: bool = False
         ):
 
-        self.formatter = InputFormatter(**format_config)
+        if mode not in ['pretrain', 'finetune']:
+            raise ValueError("Mode must be either 'pretrain' or 'finetune'")
+
+        self.formatter = InputFormatter(**formatter_config)
         self.use_transposition = use_transposition
-        self.return_negative_example = return_negative_example
-        
-        if neg_enhance:
-            self.negative_sample = self.low_edit_distance_sample
-        else:
-            self.negative_sample = self.new_sample
+        self.return_negative_example = mode == 'pretrain'
+        self.use_negative_enhance = use_negative_enhance
 
         self.augmentation_dict = {
             1: 'use_transposition',
@@ -47,19 +44,9 @@ class OneBarChunkDataset(Dataset):
             5: 'use_insert_notes'
         }
 
-        self.loaded_data = []
-        for path in data_paths:
-            data = torch.load(path)
-            self.loaded_data.append(torch.from_numpy(arr) for arr in data.values())
-
-        # Split the data
-        split_idx = int(len(self.loaded_data) * split_ratio)
-        if split == 'train':
-            self.loaded_data = self.loaded_data[:split_idx]
-        elif split == 'val':
-            self.loaded_data = self.loaded_data[split_idx:]
-        else:
-            raise ValueError("split must be 'train' or 'val'")
+        # load data, which should be a list of np arrays, and convert to tensors
+        data = torch.load(data_path)
+        self.loaded_data = [torch.from_numpy(arr) for arr in data]
 
     def __len__(self):
         return len(self.loaded_data)
@@ -73,19 +60,19 @@ class OneBarChunkDataset(Dataset):
             new_idx = random.randint(0, len(self.loaded_data) - 1)
         return new_idx
         
-    def negative_enhance_sample(self, idx):
+    def negative_enhance_sample(self, idx, threshold: float = 200):
         """
         Uses rejection sampling to sample a sufficiently negative sample from the dataset.
-        Calculates a rough approximation of similarity between the anchor by taking difference between the quantized relative bars.
+        Calculates a rough approximation of similarity between the anchor by taking the L1 difference between the quantized relative bars.
         """
         formatter = InputFormatter(make_relative_pitch=True, quantize=True)
         anchor = formatter(self.loaded_data[idx])
-        new_idx = self.new_sample(idx)
-        
-        negative = self.loaded_data[new_idx]
-        negative_quantized = self.formatter(negative)
-        return anchor_quantized, negative_quantized
-        
+        distance = 0
+        while distance < threshold:
+            new_idx = self.new_sample(idx)
+            negative = self.formatter(self.loaded_data[new_idx])
+            distance = np.linalg.norm(anchor - negative, ord=1)
+        return new_idx
 
     def __getitem__(self, idx):
         chunk = self.loaded_data[idx]
@@ -99,10 +86,15 @@ class OneBarChunkDataset(Dataset):
         modifier = NoteArrayModifier()
         augmented_chunk = modifier(chunk, augmentation)
 
-        if self.negative_example:
-            negative_idx = 
-        
-        return self.formatter(chunk), self.formatter(augmented_chunk)
+        if self.return_negative_example:
+            if self.use_negative_enhance:    
+                negative_idx = self.negative_enhance_sample(idx)
+            else:
+                negative_idx = self.new_sample(idx)
+            negative_chunk = self.loaded_data[negative_idx]
+            return self.formatter(chunk), self.formatter(augmented_chunk), self.formatter(negative_chunk)
+        else:
+            return self.formatter(chunk), self.formatter(augmented_chunk)
 
 def sequence_collate_fn(batch):
     # Separate anchors and positives
@@ -128,14 +120,36 @@ def sequence_collate_fn(batch):
         'anchor_lengths': anchor_lengths,
         'positive_lengths': positive_lengths
     }
+
+def train_test_data_split(data_paths: List[str], train_dest: str, val_dest: str, split_ratio: float = 0.8) -> None:
+    """
+    Splits the dataset into training and validation sets and saves them to the specified destinations.
+    """
+    # load all data
+    all_data = []
+    for path in data_paths:
+        data = torch.load(path)
+        # we load dictionaries
+        all_data.extend(list(data.values()))
+
+    # process data
+    random.shuffle(all_data)
+    split_idx = int(len(all_data) * split_ratio)
+    
+    # split data
+    train_data = all_data[:split_idx]
+    val_data = all_data[split_idx:]
+    
+    # save data
+    torch.save(train_data, train_dest)
+    torch.save(val_data, val_dest)
     
 def get_dataloader(
         data_paths, 
         format_config, 
+        mode,
         use_transposition, 
-        neg_enhance, 
-        split,
-        split_ratio,
+        neg_enhance,
         batch_size, 
         num_workers,
         use_sequence_collate_fn=False,
@@ -145,10 +159,9 @@ def get_dataloader(
     dataset = OneBarChunkDataset(
         data_paths, 
         format_config, 
+        mode=mode,
         use_transposition=use_transposition, 
-        neg_enhance=neg_enhance,
-        split=split,
-        split_ratio=split_ratio
+        neg_enhance=neg_enhance
         )
     return DataLoader(
         dataset, 
@@ -156,4 +169,16 @@ def get_dataloader(
         num_workers=num_workers, 
         shuffle=shuffle,
         collate_fn=sequence_collate_fn if use_sequence_collate_fn else None
+        )
+
+if __name__ == '__main__':
+    p1 = r"C:\Users\cunn2\OneDrive\DSML\Project\thesis-repo\data\exp1\maestro_one_bar_segments_nr.pt"
+    p2 = r"C:\Users\cunn2\OneDrive\DSML\Project\thesis-repo\data\exp1\mtc_one_bar_segments_nr.pt"
+    train_dest = r"C:\Users\cunn2\OneDrive\DSML\Project\thesis-repo\data\exp1\train_data.pt"
+    val_dest = r"C:\Users\cunn2\OneDrive\DSML\Project\thesis-repo\data\exp1\val_data.pt"
+    train_test_data_split(
+        data_paths=[p1, p2],
+        train_dest=train_dest,
+        val_dest=val_dest,
+        split_ratio=0.8
         )

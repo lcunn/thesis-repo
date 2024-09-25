@@ -26,9 +26,9 @@ def calculate_conv_output_size(input_size, kernel_size, stride, padding):
 ## convolutional encoders --------------------------------------------------------------------------------------------
 
 class QuantizedConvEncoder(nn.Module):
-    def __init__(self, encoder_cfg: Dict, input_length: int = 32, output_size: int = 64):
+    def __init__(self, encoder_cfg: Dict, input_shape: int = 32, output_size: int = 64):
         super(QuantizedConvEncoder, self).__init__()
-        self.input_length = input_length
+        self.input_shape = input_shape
         self.output_size = output_size
         
         # Define the CNN layers based on the config
@@ -49,7 +49,7 @@ class QuantizedConvEncoder(nn.Module):
         self.conv_layers = nn.Sequential(*layers)
         
         # Calculate the size of the output from the conv layers
-        conv_output_size = self._get_conv_output_size(self.input_length, encoder_cfg['layers'])
+        conv_output_size = self._get_conv_output_size(self.input_shape, encoder_cfg['layers'])
         
         # Define a fully connected layer to produce the output embedding
         self.fc = nn.Linear(conv_output_size, output_size)
@@ -119,3 +119,32 @@ class PianoRollConvEncoder(nn.Module):
         # Apply fully connected layer to produce 64-dimensional embedding
         x = self.fc(x)                # [batch_size, 64]
         return x
+    
+## bidirectional LSTMs --------------------------------------------------------------------------------------------
+
+class LSTMEncoder(nn.Module):
+    def __init__(self, input_dim, hidden_size, num_layers, bidirectional, dropout):
+        super(LSTMEncoder, self).__init__()
+        self.lstm = nn.LSTM(
+            input_size=input_dim,
+            hidden_size=hidden_size,
+            num_layers=num_layers,
+            batch_first=True,
+            bidirectional=bidirectional,
+            dropout=dropout if num_layers > 1 else 0
+        )
+
+    def forward(self, x):
+        output, (hn, cn) = self.lstm(x)
+        # Concatenate the final forward and backward hidden states
+        if self.lstm.bidirectional:
+            hn = torch.cat((hn[-2], hn[-1]), dim=1)
+        else:
+            hn = hn[-1]
+        return hn  # Shape: [batch_size, hidden_size * num_directions]
+    
+## transformer encoders --------------------------------------------------------------------------------------------
+
+class TransformerEncoder(nn.Module):
+    def __init__(self, config):
+        pass
