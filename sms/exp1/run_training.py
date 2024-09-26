@@ -23,7 +23,34 @@ from sms.src.log import configure_logging
 
 configure_logging(console_level=logging.INFO)
 
-def main(lp_path: str, run_folder: Optional[str] = None):
+def build_encoder(dumped_lp_config: dict):
+    return getattr(encoders, dumped_lp_config["encoder"]["type"])(
+        **dumped_lp_config["encoder"]["params"],
+        input_shape=dumped_lp_config["dims"]["input_shape"],
+        d_latent=dumped_lp_config["dims"]["d_latent"]
+    )
+
+def build_projector(dumped_lp_config: dict):
+    return projectors.ProjectionHead(
+        **dumped_lp_config["projector"]["params"],
+        d_latent=dumped_lp_config["dims"]["d_latent"],
+        d_projected=dumped_lp_config["dims"]["d_projected"]
+    )
+
+def main(lp_path: str, mode: str, run_folder: Optional[str] = None):
+    """
+    Run the training for the Siamese network experiment.
+    Pretraining/finetuning/both can be run with one call. 
+    run_folder determines where logs and models are saved. It defaults to sms/exp1/runs/run_{timestamp}.
+    If mode is 'both' or 'pretrain', only lp_path and run_folder are required.
+    If mode is 'finetune', then lp_path and run_folder are required. It is assumed that the pretrained model 
+        is saved in the run_folder, with the name specified in the config if something other than the default.
+
+    Args:
+        lp_path (str): Path to the launchplan yaml file.
+        mode (str): Mode to run the training. Can be 'pretrain', 'finetune', or 'both'.
+        run_folder (str): Path to the folder where the run will be saved.
+    """
     config = load_config_from_launchplan(lp_path)
     # create unique folder for this run
     if run_folder is None:
@@ -34,12 +61,16 @@ def main(lp_path: str, run_folder: Optional[str] = None):
     # save the original launchplan and the loaded config (in case pointed-to files are changed)
     shutil.copy(lp_path, os.path.join(run_folder, "original_launchplan.yaml"))
     with open(os.path.join(run_folder, "loaded_config.yaml"), 'w') as f:
-        yaml.dump(config, f)    
+        yaml.dump(config.model_dump(), f)    
 
-    run_training(config=config, mode='pretrain', run_folder=run_folder)
-    run_training(config=config, mode='finetune', run_folder=run_folder)
+    if mode in ['both', 'pretrain']:
+        run_training(config=config, mode='pretrain', run_folder=run_folder)
+    
+    if mode in ['both', 'finetune']:
+        run_training(config=config, mode='finetune', run_folder=run_folder)
 
 def run_training(config: LaunchPlanConfig, mode: str, run_folder: str):
+
     config = config.model_dump()
 
     if mode == 'pretrain':
@@ -48,12 +79,14 @@ def run_training(config: LaunchPlanConfig, mode: str, run_folder: str):
         opt_cfg = config["pt_optimizer"]
         sch_cfg = config["pt_scheduler"]
         train_cfg = config["pt_training"]
+        path = config["mod_paths"]["pt_model_path"] if config["mod_paths"] else None
     elif mode == 'finetune':
         dl_cfg = config["ft_dl"]
         loss_cfg = config["ft_loss"]
         opt_cfg = config["ft_optimizer"]
         sch_cfg = config["ft_scheduler"]
         train_cfg = config["ft_training"]
+        path = config["mod_paths"]["ft_model_path"] if config["mod_paths"] else None
 
     train_loader = get_dataloader(
         data_paths=dl_cfg["train_data_path"],
@@ -79,20 +112,12 @@ def run_training(config: LaunchPlanConfig, mode: str, run_folder: str):
         shuffle=dl_cfg["shuffle"]
     )
 
-    encoder = getattr(encoders, config["encoder"]["type"])(
-        **config["encoder"]["params"],
-        input_shape=config["dims"]["input_shape"],
-        d_latent=config["dims"]["d_latent"]
-    )
-    projector = projectors.ProjectionHead(
-        **config["projector"]["params"],
-        d_latent=config["dims"]["d_latent"],
-        d_projected=config["dims"]["d_projected"]
-    )
+    encoder = build_encoder(config)
+    projector = build_projector(config)
     model = siamese.SiameseModel(encoder, projector)
 
     if mode == 'finetune':
-        model.load_state_dict(torch.load(config["model_paths"]["pretrained_model_path"], weights_only=True))
+        model.load_state_dict(torch.load(config["model_paths"]["pt_model_path"], weights_only=True))
         model.set_use_projection(False)
 
     loss = partial(getattr(loss_functions, loss_cfg["type"]), **loss_cfg["params"])
@@ -110,9 +135,9 @@ def run_training(config: LaunchPlanConfig, mode: str, run_folder: str):
         val_loader=val_loader,
         mode=mode,
         run_folder=run_folder,
-        model_save_path=os.path.join(run_folder, f'{mode}_saved_model.pth'),
         epochs=train_cfg["epochs"],
-        early_stopping_patience=train_cfg["early_stopping_patience"]
+        early_stopping_patience=train_cfg["early_stopping_patience"],
+        model_save_path=path if path else os.path.join(run_folder, f'{mode}_saved_model.pth')
     )
 
     metrics = trainer.train()
@@ -125,8 +150,15 @@ if __name__ == "__main__":
     parser.add_argument(
         '--lp', '--launchplan',
         type=str,
-        default='sms/exp1/launchplans/01.yaml',
+        required=True,
         help='Path to the training launchplan yaml file.'
+    )
+    parser.add_argument(
+        '--mode',
+        type=str,
+        choices=['both', 'pretrain', 'finetune'],
+        default='both',
+        help='Training mode: both, pretrain, or finetune'
     )
     parser.add_argument(
         '--rf', '--run_folder',
@@ -136,4 +168,5 @@ if __name__ == "__main__":
         required=False
     )
     args = parser.parse_args()
-    main(args.lp, args.rf)
+
+    main(lp_path=args.lp, mode=args.mode, run_folder=args.rf)

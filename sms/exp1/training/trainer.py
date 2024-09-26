@@ -25,10 +25,10 @@ class Trainer:
             val_loader: DataLoader,
             epochs: int,
             scheduler: torch.optim.lr_scheduler,
-            early_stopping_patience: int = 5,
-            mode='pretrain',
+            model_save_path: str,
             run_folder: str = None,
-            model_save_path: str = None
+            early_stopping_patience: int = 5,
+            mode='pretrain'
         ):
         self.epochs = epochs
         self.loss = loss
@@ -39,7 +39,7 @@ class Trainer:
         self.scheduler = scheduler
         self.early_stopping_patience = early_stopping_patience
         self.run_folder = run_folder
-        self.model_path = model_save_path if model_save_path else os.path.join(self.run_folder, f'best_model_{mode}.pth')
+        self.model_save_path = model_save_path
         self.mode = mode
 
         if self.mode not in ['pretrain', 'finetune']:
@@ -130,10 +130,10 @@ class Trainer:
             # Model saving logic (if needed)
             if train_loss < self.best_loss:
                 self.best_loss = train_loss
-                if self.mode == 'finetune':
-                    torch.save(self.model.state_dict(), self.model_path)
+                if self.mode == 'pretrain':
+                    torch.save(self.model.state_dict(), self.model_save_path)
                 else:
-                    torch.save(self.model.get_encoder().state_dict(), self.model_path)
+                    torch.save(self.model.get_encoder().state_dict(), self.model_save_path)
                 self.logger.info('Best model saved.')
             else:
                 self.early_stopping_counter += 1

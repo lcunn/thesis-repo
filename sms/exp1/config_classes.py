@@ -1,4 +1,4 @@
-from typing import Dict
+from typing import Dict, Optional
 from pathlib import Path
 import yaml
 from pydantic import BaseModel
@@ -49,6 +49,10 @@ class TrainingConfig(BaseModel):
     epochs: int
     early_stopping_patience: int
 
+class ModelPathsConfig(BaseModel):
+    pt_model_path: str
+    ft_model_path: str
+
 class LaunchPlanConfig(BaseModel):
     input: InputConfig
     pt_dl: DataLoaderConfig
@@ -64,6 +68,7 @@ class LaunchPlanConfig(BaseModel):
     ft_scheduler: SchedulerConfig
     pt_training: TrainingConfig
     ft_training: TrainingConfig
+    mod_paths: Optional[ModelPathsConfig] = None
 
 def load_config_from_launchplan(lp_yaml_path: str) -> LaunchPlanConfig:
     lp_yaml_path = Path(lp_yaml_path)
