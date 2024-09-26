@@ -1,6 +1,7 @@
 import os
 import torch
 import logging
+from dotenv import load_dotenv
 from typing import Callable
 
 from torch.utils.data import DataLoader
@@ -9,6 +10,8 @@ import wandb
 import sms.exp1.training.loss_functions as loss_functions
 from sms.exp1.config_classes import LaunchPlanConfig
 from sms.src.log import configure_logging
+
+load_dotenv()
 
 class Trainer:
     def __init__(
@@ -46,16 +49,16 @@ class Trainer:
             self.step = self.finetune_step
         
         self.logger = logging.getLogger(mode)
-        configure_logging()
+        configure_logging(console_level=logging.INFO)
 
         # Initialize Weights & Biases
-        wandb.init(project=config['wandb']['project'], config=config)
+        # wandb.init(project=os.getenv('WANDB_PROJECT'), config=config)
         self.device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
         self.model = model.to(self.device)
 
         self.best_val_loss = float('inf')
         self.early_stopping_counter = 0
-    
+
     def pretrain_step(self, batch):
         """
         Uses VICReg loss with a positive example.
@@ -120,12 +123,12 @@ class Trainer:
             )
 
             # Log metrics to wandb
-            if wandb.run is not None:
-                wandb.log({
-                    'epoch': epoch,
-                    'train_loss': train_loss,
-                    'val_loss': val_loss
-                })
+            # if wandb.run is not None:
+            #     wandb.log({
+            #         'epoch': epoch,
+            #         'train_loss': train_loss,
+            #         'val_loss': val_loss
+            #     })
 
             if val_loss < self.best_val_loss:
                 self.best_val_loss = val_loss
@@ -139,7 +142,7 @@ class Trainer:
                     self.logger.info('Early stopping triggered.')
                     break
 
-        if wandb.run is not None:
-            wandb.finish()
+        # if wandb.run is not None:
+        #     wandb.finish()
 
         return metrics

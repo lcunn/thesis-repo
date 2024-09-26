@@ -1,10 +1,11 @@
 import logging
 import numpy as np
+import torch
 from dataclasses import dataclass, field
 from typing import Optional, List, Tuple, Dict
 from sms.src.log import configure_logging
 
-configure_logging()
+configure_logging(console_level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 @dataclass
@@ -46,7 +47,12 @@ class NoteArrayModifierSettings:
     insert_note_relative_pitch_range: Tuple[int, int] = (-6, 6)
 
 class NoteArrayModifier:
-    def __init__(self, settings: NoteArrayModifierSettings = NoteArrayModifierSettings(), use_rests: bool = False, rest_pitch: int = -1):
+    def __init__(
+            self, 
+            settings: NoteArrayModifierSettings = NoteArrayModifierSettings(), 
+            use_rests: bool = False, 
+            rest_pitch: int = -1
+            ):
         self.note_array: Optional[np.ndarray] = None
         self.config: Optional[NoteArrayModifierConfig] = None
         self.settings: NoteArrayModifierSettings = settings
@@ -58,11 +64,14 @@ class NoteArrayModifier:
             note_array: np.ndarray, 
             augmentation_choices: Dict[str, bool]
             ) -> np.ndarray:
+        if isinstance(note_array, torch.Tensor):
+            note_array = note_array.numpy()
         self.set_note_array(note_array)
         self.generate_and_set_config(**augmentation_choices)
         self.modify_note_array()
-        return self.get_modified_note_array()
-
+        np_note_array =  self.get_modified_note_array().copy()
+        return torch.from_numpy(np_note_array)
+    
     def set_note_array(self, note_array: np.ndarray):
         if note_array.ndim != 2 or note_array.shape[1] != 2:
             raise ValueError("note_array must be a 2D array with 2 columns [duration_beat, pitch].")
@@ -164,27 +173,27 @@ class NoteArrayModifier:
             # apply transposition to all non-rest notes
             non_rest_mask = modified_array[:, 1] != self.rest_pitch
             modified_array[non_rest_mask, 1] += self.config.transposition_semitone
-            logger.info(f'Transposing non-rest notes by {self.config.transposition_semitone} semitones.')
+            logger.debug(f'Transposing non-rest notes by {self.config.transposition_semitone} semitones.')
 
         if self.config.use_shift_selected_notes_pitch and self.config.selected_notes_pitch_shifts:
             for idx, shift in self.config.selected_notes_pitch_shifts:
                 modified_array[idx, 1] += shift
-                logger.info(f'Shifting note at index {idx} by {shift} semitones.')
+                logger.debug(f'Shifting note at index {idx} by {shift} semitones.')
 
         if self.config.use_change_note_durations and self.config.note_scale_factors:
             for idx, scale in self.config.note_scale_factors:
                 modified_array[idx, 0] *= scale
-                logger.info(f'Scaling duration of note at index {idx} by a factor of {scale}.')
+                logger.debug(f'Scaling duration of note at index {idx} by a factor of {scale}.')
 
         if self.config.use_delete_notes and self.config.notes_to_delete:
             modified_array = np.delete(modified_array, self.config.notes_to_delete, axis=0)
-            logger.info(f'Deleting notes at indices {self.config.notes_to_delete}.')
+            logger.debug(f'Deleting notes at indices {self.config.notes_to_delete}.')
 
         if self.config.use_insert_notes and self.config.notes_to_insert:
             for location, duration, relative_pitch in self.config.notes_to_insert:
                 new_note = np.array([duration, modified_array[location, 1] + relative_pitch])
                 modified_array = np.insert(modified_array, location, new_note, axis=0)
-                logger.info(f'Inserting note at index {location} with duration {duration} and relative pitch {relative_pitch}.')
+                logger.debug(f'Inserting note at index {location} with duration {duration} and relative pitch {relative_pitch}.')
 
         # ensure total duration remains the same
         modified_total_duration = np.sum(modified_array[:, 0])
@@ -195,11 +204,11 @@ class NoteArrayModifier:
             if self.use_rests:
                 # add a rest at the end
                 modified_array = np.vstack([modified_array, [difference, self.rest_pitch]])
-                logger.info(f'Added a rest of duration {difference} to maintain total duration.')
+                logger.debug(f'Added a rest of duration {difference} to maintain total duration.')
             else:
                 # elongate last note
                 modified_array[-1, 0] += difference
-                logger.info(f'Elongated last note by {difference} to maintain total duration.')
+                logger.debug(f'Elongated last note by {difference} to maintain total duration.')
         elif difference < 0:
             # cut off/truncate notes until total duration is reached
             remaining_diff = -difference
@@ -208,11 +217,11 @@ class NoteArrayModifier:
                 current_duration = modified_array[i, 0]
                 if current_duration > remaining_diff:
                     modified_array[i, 0] -= remaining_diff
-                    logger.info(f'Truncated note {i} by {remaining_diff} to maintain total duration.')
+                    logger.debug(f'Truncated note {i} by {remaining_diff} to maintain total duration.')
                     remaining_diff = 0
                 else:
                     remaining_diff -= current_duration
-                    logger.info(f'Removed note {i} with duration {current_duration} to adjust total duration.')
+                    logger.debug(f'Removed note {i} with duration {current_duration} to adjust total duration.')
                     modified_array = np.delete(modified_array, i, axis=0)
                     i -= 1
             
@@ -220,7 +229,7 @@ class NoteArrayModifier:
         non_rest_mask = modified_array[:, 1] != -1
         modified_array[non_rest_mask, 1] = np.clip(modified_array[non_rest_mask, 1], 0, 127)
 
-        self.note_array = modified_array
+        self.note_array = modified_array.copy()
 
     def get_modified_note_array(self) -> np.ndarray:
         if self.note_array is None:

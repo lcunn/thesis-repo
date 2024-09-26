@@ -1,0 +1,227 @@
+!!python/object:sms.exp1.config_classes.LaunchPlanConfig
+__dict__:
+  dims: !!python/object:sms.exp1.config_classes.DimensionsConfig
+    __dict__:
+      d_latent: 64
+      d_projected: 64
+      input_shape: !!python/tuple
+      - 128
+      - 32
+    __pydantic_extra__: null
+    __pydantic_fields_set__: !!set
+      d_latent: null
+      d_projected: null
+      input_shape: null
+    __pydantic_private__: null
+  encoder: !!python/object:sms.exp1.config_classes.EncoderConfig
+    __dict__:
+      params:
+        layers:
+        - batch_norm: true
+          kernel_size:
+          - 10
+          - 10
+          out_channels: 2
+          padding:
+          - 1
+          - 1
+          stride:
+          - 1
+          - 1
+        - batch_norm: true
+          kernel_size:
+          - 6
+          - 6
+          out_channels: 4
+          padding:
+          - 1
+          - 1
+          stride:
+          - 1
+          - 1
+        - batch_norm: true
+          kernel_size:
+          - 3
+          - 3
+          out_channels: 8
+          padding:
+          - 1
+          - 1
+          stride:
+          - 1
+          - 1
+      type: PianoRollConvEncoder
+    __pydantic_extra__: null
+    __pydantic_fields_set__: !!set
+      params: null
+      type: null
+    __pydantic_private__: null
+  ft_dl: !!python/object:sms.exp1.config_classes.DataLoaderConfig
+    __dict__:
+      batch_size: 64
+      neg_enhance: true
+      num_workers: 8
+      shuffle: true
+      train_data_path: C:/Users/cunn2/OneDrive/DSML/Project/thesis-repo/data/exp1/train_data.pt
+      use_sequence_collate_fn: false
+      use_transposition: false
+      val_data_path: C:/Users/cunn2/OneDrive/DSML/Project/thesis-repo/data/exp1/val_data.pt
+    __pydantic_extra__: null
+    __pydantic_fields_set__: !!set
+      batch_size: null
+      neg_enhance: null
+      num_workers: null
+      shuffle: null
+      train_data_path: null
+      use_sequence_collate_fn: null
+      use_transposition: null
+      val_data_path: null
+    __pydantic_private__: null
+  ft_loss: !!python/object:sms.exp1.config_classes.LossConfig
+    __dict__:
+      params:
+        temperature: 0.1
+      type: contrastive_loss
+    __pydantic_extra__: null
+    __pydantic_fields_set__: !!set
+      params: null
+      type: null
+    __pydantic_private__: null
+  ft_optimizer: !!python/object:sms.exp1.config_classes.OptimizerConfig
+    __dict__:
+      params:
+        lr: 0.001
+      type: Adam
+    __pydantic_extra__: null
+    __pydantic_fields_set__: !!set
+      params: null
+      type: null
+    __pydantic_private__: null
+  ft_scheduler: !!python/object:sms.exp1.config_classes.SchedulerConfig
+    __dict__:
+      params:
+        gamma: 0.1
+        step_size: 10
+      type: StepLR
+    __pydantic_extra__: null
+    __pydantic_fields_set__: !!set
+      params: null
+      type: null
+    __pydantic_private__: null
+  ft_training: !!python/object:sms.exp1.config_classes.TrainingConfig
+    __dict__:
+      early_stopping_patience: 10
+      epochs: 100
+    __pydantic_extra__: null
+    __pydantic_fields_set__: !!set
+      early_stopping_patience: null
+      epochs: null
+    __pydantic_private__: null
+  input: !!python/object:sms.exp1.config_classes.InputConfig
+    __dict__:
+      make_relative_pitch: false
+      normalize_octave: false
+      piano_roll: true
+      quantize: false
+      rest_pitch: -1
+      steps_per_bar: 32
+    __pydantic_extra__: null
+    __pydantic_fields_set__: !!set
+      make_relative_pitch: null
+      normalize_octave: null
+      piano_roll: null
+      quantize: null
+      rest_pitch: null
+      steps_per_bar: null
+    __pydantic_private__: null
+  projector: !!python/object:sms.exp1.config_classes.ProjectorConfig
+    __dict__:
+      params:
+        layers:
+        - out_features: 128
+        - out_features: 64
+        - out_features: 64
+    __pydantic_extra__: null
+    __pydantic_fields_set__: !!set
+      params: null
+    __pydantic_private__: null
+  pt_dl: !!python/object:sms.exp1.config_classes.DataLoaderConfig
+    __dict__:
+      batch_size: 64
+      neg_enhance: true
+      num_workers: 8
+      shuffle: true
+      train_data_path: C:/Users/cunn2/OneDrive/DSML/Project/thesis-repo/data/exp1/train_data.pt
+      use_sequence_collate_fn: false
+      use_transposition: false
+      val_data_path: C:/Users/cunn2/OneDrive/DSML/Project/thesis-repo/data/exp1/val_data.pt
+    __pydantic_extra__: null
+    __pydantic_fields_set__: !!set
+      batch_size: null
+      neg_enhance: null
+      num_workers: null
+      shuffle: null
+      train_data_path: null
+      use_sequence_collate_fn: null
+      use_transposition: null
+      val_data_path: null
+    __pydantic_private__: null
+  pt_loss: !!python/object:sms.exp1.config_classes.LossConfig
+    __dict__:
+      params:
+        weight_cov: 1
+        weight_inv: 25
+        weight_var: 25
+      type: vicreg_loss
+    __pydantic_extra__: null
+    __pydantic_fields_set__: !!set
+      params: null
+      type: null
+    __pydantic_private__: null
+  pt_optimizer: !!python/object:sms.exp1.config_classes.OptimizerConfig
+    __dict__:
+      params:
+        lr: 0.001
+      type: Adam
+    __pydantic_extra__: null
+    __pydantic_fields_set__: !!set
+      params: null
+      type: null
+    __pydantic_private__: null
+  pt_scheduler: !!python/object:sms.exp1.config_classes.SchedulerConfig
+    __dict__:
+      params:
+        gamma: 0.1
+        step_size: 10
+      type: StepLR
+    __pydantic_extra__: null
+    __pydantic_fields_set__: !!set
+      params: null
+      type: null
+    __pydantic_private__: null
+  pt_training: !!python/object:sms.exp1.config_classes.TrainingConfig
+    __dict__:
+      early_stopping_patience: 10
+      epochs: 100
+    __pydantic_extra__: null
+    __pydantic_fields_set__: !!set
+      early_stopping_patience: null
+      epochs: null
+    __pydantic_private__: null
+__pydantic_extra__: null
+__pydantic_fields_set__: !!set
+  dims: null
+  encoder: null
+  ft_dl: null
+  ft_loss: null
+  ft_optimizer: null
+  ft_scheduler: null
+  ft_training: null
+  input: null
+  projector: null
+  pt_dl: null
+  pt_loss: null
+  pt_optimizer: null
+  pt_scheduler: null
+  pt_training: null
+__pydantic_private__: null

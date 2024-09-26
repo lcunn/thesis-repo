@@ -1,0 +1,30 @@
+2024-09-26 01:51:20,331 INFO    MainThread:372208 [wandb_setup.py:_flush():76] Current SDK version is 0.17.3
+2024-09-26 01:51:20,331 INFO    MainThread:372208 [wandb_setup.py:_flush():76] Configure stats pid to 372208
+2024-09-26 01:51:20,331 INFO    MainThread:372208 [wandb_setup.py:_flush():76] Loading settings from C:\Users\cunn2\.config\wandb\settings
+2024-09-26 01:51:20,331 INFO    MainThread:372208 [wandb_setup.py:_flush():76] Loading settings from C:\Users\cunn2\OneDrive\DSML\Project\thesis-repo\wandb\settings
+2024-09-26 01:51:20,331 INFO    MainThread:372208 [wandb_setup.py:_flush():76] Loading settings from environment variables: {'project': 'thesis'}
+2024-09-26 01:51:20,331 INFO    MainThread:372208 [wandb_setup.py:_flush():76] Applying setup settings: {'_disable_service': False}
+2024-09-26 01:51:20,332 WARNING MainThread:372208 [wandb_setup.py:_flush():76] Could not find program at -m sms.exp1.run_training
+2024-09-26 01:51:20,332 INFO    MainThread:372208 [wandb_setup.py:_flush():76] Inferring run settings from compute environment: {'program_relpath': None, 'program': '-m sms.exp1.run_training'}
+2024-09-26 01:51:20,332 INFO    MainThread:372208 [wandb_setup.py:_flush():76] Applying login settings: {}
+2024-09-26 01:51:20,332 INFO    MainThread:372208 [wandb_init.py:_log_setup():520] Logging user logs to C:\Users\cunn2\OneDrive\DSML\Project\thesis-repo\wandb\run-20240926_015120-y2t3xfm1\logs\debug.log
+2024-09-26 01:51:20,332 INFO    MainThread:372208 [wandb_init.py:_log_setup():521] Logging internal logs to C:\Users\cunn2\OneDrive\DSML\Project\thesis-repo\wandb\run-20240926_015120-y2t3xfm1\logs\debug-internal.log
+2024-09-26 01:51:20,332 INFO    MainThread:372208 [wandb_init.py:init():560] calling init triggers
+2024-09-26 01:51:20,332 INFO    MainThread:372208 [wandb_init.py:init():567] wandb.init called with sweep_config: {}
+config: {'input': {'normalize_octave': False, 'make_relative_pitch': False, 'quantize': False, 'piano_roll': True, 'steps_per_bar': 32, 'rest_pitch': -1}, 'pt_dl': {'batch_size': 64, 'num_workers': 8, 'train_data_path': 'C:/Users/cunn2/OneDrive/DSML/Project/thesis-repo/data/exp1/train_data.pt', 'val_data_path': 'C:/Users/cunn2/OneDrive/DSML/Project/thesis-repo/data/exp1/val_data.pt', 'use_transposition': False, 'neg_enhance': True, 'use_sequence_collate_fn': False, 'shuffle': True}, 'ft_dl': {'batch_size': 64, 'num_workers': 8, 'train_data_path': 'C:/Users/cunn2/OneDrive/DSML/Project/thesis-repo/data/exp1/train_data.pt', 'val_data_path': 'C:/Users/cunn2/OneDrive/DSML/Project/thesis-repo/data/exp1/val_data.pt', 'use_transposition': False, 'neg_enhance': True, 'use_sequence_collate_fn': False, 'shuffle': True}, 'encoder': {'type': 'PianoRollConvEncoder', 'params': {'layers': [{'out_channels': 2, 'kernel_size': [10, 10], 'stride': [1, 1], 'padding': [1, 1], 'batch_norm': True}, {'out_channels': 4, 'kernel_size': [6, 6], 'stride': [1, 1], 'padding': [1, 1], 'batch_norm': True}, {'out_channels': 8, 'kernel_size': [3, 3], 'stride': [1, 1], 'padding': [1, 1], 'batch_norm': True}]}}, 'projector': {'params': {'layers': [{'out_features': 128}, {'out_features': 64}, {'out_features': 64}, Linear(in_features=64, out_features=64, bias=True)]}}, 'pt_loss': {'type': 'vicreg_loss', 'params': {'weight_inv': 25, 'weight_var': 25, 'weight_cov': 1}}, 'ft_loss': {'type': 'contrastive_loss', 'params': {'temperature': 0.1}}, 'dims': {'input_shape': (128, 32), 'd_latent': 64, 'd_projected': 64}, 'pt_optimizer': {'type': 'Adam', 'params': {'lr': 0.001}}, 'ft_optimizer': {'type': 'Adam', 'params': {'lr': 0.001}}, 'pt_scheduler': {'type': 'StepLR', 'params': {'step_size': 10, 'gamma': 0.1}}, 'ft_scheduler': {'type': 'StepLR', 'params': {'step_size': 10, 'gamma': 0.1}}, 'pt_training': {'epochs': 100, 'early_stopping_patience': 10}, 'ft_training': {'epochs': 100, 'early_stopping_patience': 10}}
+2024-09-26 01:51:20,332 INFO    MainThread:372208 [wandb_init.py:init():610] starting backend
+2024-09-26 01:51:20,332 INFO    MainThread:372208 [wandb_init.py:init():614] setting up manager
+2024-09-26 01:51:20,336 INFO    MainThread:372208 [backend.py:_multiprocessing_setup():105] multiprocessing start_methods=spawn, using: spawn
+2024-09-26 01:51:20,338 INFO    MainThread:372208 [wandb_init.py:init():622] backend started and connected
+2024-09-26 01:51:20,341 INFO    MainThread:372208 [wandb_init.py:init():711] updated telemetry
+2024-09-26 01:51:20,385 INFO    MainThread:372208 [wandb_init.py:init():744] communicating run to backend with 90.0 second timeout
+2024-09-26 01:51:20,712 INFO    MainThread:372208 [wandb_run.py:_on_init():2402] communicating current version
+2024-09-26 01:51:20,797 INFO    MainThread:372208 [wandb_run.py:_on_init():2411] got version response upgrade_message: "wandb version 0.18.1 is available!  To upgrade, please run:\n $ pip install wandb --upgrade"
+
+2024-09-26 01:51:20,798 INFO    MainThread:372208 [wandb_init.py:init():795] starting run threads in backend
+2024-09-26 01:51:22,995 INFO    MainThread:372208 [wandb_run.py:_console_start():2380] atexit reg
+2024-09-26 01:51:22,995 INFO    MainThread:372208 [wandb_run.py:_redirect():2235] redirect: wrap_raw
+2024-09-26 01:51:22,995 INFO    MainThread:372208 [wandb_run.py:_redirect():2300] Wrapping output streams.
+2024-09-26 01:51:22,995 INFO    MainThread:372208 [wandb_run.py:_redirect():2325] Redirects installed.
+2024-09-26 01:51:22,997 INFO    MainThread:372208 [wandb_init.py:init():838] run started, returning control to user process
+2024-09-26 01:52:04,367 WARNING MsgRouterThr:372208 [router.py:message_loop():77] message_loop has been closed

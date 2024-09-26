@@ -18,6 +18,11 @@ import sms.exp1.models.projector as projectors
 import sms.exp1.models.siamese as siamese
 import sms.exp1.training.loss_functions as loss_functions
 
+import logging
+from sms.src.log import configure_logging
+
+configure_logging(console_level=logging.INFO)
+
 def main(lp_path: str, run_folder: Optional[str] = None):
     config = load_config_from_launchplan(lp_path)
     # create unique folder for this run
@@ -35,57 +40,67 @@ def main(lp_path: str, run_folder: Optional[str] = None):
     run_training(config=config, mode='finetune', run_folder=run_folder)
 
 def run_training(config: LaunchPlanConfig, mode: str, run_folder: str):
+    config = config.model_dump()
 
     if mode == 'pretrain':
-        dl_cfg = config.pt_dl
-        loss_cfg = config.pt_loss
-        opt_cfg = config.pt_optimizer
-        sch_cfg = config.pt_scheduler
-
+        dl_cfg = config["pt_dl"]
+        loss_cfg = config["pt_loss"]
+        opt_cfg = config["pt_optimizer"]
+        sch_cfg = config["pt_scheduler"]
+        train_cfg = config["pt_training"]
     elif mode == 'finetune':
-        dl_cfg = config.ft_dl
-        loss_cfg = config.ft_loss
-        opt_cfg = config.ft_optimizer
-        sch_cfg = config.ft_scheduler
-
+        dl_cfg = config["ft_dl"]
+        loss_cfg = config["ft_loss"]
+        opt_cfg = config["ft_optimizer"]
+        sch_cfg = config["ft_scheduler"]
+        train_cfg = config["ft_training"]
     train_loader = get_dataloader(
-        data_paths=dl_cfg.train_data_path,
-        format_config=config.input,
+        data_paths=dl_cfg["train_data_path"],
+        format_config=config["input"],
         mode=mode,
-        use_transposition=dl_cfg.use_transposition,
-        neg_enhance=dl_cfg.neg_enhance,
-        batch_size=dl_cfg.batch_size,
-        num_workers=dl_cfg.num_workers,
-        use_sequence_collate_fn=dl_cfg.use_sequence_collate_fn,
-        shuffle=dl_cfg.shuffle
+        use_transposition=dl_cfg["use_transposition"],
+        neg_enhance=dl_cfg["neg_enhance"],
+        batch_size=dl_cfg["batch_size"],
+        num_workers=dl_cfg["num_workers"],
+        use_sequence_collate_fn=dl_cfg["use_sequence_collate_fn"],
+        shuffle=dl_cfg["shuffle"]
     )
     
     val_loader = get_dataloader(
-        data_paths=dl_cfg.val_data_path,
-        format_config=config.input,
+        data_paths=dl_cfg["val_data_path"],
+        format_config=config["input"],
         mode=mode,
-        use_transposition=dl_cfg.use_transposition,
-        neg_enhance=dl_cfg.neg_enhance,
-        batch_size=dl_cfg.batch_size,
-        num_workers=dl_cfg.num_workers,
-        use_sequence_collate_fn=dl_cfg.use_sequence_collate_fn,
-        shuffle=dl_cfg.shuffle
+        use_transposition=dl_cfg["use_transposition"],
+        neg_enhance=dl_cfg["neg_enhance"],
+        batch_size=dl_cfg["batch_size"],
+        num_workers=dl_cfg["num_workers"],
+        use_sequence_collate_fn=dl_cfg["use_sequence_collate_fn"],
+        shuffle=dl_cfg["shuffle"]
     )
 
-    encoder = getattr(encoders, config.encoder.type)(**config.encoder.params, input_shape=config.dims.input_shape, d_latent=config.dims.d_latent)
-    projector = projectors.ProjectionHead(**config.projector.params, d_latent=config.dims.d_latent, d_projected=config.dims.d_projected)
+    encoder = getattr(encoders, config["encoder"]["type"])(
+        **config["encoder"]["params"],
+        input_shape=config["dims"]["input_shape"],
+        d_latent=config["dims"]["d_latent"]
+    )
+    projector = projectors.ProjectionHead(
+        **config["projector"]["params"],
+        d_latent=config["dims"]["d_latent"],
+        d_projected=config["dims"]["d_projected"]
+    )
     model = siamese.SiameseModel(encoder, projector)
 
     if mode == 'finetune':
-        model.load_state_dict(torch.load(config.model_paths.pretrained_model_path))
+        model.load_state_dict(torch.load(config["model_paths"]["pretrained_model_path"]))
         model = model.get_encoder()
 
-    loss = partial(getattr(loss_functions, loss_cfg.type), **loss_cfg.params)
+    loss = partial(getattr(loss_functions, loss_cfg["type"]), **loss_cfg["params"])
 
-    optimizer = getattr(optim, opt_cfg.type)(model.parameters(), **opt_cfg.params)
-    scheduler = getattr(optim.lr_scheduler, sch_cfg.type)(optimizer, **sch_cfg.params)
+    optimizer = getattr(optim, opt_cfg["type"])(model.parameters(), **opt_cfg["params"])
+    scheduler = getattr(optim.lr_scheduler, sch_cfg["type"])(optimizer, **sch_cfg["params"])
 
     trainer = Trainer(
+        config=config,
         loss=loss,
         optimizer=optimizer,
         scheduler=scheduler,
@@ -94,7 +109,9 @@ def run_training(config: LaunchPlanConfig, mode: str, run_folder: str):
         val_loader=val_loader,
         mode=mode,
         run_folder=run_folder,
-        model_save_path=os.path.join(run_folder, f'{mode}_saved_model.pth')
+        model_save_path=os.path.join(run_folder, f'{mode}_saved_model.pth'),
+        epochs=train_cfg["epochs"],
+        early_stopping_patience=train_cfg["early_stopping_patience"]
     )
 
     metrics = trainer.train()

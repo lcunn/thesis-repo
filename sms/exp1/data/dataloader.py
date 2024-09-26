@@ -121,7 +121,7 @@ def sequence_collate_fn(batch):
         'positive_lengths': positive_lengths
     }
 
-def train_test_data_split(data_paths: List[str], train_dest: str, val_dest: str, split_ratio: float = 0.8) -> None:
+def produce_train_test_data(data_paths: List[str], train_dest: str, val_dest: str, split_ratio: float = 0.8) -> None:
     """
     Splits the dataset into training and validation sets and saves them to the specified destinations.
     """
@@ -131,6 +131,12 @@ def train_test_data_split(data_paths: List[str], train_dest: str, val_dest: str,
         data = torch.load(path)
         # we load dictionaries
         all_data.extend(list(data.values()))
+
+    # Filter data to only include arrays with more than 2 rows
+    filtered_data = [item for item in all_data if item.shape[0] > 2]
+    
+    # Update all_data with the filtered data
+    all_data = filtered_data
 
     # process data
     random.shuffle(all_data)
@@ -161,7 +167,7 @@ def get_dataloader(
         format_config, 
         mode=mode,
         use_transposition=use_transposition, 
-        neg_enhance=neg_enhance
+        use_negative_enhance=neg_enhance
         )
     return DataLoader(
         dataset, 
@@ -176,7 +182,7 @@ if __name__ == '__main__':
     p2 = r"C:\Users\cunn2\OneDrive\DSML\Project\thesis-repo\data\exp1\mtc_one_bar_segments_nr.pt"
     train_dest = r"C:\Users\cunn2\OneDrive\DSML\Project\thesis-repo\data\exp1\train_data.pt"
     val_dest = r"C:\Users\cunn2\OneDrive\DSML\Project\thesis-repo\data\exp1\val_data.pt"
-    train_test_data_split(
+    produce_train_test_data(
         data_paths=[p1, p2],
         train_dest=train_dest,
         val_dest=val_dest,

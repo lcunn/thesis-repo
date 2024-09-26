@@ -1,0 +1,45 @@
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "C:\Users\cunn2\OneDrive\DSML\Project\thesis-repo\sms\exp1\run_training.py", line 133, in <module>
+    main(args.lp, args.rf)
+  File "C:\Users\cunn2\OneDrive\DSML\Project\thesis-repo\sms\exp1\run_training.py", line 34, in main
+    run_training(config=config, mode='pretrain', run_folder=run_folder)
+  File "C:\Users\cunn2\OneDrive\DSML\Project\thesis-repo\sms\exp1\run_training.py", line 112, in run_training
+    metrics = trainer.train()
+              ^^^^^^^^^^^^^^^
+  File "C:\Users\cunn2\OneDrive\DSML\Project\thesis-repo\sms\exp1\training\trainer.py", line 112, in train
+    train_loss = self.train_epoch()
+                 ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\cunn2\OneDrive\DSML\Project\thesis-repo\sms\exp1\training\trainer.py", line 89, in train_epoch
+    for batch in self.train_loader:
+  File "C:\Users\cunn2\miniconda3\envs\sms\Lib\site-packages\torch\utils\data\dataloader.py", line 630, in __next__
+    data = self._next_data()
+           ^^^^^^^^^^^^^^^^^
+  File "C:\Users\cunn2\miniconda3\envs\sms\Lib\site-packages\torch\utils\data\dataloader.py", line 1344, in _next_data
+    return self._process_data(data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\cunn2\miniconda3\envs\sms\Lib\site-packages\torch\utils\data\dataloader.py", line 1370, in _process_data
+    data.reraise()
+  File "C:\Users\cunn2\miniconda3\envs\sms\Lib\site-packages\torch\_utils.py", line 706, in reraise
+    raise exception
+IndexError: Caught IndexError in DataLoader worker process 0.
+Original Traceback (most recent call last):
+  File "C:\Users\cunn2\miniconda3\envs\sms\Lib\site-packages\torch\utils\data\_utils\worker.py", line 309, in _worker_loop
+    data = fetcher.fetch(index)  # type: ignore[possibly-undefined]
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\cunn2\miniconda3\envs\sms\Lib\site-packages\torch\utils\data\_utils\fetch.py", line 52, in fetch
+    data = [self.dataset[idx] for idx in possibly_batched_index]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\cunn2\miniconda3\envs\sms\Lib\site-packages\torch\utils\data\_utils\fetch.py", line 52, in <listcomp>
+    data = [self.dataset[idx] for idx in possibly_batched_index]
+            ~~~~~~~~~~~~^^^^^
+  File "C:\Users\cunn2\OneDrive\DSML\Project\thesis-repo\sms\exp1\data\dataloader.py", line 87, in __getitem__
+    augmented_chunk = modifier(chunk, augmentation)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\cunn2\OneDrive\DSML\Project\thesis-repo\sms\src\synthetic_data\note_arr_mod.py", line 71, in __call__
+    self.modify_note_array()
+  File "C:\Users\cunn2\OneDrive\DSML\Project\thesis-repo\sms\src\synthetic_data\note_arr_mod.py", line 210, in modify_note_array
+    modified_array[-1, 0] += difference
+    ~~~~~~~~~~~~~~^^^^^^^
+IndexError: index -1 is out of bounds for axis 0 with size 0

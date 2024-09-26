@@ -45,6 +45,10 @@ class DimensionsConfig(BaseModel):
     d_latent: int
     d_projected: int
 
+class TrainingConfig(BaseModel):
+    epochs: int
+    early_stopping_patience: int
+
 class LaunchPlanConfig(BaseModel):
     input: InputConfig
     pt_dl: DataLoaderConfig
@@ -58,21 +62,19 @@ class LaunchPlanConfig(BaseModel):
     ft_optimizer: OptimizerConfig
     pt_scheduler: SchedulerConfig
     ft_scheduler: SchedulerConfig
+    pt_training: TrainingConfig
+    ft_training: TrainingConfig
 
 def load_config_from_launchplan(lp_yaml_path: str) -> LaunchPlanConfig:
     lp_yaml_path = Path(lp_yaml_path)
 
     with open(lp_yaml_path, 'r') as f:
         config_dict = yaml.safe_load(f)
-
-    print(config_dict)
     
     # load nested YAML files
     for key, value in config_dict.items():
         if isinstance(value, str) and value.endswith('.yaml'):
-            print(value)
             with open(value, 'r') as f:
                 config_dict[key] = yaml.safe_load(f)
 
-    
     return LaunchPlanConfig.model_validate(config_dict)

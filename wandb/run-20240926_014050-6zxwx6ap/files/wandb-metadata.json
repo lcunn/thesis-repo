@@ -1,0 +1,52 @@
+{
+    "os": "Windows-10-10.0.22631-SP0",
+    "python": "3.11.9",
+    "heartbeatAt": "2024-09-26T00:40:50.852800",
+    "startedAt": "2024-09-26T00:40:50.023804",
+    "docker": null,
+    "cuda": null,
+    "args": [],
+    "state": "running",
+    "program": "-m sms.exp1.run_training",
+    "codePathLocal": null,
+    "git": {
+        "remote": "https://github.com/lcunn/thesis-repo.git",
+        "commit": "d9d052632cc5cd07283e96e8d063ca0153f9b05f"
+    },
+    "email": "cunn2001@gmail.com",
+    "root": "C:/Users/cunn2/OneDrive/DSML/Project/thesis-repo",
+    "host": "Legion5",
+    "username": "cunn2",
+    "executable": "C:\\Users\\cunn2\\miniconda3\\envs\\sms\\python.exe",
+    "cpu_count": 8,
+    "cpu_count_logical": 16,
+    "cpu_freq": {
+        "current": 3801.0,
+        "min": 0.0,
+        "max": 3801.0
+    },
+    "cpu_freq_per_core": [
+        {
+            "current": 3801.0,
+            "min": 0.0,
+            "max": 3801.0
+        }
+    ],
+    "disk": {
+        "/": {
+            "total": 951.6455039978027,
+            "used": 441.30879974365234
+        }
+    },
+    "gpu": "NVIDIA GeForce RTX 4060 Laptop GPU",
+    "gpu_count": 1,
+    "gpu_devices": [
+        {
+            "name": "NVIDIA GeForce RTX 4060 Laptop GPU",
+            "memory_total": 8585740288
+        }
+    ],
+    "memory": {
+        "total": 15.191944122314453
+    }
+}

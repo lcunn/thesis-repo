@@ -115,7 +115,7 @@ class InputFormatter:
         """
         steps_per_bar = self.steps_per_bar
 
-        quantized = self.quantize(note_array, steps_per_bar)
+        quantized = self.quantize(note_array)
         
         piano_roll = np.zeros((127, steps_per_bar), dtype=int)
         
@@ -124,5 +124,7 @@ class InputFormatter:
                 pitch_idx = int(pitch) - 1  # Adjust for 1-127 range
                 if 0 <= pitch_idx < 127:
                     piano_roll[pitch_idx, step] = 1
+        
+        piano_roll = np.flipud(piano_roll)
 
         return piano_roll

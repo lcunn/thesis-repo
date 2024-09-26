@@ -1,0 +1,164 @@
+wandb_version: 1
+
+input:
+  desc: null
+  value:
+    normalize_octave: false
+    make_relative_pitch: false
+    quantize: false
+    piano_roll: true
+    steps_per_bar: 32
+    rest_pitch: -1
+pt_dl:
+  desc: null
+  value:
+    batch_size: 64
+    num_workers: 8
+    train_data_path: C:/Users/cunn2/OneDrive/DSML/Project/thesis-repo/data/exp1/train_data.pt
+    val_data_path: C:/Users/cunn2/OneDrive/DSML/Project/thesis-repo/data/exp1/val_data.pt
+    use_transposition: false
+    neg_enhance: true
+    use_sequence_collate_fn: false
+    shuffle: true
+ft_dl:
+  desc: null
+  value:
+    batch_size: 64
+    num_workers: 8
+    train_data_path: C:/Users/cunn2/OneDrive/DSML/Project/thesis-repo/data/exp1/train_data.pt
+    val_data_path: C:/Users/cunn2/OneDrive/DSML/Project/thesis-repo/data/exp1/val_data.pt
+    use_transposition: false
+    neg_enhance: true
+    use_sequence_collate_fn: false
+    shuffle: true
+encoder:
+  desc: null
+  value:
+    type: PianoRollConvEncoder
+    params:
+      layers:
+      - out_channels: 2
+        kernel_size:
+        - 10
+        - 10
+        stride:
+        - 1
+        - 1
+        padding:
+        - 1
+        - 1
+        batch_norm: true
+      - out_channels: 4
+        kernel_size:
+        - 6
+        - 6
+        stride:
+        - 1
+        - 1
+        padding:
+        - 1
+        - 1
+        batch_norm: true
+      - out_channels: 8
+        kernel_size:
+        - 3
+        - 3
+        stride:
+        - 1
+        - 1
+        padding:
+        - 1
+        - 1
+        batch_norm: true
+projector:
+  desc: null
+  value:
+    params:
+      layers:
+      - out_features: 128
+      - out_features: 64
+      - out_features: 64
+      - Linear(in_features=64, out_features=64, bias=True)
+pt_loss:
+  desc: null
+  value:
+    type: vicreg_loss
+    params:
+      weight_inv: 25
+      weight_var: 25
+      weight_cov: 1
+ft_loss:
+  desc: null
+  value:
+    type: contrastive_loss
+    params:
+      temperature: 0.1
+dims:
+  desc: null
+  value:
+    input_shape:
+    - 128
+    - 32
+    d_latent: 64
+    d_projected: 64
+pt_optimizer:
+  desc: null
+  value:
+    type: Adam
+    params:
+      lr: 0.001
+ft_optimizer:
+  desc: null
+  value:
+    type: Adam
+    params:
+      lr: 0.001
+pt_scheduler:
+  desc: null
+  value:
+    type: StepLR
+    params:
+      step_size: 10
+      gamma: 0.1
+ft_scheduler:
+  desc: null
+  value:
+    type: StepLR
+    params:
+      step_size: 10
+      gamma: 0.1
+pt_training:
+  desc: null
+  value:
+    epochs: 100
+    early_stopping_patience: 10
+ft_training:
+  desc: null
+  value:
+    epochs: 100
+    early_stopping_patience: 10
+_wandb:
+  desc: null
+  value:
+    python_version: 3.11.9
+    cli_version: 0.17.3
+    framework: torch
+    is_jupyter_run: false
+    is_kaggle_kernel: false
+    start_time: 1727311250
+    t:
+      1:
+      - 1
+      - 55
+      2:
+      - 1
+      - 55
+      3:
+      - 16
+      - 23
+      4: 3.11.9
+      5: 0.17.3
+      8:
+      - 3
+      - 5
+      13: windows-amd64
