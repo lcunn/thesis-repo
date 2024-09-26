@@ -54,6 +54,7 @@ def run_training(config: LaunchPlanConfig, mode: str, run_folder: str):
         opt_cfg = config["ft_optimizer"]
         sch_cfg = config["ft_scheduler"]
         train_cfg = config["ft_training"]
+
     train_loader = get_dataloader(
         data_paths=dl_cfg["train_data_path"],
         format_config=config["input"],
@@ -91,8 +92,8 @@ def run_training(config: LaunchPlanConfig, mode: str, run_folder: str):
     model = siamese.SiameseModel(encoder, projector)
 
     if mode == 'finetune':
-        model.load_state_dict(torch.load(config["model_paths"]["pretrained_model_path"]))
-        model = model.get_encoder()
+        model.load_state_dict(torch.load(config["model_paths"]["pretrained_model_path"], weights_only=True))
+        model.set_use_projection(False)
 
     loss = partial(getattr(loss_functions, loss_cfg["type"]), **loss_cfg["params"])
 

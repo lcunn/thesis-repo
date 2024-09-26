@@ -64,12 +64,13 @@ class QuantizedConvEncoder(nn.Module):
     def forward(self, x):
         # assuming input x has shape [batch_size, 1, 32]
         # apply conv layers
+        # print(f"Input x requires_grad: {x.requires_grad}")
         x = self.conv_layers(x)
         # Flatten the tensor
         x = x.view(x.size(0), -1)     # [batch_size, conv_output_size]
         # apply fully connected layer to produce 64-dimensional embedding
         x = self.fc(x)                # [batch_size, 64]
-        
+        # print(f"Output x requires_grad: {x.requires_grad}")
         return x
 
 class PianoRollConvEncoder(nn.Module):
@@ -113,6 +114,7 @@ class PianoRollConvEncoder(nn.Module):
     def forward(self, x):
         # Assuming input x has shape [batch_size, 1, 128, 32]
         # Apply conv layers
+        x = x.unsqueeze(1)
         x = self.conv_layers(x)
         # Flatten the tensor
         x = x.view(x.size(0), -1)     # [batch_size, conv_output_size]

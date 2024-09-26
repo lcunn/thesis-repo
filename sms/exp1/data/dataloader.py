@@ -33,8 +33,9 @@ class OneBarChunkDataset(Dataset):
 
         self.formatter = InputFormatter(**formatter_config)
         self.use_transposition = use_transposition
-        self.return_negative_example = mode == 'pretrain'
+        self.return_negative_example = mode == 'finetune'
         self.use_negative_enhance = use_negative_enhance
+        self.modifier = NoteArrayModifier()
 
         self.augmentation_dict = {
             1: 'use_transposition',
@@ -92,9 +93,9 @@ class OneBarChunkDataset(Dataset):
             else:
                 negative_idx = self.new_sample(idx)
             negative_chunk = self.loaded_data[negative_idx]
-            return self.formatter(chunk), self.formatter(augmented_chunk), self.formatter(negative_chunk)
+            return self.formatter(chunk).copy(), self.formatter(augmented_chunk).copy(), self.formatter(negative_chunk).copy()
         else:
-            return self.formatter(chunk), self.formatter(augmented_chunk)
+            return self.formatter(chunk).copy(), self.formatter(augmented_chunk).copy()
 
 def sequence_collate_fn(batch):
     # Separate anchors and positives
@@ -174,7 +175,7 @@ def get_dataloader(
         batch_size=batch_size, 
         num_workers=num_workers, 
         shuffle=shuffle,
-        collate_fn=sequence_collate_fn if use_sequence_collate_fn else None
+        collate_fn=sequence_collate_fn if use_sequence_collate_fn else torch.utils.data.dataloader.default_collate
         )
 
 if __name__ == '__main__':

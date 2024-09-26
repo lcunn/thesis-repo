@@ -6,6 +6,7 @@ from typing import Callable
 
 from torch.utils.data import DataLoader
 import wandb
+import time
 
 import sms.exp1.training.loss_functions as loss_functions
 from sms.exp1.config_classes import LaunchPlanConfig
@@ -39,16 +40,17 @@ class Trainer:
         self.early_stopping_patience = early_stopping_patience
         self.run_folder = run_folder
         self.model_path = model_save_path if model_save_path else os.path.join(self.run_folder, f'best_model_{mode}.pth')
+        self.mode = mode
 
-        if mode not in ['pretrain', 'finetune']:
+        if self.mode not in ['pretrain', 'finetune']:
             raise ValueError("Mode must be either 'pretrain' or 'finetune'")
 
-        if mode == 'pretrain':
+        if self.mode == 'pretrain':
             self.step = self.pretrain_step
         else:
             self.step = self.finetune_step
         
-        self.logger = logging.getLogger(mode)
+        self.logger = logging.getLogger(__name__)
         configure_logging(console_level=logging.INFO)
 
         # Initialize Weights & Biases
@@ -56,16 +58,24 @@ class Trainer:
         self.device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
         self.model = model.to(self.device)
 
-        self.best_val_loss = float('inf')
+        self.best_loss = float('inf')
         self.early_stopping_counter = 0
+
+        for name, param in self.model.named_parameters():
+            if not param.requires_grad:
+                print(f"{name} requires_grad: {param.requires_grad}")
 
     def pretrain_step(self, batch):
         """
         Uses VICReg loss with a positive example.
         """
-        anchor, positive = batch['anchors'].to(self.device), batch['positives'].to(self.device)
-        embed_anchor, embed_positive = self.model(anchor, positive)
-        loss = self.loss(embed_anchor, embed_positive)
+        # print("NEW BATCH \n \n \n \n")
+        anchor, positive = batch
+        anchor, positive = anchor.float().to(self.device).requires_grad_(), positive.float().to(self.device).requires_grad_()
+        # print(f"Anchor requires_grad: {anchor.requires_grad}")
+        # print(f"Positive requires_grad: {positive.requires_grad}")
+        proj_anchor, proj_positive = self.model(anchor, positive)
+        loss, loss_inv, loss_var, loss_cov = self.loss([proj_anchor, proj_positive])
         loss.backward()
         self.optimizer.step()
         self.optimizer.zero_grad()
@@ -75,7 +85,8 @@ class Trainer:
         """
         Uses contrastive loss with a positive and negative example.
         """
-        anchor, positive, negative = batch['anchors'].to(self.device), batch['positives'].to(self.device), batch['negatives'].to(self.device)
+        anchor, positive, negative = batch
+        anchor, positive, negative = anchor.float().to(self.device).requires_grad_(), positive.float().to(self.device).requires_grad_(), negative.float().to(self.device).requires_grad_()
         embed_anchor, embed_positive, embed_negative = self.model(anchor, positive, negative)
         loss = self.loss(embed_anchor, embed_positive, embed_negative)
         loss.backward()
@@ -92,34 +103,21 @@ class Trainer:
         avg_loss = running_loss / len(self.train_loader)
         return avg_loss
 
-    def validate_epoch(self):
-        self.model.eval()
-        running_loss = 0.0
-        with torch.no_grad():
-            for batch in self.val_loader:
-                loss = self.step(batch)
-                running_loss += loss
-        avg_loss = running_loss / len(self.val_loader)
-        return avg_loss
-
     def train(self):
         metrics = {
             'epochs': [],
             'train_loss': [],
-            'val_loss': []
         }
         for epoch in range(1, self.epochs + 1):
+            start_time = time.time()
             train_loss = self.train_epoch()
-            val_loss = self.validate_epoch()
-            self.scheduler.step(val_loss)
-
+            self.scheduler.step(train_loss)
+            end_time = time.time()
             metrics['epochs'].append(epoch)
             metrics['train_loss'].append(train_loss)
-            metrics['val_loss'].append(val_loss)
 
             self.logger.info(
-                f'Epoch {epoch}/{self.epochs} | '
-                f'Train Loss: {train_loss:.4f} | Val Loss: {val_loss:.4f}'
+                f'Epoch {epoch}/{self.epochs} | Train Loss: {train_loss:.4f} | Time: {end_time - start_time:.2f}s'
             )
 
             # Log metrics to wandb
@@ -129,11 +127,13 @@ class Trainer:
             #         'train_loss': train_loss,
             #         'val_loss': val_loss
             #     })
-
-            if val_loss < self.best_val_loss:
-                self.best_val_loss = val_loss
-                self.early_stopping_counter = 0
-                torch.save(self.model.state_dict(), self.model_path)
+            # Model saving logic (if needed)
+            if train_loss < self.best_loss:
+                self.best_loss = train_loss
+                if self.mode == 'finetune':
+                    torch.save(self.model.state_dict(), self.model_path)
+                else:
+                    torch.save(self.model.get_encoder().state_dict(), self.model_path)
                 self.logger.info('Best model saved.')
             else:
                 self.early_stopping_counter += 1

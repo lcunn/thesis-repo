@@ -111,19 +111,19 @@ class InputFormatter:
         steps_per_bar (int): Number of time steps per bar (default is 32).
         
         Returns:
-        np.ndarray: A 2D numpy array representing the piano roll.
+        np.ndarray: A 2D numpy array, shape (128, steps_per_bar), representing the piano roll.
         """
         steps_per_bar = self.steps_per_bar
 
         quantized = self.quantize(note_array)
         
-        piano_roll = np.zeros((127, steps_per_bar), dtype=int)
+        piano_roll = np.zeros((128, steps_per_bar), dtype=int)
         
         for step, pitch in enumerate(quantized):
             if pitch != self.rest_pitch:  # not a rest
                 pitch_idx = int(pitch) - 1  # Adjust for 1-127 range
-                if 0 <= pitch_idx < 127:
-                    piano_roll[pitch_idx, step] = 1
+                if 0 <= pitch_idx <= 127:
+                    piano_roll[pitch_idx, step] = 1.0
         
         piano_roll = np.flipud(piano_roll)
 

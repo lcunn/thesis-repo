@@ -30,8 +30,8 @@ def vicreg_loss(
     - The covariance loss (encourages the off-diagonal elements of the covariance matrix to be zero)
     (taken from https://github.com/Irislucent/motif-encoder)
     """
-    projected_anchors = projected_batch["projected_anchors"]
-    projected_positives = projected_batch["projected_positives"]
+    projected_anchors = projected_batch[0]
+    projected_positives = projected_batch[1]
 
     loss_inv = F.mse_loss(projected_anchors, projected_positives)
 
@@ -50,11 +50,14 @@ def vicreg_loss(
     loss_cov = _off_diagonal(anchors_cov).pow_(2).sum().div(anchors_cov.shape[1]) \
         + _off_diagonal(positives_cov).pow_(2).sum().div(positives_cov.shape[1])
 
+    # print(f"projected_anchors requires_grad: {projected_anchors.requires_grad}")
+    # print(f"projected_positives requires_grad: {projected_positives.requires_grad}")
+
     # total loss
     train_loss = loss_inv * weight_inv  \
         + loss_var * weight_var \
         + loss_cov * weight_cov
-
+    # print(f"train_loss requires_grad: {train_loss.requires_grad}")
     return train_loss, loss_inv, loss_var, loss_cov
 
 def contrastive_loss(
