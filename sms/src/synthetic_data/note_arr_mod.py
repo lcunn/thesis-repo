@@ -5,8 +5,8 @@ from dataclasses import dataclass, field
 from typing import Optional, List, Tuple, Dict
 from sms.src.log import configure_logging
 
-configure_logging(console_level=logging.INFO)
 logger = logging.getLogger(__name__)
+configure_logging(console_level=logging.DEBUG)
 
 @dataclass
 class NoteArrayModifierConfig:
@@ -185,15 +185,17 @@ class NoteArrayModifier:
                 modified_array[idx, 0] *= scale
                 logger.debug(f'Scaling duration of note at index {idx} by a factor of {scale}.')
 
-        if self.config.use_delete_notes and self.config.notes_to_delete:
-            modified_array = np.delete(modified_array, self.config.notes_to_delete, axis=0)
-            logger.debug(f'Deleting notes at indices {self.config.notes_to_delete}.')
-
+        # problem here is we could insert then delete
+        # need to refactor this so we generate then apply, instead of this stupid config #TODO 
         if self.config.use_insert_notes and self.config.notes_to_insert:
             for location, duration, relative_pitch in self.config.notes_to_insert:
                 new_note = np.array([duration, modified_array[location, 1] + relative_pitch])
                 modified_array = np.insert(modified_array, location, new_note, axis=0)
                 logger.debug(f'Inserting note at index {location} with duration {duration} and relative pitch {relative_pitch}.')
+
+        if self.config.use_delete_notes and self.config.notes_to_delete:
+            modified_array = np.delete(modified_array, self.config.notes_to_delete, axis=0)
+            logger.debug(f'Deleting notes at indices {self.config.notes_to_delete}.')
 
         # ensure total duration remains the same
         modified_total_duration = np.sum(modified_array[:, 0])

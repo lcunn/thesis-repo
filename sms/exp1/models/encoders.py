@@ -20,10 +20,12 @@ import torch
 import torch.nn as nn
 from typing import Optional, Dict, Tuple, List
 
-def calculate_conv_output_size(input_size, kernel_size, stride, padding):
-    return ((input_size - kernel_size + 2 * padding) // stride) + 1
+# ALL ENCODERS SHOULD HAVE FORWARD METHODS THAT TAKE TENSORS OF SHAPE [batch_size, *input_shape] AND RETURN TENSORS OF SHAPE [batch_size, d_latent].
 
 ## convolutional encoders --------------------------------------------------------------------------------------------
+
+def calculate_conv_output_size(input_size, kernel_size, stride, padding):
+    return ((input_size - kernel_size + 2 * padding) // stride) + 1
 
 class QuantizedConvEncoder(nn.Module):
     def __init__(self, layers: List[Dict], input_shape: int = 32, d_latent: int = 64):
@@ -48,10 +50,9 @@ class QuantizedConvEncoder(nn.Module):
         
         self.conv_layers = nn.Sequential(*model_layers)
         
-        # Calculate the size of the output from the conv layers
+        # calculate the size of the output from the conv layers
         conv_output_size = self._get_conv_output_size(self.input_shape, layers)
         
-        # Define a fully connected layer to produce the output embedding
         self.fc = nn.Linear(conv_output_size, d_latent)
 
     def _get_conv_output_size(self, input_size, conv_layers):
@@ -63,18 +64,18 @@ class QuantizedConvEncoder(nn.Module):
 
     def forward(self, x):
         # assuming input x has shape [batch_size, 1, 32]
-        # apply conv layers
-        # print(f"Input x requires_grad: {x.requires_grad}")
         x = self.conv_layers(x)
-        # Flatten the tensor
         x = x.view(x.size(0), -1)     # [batch_size, conv_output_size]
-        # apply fully connected layer to produce 64-dimensional embedding
         x = self.fc(x)                # [batch_size, 64]
-        # print(f"Output x requires_grad: {x.requires_grad}")
         return x
 
 class PianoRollConvEncoder(nn.Module):
     def __init__(self, layers: List[Dict], input_shape: Tuple[int, int] = (128, 32), d_latent: int = 64):
+        """
+        A convolutional encoder for piano-roll data.
+        Requires formatting:
+        
+        """
         super(PianoRollConvEncoder, self).__init__()
         self.input_shape = input_shape
         self.d_latent = d_latent
@@ -112,14 +113,14 @@ class PianoRollConvEncoder(nn.Module):
         return h * w * conv_layers[-1]['out_channels']
 
     def forward(self, x):
-        # Assuming input x has shape [batch_size, 1, 128, 32]
-        # Apply conv layers
+        # (assuming input x has shape [batch_size, 128, 32])
+        # add channel dimension
         x = x.unsqueeze(1)
         x = self.conv_layers(x)
-        # Flatten the tensor
+        # flatten tensor
         x = x.view(x.size(0), -1)     # [batch_size, conv_output_size]
-        # Apply fully connected layer to produce 64-dimensional embedding
-        x = self.fc(x)                # [batch_size, 64]
+        # apply fc layer
+        x = self.fc(x)                # [batch_size, d_latent]
         return x
     
 ## bidirectional LSTMs --------------------------------------------------------------------------------------------
