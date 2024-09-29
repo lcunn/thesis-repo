@@ -1,11 +1,11 @@
 models
 
 data
-!data/exp1/
+!data/exp1
 !data/exp1/**
-!data/exp2/
+!data/exp2
 !data/exp2/**
-!data/exp3/
+!data/exp3
 !data/exp3/**
 
 sms/src/private_defaults.py
