@@ -1,0 +1,22 @@
+name: sms
+channels:
+  - pytorch
+  - nvidia
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.11
+  - pytorch=2.4.1
+  - pytorch-cuda=11.8
+  - torchaudio
+  - torchvision
+  - cudatoolkit=11.8
+  - numpy
+  - matplotlib
+  - pip
+  - pip:
+    - wandb
+    - langchain
+    - faiss-gpu
+    - pydantic
+    - httpx
