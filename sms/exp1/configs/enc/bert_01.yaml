@@ -1,0 +1,12 @@
+encoder:
+  type: "BertEncoder"
+  params:
+    config:
+      d_model: 128
+      n_layers: 4
+      n_heads: 8
+      d_ff: 512
+      d_expander: 256
+      dropout_rate: 0.1
+      max_seq_len: 512
+      use_expander: true

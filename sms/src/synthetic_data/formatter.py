@@ -13,7 +13,10 @@ class InputFormatter:
         piano_roll: bool = False,
         steps_per_bar: int = 32,
         bars: int = 1,
-        rest_pitch: int = -1
+        rest_pitch: int = -1,
+        pad_sequence: bool = False,
+        pad_val: int = -1000,
+        goal_seq_len: int = 12
     ):
         """
         The first three can all be used simultaneously.
@@ -23,6 +26,9 @@ class InputFormatter:
         self.bars = bars
         self.steps_per_bar = steps_per_bar
         self.rest_pitch = rest_pitch
+        self.pad_sequence = pad_sequence if not (quantize or piano_roll) else False # if quantize or piano_roll, we don't pad
+        self.pad_val = pad_val
+        self.goal_seq_len = goal_seq_len
         if piano_roll:
             self.config_piano_roll = True
             self.config_normalize_octave = False
@@ -43,13 +49,24 @@ class InputFormatter:
         note_array = np.copy(note_array)
         if self.config_piano_roll:
             note_array = self.make_piano_roll(note_array)
-        elif self.config_normalize_octave:
+        if self.config_normalize_octave:
             note_array = self.normalize_octave(note_array)
         if self.config_make_relative_pitch:
             note_array = self.make_relative_pitch(note_array)
         if self.config_quantize:
             note_array = self.quantize(note_array)
+        if self.pad_sequence:
+            note_array = self.pad_sequence_array(note_array)
         return note_array
+    
+    def pad_sequence_array(self, note_array: np.ndarray) -> np.ndarray:
+        if len(note_array) >= self.goal_seq_len:
+            return note_array[:self.goal_seq_len]
+        else:
+            pad_length = self.goal_seq_len - len(note_array)
+            padding = np.zeros((pad_length, 2))
+            padding[:, :] = self.pad_val
+            return np.vstack((note_array, padding))
 
     def normalize_octave(self, note_array: np.ndarray) -> np.ndarray:
         """
