@@ -8,6 +8,7 @@ import torch
 import torch.optim as optim
 from functools import partial
 from typing import Optional
+import logging
 
 from sms.exp1.config_classes import load_config_from_launchplan, LaunchPlanConfig
 from sms.exp1.training.trainer import Trainer
@@ -42,7 +43,7 @@ def main(lp_path: str, mode: str, run_folder: Optional[str] = None):
     Run the training for the Siamese network experiment.
     Pretraining/finetuning/both can be run with one call. 
     run_folder determines where logs and models are saved. It defaults to sms/exp1/runs/run_{timestamp}.
-    If mode is 'both' or 'pretrain', only lp_path and run_folder are required.
+    If mode is 'both' or 'pretrain', only lp_path is required. If a run_folder is given and it already exists, we use f"{run_folder}_2".
     If mode is 'finetune', then lp_path and run_folder are required. It is assumed that the pretrained model 
         is saved in the run_folder, with the name specified in the config if something other than the default.
 
@@ -51,12 +52,19 @@ def main(lp_path: str, mode: str, run_folder: Optional[str] = None):
         mode (str): Mode to run the training. Can be 'pretrain', 'finetune', or 'both'.
         run_folder (str): Path to the folder where the run will be saved.
     """
+    logger = logging.getLogger(__name__)
     config = load_config_from_launchplan(lp_path)
     # create unique folder for this run
     if run_folder is None:
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
         run_folder = f"sms/exp1/runs/run_{timestamp}"
-    os.makedirs(run_folder, exist_ok=True)
+    if mode in ['both', 'pretrain']:
+        i = 1
+        while os.path.exists(run_folder):
+            logger.info(f"Folder {run_folder} already exists. Trying {run_folder}_{i}.")
+            run_folder = f"{run_folder}_{i}"
+            i += 1
+    os.makedirs(run_folder)
 
     # save the original launchplan and the loaded config (in case pointed-to files are changed)
     shutil.copy(lp_path, os.path.join(run_folder, "original_launchplan.yaml"))
@@ -79,14 +87,14 @@ def run_training(config: LaunchPlanConfig, mode: str, run_folder: str):
         opt_cfg = config["pt_optimizer"]
         sch_cfg = config["pt_scheduler"]
         train_cfg = config["pt_training"]
-        path = config["mod_paths"]["pt_model_path"] if config["mod_paths"] else None
+        save_path = config["mod_paths"]["pt_model_path"] if config["mod_paths"] else os.path.join(run_folder, 'pretrain_saved_model.pth')
     elif mode == 'finetune':
         dl_cfg = config["ft_dl"]
         loss_cfg = config["ft_loss"]
         opt_cfg = config["ft_optimizer"]
         sch_cfg = config["ft_scheduler"]
         train_cfg = config["ft_training"]
-        path = config["mod_paths"]["ft_model_path"] if config["mod_paths"] else None
+        save_path = config["mod_paths"]["ft_model_path"] if config["mod_paths"] else os.path.join(run_folder, 'finetune_saved_model.pth')
 
     train_loader = get_dataloader(
         data_paths=dl_cfg["train_data_path"],
@@ -116,8 +124,9 @@ def run_training(config: LaunchPlanConfig, mode: str, run_folder: str):
     projector = build_projector(config)
     model = siamese.SiameseModel(encoder, projector)
 
+    pt_path = config["mod_paths"]["pt_model_path"] if config["mod_paths"] else os.path.join(run_folder, 'pretrain_saved_model.pth')
     if mode == 'finetune':
-        model.load_state_dict(torch.load(config["model_paths"]["pt_model_path"], weights_only=True))
+        model.load_state_dict(torch.load(pt_path, weights_only=True))
         model.set_use_projection(False)
 
     loss = partial(getattr(loss_functions, loss_cfg["type"]), **loss_cfg["params"])
@@ -137,7 +146,7 @@ def run_training(config: LaunchPlanConfig, mode: str, run_folder: str):
         run_folder=run_folder,
         epochs=train_cfg["epochs"],
         early_stopping_patience=train_cfg["early_stopping_patience"],
-        model_save_path=path if path else os.path.join(run_folder, f'{mode}_saved_model.pth')
+        model_save_path=save_path
     )
 
     metrics = trainer.train()
