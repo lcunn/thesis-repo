@@ -1,8 +1,8 @@
-input: 'C:/Users/cunn2/OneDrive/DSML/Project/thesis-repo/sms/exp1/configs/inp/pr_32.yaml'
-pt_dl: 'C:/Users/cunn2/OneDrive/DSML/Project/thesis-repo/sms/exp1/configs/dl/nonseq_standard.yaml'
-ft_dl: 'C:/Users/cunn2/OneDrive/DSML/Project/thesis-repo/sms/exp1/configs/dl/nonseq_standard.yaml'
-encoder: 'C:/Users/cunn2/OneDrive/DSML/Project/thesis-repo/sms/exp1/configs/enc/conv_pr.yaml'
-projector: 'C:/Users/cunn2/OneDrive/DSML/Project/thesis-repo/sms/exp1/configs/proj/proj.yaml'
+input: 'sms/exp1/configs/inp/pr_32.yaml'
+pt_dl: 'sms/exp1/configs/dl/nonseq_standard.yaml'
+ft_dl: 'sms/exp1/configs/dl/nonseq_standard.yaml'
+encoder: 'sms/exp1/configs/enc/conv_pr.yaml'
+projector: 'sms/exp1/configs/proj/proj.yaml'
 
 pt_loss:
   type: "vicreg_loss"

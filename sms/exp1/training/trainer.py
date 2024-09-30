@@ -107,17 +107,21 @@ class Trainer:
         metrics = {
             'epochs': [],
             'train_loss': [],
+            'time_taken': []  # New metric for time taken
         }
         for epoch in range(1, self.epochs + 1):
             start_time = time.time()
             train_loss = self.train_epoch()
             self.scheduler.step(train_loss)
             end_time = time.time()
+            time_taken = end_time - start_time
+            
             metrics['epochs'].append(epoch)
             metrics['train_loss'].append(train_loss)
+            metrics['time_taken'].append(time_taken)  # Record time taken
 
             self.logger.info(
-                f'Epoch {epoch}/{self.epochs} | Train Loss: {train_loss:.4f} | Time: {end_time - start_time:.2f}s'
+                f'Epoch {epoch}/{self.epochs} | Train Loss: {train_loss:.4f} | Time: {time_taken:.2f}s'
             )
 
             # Log metrics to wandb
@@ -125,8 +129,9 @@ class Trainer:
             #     wandb.log({
             #         'epoch': epoch,
             #         'train_loss': train_loss,
-            #         'val_loss': val_loss
+            #         'time_taken': time_taken  # Log time taken to wandb
             #     })
+            
             # Model saving logic (if needed)
             if train_loss < self.best_loss:
                 self.best_loss = train_loss

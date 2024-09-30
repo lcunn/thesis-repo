@@ -1,4 +1,4 @@
-from typing import Dict, Optional
+from typing import Dict, Optional, Union
 from pathlib import Path
 import yaml
 from pydantic import BaseModel
@@ -10,6 +10,9 @@ class InputConfig(BaseModel):
     piano_roll: bool = False
     steps_per_bar: int = 32
     rest_pitch: int = -1
+    pad_sequence: bool = False,
+    pad_val: int = -1000,
+    goal_seq_len: int = 12
 
 class DataLoaderConfig(BaseModel):
     batch_size: int
@@ -41,7 +44,7 @@ class SchedulerConfig(BaseModel):
     params: Dict
 
 class DimensionsConfig(BaseModel):
-    input_shape: tuple
+    input_shape: Union[tuple, int]
     d_latent: int
     d_projected: int
 

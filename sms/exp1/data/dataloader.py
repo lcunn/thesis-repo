@@ -71,7 +71,7 @@ class OneBarChunkDataset(Dataset):
         distance = 0
         while distance < threshold:
             new_idx = self.new_sample(idx)
-            negative = self.formatter(self.loaded_data[new_idx])
+            negative = formatter(self.loaded_data[new_idx])
             distance = np.linalg.norm(anchor - negative, ord=1)
         return new_idx
 
@@ -97,30 +97,30 @@ class OneBarChunkDataset(Dataset):
         else:
             return self.formatter(chunk).copy(), self.formatter(augmented_chunk).copy()
 
-def sequence_collate_fn(batch):
-    # Separate anchors and positives
-    anchors = [item['anchor'] for item in batch]
-    positives = [item['positive'] for item in batch]
+# def sequence_collate_fn(batch):
+#     # Separate anchors and positives
+#     anchors = [item['anchor'] for item in batch]
+#     positives = [item['positive'] for item in batch]
     
-    # Pad sequences
-    anchors_padded = pad_sequence(anchors, batch_first=True, padding_value=0)
-    positives_padded = pad_sequence(positives, batch_first=True, padding_value=0)
+#     # Pad sequences
+#     anchors_padded = pad_sequence(anchors, batch_first=True, padding_value=0)
+#     positives_padded = pad_sequence(positives, batch_first=True, padding_value=0)
     
-    # Create masks
-    anchor_lengths = torch.LongTensor([len(x) for x in anchors])
-    positive_lengths = torch.LongTensor([len(x) for x in positives])
+#     # Create masks
+#     anchor_lengths = torch.LongTensor([len(x) for x in anchors])
+#     positive_lengths = torch.LongTensor([len(x) for x in positives])
     
-    anchor_mask = (torch.arange(anchors_padded.size(1))[None, :] < anchor_lengths[:, None]).float()
-    positive_mask = (torch.arange(positives_padded.size(1))[None, :] < positive_lengths[:, None]).float()
+#     anchor_mask = (torch.arange(anchors_padded.size(1))[None, :] < anchor_lengths[:, None]).float()
+#     positive_mask = (torch.arange(positives_padded.size(1))[None, :] < positive_lengths[:, None]).float()
     
-    return {
-        'anchors': anchors_padded,
-        'positives': positives_padded,
-        'anchor_mask': anchor_mask,
-        'positive_mask': positive_mask,
-        'anchor_lengths': anchor_lengths,
-        'positive_lengths': positive_lengths
-    }
+#     return {
+#         'anchors': anchors_padded,
+#         'positives': positives_padded,
+#         'anchor_mask': anchor_mask,
+#         'positive_mask': positive_mask,
+#         'anchor_lengths': anchor_lengths,
+#         'positive_lengths': positive_lengths
+#     }
 
 def produce_train_test_data(data_paths: List[str], train_dest: str, val_dest: str, split_ratio: float = 0.8) -> None:
     """

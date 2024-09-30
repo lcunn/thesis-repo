@@ -203,6 +203,10 @@ class TokenAndPositionalEmbeddingLayer(nn.Module):
         return torch.tensor(pos_encoding, dtype=torch.float32)
 
     def forward(self, x):
+        if x.dim() == 2:
+            # If input is 2D (batch_size, seq_len), add a dimension
+            x = x.unsqueeze(-1)
+        
         x = torch.permute(x, (0, 2, 1))
         x = self.token_emb(x)
         x *= torch.sqrt(torch.tensor(self.emb_dim, dtype=torch.float32))
@@ -213,6 +217,19 @@ class BertEncoder(nn.Module):
     def __init__(self, config, input_shape=2, d_latent=64, pad_value=-1000):
         """
         BERT encoder for sequential input.
+
+        Args:
+            config (dict): Configuration dictionary with the following keys:
+                - d_model (int): The dimension of the model's hidden states. Default is 128.
+                - n_layers (int): The number of transformer encoder layers. Default is 4.
+                - max_seq_len (int): The maximum sequence length. Default is 50.
+                - n_heads (int): The number of attention heads in each layer. Default is 8.
+                - d_ff (int): The dimension of the feedforward network model. Default is d_model * 4.
+                - dropout_rate (float): The dropout rate. Default is 0.1.
+
+            input_shape (int): The dimension of each input token. Default is 2.
+            d_latent (int): The dimension of the output latent representation. Default is 64.
+            pad_value (float): The value used for padding. Default is -1000.
         """
         super(BertEncoder, self).__init__()
         self.d_input = input_shape
@@ -222,7 +239,7 @@ class BertEncoder(nn.Module):
         self.pad_value = pad_value  # Added pad_value parameter
 
         self.emb = TokenAndPositionalEmbeddingLayer(
-            input_dim=self.d_input, emb_dim=self.d_model, max_len=config.get("max_seq_len", 512)
+            input_dim=self.d_input, emb_dim=self.d_model, max_len=config.get("max_seq_len", 50)
         )
 
         encoder_layer = nn.TransformerEncoderLayer(
@@ -246,6 +263,9 @@ class BertEncoder(nn.Module):
         batch_key_padding_mask = batch_key_padding_mask.to(batch.device)
         
         batch_emb = self.emb(batch)             # (batch_size, padded_seq_length, d_model)
+
+        if not bool(torch.sum(batch_key_padding_mask)):
+            batch_key_padding_mask = None # prevents next line breaking
         batch_emb = self.transformer_encoder(
             batch_emb, src_key_padding_mask=batch_key_padding_mask  # Correct parameter name
         )                                       # (batch_size, padded_seq_length, d_model)

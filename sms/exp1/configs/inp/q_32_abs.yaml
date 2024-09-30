@@ -5,4 +5,7 @@ format:
   piano_roll: false
   steps_per_bar: 32
   rest_pitch: -1
+  pad_sequence: bool = False,
+  pad_val: int = -1000,
+  goal_seq_len: int = 12
 input_size: [32]
