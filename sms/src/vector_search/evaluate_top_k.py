@@ -1,6 +1,7 @@
 # produce vector embeddings
 from uuid import uuid4
 import torch
+import time
 import logging
 import numpy as np
 from typing import Callable, Optional, List, Dict, Any
@@ -105,7 +106,8 @@ def evaluate_top_k(
         embedding_dict: Dict[str, Dict[str, np.ndarray]],
         augmented_embedding_dict: Dict[str, Dict[str, np.ndarray]], 
         k_list: List[int], 
-        index: CustomFAISSIndex
+        index: CustomFAISSIndex,
+        time_queries: bool = False
     ) -> Dict[str, Dict[str, Dict[str, List[float]]]]:
     """
     index is a CustomFAISSIndex object which has been initialized with the embeddings_dict.
@@ -122,11 +124,14 @@ def evaluate_top_k(
         augmented_embedding_dict: dictionary keyed by a subset of the ids in embeddings_dict, containing dictionaries of augmented data
         k_list: list of k values to evaluate
         index: CustomFAISSIndex object which has been initialized with the embeddings_dict
-
+        time_queries: whether to time the queries
     Returns:
         results: dictionary of precision and recall for each augmentation and k in k_list
     """
     results = {aug_type: {k: {'precision': [], 'recall': []} for k in k_list} for aug_type in augmented_embedding_dict[list(augmented_embedding_dict.keys())[0]].keys()}
+    
+    if time_queries:
+        query_times = []
     
     for anchor_id, augmentations in augmented_embedding_dict.items():
         anchor_embedding = embedding_dict[anchor_id]
@@ -140,7 +145,13 @@ def evaluate_top_k(
             index.add_with_id(aug_id, augmented_data)
             
             # perform search
-            search_results = index.search(anchor_embedding, max(k_list))
+            if time_queries:
+                start_time = time.time()
+                search_results = index.search(anchor_embedding, max(k_list))
+                end_time = time.time()
+                query_times.append(end_time - start_time)
+            else:
+                search_results = index.search(anchor_embedding, max(k_list))
             
             # calculate precision and recall for each k
             for k in k_list:
@@ -164,5 +175,13 @@ def evaluate_top_k(
         for k in k_list:
             results[aug_type][k]['avg_precision'] = np.mean(results[aug_type][k]['precision'])
             results[aug_type][k]['avg_recall'] = np.mean(results[aug_type][k]['recall'])
+    
+    if time_queries:
+        results['query_times'] = {
+            'average': np.mean(query_times),
+            'minimum': np.min(query_times),
+            'maximum': np.max(query_times),
+            'median': np.median(query_times)
+        }
     
     return results

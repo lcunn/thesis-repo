@@ -1,4 +1,4 @@
-name: sms
+name: vm-sms
 channels:
   - pytorch
   - nvidia
@@ -7,16 +7,26 @@ channels:
 dependencies:
   - python=3.11
   - pytorch=2.4.1
-  - pytorch-cuda=11.8
-  - torchaudio
   - torchvision
+  - torchaudio
   - cudatoolkit=11.8
+  - faiss-gpu
   - numpy
   - matplotlib
+  - pillow
+  - scipy
+  - pyyaml
+  - requests
+  - tqdm
+  - pandas
+  - scikit-learn
+  - jupyterlab
   - pip
   - pip:
     - wandb
     - langchain
-    - faiss-gpu
+    - langchain-community
     - pydantic
-    - httpx
+    - partitura
+    - lxml
+    - xmlschema
