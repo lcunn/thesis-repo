@@ -40,6 +40,7 @@ class Trainer:
         self.early_stopping_patience = early_stopping_patience
         self.run_folder = run_folder
         self.model_save_path = model_save_path
+        self.current_model_path = os.path.join(self.run_folder, f'{self.mode}_saved_model_last.pt')
         self.mode = mode
 
         if self.mode not in ['pretrain', 'finetune']:
@@ -132,7 +133,15 @@ class Trainer:
             #         'time_taken': time_taken  # Log time taken to wandb
             #     })
             
-            # Model saving logic (if needed)
+            # Save the current model after each epoch
+        
+            if self.mode == 'pretrain':
+                torch.save(self.model.state_dict(), self.current_model_path)
+            else:
+                torch.save(self.model.get_encoder().state_dict(), self.current_model_path)
+            self.logger.info(f'Saved current model for epoch {epoch}.')
+        
+            # Save the best model
             if train_loss < self.best_loss:
                 self.best_loss = train_loss
                 if self.mode == 'pretrain':
