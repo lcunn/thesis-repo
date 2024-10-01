@@ -1,0 +1,92 @@
+input: 
+  normalize_octave: false
+  make_relative_pitch: true
+  quantize: false
+  piano_roll: false
+  steps_per_bar: 32
+  rest_pitch: -1
+  pad_sequence: true
+  pad_val: -1000
+  goal_seq_len: 38 # max in train was 36
+
+pt_dl: 
+  batch_size: 64
+  num_workers: 8
+  train_data_path: data/exp1/train_data.pt
+  val_data_path: data/exp1/val_data.pt
+  use_transposition: True
+  neg_enhance: False
+  use_sequence_collate_fn: False
+  shuffle: True
+
+ft_dl: 
+  batch_size: 64
+  num_workers: 8
+  train_data_path: data/exp1/train_data.pt
+  val_data_path: data/exp1/val_data.pt
+  use_transposition: True
+  neg_enhance: True
+  use_sequence_collate_fn: False
+  shuffle: True
+
+encoder:
+  type: "BertEncoder"
+  params:
+    config:
+      d_model: 128
+      n_layers: 4
+      n_heads: 8
+      d_ff: 512
+      d_expander: 256
+      dropout_rate: 0.1
+      max_seq_len: 38
+
+projector: 'sms/exp1/configs/proj/proj.yaml'
+
+pt_loss:
+  type: "vicreg_loss"
+  params:
+    # from motif paper
+    weight_inv: 25
+    weight_var: 25
+    weight_cov: 1
+
+ft_loss:
+  type: "triplet_loss"
+  params:
+    margin: 1.0
+
+dims:
+  input_shape: 2
+  d_latent: 128
+  d_projected: 64
+
+pt_optimizer: 
+  type: "Adam"
+  params:
+    lr: 0.001
+
+ft_optimizer: 
+  type: "Adam"
+  params:
+    lr: 0.001
+
+pt_scheduler: 
+  type: "StepLR"
+  params:
+    step_size: 10
+    gamma: 0.1
+
+ft_scheduler: 
+  type: "StepLR"
+  params:
+    step_size: 10
+    gamma: 0.1
+
+pt_training:
+  epochs: 200
+  early_stopping_patience: 200
+
+ft_training:
+  epochs: 200
+  early_stopping_patience: 200
