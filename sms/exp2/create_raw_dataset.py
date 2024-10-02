@@ -90,16 +90,36 @@ def augment_all_note_arrays(
     song_names = list(input_chunks.keys())
     augmented_count = 0
 
-    while augmented_count < total_songs:
-        song_name = np.random.choice(song_names)
-        chunk = np.random.choice(input_chunks[song_name])
-        for _ in range(num_augmentations):
+    # while augmented_count < total_songs:
+    #     song_name = np.random.choice(song_names)
+    #     chunk = np.random.choice(input_chunks[song_name])
+    #     for _ in range(num_augmentations):
+    #         if augmented_count >= total_songs:
+    #             break
+    #         augmented_chunk = modifier.modify_note_array(chunk, **aug_dict)
+    #         aug_song_name = f"{song_name}_aug_{augmented_count}"
+    #         augmented_chunks[aug_song_name] = augmented_chunk
+    #         augmented_count += 1
+
+    for song_name, chunks in input_chunks.items():
+        if not isinstance(chunks, (list, np.ndarray)):
+            chunks = [chunks]  # Convert single chunk to list
+        
+        for i, chunk in enumerate(chunks):
+            for j in range(num_augmentations):
+                if augmented_count >= total_songs:
+                    break
+                
+                augmented_chunk = modifier(chunk, aug_dict)
+                aug_song_name = f"{song_name}_chunk{i}_aug{j}"
+                augmented_chunks[aug_song_name] = augmented_chunk
+                augmented_count += 1
+            
             if augmented_count >= total_songs:
                 break
-            augmented_chunk = modifier.modify_note_array(chunk, **aug_dict)
-            aug_song_name = f"{song_name}_aug_{augmented_count}"
-            augmented_chunks[aug_song_name] = augmented_chunk
-            augmented_count += 1
+        
+        if augmented_count >= total_songs:
+            break
 
     torch.save(augmented_chunks, output_file)
     logger.info(f"Saved {len(augmented_chunks)} augmented chunks to {output_file}")
@@ -110,8 +130,10 @@ def augment_all_note_arrays(
 
 if __name__ == "__main__":
     # Extract all chunks from MIDI files
-    extract_all_chunks_from_dirs([MAESTRO_PATH, MTC_PATH], 'data/exp2/all_chunks.pt')
+    if not os.path.exists('data/exp2/all_chunks.pt'):
+        extract_all_chunks_from_dirs([MAESTRO_PATH, MTC_PATH], 'data/exp2/all_chunks.pt')
 
     # Augment the extracted chunks
-    augment_all_note_arrays('data/exp2/all_chunks.pt', 'data/exp2/augmented_chunks.pt', num_augmentations=4, total_songs=10000)
+    if not os.path.exists('data/exp2/augmented_chunks.pt'):
+        augment_all_note_arrays('data/exp2/all_chunks.pt', 'data/exp2/augmented_chunks.pt', num_augmentations=4, total_songs=1_000_000)
 
