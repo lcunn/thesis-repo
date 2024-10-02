@@ -3,7 +3,7 @@ import torch
 import logging
 from typing import Dict
 
-from sms.src.synthetic_data.utils import midi_to_note_array
+from sms.src.synthetic_data.midi_to_note_arrays import midi_to_note_array
 from sms.src.log import configure_logging
 from sms.defaults import MAESTRO_PATH, MTC_PATH, MAESTRO_SEGMENTS_PATH, MTC_SEGMENTS_PATH
 

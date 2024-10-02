@@ -69,7 +69,7 @@ class NoteArrayModifier:
         self.generate_and_set_config(**augmentation_choices)
         self.modify_note_array()
         np_note_array =  self.get_modified_note_array().copy()
-        return torch.from_numpy(np_note_array)
+        return np_note_array
     
     def set_note_array(self, note_array: np.ndarray):
         if note_array.ndim != 2 or note_array.shape[1] != 2:
