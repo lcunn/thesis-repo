@@ -69,6 +69,15 @@ class CustomFAISSIndex:
                 results.append((id, self.id_to_data.get(id), distances[0][i]))
         return results
 
+    def radius_search(self, query_vector: np.ndarray, radius: float) -> List[Tuple[str, Any, float]]:
+        lims, distances, indices = self.index.range_search(np.array([query_vector], dtype=np.float32), radius)
+        results = []
+        for i, idx in enumerate(indices):
+            if idx != -1 and idx in self.index_to_id:
+                id = self.index_to_id[idx]
+                results.append((id, self.id_to_data.get(id), distances[i]))
+        return results
+
     def get_vector(self, id):
         if id not in self.id_to_index:
             raise ValueError(f"ID {id} not found in the index")
@@ -85,15 +94,6 @@ class CustomFAISSIndex:
             original_data = self.get_original_data(id)
             items.append((id, vector, original_data))
         return items
-    
-    def radius_search(self, query_vector: np.ndarray, radius: float) -> List[Tuple[str, Any, float]]:
-        distances, indices = self.index.range_search(np.array([query_vector], dtype=np.float32), radius)
-        results = []
-        for i, idx in enumerate(indices):
-            if idx != -1 and idx in self.index_to_id:
-                id = self.index_to_id[idx]
-                results.append((id, self.id_to_data.get(id), distances[i]))
-        return results
 
     @property
     def ntotal(self) -> int:
