@@ -38,7 +38,8 @@ encoder:
       n_heads: 8
       d_ff: 512
       dropout_rate: 0.1
-      max_seq_len: 32 # must be the same as the goal_seq_len if pad_sequence is True, or the the seq len
+      # THIS IS VERY WEIRD!! IT IS CONSIDERING THE ROW OF PIANO ROLL AS A DATA POINT RATHER THAN A COLUMN
+      max_seq_len: 128 # must be the same as the goal_seq_len if pad_sequence is True, or the the seq len
 
 projector: 'sms/exp1/configs/proj/proj.yaml'
 
@@ -56,7 +57,7 @@ ft_loss:
     margin: 1.0
 
 dims:
-  input_shape: [128, 32]
+  input_shape: 32
   d_latent: 128
   d_projected: 64
 
