@@ -1,6 +1,6 @@
 import faiss
 import numpy as np
-from typing import Dict, Any, List
+from typing import Dict, Any, List, Tuple
 
 class CustomFAISSIndex:
     def __init__(self, index_type: str, index_args: List[Any] = [], index_kwargs: Dict[str, Any] = {}):
@@ -51,13 +51,22 @@ class CustomFAISSIndex:
         if self.index.ntotal in self.index_to_id:
             del self.index_to_id[self.index.ntotal]
 
-    def search(self, query_vector, k,):
+    # def search(self, query_vector, k,):
+    #     distances, indices = self.index.search(np.array([query_vector], dtype=np.float32), k)
+    #     results = []
+    #     for idx in indices[0]:
+    #         if idx != -1 and idx in self.index_to_id:
+    #             id = self.index_to_id[idx]
+    #             results.append((id, self.id_to_data.get(id)))
+    #     return results
+    
+    def search(self, query_vector: np.ndarray, k: int) -> List[Tuple[str, Any, float]]:
         distances, indices = self.index.search(np.array([query_vector], dtype=np.float32), k)
         results = []
-        for idx in indices[0]:
+        for i, idx in enumerate(indices[0]):
             if idx != -1 and idx in self.index_to_id:
                 id = self.index_to_id[idx]
-                results.append((id, self.id_to_data.get(id)))
+                results.append((id, self.id_to_data.get(id), distances[0][i]))
         return results
 
     def get_vector(self, id):
@@ -76,6 +85,19 @@ class CustomFAISSIndex:
             original_data = self.get_original_data(id)
             items.append((id, vector, original_data))
         return items
+    
+    def radius_search(self, query_vector: np.ndarray, radius: float) -> List[Tuple[str, Any, float]]:
+        distances, indices = self.index.range_search(np.array([query_vector], dtype=np.float32), radius)
+        results = []
+        for i, idx in enumerate(indices):
+            if idx != -1 and idx in self.index_to_id:
+                id = self.index_to_id[idx]
+                results.append((id, self.id_to_data.get(id), distances[i]))
+        return results
+
+    @property
+    def ntotal(self) -> int:
+        return self.index.ntotal
 
     def __repr__(self):
         items = self.get_all_items(limit=3)  # Limit to 3 items
