@@ -3,6 +3,7 @@ import torch
 import logging
 from typing import Dict, List
 import numpy as np
+import sys
 
 from sms.src.synthetic_data.midi_to_note_arrays import midi_to_all_bars_efficient
 from sms.src.synthetic_data.note_arr_mod import NoteArrayModifier, NoteArrayModifierSettings
@@ -23,7 +24,7 @@ def extract_all_chunks_from_dirs(
         input_dirs (List[str]): List of input directory paths.
         output_file (str): Path to save the output file.
     """
-    all_chunks = []
+    all_chunks = {}
 
     for input_dir in input_dirs:
         file_paths = [os.path.join(input_dir, file) for file in os.listdir(input_dir) if file.endswith('.mid') or file.endswith('.midi')]
@@ -33,14 +34,18 @@ def extract_all_chunks_from_dirs(
         for i, path in enumerate(file_paths):
             try:
                 note_arrays = midi_to_all_bars_efficient(path)
-                all_chunks.extend(note_arrays)
+                all_chunks[os.path.basename(path)] = note_arrays
                 logger.info(f"Processed {i+1}/{num_files} files")
             except Exception as e:
                 logger.error(f"Error processing file {path}: {str(e)}")
                 continue
 
     torch.save(all_chunks, output_file)
-    logger.info(f"Saved {len(all_chunks)} chunks to {output_file}")
+    logger.info(f"Saved chunks from {len(all_chunks)} songs to {output_file}")
+
+    # Estimate RAM usage
+    ram_usage = sys.getsizeof(all_chunks) / (1024 * 1024)  # Convert to MB
+    logger.info(f"Estimated RAM usage: {ram_usage:.2f} MB")
 
 def augment_all_note_arrays(
         input_file: str, 
@@ -80,17 +85,28 @@ def augment_all_note_arrays(
     modifier = NoteArrayModifier(settings=settings)
 
     input_chunks = torch.load(input_file)
-    augmented_chunks = []
+    augmented_chunks = {}
     
-    while len(augmented_chunks) < total_songs:
-        chunk = np.random.choice(input_chunks)
+    song_names = list(input_chunks.keys())
+    augmented_count = 0
+
+    while augmented_count < total_songs:
+        song_name = np.random.choice(song_names)
+        chunk = np.random.choice(input_chunks[song_name])
         for _ in range(num_augmentations):
+            if augmented_count >= total_songs:
+                break
             augmented_chunk = modifier.modify_note_array(chunk, **aug_dict)
-            augmented_chunks.append(augmented_chunk)
+            aug_song_name = f"{song_name}_aug_{augmented_count}"
+            augmented_chunks[aug_song_name] = augmented_chunk
+            augmented_count += 1
 
     torch.save(augmented_chunks, output_file)
     logger.info(f"Saved {len(augmented_chunks)} augmented chunks to {output_file}")
 
+    # Estimate RAM usage
+    ram_usage = sys.getsizeof(augmented_chunks) / (1024 * 1024)  # Convert to MB
+    logger.info(f"Estimated RAM usage: {ram_usage:.2f} MB")
 
 if __name__ == "__main__":
     # Extract all chunks from MIDI files
