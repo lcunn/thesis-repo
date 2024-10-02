@@ -40,8 +40,8 @@ class Trainer:
         self.early_stopping_patience = early_stopping_patience
         self.run_folder = run_folder
         self.model_save_path = model_save_path
-        self.current_model_path = os.path.join(self.run_folder, f'{self.mode}_saved_model_last.pt')
         self.mode = mode
+        self.current_model_path = os.path.join(self.run_folder, f'{self.mode}_saved_model_last.pt')
 
         if self.mode not in ['pretrain', 'finetune']:
             raise ValueError("Mode must be either 'pretrain' or 'finetune'")

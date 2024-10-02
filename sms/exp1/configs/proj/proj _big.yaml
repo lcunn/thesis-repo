@@ -1,0 +1,6 @@
+params:
+  layers:
+    - out_features: 128
+    - out_featurers: 256
+    - out_features: 128
+    - out_features: 64

@@ -6,7 +6,6 @@ from typing import Optional, List, Tuple, Dict
 from sms.src.log import configure_logging
 
 logger = logging.getLogger(__name__)
-configure_logging(console_level=logging.DEBUG)
 
 @dataclass
 class NoteArrayModifierConfig:

@@ -1,11 +1,11 @@
 input: 
   normalize_octave: false
-  make_relative_pitch: false
-  quantize: false
+  make_relative_pitch: true
+  quantize: true
   piano_roll: false
   steps_per_bar: 32
   rest_pitch: -1
-  pad_sequence: true
+  pad_sequence: false
   pad_val: -1000
   goal_seq_len: 38 # max in train was 36
 
@@ -34,12 +34,11 @@ encoder:
   params:
     config:
       d_model: 128
-      n_layers: 4
+      n_layers: 6
       n_heads: 8
       d_ff: 512
-      d_expander: 256
       dropout_rate: 0.1
-      max_seq_len: 38
+      max_seq_len: 32
 
 projector: 'sms/exp1/configs/proj/proj.yaml'
 
@@ -57,9 +56,9 @@ ft_loss:
     margin: 1.0
 
 dims:
-  input_shape: 2
-  d_latent: 128
-  d_projected: 64
+  input_shape: 1
+  d_latent: 256
+  d_projected: 128
 
 pt_optimizer: 
   type: "Adam"
