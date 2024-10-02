@@ -83,9 +83,9 @@ ft_scheduler:
     gamma: 0.1
 
 pt_training:
-  epochs: 1
+  epochs: 200
   early_stopping_patience: 200
 
 ft_training:
-  epochs: 1
+  epochs: 200
   early_stopping_patience: 200
