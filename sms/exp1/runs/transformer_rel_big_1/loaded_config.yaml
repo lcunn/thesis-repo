@@ -1,0 +1,85 @@
+dims:
+  d_latent: 256
+  d_projected: 128
+  input_shape: 2
+encoder:
+  params:
+    config:
+      d_expander: 256
+      d_ff: 512
+      d_model: 128
+      dropout_rate: 0.1
+      max_seq_len: 38
+      n_heads: 8
+      n_layers: 6
+  type: BertEncoder
+ft_dl:
+  batch_size: 64
+  neg_enhance: true
+  num_workers: 8
+  shuffle: true
+  train_data_path: data/exp1/train_data.pt
+  use_sequence_collate_fn: false
+  use_transposition: true
+  val_data_path: data/exp1/val_data.pt
+ft_loss:
+  params:
+    margin: 1.0
+  type: triplet_loss
+ft_optimizer:
+  params:
+    lr: 0.001
+  type: Adam
+ft_scheduler:
+  params:
+    gamma: 0.1
+    step_size: 10
+  type: StepLR
+ft_training:
+  early_stopping_patience: 200
+  epochs: 200
+input:
+  goal_seq_len: 38
+  make_relative_pitch: true
+  normalize_octave: false
+  pad_sequence: true
+  pad_val: -1000
+  piano_roll: false
+  quantize: false
+  rest_pitch: -1
+  steps_per_bar: 32
+mod_paths: null
+projector:
+  params:
+    layers:
+    - out_features: 128
+    - out_features: 256
+    - out_features: 128
+    - out_features: 64
+pt_dl:
+  batch_size: 64
+  neg_enhance: false
+  num_workers: 8
+  shuffle: true
+  train_data_path: data/exp1/train_data.pt
+  use_sequence_collate_fn: false
+  use_transposition: true
+  val_data_path: data/exp1/val_data.pt
+pt_loss:
+  params:
+    weight_cov: 1
+    weight_inv: 25
+    weight_var: 25
+  type: vicreg_loss
+pt_optimizer:
+  params:
+    lr: 0.001
+  type: Adam
+pt_scheduler:
+  params:
+    gamma: 0.1
+    step_size: 10
+  type: StepLR
+pt_training:
+  early_stopping_patience: 200
+  epochs: 200

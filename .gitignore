@@ -8,6 +8,9 @@ data
 !data/exp3
 !data/exp3/**
 
+!data/synthetic_dataset
+!data/synthetic_dataset/**
+
 sms/src/private_defaults.py
 !**/__pycache__
 zex
