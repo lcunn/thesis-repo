@@ -10,7 +10,7 @@ from sms.src.log import configure_logging
 from sms.defaults import MAESTRO_PATH, MTC_PATH, MAESTRO_SEGMENTS_PATH, MTC_SEGMENTS_PATH
 
 logger = logging.getLogger(__name__)
-configure_logging()
+configure_logging(console_level=logging.INFO)
 
 def extract_all_chunks_from_dirs(
         input_dirs: List[str], 
@@ -87,10 +87,6 @@ def augment_all_note_arrays(
         for _ in range(num_augmentations):
             augmented_chunk = modifier.modify_note_array(chunk, **aug_dict)
             augmented_chunks.append(augmented_chunk)
-            if len(augmented_chunks) >= total_songs:
-                break
-        if len(augmented_chunks) >= total_songs:
-            break
 
     torch.save(augmented_chunks, output_file)
     logger.info(f"Saved {len(augmented_chunks)} augmented chunks to {output_file}")
@@ -101,5 +97,5 @@ if __name__ == "__main__":
     extract_all_chunks_from_dirs([MAESTRO_PATH, MTC_PATH], 'data/exp2/all_chunks.pt')
 
     # Augment the extracted chunks
-    augment_all_note_arrays('data/exp2/all_chunks.pt', 'data/exp2/augmented_chunks.pt', num_augmentations=5, total_songs=10000)
+    augment_all_note_arrays('data/exp2/all_chunks.pt', 'data/exp2/augmented_chunks.pt', num_augmentations=4, total_songs=10000)
 
