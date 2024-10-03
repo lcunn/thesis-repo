@@ -69,7 +69,7 @@ def eval_exp1_runs():
     data_dict = torch.load(r"data/exp1/val_data_dict.pt")
     logger.info(f"Loaded data_dict with {len(data_dict)} entries.")
 
-    runs_dir = Path("sms/exp1/runs")
+    runs_dir = Path("plagdet/sms/exp1/runs")
     
     for run_folder in runs_dir.iterdir():
         if not run_folder.is_dir():
@@ -91,7 +91,8 @@ def eval_exp1_runs():
             model_path = run_folder / model_file
             if model_path.exists():
                 eval_file_path = eval_folder / eval_file
-                embeddings_file = model_path.with_name(f"{model_path.stem}_embeddings.pt")
+                embeddings_file = run_folder / "embeddings" / f"{run_folder.name}_{model_file.replace('.pth', '_embeddings.pt')}"
+                logger.info(f"Checking for embeddings file: {embeddings_file}")
                 if not eval_file_path.exists() and embeddings_file.exists():
                     model_configs.append(ModelEvalConfig(
                         name=f"{run_folder.name}_{model_file.split('.')[0]}",
@@ -110,7 +111,8 @@ def eval_exp1_runs():
             model_path = run_folder / model_file
             if model_path.exists():
                 eval_file_path = eval_folder / eval_file
-                embeddings_file = model_path.with_name(f"{model_path.stem}_embeddings.pt")
+                embeddings_file = run_folder / "embeddings" / f"{run_folder.name}_{model_file.replace('.pth', '_embeddings.pt')}"
+                logger.info(f"Checking for embeddings file: {embeddings_file}")
                 if not eval_file_path.exists() and embeddings_file.exists():
                     model_configs.append(ModelEvalConfig(
                         name=f"{run_folder.name}_{model_file.split('.')[0]}",
@@ -122,6 +124,7 @@ def eval_exp1_runs():
         
         # Run evaluation for the models that haven't been evaluated yet
         if model_configs:
+            logger.info(f"Running evaluations for {run_folder.name}")
             results = run_evaluation(data_dict, 1000, model_configs)
             
             # Save results
@@ -131,6 +134,9 @@ def eval_exp1_runs():
                 else:
                     eval_file = "finetune_eval.pt" if "last" not in config.name else "finetune_eval_last.pt"
                 torch.save(results[config.name], eval_folder / eval_file)
+                logger.info(f"Saved evaluation results for {config.name} to {eval_folder / eval_file}")
+        else:
+            logger.info(f"No models to evaluate for {run_folder.name}")
         
         logger.info(f"Completed evaluation for {run_folder.name}")
 
