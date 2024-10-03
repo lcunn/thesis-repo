@@ -15,6 +15,9 @@ from sms.src.vector_search.evaluate_top_k import create_augmented_data, build_mo
 from pydantic import BaseModel
 from sms.exp1.config_classes import LaunchPlanConfig, load_config_from_launchplan
 
+np.random.seed(42)
+torch.manual_seed(42)
+
 logger = logging.getLogger(__name__)
 configure_logging()
 
@@ -39,15 +42,17 @@ def run_evaluation(
     for eval_config in model_configs:
         logger.info(f"Running evaluation for {eval_config.name}")
 
-        dumped_lp_config = eval_config.lp_config.model_dump()
-        bm_cfg = {'full_model_path': eval_config.mod_path} if eval_config.path_type == 'full' else {'encoder_path': eval_config.mod_path}
+        # Load pre-computed embeddings
+        embeddings_file = eval_config.mod_path.replace('.pth', '_embeddings.pt')
+        embeddings_dict = torch.load(embeddings_file)
+        logger.info(f"Loaded embedding dictionary for {len(embeddings_dict)} keys.")
 
-        model = build_model(dumped_lp_config, **bm_cfg, use_full_model=eval_config.use_full_model)
-        embeddings_dict = create_embedding_dict(data_dict, dumped_lp_config, model)
-        logger.info(f"Created embedding dictionary for {len(embeddings_dict)} keys.")
         # create augmented embeddings structure
         augmented_embeddings_dict = {}
         for data_id, aug_dict in augmented_data.items():
+            dumped_lp_config = eval_config.lp_config.model_dump()
+            bm_cfg = {'full_model_path': eval_config.mod_path} if eval_config.path_type == 'full' else {'encoder_path': eval_config.mod_path}
+            model = build_model(dumped_lp_config, **bm_cfg, use_full_model=eval_config.use_full_model)
             augmented_embeddings_dict[data_id] = create_embedding_dict(aug_dict, dumped_lp_config, model)
         logger.info(f"Created augmented embeddings.")
 
@@ -60,9 +65,9 @@ def run_evaluation(
     return results
 
 def eval_exp1_runs():
-    data = torch.load(r"data/exp1/val_data.pt")
-    data_ids = [str(uuid4()) for _ in range(len(data))]
-    data_dict = dict(zip(data_ids, data))
+    # Load the pre-saved data_dict
+    data_dict = torch.load(r"data/exp1/val_data_dict.pt")
+    logger.info(f"Loaded data_dict with {len(data_dict)} entries.")
 
     runs_dir = Path("sms/exp1/runs")
     
@@ -83,13 +88,15 @@ def eval_exp1_runs():
             ("pretrain_saved_model_last.pth", "pretrain_eval_last.pt")
         ]
         for model_file, eval_file in pretrain_models:
-            if (run_folder / model_file).exists():
+            model_path = run_folder / model_file
+            if model_path.exists():
                 eval_file_path = eval_folder / eval_file
-                if not eval_file_path.exists():
+                embeddings_file = model_path.with_name(f"{model_path.stem}_embeddings.pt")
+                if not eval_file_path.exists() and embeddings_file.exists():
                     model_configs.append(ModelEvalConfig(
                         name=f"{run_folder.name}_{model_file.split('.')[0]}",
                         lp_config=lp_config,
-                        mod_path=str(run_folder / model_file),
+                        mod_path=str(model_path),
                         path_type='full',
                         use_full_model=True
                     ))
@@ -100,13 +107,15 @@ def eval_exp1_runs():
             ("finetune_saved_model_last.pth", "finetune_eval_last.pt")
         ]
         for model_file, eval_file in finetune_models:
-            if (run_folder / model_file).exists():
+            model_path = run_folder / model_file
+            if model_path.exists():
                 eval_file_path = eval_folder / eval_file
-                if not eval_file_path.exists():
+                embeddings_file = model_path.with_name(f"{model_path.stem}_embeddings.pt")
+                if not eval_file_path.exists() and embeddings_file.exists():
                     model_configs.append(ModelEvalConfig(
                         name=f"{run_folder.name}_{model_file.split('.')[0]}",
                         lp_config=lp_config,
-                        mod_path=str(run_folder / model_file),
+                        mod_path=str(model_path),
                         path_type='encoder',
                         use_full_model=False
                     ))
