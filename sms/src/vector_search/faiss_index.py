@@ -1,6 +1,6 @@
 import faiss
 import numpy as np
-from typing import Dict, Any, List, Tuple
+from typing import Dict, Any, List, Tuple, Optional
 
 class CustomFAISSIndex:
     def __init__(self, index_type: str, index_args: List[Any] = [], index_kwargs: Dict[str, Any] = {}):
@@ -8,6 +8,20 @@ class CustomFAISSIndex:
         self.id_to_index = {}  # Maps custom IDs to FAISS indices
         self.index_to_id = {}  # Maps FAISS indices to custom IDs
         self.id_to_data = {}   # Maps custom IDs to original data
+        self.supports_range_search = self._check_range_search_support()
+
+    def _check_range_search_support(self) -> bool:
+        if not hasattr(self.index, 'range_search'):
+            return False
+        try:
+            # Try a dummy range search
+            dummy_vector = np.zeros((1, self.index.d), dtype=np.float32)
+            self.index.range_search(dummy_vector, 1.0)
+            return True
+        except RuntimeError as e:
+            if "range search not implemented" in str(e):
+                return False
+            raise  # Re-raise if it's a different error
 
     def add_with_id(self, id, vector, original_data=None):
         if id in self.id_to_index:
@@ -32,13 +46,6 @@ class CustomFAISSIndex:
         del self.id_to_index[id]
         if id in self.id_to_data:
             del self.id_to_data[id]
-        
-        # # Update remaining indices
-        # for i in range(index_to_remove, self.index.ntotal):
-        #     old_id = self.index_to_id[i + 1]
-        #     self.index_to_id[i] = old_id
-        #     self.id_to_index[old_id] = i
-        # del self.index_to_id[self.index.ntotal]
 
         # Update remaining indices
         for i in range(index_to_remove, self.index.ntotal):
@@ -68,8 +75,15 @@ class CustomFAISSIndex:
                 id = self.index_to_id[idx]
                 results.append((id, self.id_to_data.get(id), distances[0][i]))
         return results
+    
+    def radius_search(self, query_vector: np.ndarray, target_vector: np.ndarray, target_id: str) -> List[Tuple[str, Any, float]]:
+        if self.supports_range_search:
+            radius = np.linalg.norm(query_vector - target_vector)
+            return self.exact_radius_search(query_vector, radius)
+        else:
+            return self.approximate_radius_search(query_vector, target_id, max_k = self.index.ntotal)
 
-    def radius_search(self, query_vector: np.ndarray, radius: float) -> List[Tuple[str, Any, float]]:
+    def exact_radius_search(self, query_vector: np.ndarray, radius: float) -> List[Tuple[str, Any, float]]:
         lims, distances, indices = self.index.range_search(np.array([query_vector], dtype=np.float32), radius)
         results = []
         for i, idx in enumerate(indices):
@@ -77,6 +91,28 @@ class CustomFAISSIndex:
                 id = self.index_to_id[idx]
                 results.append((id, self.id_to_data.get(id), distances[i]))
         return results
+    
+    def approximate_radius_search(self, query_vector: np.ndarray, target_id: str, max_k: Optional[int] = None) -> List[Tuple[str, Any, float]]:
+        """
+        Approximates range search using binary search to find the smallest k where target_id is found.
+        """
+        if max_k is None:
+            max_k = self.index.ntotal
+        left, right = 1, max_k
+        last_results = None
+
+        while left <= right:
+            k = (left + right) // 2
+            results = self.search(query_vector, k)
+            found_ids = set(result[0] for result in results)
+            
+            if target_id in found_ids:
+                right = k - 1  # Try to find a smaller k
+                last_results = results
+            else:
+                left = k + 1  # Need to search with a larger k
+
+        return last_results if last_results else self.search(query_vector, max_k)
 
     def get_vector(self, id):
         if id not in self.id_to_index:
@@ -94,10 +130,10 @@ class CustomFAISSIndex:
             original_data = self.get_original_data(id)
             items.append((id, vector, original_data))
         return items
-
-    @property
-    def ntotal(self) -> int:
-        return self.index.ntotal
+    
+    def train(self, embeddings: np.ndarray):
+        """Allows training for IndexIVFFLat."""
+        self.index.train(embeddings)
 
     def __repr__(self):
         items = self.get_all_items(limit=3)  # Limit to 3 items

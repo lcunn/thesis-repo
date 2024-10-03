@@ -90,6 +90,13 @@ def embeddings_to_faiss_index(
     ) -> CustomFAISSIndex:
 
     embedding_index = CustomFAISSIndex(index_type=index_type, index_args=index_args, index_kwargs=index_kwargs)
+    embeddings = list(embeddings_dict.values())
+    embeddings_array = np.vstack(embeddings)
+
+    # train the index if it's a type that requires training
+    if index_type in ["IndexIVFFlat", "IndexPQ", "IndexIVFPQ"]:
+        embedding_index.train(embeddings_array)
+
     for key, value in embeddings_dict.items():
         embedding_index.add_with_id(key, value)
     return embedding_index
@@ -206,8 +213,8 @@ def evaluate_search(
         results: dictionary of metrics for each augmentation type and search method
     """
     results = {aug_type: {
-        'top_k': {k: {'precision': [], 'recall': []} for k in k_list},
-        'radius': {'recall': [], 'percentage_in_radius': []}
+        'top_k': {k: {'recall': []} for k in k_list},
+        'radius': {'percentage_in_radius': []}
     } for aug_type in augmented_embedding_dict[list(augmented_embedding_dict.keys())[0]].keys()}
     
     if time_queries:
@@ -219,10 +226,10 @@ def evaluate_search(
         # remove anchor from index
         index.remove(anchor_id)
         
-        for aug_type, augmented_data in augmentations.items():
+        for aug_type, augmented_embedding in augmentations.items():
             # add augmented data to index
             aug_id = f"{anchor_id}_aug_{aug_type}"
-            index.add_with_id(aug_id, augmented_data)
+            index.add_with_id(aug_id, augmented_embedding)
             
             # Top-K search
             if time_queries:
@@ -234,26 +241,20 @@ def evaluate_search(
             
             for k in k_list:
                 top_k = top_k_results[:k]
-                true_positives = sum(1 for id, _, _ in top_k if id == aug_id)
-                precision = true_positives / k
-                recall = 1 if true_positives > 0 else 0
-                results[aug_type]['top_k'][k]['precision'].append(precision)
+                recall = 1 if aug_id in [id for id, _, _ in top_k] else 0
                 results[aug_type]['top_k'][k]['recall'].append(recall)
             
             # Radius search
-            radius = np.linalg.norm(anchor_embedding - augmented_data)
             if time_queries:
                 start_time = time.time()
-                radius_results = index.radius_search(anchor_embedding, radius)
+                radius_results = index.radius_search(anchor_embedding, augmented_embedding, aug_id)
                 query_times['radius'].append(time.time() - start_time)
             else:
-                radius_results = index.radius_search(anchor_embedding, radius)
+                radius_results = index.radius_search(anchor_embedding, augmented_embedding, aug_id)
             
             total_in_radius = len(radius_results)
-            recall = 1 if aug_id in [id for id, _, _ in radius_results] else 0
             percentage_in_radius = total_in_radius / index.ntotal
             
-            results[aug_type]['radius']['recall'].append(recall)
             results[aug_type]['radius']['percentage_in_radius'].append(percentage_in_radius)
             
             # remove augmented data from index
@@ -265,7 +266,6 @@ def evaluate_search(
     # Calculate average metrics
     for aug_type in results:
         for k in k_list:
-            results[aug_type]['top_k'][k]['avg_precision'] = np.mean(results[aug_type]['top_k'][k]['precision'])
             results[aug_type]['top_k'][k]['avg_recall'] = np.mean(results[aug_type]['top_k'][k]['recall'])
         results[aug_type]['radius']['avg_recall'] = np.mean(results[aug_type]['radius']['recall'])
         results[aug_type]['radius']['avg_percentage_in_radius'] = np.mean(results[aug_type]['radius']['percentage_in_radius'])
