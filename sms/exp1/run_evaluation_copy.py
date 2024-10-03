@@ -25,6 +25,7 @@ class ModelEvalConfig(BaseModel):
     name: str
     lp_config: LaunchPlanConfig
     mod_path: str
+    embeddings_path: str
     path_type: str    #'full' or 'encoder'
     use_full_model: bool
 
@@ -43,8 +44,8 @@ def run_evaluation(
         logger.info(f"Running evaluation for {eval_config.name}")
 
         # Load pre-computed embeddings
-        embeddings_file = eval_config.mod_path.replace('.pth', '_embeddings.pt')
-        embeddings_dict = torch.load(embeddings_file)
+        logger.info(f"Loading embeddings from: {eval_config.embeddings_path}")
+        embeddings_dict = torch.load(eval_config.embeddings_path)
         logger.info(f"Loaded embedding dictionary for {len(embeddings_dict)} keys.")
 
         # create augmented embeddings structure
@@ -69,11 +70,13 @@ def eval_exp1_runs():
     data_dict = torch.load(r"data/exp1/val_data_dict.pt")
     logger.info(f"Loaded data_dict with {len(data_dict)} entries.")
 
-    runs_dir = Path("plagdet/sms/exp1/runs")
+    runs_dir = Path("sms/exp1/runs")
     
     for run_folder in runs_dir.iterdir():
         if not run_folder.is_dir():
             continue
+        
+        logger.info(f"Processing run folder: {run_folder}")
         
         eval_folder = run_folder / "eval"
         eval_folder.mkdir(exist_ok=True)
@@ -82,57 +85,37 @@ def eval_exp1_runs():
         
         model_configs = []
         
-        # Pretrain models
-        pretrain_models = [
-            ("pretrain_saved_model.pth", "pretrain_eval.pt"),
-            ("pretrain_saved_model_last.pth", "pretrain_eval_last.pt")
+        model_prefixes = [
+            "pretrain_saved_model",
+            "pretrain_saved_model_last",
+            "finetune_saved_model",
+            "finetune_saved_model_last"
         ]
-        for model_file, eval_file in pretrain_models:
-            model_path = run_folder / model_file
-            if model_path.exists():
-                eval_file_path = eval_folder / eval_file
-                embeddings_file = run_folder / "embeddings" / f"{run_folder.name}_{model_file.replace('.pth', '_embeddings.pt')}"
+
+        for prefix in model_prefixes:
+            for model_file in run_folder.glob(f"{prefix}*.pth"):
+                embeddings_file = run_folder / "embeddings" / f"{run_folder.name}_{model_file.stem}_embeddings.pt"
+                eval_file = eval_folder / f"{prefix}_eval.pt"
+                
+                logger.info(f"Checking for model: {model_file}")
                 logger.info(f"Checking for embeddings file: {embeddings_file}")
-                if not eval_file_path.exists() and embeddings_file.exists():
+                
+                if model_file.exists() and embeddings_file.exists() and not eval_file.exists():
                     model_configs.append(ModelEvalConfig(
-                        name=f"{run_folder.name}_{model_file.split('.')[0]}",
+                        name=f"{run_folder.name}_{model_file.stem}",
                         lp_config=lp_config,
-                        mod_path=str(model_path),
-                        path_type='full',
-                        use_full_model=True
+                        mod_path=str(model_file),
+                        embeddings_path=str(embeddings_file),
+                        path_type='full' if prefix.startswith('pretrain') else 'encoder',
+                        use_full_model=prefix.startswith('pretrain')
                     ))
-        
-        # Finetune models
-        finetune_models = [
-            ("finetune_saved_model.pth", "finetune_eval.pt"),
-            ("finetune_saved_model_last.pth", "finetune_eval_last.pt")
-        ]
-        for model_file, eval_file in finetune_models:
-            model_path = run_folder / model_file
-            if model_path.exists():
-                eval_file_path = eval_folder / eval_file
-                embeddings_file = run_folder / "embeddings" / f"{run_folder.name}_{model_file.replace('.pth', '_embeddings.pt')}"
-                logger.info(f"Checking for embeddings file: {embeddings_file}")
-                if not eval_file_path.exists() and embeddings_file.exists():
-                    model_configs.append(ModelEvalConfig(
-                        name=f"{run_folder.name}_{model_file.split('.')[0]}",
-                        lp_config=lp_config,
-                        mod_path=str(model_path),
-                        path_type='encoder',
-                        use_full_model=False
-                    ))
-        
-        # Run evaluation for the models that haven't been evaluated yet
+
         if model_configs:
             logger.info(f"Running evaluations for {run_folder.name}")
             results = run_evaluation(data_dict, 1000, model_configs)
             
-            # Save results
             for config in model_configs:
-                if config.path_type == 'full':
-                    eval_file = "pretrain_eval.pt" if "last" not in config.name else "pretrain_eval_last.pt"
-                else:
-                    eval_file = "finetune_eval.pt" if "last" not in config.name else "finetune_eval_last.pt"
+                eval_file = f"{Path(config.mod_path).stem}_eval.pt"
                 torch.save(results[config.name], eval_folder / eval_file)
                 logger.info(f"Saved evaluation results for {config.name} to {eval_folder / eval_file}")
         else:
