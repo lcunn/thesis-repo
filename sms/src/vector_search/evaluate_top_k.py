@@ -70,16 +70,39 @@ def build_model(dumped_lp_config: Dict[str, Any], full_model_path: Optional[str]
         model = model.get_encoder()
     return model
 
-def create_embedding_dict(data_dict: Dict[str, np.ndarray], dumped_lp_config: Dict[str, Any], model: Callable) -> Dict[str, np.ndarray]:
+# def create_embedding_dict(data_dict: Dict[str, np.ndarray], dumped_lp_config: Dict[str, Any], model: Callable) -> Dict[str, np.ndarray]:
+#     """
+#     Create the embedding dictionary for the given model. The dumped_lp_config is used to determine the input format of the model.
+#     Returns the data_dict, but with embeddings instead of the original data.
+#     """
+#     formatter = InputFormatter(**dumped_lp_config['input'])
+#     formatted_data_list = [torch.from_numpy(formatter(chunk).astype(np.float32).copy()) for chunk in data_dict.values()]
+#     formatted_data_stacked = torch.stack(formatted_data_list, dim=0) # shape [num_chunks, *input_shape]
+#     embeddings_stacked = model(formatted_data_stacked)
+#     embeddings_dict = {key: embeddings_stacked[i].detach().numpy() for i, key in enumerate(data_dict.keys())}
+#     return embeddings_dict
+
+def create_embedding_dict(data_dict: Dict[str, np.ndarray], dumped_lp_config: Dict[str, Any], model: Callable, batch_size: int = 256) -> Dict[str, np.ndarray]:
     """
     Create the embedding dictionary for the given model. The dumped_lp_config is used to determine the input format of the model.
     Returns the data_dict, but with embeddings instead of the original data.
     """
     formatter = InputFormatter(**dumped_lp_config['input'])
-    formatted_data_list = [torch.from_numpy(formatter(chunk).astype(np.float32).copy()) for chunk in data_dict.values()]
-    formatted_data_stacked = torch.stack(formatted_data_list, dim=0) # shape [num_chunks, *input_shape]
-    embeddings_stacked = model(formatted_data_stacked)
-    embeddings_dict = {key: embeddings_stacked[i].detach().numpy() for i, key in enumerate(data_dict.keys())}
+    embeddings_dict = {}
+    
+    keys = list(data_dict.keys())
+    for i in range(0, len(keys), batch_size):
+        batch_keys = keys[i:i+batch_size]
+        batch_data = [data_dict[key] for key in batch_keys]
+        formatted_data_list = [torch.from_numpy(formatter(chunk).astype(np.float32).copy()) for chunk in batch_data]
+        formatted_data_stacked = torch.stack(formatted_data_list, dim=0)
+        
+        with torch.no_grad():
+            embeddings_stacked = model(formatted_data_stacked)
+        
+        for j, key in enumerate(batch_keys):
+            embeddings_dict[key] = embeddings_stacked[j].cpu().numpy()
+    
     return embeddings_dict
 
 def embeddings_to_faiss_index(
