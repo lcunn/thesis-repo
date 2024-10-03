@@ -267,7 +267,6 @@ def evaluate_search(
     for aug_type in results:
         for k in k_list:
             results[aug_type]['top_k'][k]['avg_recall'] = np.mean(results[aug_type]['top_k'][k]['recall'])
-        results[aug_type]['radius']['avg_recall'] = np.mean(results[aug_type]['radius']['recall'])
         results[aug_type]['radius']['avg_percentage_in_radius'] = np.mean(results[aug_type]['radius']['percentage_in_radius'])
     
     if time_queries:
