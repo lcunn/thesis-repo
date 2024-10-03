@@ -1,6 +1,8 @@
 import logging
 import yaml
 import argparse
+import os
+from pathlib import Path
 import torch
 import pickle as pkl
 import numpy as np
@@ -57,38 +59,73 @@ def run_evaluation(
         logger.info(f"Evaluated top K.")
     return results
 
-def main(data_path: str, num_loops: int, model_config_paths: List[str], output_path: str):
-    data_dict = pkl.load(open(data_path, 'rb'))
-    model_configs = []
-    for config_path in model_config_paths:
-        with open(config_path, 'r') as file:
-            config_data = yaml.safe_load(file)
-        try:
-            model_config = ModelEvalConfig(**config_data)
-            model_configs.append(model_config)
-        except pydantic.ValidationError as e:
-            logger.error(f"Invalid configuration in {config_path}: {e}")
-            raise
-    results = run_evaluation(data_dict, num_loops, model_configs)
-    pkl.dump(results, open(output_path, 'wb'))
-
-if __name__ == "__main__":
+def eval_exp1_runs():
     data = torch.load(r"data/exp1/val_data.pt")
     data_ids = [str(uuid4()) for _ in range(len(data))]
     data_dict = dict(zip(data_ids, data))
 
-    trans_rel_1_full = ModelEvalConfig(
-        name="trans_rel_1_full",
-        lp_config=load_config_from_launchplan(r"sms/exp1/runs/transformer_rel_1/original_launchplan.yaml"),
-        mod_path=r"sms/exp1/runs/transformer_rel_1/pretrain_saved_model.pth",
-        path_type='full',
-        use_full_model=True
-    )
+    runs_dir = Path("sms/exp1/runs")
+    
+    for run_folder in runs_dir.iterdir():
+        if not run_folder.is_dir():
+            continue
+        
+        eval_folder = run_folder / "eval"
+        eval_folder.mkdir(exist_ok=True)
+        
+        lp_config = load_config_from_launchplan(run_folder / "original_launchplan.yaml")
+        
+        model_configs = []
+        
+        # Pretrain models
+        pretrain_models = [
+            ("pretrain_saved_model.pth", "pretrain_eval.pt"),
+            ("pretrain_saved_model_last.pth", "pretrain_eval_last.pt")
+        ]
+        for model_file, eval_file in pretrain_models:
+            if (run_folder / model_file).exists():
+                eval_file_path = eval_folder / eval_file
+                if not eval_file_path.exists():
+                    model_configs.append(ModelEvalConfig(
+                        name=f"{run_folder.name}_{model_file.split('.')[0]}",
+                        lp_config=lp_config,
+                        mod_path=str(run_folder / model_file),
+                        path_type='full',
+                        use_full_model=True
+                    ))
+        
+        # Finetune models
+        finetune_models = [
+            ("finetune_saved_model.pth", "finetune_eval.pt"),
+            ("finetune_saved_model_last.pth", "finetune_eval_last.pt")
+        ]
+        for model_file, eval_file in finetune_models:
+            if (run_folder / model_file).exists():
+                eval_file_path = eval_folder / eval_file
+                if not eval_file_path.exists():
+                    model_configs.append(ModelEvalConfig(
+                        name=f"{run_folder.name}_{model_file.split('.')[0]}",
+                        lp_config=lp_config,
+                        mod_path=str(run_folder / model_file),
+                        path_type='encoder',
+                        use_full_model=False
+                    ))
+        
+        # Run evaluation for the models that haven't been evaluated yet
+        if model_configs:
+            results = run_evaluation(data_dict, 1000, model_configs)
+            
+            # Save results
+            for config in model_configs:
+                if config.path_type == 'full':
+                    eval_file = "pretrain_eval.pt" if "last" not in config.name else "pretrain_eval_last.pt"
+                else:
+                    eval_file = "finetune_eval.pt" if "last" not in config.name else "finetune_eval_last.pt"
+                torch.save(results[config.name], eval_folder / eval_file)
+        
+        logger.info(f"Completed evaluation for {run_folder.name}")
 
-    results = run_evaluation(
-        data_dict, 
-        100, 
-        [trans_rel_1_full]
-    )
+    logger.info("All evaluations completed.")
 
-    torch.save(results, r"trans_rel_1_full_eval.pt")
+if __name__ == "__main__":
+    eval_exp1_runs()

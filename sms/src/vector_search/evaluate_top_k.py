@@ -198,7 +198,7 @@ def evaluate_search(
         augmented_embedding_dict: Dict[str, Dict[str, np.ndarray]], 
         k_list: List[int],
         index: CustomFAISSIndex,
-        time_queries: bool = False
+        time_queries: bool = True
     ) -> Dict[str, Dict[str, Union[Dict[str, float], float]]]:
     """
     Evaluate the performance of both top-K and radius search for each augmentation type.
@@ -211,14 +211,52 @@ def evaluate_search(
         time_queries: whether to time the queries
     Returns:
         results: dictionary of metrics for each augmentation type and search method
+
+    Output Structure:
+    {
+        augmentation_type: {
+            'top_k': {
+                k: {
+                    'recall': [list of 0s and 1s],
+                    'avg_recall': float
+                }
+                for k in k_list
+            },
+            'radius': {
+                'dataset_proportion_in_radius': [list of floats],
+                'avg_dataset_proportion_in_radius': float
+            }
+        }
+        for each augmentation_type
+    }
+
+    If time_queries is True, an additional 'query_times' key is added with the following structure:
+    'query_times': {
+        'top_k': {
+            k: {
+                'average': float,
+                'minimum': float,
+                'maximum': float,
+                'median': float
+            }
+            for k in k_list
+        },
+        'radius': {
+            'radii': [list of floats],
+            'times': [list of floats]
+        }
+    }
     """
     results = {aug_type: {
         'top_k': {k: {'recall': []} for k in k_list},
-        'radius': {'percentage_in_radius': []}
+        'radius': {'dataset_proportion_in_radius': []}
     } for aug_type in augmented_embedding_dict[list(augmented_embedding_dict.keys())[0]].keys()}
     
     if time_queries:
-        query_times = {'top_k': [], 'radius': []}
+        query_times = {
+            'top_k': {k: [] for k in k_list},
+            'radius': {'radii': [], 'times': []}
+        }
     
     for anchor_id, augmentations in augmented_embedding_dict.items():
         anchor_embedding = embedding_dict[anchor_id]
@@ -232,30 +270,32 @@ def evaluate_search(
             index.add_with_id(aug_id, augmented_embedding)
             
             # Top-K search
-            if time_queries:
-                start_time = time.time()
-                top_k_results = index.search(anchor_embedding, max(k_list))
-                query_times['top_k'].append(time.time() - start_time)
-            else:
-                top_k_results = index.search(anchor_embedding, max(k_list))
-            
             for k in k_list:
-                top_k = top_k_results[:k]
-                recall = 1 if aug_id in [id for id, _, _ in top_k] else 0
+                if time_queries:
+                    start_time = time.time()
+                    top_k_results = index.search(anchor_embedding, k)
+                    query_times['top_k'][k].append(time.time() - start_time)
+                else:
+                    top_k_results = index.search(anchor_embedding, k)
+                
+                recall = 1 if aug_id in [id for id, _, _ in top_k_results] else 0
                 results[aug_type]['top_k'][k]['recall'].append(recall)
             
             # Radius search
             if time_queries:
                 start_time = time.time()
                 radius_results = index.radius_search(anchor_embedding, augmented_embedding, aug_id)
-                query_times['radius'].append(time.time() - start_time)
+                query_time = time.time() - start_time
+                radius = np.linalg.norm(anchor_embedding - augmented_embedding)
+                query_times['radius']['radii'].append(radius)
+                query_times['radius']['times'].append(query_time)
             else:
                 radius_results = index.radius_search(anchor_embedding, augmented_embedding, aug_id)
             
             total_in_radius = len(radius_results)
-            percentage_in_radius = total_in_radius / index.ntotal
+            dataset_proportion_in_radius = total_in_radius / index.index.ntotal
             
-            results[aug_type]['radius']['percentage_in_radius'].append(percentage_in_radius)
+            results[aug_type]['radius']['dataset_proportion_in_radius'].append(dataset_proportion_in_radius)
             
             # remove augmented data from index
             index.remove(aug_id)
@@ -267,21 +307,21 @@ def evaluate_search(
     for aug_type in results:
         for k in k_list:
             results[aug_type]['top_k'][k]['avg_recall'] = np.mean(results[aug_type]['top_k'][k]['recall'])
-        results[aug_type]['radius']['avg_percentage_in_radius'] = np.mean(results[aug_type]['radius']['percentage_in_radius'])
+        results[aug_type]['radius']['avg_dataset_proportion_in_radius'] = np.mean(results[aug_type]['radius']['dataset_proportion_in_radius'])
     
     if time_queries:
         results['query_times'] = {
             'top_k': {
-                'average': np.mean(query_times['top_k']),
-                'minimum': np.min(query_times['top_k']),
-                'maximum': np.max(query_times['top_k']),
-                'median': np.median(query_times['top_k'])
+                k: {
+                    'average': np.mean(query_times['top_k'][k]),
+                    'minimum': np.min(query_times['top_k'][k]),
+                    'maximum': np.max(query_times['top_k'][k]),
+                    'median': np.median(query_times['top_k'][k])
+                } for k in k_list
             },
             'radius': {
-                'average': np.mean(query_times['radius']),
-                'minimum': np.min(query_times['radius']),
-                'maximum': np.max(query_times['radius']),
-                'median': np.median(query_times['radius'])
+                'radii': query_times['radius']['radii'],
+                'times': query_times['radius']['times']
             }
         }
     
