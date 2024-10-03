@@ -22,10 +22,17 @@ class ModelEmbeddingConfig(BaseModel):
     path_type: str    # 'full' or 'encoder'
     use_full_model: bool
 
-def create_data_dict(val_data_path: str) -> Dict[str, np.ndarray]:
+def create_data_dict(val_data_path: str, save_path: Path) -> Dict[str, np.ndarray]:
     data = torch.load(val_data_path)
     data_ids = [str(uuid4()) for _ in range(len(data))]
-    return dict(zip(data_ids, data))
+    data_dict = dict(zip(data_ids, data))
+    
+    # Save the data_dict to a torch file
+    save_path.parent.mkdir(parents=True, exist_ok=True)
+    torch.save(data_dict, save_path)
+    logger.info(f"Saved data_dict to {save_path}")
+    
+    return data_dict
 
 def create_and_save_embeddings(
     data_dict: Dict[str, np.ndarray],
@@ -93,9 +100,15 @@ def main():
     runs_dir = Path("sms/exp1/runs")
     batch_size = 32
 
-    # Create data_dict
-    data_dict = create_data_dict(val_data_path)
-    logger.info(f"Created data_dict with {len(data_dict)} entries")
+    # Load the pre-created data_dict
+    data_dict_path = Path("data/exp1/val_data_dict.pt")
+    if data_dict_path.exists():
+        data_dict = torch.load(data_dict_path)
+        logger.info(f"Loaded data_dict from {data_dict_path} with {len(data_dict)} entries")
+    else:
+        # Create and save data_dict if it doesn't exist
+        data_dict = create_data_dict(val_data_path, data_dict_path)
+        logger.info(f"Created data_dict with {len(data_dict)} entries")
 
     # Process each run folder
     for run_folder in runs_dir.iterdir():
