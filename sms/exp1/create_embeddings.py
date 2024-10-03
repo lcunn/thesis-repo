@@ -40,6 +40,12 @@ def create_and_save_embeddings(
     output_folder: Path,
     batch_size: int = 256
 ) -> None:
+    output_file = output_folder / f"{model_config.name}_embeddings.pt"
+    
+    if output_file.exists():
+        logger.info(f"Embeddings for {model_config.name} already exist. Skipping.")
+        return
+
     logger.info(f"Creating embeddings for {model_config.name}")
 
     dumped_lp_config = model_config.lp_config.model_dump()
@@ -48,7 +54,6 @@ def create_and_save_embeddings(
     model = build_model(dumped_lp_config, **bm_cfg, use_full_model=model_config.use_full_model)
     embeddings_dict = create_embedding_dict(data_dict, dumped_lp_config, model, batch_size)
 
-    output_file = output_folder / f"{model_config.name}_embeddings.pt"
     torch.save(embeddings_dict, output_file)
     logger.info(f"Saved embeddings for {model_config.name} to {output_file}")
 
@@ -65,7 +70,7 @@ def process_run_folder(run_folder: Path, data_dict: Dict[str, np.ndarray], batch
     # Pretrain models
     pretrain_models = [
         ("pretrain_saved_model.pth", "pretrain_embeddings.pt"),
-        ("pretrain_saved_model_last.pth", "pretrain_embeddings_last.pt")
+        ("pretrain_saved_model_last.pt", "pretrain_embeddings_last.pt")
     ]
     for model_file, _ in pretrain_models:
         if (run_folder / model_file).exists():
@@ -80,7 +85,7 @@ def process_run_folder(run_folder: Path, data_dict: Dict[str, np.ndarray], batch
     # Finetune models
     finetune_models = [
         ("finetune_saved_model.pth", "finetune_embeddings.pt"),
-        ("finetune_saved_model_last.pth", "finetune_embeddings_last.pt")
+        ("finetune_saved_model_last.pt", "finetune_embeddings_last.pt")
     ]
     for model_file, _ in finetune_models:
         if (run_folder / model_file).exists():
