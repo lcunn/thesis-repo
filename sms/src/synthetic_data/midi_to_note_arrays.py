@@ -167,8 +167,8 @@ def midi_to_all_bars_efficient(
             (note_arr['onset_beat'] + note_arr['duration_beat'] > start_beats)
         ]
 
-        if len(bar_notes) < 3:
-            logger.info(f"Bar {bar} has 3 or fewer notes. Skipping.")
+        if len(bar_notes) < 2:
+            logger.info(f"Bar {bar} has 1 note. Skipping.")
             continue
 
         # Sort notes by onset_beat

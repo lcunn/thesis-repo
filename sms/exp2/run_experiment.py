@@ -26,6 +26,7 @@ class ModelEvalConfig(BaseModel):
     use_full_model: bool
 
 class IndexConfig(BaseModel):
+    name: str
     index_type: str
     index_args: List[Any] = []
     index_kwargs: Dict[str, Any] = {}
@@ -48,8 +49,11 @@ def run_evaluation(
     # Measure memory before building the index
     mem_before = get_memory_usage()
     
+    index_config_dict = index_config.model_dump()
+    if 'name' in index_config_dict:
+        del index_config_dict['name']
     # Build the FAISS index
-    index = embeddings_to_faiss_index(embeddings_dict=embeddings_dict, **index_config.model_dump())
+    index = embeddings_to_faiss_index(embeddings_dict=embeddings_dict, **index_config_dict)
     logger.info(f"Created FAISS index of type {index_config.index_type}.")
     
     # Measure memory after building the index
@@ -60,11 +64,10 @@ def run_evaluation(
     
     # Run evaluation
     results = evaluate_search(
-        embeddings_dict=embeddings_dict,
-        augmented_embeddings_dict=augmented_embeddings_dict,
-        k_list=k_list,
-        index=index,
-        time_queries=True  # Already tracked memory
+        embeddings_dict,
+        augmented_embeddings_dict,
+        k_list,
+        index
     )
     
     # Add metrics to results
@@ -116,13 +119,14 @@ def main():
     dim = 64 # both models are dim 64
     
     baseline_config = IndexConfig(
-            name="IndexFlatL2",
+            name="baseline",
             index_type="IndexFlatL2",
             index_args=[dim],
             index_kwargs={}
         )
 
     index_configs = [
+        baseline_config,
         IndexConfig(
             name="IndexIVFFlat",
             index_type="IndexIVFFlat",
@@ -130,19 +134,19 @@ def main():
             index_kwargs={}
         ),
         IndexConfig(
-            name="IndexPQ",
+            name="IndexPQ_8_8",
             index_type="IndexPQ",
             index_args=[dim, 8, 8],  # M=8, nbits=8
             index_kwargs={}
         ),
         IndexConfig(
-            name="IndexHNSWFlat",
+            name="IndexHNSWFlat_32",
             index_type="IndexHNSWFlat",
             index_args=[dim, 32],  # M=32
             index_kwargs={}
         ),
         IndexConfig(
-            name="IndexLSH",
+            name="IndexLSH_64",
             index_type="IndexLSH",
             index_args=[dim, 64],  # nbits=64
             index_kwargs={}
@@ -150,6 +154,8 @@ def main():
     ]
 
     dataset_sizes = ['5k', '10k', '100k', '500k', '1m']
+
+    top_k_db_size_proportions = [0.001, 0.002, 0.005, 0.01, 0.025, 0.05]
     
     # iterate over dataset sizes
     for size in dataset_sizes:
@@ -158,7 +164,9 @@ def main():
         # Retrieve the selected keys for the current dataset size
         aug_keys = selected_keys.get(size)
         sub_keys = subset_keys.get(size)
-        
+
+        top_k_list = [int(prop*len(sub_keys)) for prop in top_k_db_size_proportions]
+
         # iterate over each model configuration
         for model_type in model_configs.keys():
             # load embedding and augmented embedding dicts
@@ -169,14 +177,20 @@ def main():
 
             embeddings_dict = {key: embeddings_dict[key] for key in sub_keys}
             augmented_embeddings_nested_dict = torch.load(model_configs[model_type].model_dump()['aug_embeddings_paths'][size])
-                        
+            
             # iterate over each index configuration
             for index_config in index_configs:
-                logger.info(f"Evaluating index: {index_config.index_type} for model: {model_type} and dataset size: {size}")
+                logger.info(f"Evaluating index: {index_config.index_type} for model: {index_config.name} and dataset size: {size}")
                 
+                # Define the output path
+                result_file = output_dir / f"{model_type}_{index_config.name}_{size}_results.pt"
+
+                if index_config.name == "baseline" and result_file.exists():
+                    logger.info(f"Baseline results already exist for {model_type} and dataset size {size}. Skipping evaluation.")
+                    continue
                 # Run evaluation
                 try:
-                    results = run_evaluation(embeddings_dict, augmented_embeddings_nested_dict, [1, 3, 5, 10, 25, 50, 100], index_config)
+                    results = run_evaluation(embeddings_dict, augmented_embeddings_nested_dict, top_k_list, index_config)
                 except Exception as e:
                     logger.error(f"Error during evaluation: {e}")
                     continue
@@ -197,8 +211,6 @@ def main():
                     'metrics': results
                 }
                 
-                # Define the output path
-                result_file = output_dir / f"{model_type}_{index_config.name}_{size}_results.pt"
                 try:
                     torch.save(result_data, result_file)
                     logger.info(f"Saved results to {result_file}")
