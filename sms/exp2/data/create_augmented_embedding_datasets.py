@@ -71,7 +71,7 @@ def precompute_augmentations(data_dict: Dict[str, np.ndarray], selected_keys: Di
     """
     Precompute augmentations for the selected keys.
     
-    Returns a dictionary mapping dataset sizes to their augmented data dictionaries.
+    Returns a dictionary mapping dataset sizes to their augmented data dictionaries. These dictionaries map data ids to dictionaries of augmented data.
     """
     precomputed_augmentations = {}
     
@@ -92,7 +92,7 @@ def precompute_embeddings(
     """
     Create embeddings for the augmented data using the specified models and save them.
     """
-    for size, aug_dict in augmented_data.items():
+    for size, nested_aug_dict in augmented_data.items():
         logger.info(f"Processing embeddings for dataset size {size}.")
         for config in model_configs:
             logger.info(f"Creating embeddings for model: {config.name} on dataset size {size}")
@@ -101,18 +101,25 @@ def precompute_embeddings(
 
             model = build_model(dumped_lp_config, **bm_cfg, use_full_model=config.use_full_model)
             
-            embeddings_dict = create_embedding_dict(aug_dict, dumped_lp_config, model, batch_size=batch_size)
+            augmented_embeddings_dict = {}
+            for data_id, aug_dict in nested_aug_dict.items():
+                print(f"Type of aug_dict: {type(aug_dict)}")
+                augmented_embeddings_dict[data_id] = create_embedding_dict(aug_dict, dumped_lp_config, model, batch_size=batch_size)
             
             # Define the output path
             augmented_size_str = size
             output_file = output_folder / f"{config.name}_aug_{augmented_size_str}_embeddings.pt"
-            torch.save(embeddings_dict, output_file)
+            torch.save(augmented_embeddings_dict, output_file)
             logger.info(f"Saved embeddings to {output_file}")
 
 def save_to_disk(data: Any, file_path: Path) -> None:
     """
-    Save the given data to a PyTorch file.
+    Save the given data to a PyTorch file if it doesn't already exist.
     """
+    if file_path.exists():
+        logger.info(f"File {file_path} already exists. Skipping save.")
+        return
+
     try:
         torch.save(data, file_path)
         logger.info(f"Saved data to {file_path}")
@@ -139,10 +146,9 @@ def main():
     # Select keys for augmentations
     subset_keys, selected_keys = select_keys(keys, all_keys)
 
-    # Save the subset keys (excluding '1m')
-    subset_keys_filtered = {k: v for k, v in subset_keys.items()}
+    # Save the subset keys
     subset_keys_path = output_dir / "subset_keys.pt"
-    save_to_disk(subset_keys_filtered, subset_keys_path)
+    save_to_disk(subset_keys, subset_keys_path)
 
     # Save the selected keys
     selected_keys_path = output_dir / "selected_keys.pt"
