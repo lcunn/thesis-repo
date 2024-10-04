@@ -143,23 +143,37 @@ def main():
     keys = [k for k, v in data_dict.items() if len(v) >= 3]
     all_keys = list(data_dict.keys())
 
-    # Select keys for augmentations
-    subset_keys, selected_keys = select_keys(keys, all_keys)
-
-    # Save the subset keys
     subset_keys_path = output_dir / "subset_keys.pt"
-    save_to_disk(subset_keys, subset_keys_path)
-
-    # Save the selected keys
     selected_keys_path = output_dir / "selected_keys.pt"
-    save_to_disk(selected_keys, selected_keys_path)
 
-    # Precompute augmentations
-    precomputed_augmentations = precompute_augmentations(data_dict, selected_keys)
+    if subset_keys_path.exists() and selected_keys_path.exists():
+        logger.info("Loading existing subset_keys and selected_keys")
+        subset_keys = torch.load(subset_keys_path)
+        selected_keys = torch.load(selected_keys_path)
+    else:
+        # Select keys for augmentations
+        subset_keys, selected_keys = select_keys(keys, all_keys)
 
-    # Save the augmentations
+        # Save the subset keys
+        save_to_disk(subset_keys, subset_keys_path)
+
+        # Save the selected keys
+        save_to_disk(selected_keys, selected_keys_path)
+
+    # Check if precomputed_augmentations already exist
     augmentations_path = output_dir / "precomputed_augmentations.pt"
-    save_to_disk(precomputed_augmentations, augmentations_path)
+
+    if augmentations_path.exists():
+        logger.info("Loading existing precomputed_augmentations")
+        precomputed_augmentations = torch.load(augmentations_path)
+    else:
+        # Precompute augmentations
+        precomputed_augmentations = precompute_augmentations(data_dict, selected_keys)
+
+        # Save the augmentations
+        save_to_disk(precomputed_augmentations, augmentations_path)
+
+    logger.info("Subset keys, selected keys, and precomputed augmentations are ready.")
 
     # Define model configurations
     model_configs = [
