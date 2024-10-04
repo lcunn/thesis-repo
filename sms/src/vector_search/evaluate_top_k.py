@@ -115,6 +115,10 @@ def embeddings_to_faiss_index(
         index_kwargs: Dict[str, Any] = {}
     ) -> CustomFAISSIndex:
 
+    if index_type == "IndexIVFFlat":
+        # only input with quantizer and dims
+        index_args.append(int(np.sqrt(len(embeddings_dict))))
+        
     embedding_index = CustomFAISSIndex(index_type=index_type, index_args=index_args, index_kwargs=index_kwargs)
     embeddings = list(embeddings_dict.values())
     embeddings_array = np.vstack(embeddings)

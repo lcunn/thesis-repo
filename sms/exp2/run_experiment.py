@@ -9,7 +9,7 @@ import time
 import faiss
 from sms.src.log import configure_logging
 from sms.src.vector_search.faiss_index import CustomFAISSIndex
-from sms.src.vector_search.evaluate_top_k import create_augmented_data, build_model, create_embedding_dict, embeddings_to_faiss_index, evaluate_top_k, evaluate_search
+from sms.src.vector_search.evaluate_top_k import create_augmented_data, build_model, create_embedding_dict, embeddings_to_faiss_index, evaluate_search
 from sms.exp1.config_classes import LaunchPlanConfig, load_config_from_launchplan
 
 from pydantic import BaseModel
@@ -21,7 +21,7 @@ class ModelEvalConfig(BaseModel):
     name: str
     lp_config: LaunchPlanConfig
     mod_path: str
-    embeddings_path: str
+    aug_embeddings_paths: Dict[str, str]
     path_type: str    #'full' or 'encoder'
     use_full_model: bool
 
@@ -55,10 +55,8 @@ def run_evaluation(
     # Measure memory after building the index
     mem_after = get_memory_usage()
     mem_used = mem_after - mem_before
-
-    index_size = index.index_size()
     
-    logger.info(f"Index size: {index_size:.2f} MB, Memory used: {mem_used:.2f} MB.")
+    logger.info(f"Memory used: {mem_used:.2f} MB.")
     
     # Run evaluation
     results = evaluate_search(
@@ -70,10 +68,7 @@ def run_evaluation(
     )
     
     # Add metrics to results
-    results['index_metrics'] = {
-        'index_size_MB': index_size,
-        'memory_used_MB': mem_used
-    }
+    results['memory_used_MB'] = mem_used
     
     return results
 
@@ -103,36 +98,22 @@ def main():
         use_full_model=True
     )
 
-    model_configs['pr'] = ModelEvalConfig(
-        name="transformer_pr_1_pretrain",
-        lp_config=load_config_from_launchplan("sms/exp1/runs/transformer_pr_1/original_launchplan.yaml"),
-        mod_path="sms/exp1/runs/transformer_pr_1/pretrain_saved_model.pth",
-        aug_embeddings_paths = {
-            '5k': "data/exp2/augmented_embeddings/transformer_pr_1_pretrain_aug_5k_embeddings.pt",
-            '10k': "data/exp2/augmented_embeddings/transformer_pr_1_pretrain_aug_10k_embeddings.pt",
-            '100k': "data/exp2/augmented_embeddings/transformer_pr_1_pretrain_aug_100k_embeddings.pt",
-            '500k': "data/exp2/augmented_embeddings/transformer_pr_1_pretrain_aug_500k_embeddings.pt",
-            '1m': "data/exp2/augmented_embeddings/transformer_pr_1_pretrain_aug_1m_embeddings.pt"
-        },
-        path_type='full',
-        use_full_model=True
-    )
+    # model_configs['pr'] = ModelEvalConfig(
+    #     name="transformer_pr_1_pretrain",
+    #     lp_config=load_config_from_launchplan("sms/exp1/runs/transformer_pr_1/original_launchplan.yaml"),
+    #     mod_path="sms/exp1/runs/transformer_pr_1/pretrain_saved_model.pth",
+    #     aug_embeddings_paths = {
+    #         '5k': "data/exp2/augmented_embeddings/transformer_pr_1_pretrain_aug_5k_embeddings.pt",
+    #         '10k': "data/exp2/augmented_embeddings/transformer_pr_1_pretrain_aug_10k_embeddings.pt",
+    #         '100k': "data/exp2/augmented_embeddings/transformer_pr_1_pretrain_aug_100k_embeddings.pt",
+    #         '500k': "data/exp2/augmented_embeddings/transformer_pr_1_pretrain_aug_500k_embeddings.pt",
+    #         '1m': "data/exp2/augmented_embeddings/transformer_pr_1_pretrain_aug_1m_embeddings.pt"
+    #     },
+    #     path_type='full',
+    #     use_full_model=True
+    # )
 
     dim = 64 # both models are dim 64
-    
-    def initialise_index(
-            index_type: str, 
-            index_args: List[Any], 
-            index_kwargs: Dict[str, Any],
-            embeddings_dict: Dict[str, np.ndarray]
-            ) -> CustomFAISSIndex:
-        """
-        Initialise the index based on the index type.
-        """
-        if index_type == "IndexIVFFlat":
-            # only input with quantizer and dims
-            index_args.append(int(np.sqrt(len(embeddings_dict))))
-        return embeddings_to_faiss_index(embeddings_dict, index_type, index_args, index_kwargs)
     
     baseline_config = IndexConfig(
             name="IndexFlatL2",
@@ -182,18 +163,16 @@ def main():
         for model_type in model_configs.keys():
             # load embedding and augmented embedding dicts
             if model_type == 'rel':
-                embeddings_dict = torch.load(r"data/exp2/embeddings/transformer_rel_1_pretrain_embeddings_0.pt")
-                embeddings_dict.extend(torch.load(r"data/exp2/embeddings/transformer_rel_1_pretrain_embeddings_1.pt"))
+                embeddings_dict = torch.load(r"data/exp2/embeddings/transformer_rel_1_pretrain_embeddings_0.pt") | torch.load(r"data/exp2/embeddings/transformer_rel_1_pretrain_embeddings_1.pt")
             else:
-                embeddings_dict = torch.load(r"data/exp2/embeddings/transformer_pr_1_pretrain_embeddings_0.pt")
-                embeddings_dict.extend(torch.load(r"data/exp2/embeddings/transformer_pr_1_pretrain_embeddings_1.pt"))
+                embeddings_dict = torch.load(r"data/exp2/embeddings/transformer_pr_1_pretrain_embeddings_0.pt") | torch.load(r"data/exp2/embeddings/transformer_pr_1_pretrain_embeddings_1.pt")
 
             embeddings_dict = {key: embeddings_dict[key] for key in sub_keys}
-            augmented_embeddings_nested_dict = torch.load(model_configs[model_type]['aug_embeddings_paths'][size])
+            augmented_embeddings_nested_dict = torch.load(model_configs[model_type].model_dump()['aug_embeddings_paths'][size])
                         
             # iterate over each index configuration
             for index_config in index_configs:
-                logger.info(f"Evaluating index: {index_config.name} for model: {model_type} and dataset size: {size}")
+                logger.info(f"Evaluating index: {index_config.index_type} for model: {model_type} and dataset size: {size}")
                 
                 # Run evaluation
                 try:
@@ -203,14 +182,13 @@ def main():
                     continue
                 
                 if not results:
-                    logger.error(f"No results obtained for index {index_config.name} on model {model_type} with dataset size {size}.")
+                    logger.error(f"No results obtained for index {index_config.index_type} on model {model_type} with dataset size {size}.")
                     continue
                 
                 # Prepare result data
                 result_data = {
                     'model': model_type,
                     'dataset_size': size,
-                    'index': index_config.name,
                     'index_type': index_config.index_type,
                     'index_params': {
                         'args': index_config.index_args,
