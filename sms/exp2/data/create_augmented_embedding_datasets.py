@@ -21,7 +21,7 @@ class ModelEmbeddingConfig(BaseModel):
     path_type: str    # 'full' or 'encoder'
     use_full_model: bool
 
-def select_keys(data_dict: Dict[str, np.ndarray], shuffle: bool = True) -> Tuple[Dict[str, List[str]], Dict[str, List[str]]]:
+def select_keys(keys: List[str], all_keys: List[str], shuffle: bool = True) -> Tuple[Dict[str, List[str]], Dict[str, List[str]]]:
     """
     Shuffle the keys and select the required number of keys for each dataset size.
     
@@ -29,7 +29,6 @@ def select_keys(data_dict: Dict[str, np.ndarray], shuffle: bool = True) -> Tuple
     - subset_keys: Maps dataset sizes to their subset of keys.
     - selected_keys: Maps dataset sizes to their selected keys for augmentation.
     """
-    keys = list(data_dict.keys())
     if shuffle:
         np.random.shuffle(keys)
         logger.info("Shuffled the dataset keys.")
@@ -63,7 +62,7 @@ def select_keys(data_dict: Dict[str, np.ndarray], shuffle: bool = True) -> Tuple
             # For 1m, select from the remaining keys
             selected = keys[start:start + count]
             selected_keys[label] = selected
-            subset_keys[label] = keys
+            subset_keys[label] = all_keys
             logger.info(f"Selected {len(selected)} keys for dataset size {label} from the entire remaining dataset.")
     
     return subset_keys, selected_keys
@@ -122,7 +121,7 @@ def save_to_disk(data: Any, file_path: Path) -> None:
 
 def main():
     data_path = Path("data/exp2/million_chunks.pt")
-    output_dir = Path("data/exp2/precomputed_embeddings")
+    output_dir = Path("data/exp2/augmented_embeddings")
     output_dir.mkdir(parents=True, exist_ok=True)
 
     # Load the data
@@ -132,9 +131,13 @@ def main():
     except Exception as e:
         logger.error(f"Failed to load data from {data_path}: {e}")
         return
+    
+    # make sure the augmentations have at least 3 notes
+    keys = [k for k, v in data_dict.items() if len(v) >= 3]
+    all_keys = list(data_dict.keys())
 
     # Select keys for augmentations
-    subset_keys, selected_keys = select_keys(data_dict)
+    subset_keys, selected_keys = select_keys(keys, all_keys)
 
     # Save the subset keys (excluding '1m')
     subset_keys_filtered = {k: v for k, v in subset_keys.items()}
