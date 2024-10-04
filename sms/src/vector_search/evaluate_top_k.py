@@ -4,6 +4,7 @@ import torch
 import time
 import logging
 import numpy as np
+import psutil
 from typing import Callable, Optional, List, Dict, Any, Union
 from sms.src.synthetic_data.formatter import InputFormatter
 from sms.src.synthetic_data.note_arr_mod import NoteArrayModifier
@@ -100,6 +101,8 @@ def create_embedding_dict(data_dict: Dict[str, np.ndarray], dumped_lp_config: Di
         with torch.no_grad():
             embeddings_stacked = model(formatted_data_stacked)
         
+        logger.info(f"Created embeddings for {len(embeddings_stacked)} keys, {i} of {len(keys)}")
+        
         for j, key in enumerate(batch_keys):
             embeddings_dict[key] = embeddings_stacked[j].cpu().numpy()
     
@@ -124,104 +127,13 @@ def embeddings_to_faiss_index(
         embedding_index.add_with_id(key, value)
     return embedding_index
 
-    # For each embedding collection in embeddings_dicts, we perform the augmentation evaluation experiment num_loops times.
-    # An augmentation evaluation experiment involves the following steps:
-    # - Randomly select an anchor from data_dict
-    # - Remove the anchor from data_dict
-    # - Apply each of the five given augmentations to the anchor
-    # - For each of the augmented melodies, add it to the database and perform a nearest neighbor search on the FAISS index
-    # - Calculate the precision and recall of the search for each k in k_list
-
-def evaluate_top_k(
-        embedding_dict: Dict[str, Dict[str, np.ndarray]],
-        augmented_embedding_dict: Dict[str, Dict[str, np.ndarray]], 
-        k_list: List[int], 
-        index: CustomFAISSIndex,
-        time_queries: bool = False
-    ) -> Dict[str, Dict[str, Dict[str, List[float]]]]:
-    """
-    index is a CustomFAISSIndex object which has been initialized with the embeddings_dict.
-    For each of the keys in augment_dict, we perform the following steps:
-    - Remove the anchor (embedding_dict[key]) from the index
-    - Add one of the augmentations from that key to the index
-    - Perform a nearest neighbor search on the index using the anchor and record the position of the augmentation
-    - Repeat for each augmentation
-    
-    Then we report the average precision and recall for each k in k_list.
-    
-    Args:
-        embeddings_dict: dictionary of embeddings, keyed by data ids
-        augmented_embedding_dict: dictionary keyed by a subset of the ids in embeddings_dict, containing dictionaries of augmented data
-        k_list: list of k values to evaluate
-        index: CustomFAISSIndex object which has been initialized with the embeddings_dict
-        time_queries: whether to time the queries
-    Returns:
-        results: dictionary of precision and recall for each augmentation and k in k_list
-    """
-    results = {aug_type: {k: {'precision': [], 'recall': []} for k in k_list} for aug_type in augmented_embedding_dict[list(augmented_embedding_dict.keys())[0]].keys()}
-    
-    if time_queries:
-        query_times = []
-    
-    for anchor_id, augmentations in augmented_embedding_dict.items():
-        anchor_embedding = embedding_dict[anchor_id]
-        
-        # remove anchor from index
-        index.remove(anchor_id)
-        
-        for aug_type, augmented_data in augmentations.items():
-            # add augmented data to index
-            aug_id = f"{anchor_id}_aug_{aug_type}"
-            index.add_with_id(aug_id, augmented_data)
-            
-            # perform search
-            if time_queries:
-                start_time = time.time()
-                search_results = index.search(anchor_embedding, max(k_list))
-                end_time = time.time()
-                query_times.append(end_time - start_time)
-            else:
-                search_results = index.search(anchor_embedding, max(k_list))
-            
-            # calculate precision and recall for each k
-            for k in k_list:
-                top_k_results = search_results[:k]
-                true_positives = sum(1 for id, _ in top_k_results if id == aug_id)
-                
-                precision = true_positives / k
-                recall = 1 if true_positives > 0 else 0  # Recall is 1 if found, 0 if not
-                
-                results[aug_type][k]['precision'].append(precision)
-                results[aug_type][k]['recall'].append(recall)
-            
-            # remove augmented data from index
-            index.remove(aug_id)
-        
-        # add anchor back to index
-        index.add_with_id(anchor_id, anchor_embedding)
-    
-    # Calculate average precision and recall
-    for aug_type in results:
-        for k in k_list:
-            results[aug_type][k]['avg_precision'] = np.mean(results[aug_type][k]['precision'])
-            results[aug_type][k]['avg_recall'] = np.mean(results[aug_type][k]['recall'])
-    
-    if time_queries:
-        results['query_times'] = {
-            'average': np.mean(query_times),
-            'minimum': np.min(query_times),
-            'maximum': np.max(query_times),
-            'median': np.median(query_times)
-        }
-    
-    return results
-
 def evaluate_search(
         embedding_dict: Dict[str, np.ndarray],
         augmented_embedding_dict: Dict[str, Dict[str, np.ndarray]], 
         k_list: List[int],
         index: CustomFAISSIndex,
-        time_queries: bool = True
+        time_queries: bool = True,
+        measure_memory: bool = False
     ) -> Dict[str, Dict[str, Union[Dict[str, float], float]]]:
     """
     Evaluate the performance of both top-K and radius search for each augmentation type.
@@ -232,6 +144,8 @@ def evaluate_search(
         k_list: list of k values to evaluate for top-K search
         index: CustomFAISSIndex object initialized with the embedding_dict
         time_queries: whether to time the queries
+        measure_memory: whether to measure the memory usage of the index
+
     Returns:
         results: dictionary of metrics for each augmentation type and search method
 

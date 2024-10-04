@@ -1,16 +1,17 @@
 import logging
-import yaml
-import argparse
 import torch
-import pickle as pkl
 import numpy as np
-from typing import List, Dict, Any
+from pathlib import Path
+from typing import List, Dict, Any, Tuple
+import os
+import psutil
+import time
 
 from sms.src.log import configure_logging
-from sms.src.vector_search.evaluate_top_k import create_augmented_data, build_model, create_embedding_dict, embeddings_to_faiss_index, evaluate_top_k
+from sms.src.vector_search.evaluate_top_k import create_augmented_data, build_model, create_embedding_dict, embeddings_to_faiss_index, evaluate_top_k, evaluate_search
+from sms.exp1.config_classes import LaunchPlanConfig, load_config_from_launchplan
 
 from pydantic import BaseModel
-from sms.exp1.config_classes import LaunchPlanConfig
 
 logger = logging.getLogger(__name__)
 configure_logging()
@@ -19,6 +20,7 @@ class ModelEvalConfig(BaseModel):
     name: str
     lp_config: LaunchPlanConfig
     mod_path: str
+    embeddings_path: str
     path_type: str    #'full' or 'encoder'
     use_full_model: bool
 
@@ -27,76 +29,76 @@ class IndexConfig(BaseModel):
     index_args: List[Any] = []
     index_kwargs: Dict[str, Any] = {}
 
+def get_memory_usage() -> float:
+    """Get the current process memory usage in MB."""
+    process = psutil.Process(os.getpid())
+    mem = process.memory_info().rss / (1024 ** 2)
+    return mem
+
 def run_evaluation(
-    data_dict: Dict[str, np.ndarray],
-    num_loops: int,
-    model_configs: List[ModelEvalConfig],
-    index_configs: List[IndexConfig]
+    embeddings_dict: Dict[str, np.ndarray],
+    augmented_embeddings_dict: Dict[str, Dict[str, np.ndarray]],
+    k_list: List[int],
+    index_config: IndexConfig
     ) -> Dict[str, Dict[str, Dict[str, Dict[str, List[float]]]]]:
+    """
+    Run top K and radius search for the given model and index configurations.
+    """
+    # Measure memory before building the index
+    mem_before = get_memory_usage()
+    
+    # Build the FAISS index
+    index = embeddings_to_faiss_index(embeddings_dict=embeddings_dict, **index_config.model_dump())
+    logger.info(f"Created FAISS index of type {index_config.index_type}.")
+    
+    # Measure memory after building the index
+    mem_after = get_memory_usage()
+    mem_used = mem_after - mem_before
 
-    # generate random augmentations
-    anchor_keys = np.random.choice(list(data_dict.keys()), size=num_loops, replace=False)
-    augmented_data = create_augmented_data(data_dict, anchor_keys)
-
-    results = {}
-    for eval_config in model_configs:
-        logger.info(f"Running evaluation for {eval_config.name}")
-
-        dumped_lp_config = eval_config.lp_config.model_dump()
-        bm_cfg = {'full_model_path': eval_config.mod_path} if eval_config.path_type == 'full' else {'encoder_path': eval_config.mod_path}
-
-        model = build_model(dumped_lp_config, **bm_cfg, use_full_model=eval_config.use_full_model)
-        embeddings_dict = create_embedding_dict(data_dict, dumped_lp_config, model)
-        logger.info(f"Created embedding dictionary for {len(embeddings_dict)} keys.")
-
-        # create augmented embeddings structure
-        augmented_embeddings_dict = {}
-        for data_id, aug_dict in augmented_data.items():
-            augmented_embeddings_dict[data_id] = create_embedding_dict(aug_dict, dumped_lp_config, model)
-        logger.info(f"Created augmented embeddings.")
-
-        dim = list(embeddings_dict.values())[0].shape[0]
-
-        #TODO: record embedding dimension
-
-        # FLATL2 baseline 
-        index_config = IndexConfig(index_type="IndexFlatL2", index_args=[dim])
-        index = embeddings_to_faiss_index(embeddings_dict=embeddings_dict, **index_config.model_dump())
-        logger.info(f"Created FAISS index with parameters {index_config.model_dump()}")
-        results[eval_config.name] = evaluate_top_k(embeddings_dict, augmented_embeddings_dict, [1, 3, 5, 10, 25, 50, 100], index)
-        logger.info(f"Evaluated top K.")
-        #TODO: add to CustomFAISSINdex the details of the index, like bytes used for each embedding, databse memory usage.
-
-        #TODO: make sure timings are recorded
-        for index_config in index_configs:
-            index_config_dict = index_config.model_dump()
-            index = embeddings_to_faiss_index(embeddings_dict=embeddings_dict, **index_config_dict)
-            logger.info(f"Created FAISS index with parameters {index_config_dict}")
-            results[eval_config.name] = evaluate_top_k(embeddings_dict, augmented_embeddings_dict, [1, 3, 5, 10, 25, 50, 100], index)
-            logger.info(f"Evaluated top K.")
+    index_size = index.index_size()
+    
+    logger.info(f"Index size: {index_size:.2f} MB, Memory used: {mem_used:.2f} MB.")
+    
+    # Run evaluation
+    results = evaluate_search(
+        embeddings_dict=embeddings_dict,
+        augmented_embeddings_dict=augmented_embeddings_dict,
+        k_list=k_list,
+        index=index,
+        time_queries=True,
+        measure_memory=False  # Already tracked memory
+    )
+    
+    # Add metrics to results
+    results['index_metrics'] = {
+        'index_size_MB': index_size,
+        'memory_used_MB': mem_used
+    }
+    
     return results
 
-def main(data_path: str, num_loops: int, model_config_paths: List[str], output_path: str):
-    data_dict = pkl.load(open(data_path, 'rb'))
-    model_configs = []
-    for config_path in model_config_paths:
-        with open(config_path, 'r') as file:
-            config_data = yaml.safe_load(file)
-        try:
-            model_config = ModelEvalConfig(**config_data)
-            model_configs.append(model_config)
-        except pydantic.ValidationError as e:
-            logger.error(f"Invalid configuration in {config_path}: {e}")
-            raise
-    results = run_evaluation(data_dict, num_loops, model_configs)
-    pkl.dump(results, open(output_path, 'wb'))
+def main():
+    embeddings_dir = Path("data/exp2/precomputed_embeddings")
+    output_dir = Path("data/exp2/results")
+    output_dir.mkdir(parents=True, exist_ok=True)
+
+    rel_cfg = ModelEvalConfig(
+        name="transformer_rel_1_pretrain",
+        lp_config=load_config_from_launchplan("sms/exp1/runs/transformer_rel_1/original_launchplan.yaml"),
+        mod_path="sms/exp1/runs/transformer_rel_1/pretrain_saved_model.pth",
+        embeddings_path="data/exp2/precomputed_embeddings/transformer_rel_1_pretrain_embeddings.pt",
+        path_type='full',
+        use_full_model=True
+    )
+
+    pr_cfg = ModelEvalConfig(
+        name="transformer_pr_1_pretrain",
+        lp_config=load_config_from_launchplan("sms/exp1/runs/transformer_pr_1/original_launchplan.yaml"),
+        mod_path="sms/exp1/runs/transformer_pr_1/pretrain_saved_model.pth",
+        embeddings_path="data/exp2/precomputed_embeddings/transformer_pr_1_pretrain_embeddings.pt",
+        path_type='full',
+        use_full_model=True
+    )
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Run model evaluation.")
-    parser.add_argument('data_path', type=str, help='Path to the data file.')
-    parser.add_argument('num_loops', type=int, help='Number of loops for evaluation.')
-    parser.add_argument('model_config_paths', type=str, nargs='+', help='Paths to model configuration files.')
-    parser.add_argument('output_path', type=str, help='Path to the output file.')
-    
-    args = parser.parse_args()
-    main(args.data_path, args.num_loops, args.model_config_paths, args.output_path)
+    main()
