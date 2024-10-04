@@ -5,7 +5,7 @@ import time
 import logging
 import numpy as np
 import psutil
-from typing import Callable, Optional, List, Dict, Any, Union
+from typing import Callable, Optional, List, Dict, Any, Union, Tuple
 from sms.src.synthetic_data.formatter import InputFormatter
 from sms.src.synthetic_data.note_arr_mod import NoteArrayModifier
 from sms.src.vector_search.faiss_index import CustomFAISSIndex
@@ -129,6 +129,29 @@ def embeddings_to_faiss_index(
 
     for key, value in embeddings_dict.items():
         embedding_index.add_with_id(key, value)
+    return embedding_index
+
+def embeddings_to_faiss_index_with_data(
+        embeddings_dict: Dict[str, Tuple[np.ndarray, Any]], 
+        index_type: str, 
+        index_args: List[Any] = [], 
+        index_kwargs: Dict[str, Any] = {}
+    ) -> CustomFAISSIndex:
+
+    if index_type == "IndexIVFFlat":
+        # only input with quantizer and dims
+        index_args.append(int(np.sqrt(len(embeddings_dict))))
+        
+    embedding_index = CustomFAISSIndex(index_type=index_type, index_args=index_args, index_kwargs=index_kwargs)
+
+    # train the index if it's a type that requires training
+    if index_type in ["IndexIVFFlat", "IndexPQ", "IndexIVFPQ"]:
+        embeddings = [value[0] for value in embeddings_dict.values()]
+        embeddings_array = np.vstack(embeddings)
+        embedding_index.train(embeddings_array)
+
+    for key, (vector, data) in embeddings_dict.items():
+        embedding_index.add_with_id(key, vector, data)
     return embedding_index
 
 def evaluate_search(
