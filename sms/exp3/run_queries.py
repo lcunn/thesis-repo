@@ -26,7 +26,8 @@ def perform_top_k_search(
     
     logger.info(f"Performing Top-{k} search for plagiarism evaluation")
     results = {}
-    for song_id, song_dict in query_embeddings.items():
+    for i, (song_id, song_dict) in enumerate(query_embeddings.items()):
+        logger.info(f"Processing song {i+1}/{len(query_embeddings)}: {song_id}")
         song_results = {}
         for chunk_id, chunk_embedding in song_dict.items():
             top_k_results = index.search(chunk_embedding, k)
