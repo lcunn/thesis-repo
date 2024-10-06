@@ -96,4 +96,12 @@ def main(db_size: int, scales_to_use: List[float], K: int, index_type: str, inde
     torch.save(top_k_results, output_path)
 
 if __name__ == "__main__":
-    main()
+    db_size = 1000
+    scales_to_use = [1.0]
+    K = 20
+    dim = 64
+    index_type="IndexLSH"
+    index_args=[dim, 64]  # nbits=64
+    index_kwargs={}
+    output_path = f"data/exp3/top_{K}_results_db_{db_size}_index_{index_type}.pt"
+    main(db_size, scales_to_use, K, index_type, index_args, index_kwargs, output_path)

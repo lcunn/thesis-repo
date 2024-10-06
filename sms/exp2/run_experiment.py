@@ -185,8 +185,8 @@ def main():
                 # Define the output path
                 result_file = output_dir / f"{model_type}_{index_config.name}_{size}_results.pt"
 
-                if index_config.name == "baseline" and result_file.exists():
-                    logger.info(f"Baseline results already exist for {model_type} and dataset size {size}. Skipping evaluation.")
+                if result_file.exists():
+                    logger.info(f"Results already exist for {model_type} and dataset size {size}. Skipping evaluation.")
                     continue
                 # Run evaluation
                 try:
