@@ -176,18 +176,35 @@ def main():
     logger.info("Subset keys, selected keys, and precomputed augmentations are ready.")
 
     # Define model configurations
+    # model_configs = [
+    #     ModelEmbeddingConfig(
+    #         name="transformer_rel_1_pretrain",
+    #         lp_config=load_config_from_launchplan("sms/exp1/runs/transformer_rel_1/original_launchplan.yaml"),
+    #         mod_path="sms/exp1/runs/transformer_rel_1/pretrain_saved_model.pth",
+    #         path_type='full',
+    #         use_full_model=True
+    #     ),
+    #     ModelEmbeddingConfig(
+    #         name="transformer_pr_1_pretrain",
+    #         lp_config=load_config_from_launchplan("sms/exp1/runs/transformer_pr_1/original_launchplan.yaml"),
+    #         mod_path="sms/exp1/runs/transformer_pr_1/pretrain_saved_model.pth",
+    #         path_type='full',
+    #         use_full_model=True
+    #     )
+    # ]
+
     model_configs = [
         ModelEmbeddingConfig(
-            name="transformer_rel_1_pretrain",
-            lp_config=load_config_from_launchplan("sms/exp1/runs/transformer_rel_1/original_launchplan.yaml"),
-            mod_path="sms/exp1/runs/transformer_rel_1/pretrain_saved_model.pth",
+            name="transformer_quant_rel_bigenc_1_pretrain_best",
+            lp_config=load_config_from_launchplan("sms/exp1/runs/transformer_quant_rel_bigenc_1/original_launchplan.yaml"),
+            mod_path="sms/exp1/runs/transformer_quant_rel_bigenc_1/pretrain_saved_model.pth",
             path_type='full',
             use_full_model=True
         ),
         ModelEmbeddingConfig(
-            name="transformer_pr_1_pretrain",
-            lp_config=load_config_from_launchplan("sms/exp1/runs/transformer_pr_1/original_launchplan.yaml"),
-            mod_path="sms/exp1/runs/transformer_pr_1/pretrain_saved_model.pth",
+            name="transformer_quant_rel_bigenc_1_finetune_last",
+            lp_config=load_config_from_launchplan("sms/exp1/runs/transformer_quant_rel_bigenc_1/original_launchplan.yaml"),
+            mod_path="sms/exp1/runs/transformer_quant_rel_bigenc_1/pretrain_saved_model_last.pt",
             path_type='full',
             use_full_model=True
         )

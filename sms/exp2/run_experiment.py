@@ -86,20 +86,20 @@ def main():
     # model configs
     model_configs = {}
 
-    model_configs['rel'] = ModelEvalConfig(
-        name="transformer_rel_1_pretrain",
-        lp_config=load_config_from_launchplan("sms/exp1/runs/transformer_rel_1/original_launchplan.yaml"),
-        mod_path="sms/exp1/runs/transformer_rel_1/pretrain_saved_model.pth",
-        aug_embeddings_paths = {
-            '5k': "data/exp2/augmented_embeddings/transformer_rel_1_pretrain_aug_5k_embeddings.pt",
-            '10k': "data/exp2/augmented_embeddings/transformer_rel_1_pretrain_aug_10k_embeddings.pt",
-            '100k': "data/exp2/augmented_embeddings/transformer_rel_1_pretrain_aug_100k_embeddings.pt",
-            '500k': "data/exp2/augmented_embeddings/transformer_rel_1_pretrain_aug_500k_embeddings.pt",
-            '1m': "data/exp2/augmented_embeddings/transformer_rel_1_pretrain_aug_1m_embeddings.pt"
-        },
-        path_type='full',
-        use_full_model=True
-    )
+    # model_configs['rel'] = ModelEvalConfig(
+    #     name="transformer_rel_1_pretrain",
+    #     lp_config=load_config_from_launchplan("sms/exp1/runs/transformer_rel_1/original_launchplan.yaml"),
+    #     mod_path="sms/exp1/runs/transformer_rel_1/pretrain_saved_model.pth",
+    #     aug_embeddings_paths = {
+    #         '5k': "data/exp2/augmented_embeddings/transformer_rel_1_pretrain_aug_5k_embeddings.pt",
+    #         '10k': "data/exp2/augmented_embeddings/transformer_rel_1_pretrain_aug_10k_embeddings.pt",
+    #         '100k': "data/exp2/augmented_embeddings/transformer_rel_1_pretrain_aug_100k_embeddings.pt",
+    #         '500k': "data/exp2/augmented_embeddings/transformer_rel_1_pretrain_aug_500k_embeddings.pt",
+    #         '1m': "data/exp2/augmented_embeddings/transformer_rel_1_pretrain_aug_1m_embeddings.pt"
+    #     },
+    #     path_type='full',
+    #     use_full_model=True
+    # )
 
     # model_configs['pr'] = ModelEvalConfig(
     #     name="transformer_pr_1_pretrain",
@@ -116,7 +116,37 @@ def main():
     #     use_full_model=True
     # )
 
-    dim = 64 # both models are dim 64
+    model_configs['quant_rel_bigenc_best'] = ModelEvalConfig(
+        name="transformer_quant_rel_bigenc_1_pretrain_best",
+        lp_config=load_config_from_launchplan("sms/exp1/runs/transformer_quant_rel_bigenc_1/original_launchplan.yaml"),
+        mod_path="sms/exp1/runs/transformer_quant_rel_bigenc_1/pretrain_saved_model.pth",
+        aug_embeddings_paths = {
+            '5k': "data/exp2/augmented_embeddings/transformer_quant_rel_bigenc_best_1_pretrain_aug_5k_embeddings.pt",
+            '10k': "data/exp2/augmented_embeddings/transformer_quant_rel_bigenc_best_1_pretrain_aug_10k_embeddings.pt",
+            '100k': "data/exp2/augmented_embeddings/transformer_quant_rel_bigenc_best_1_pretrain_aug_100k_embeddings.pt",
+            '500k': "data/exp2/augmented_embeddings/transformer_quant_rel_bigenc_best_1_pretrain_aug_500k_embeddings.pt",
+            '1m': "data/exp2/augmented_embeddings/transformer_quant_rel_bigenc_best_1_pretrain_aug_1m_embeddings.pt"
+        },
+        path_type='full',
+        use_full_model=True
+    )
+
+    model_configs['quant_rel_bigenc_last'] = ModelEvalConfig(
+        name="transformer_quant_rel_bigenc_1_finetune_last",
+        lp_config=load_config_from_launchplan("sms/exp1/runs/transformer_quant_rel_bigenc_1/original_launchplan.yaml"),
+        mod_path="sms/exp1/runs/transformer_quant_rel_bigenc_1/pretrain_saved_model_last.pt",
+        aug_embeddings_paths = {
+            '5k': "data/exp2/augmented_embeddings/transformer_quant_rel_bigenc_last_1_pretrain_aug_5k_embeddings.pt",
+            '10k': "data/exp2/augmented_embeddings/transformer_quant_rel_bigenc_last_1_pretrain_aug_10k_embeddings.pt",
+            '100k': "data/exp2/augmented_embeddings/transformer_quant_rel_bigenc_last_1_pretrain_aug_100k_embeddings.pt",
+            '500k': "data/exp2/augmented_embeddings/transformer_quant_rel_bigenc_last_1_pretrain_aug_500k_embeddings.pt",
+            '1m': "data/exp2/augmented_embeddings/transformer_quant_rel_bigenc_last_1_pretrain_aug_1m_embeddings.pt"
+        },
+        path_type='full',
+        use_full_model=True
+    )
+
+    dim = 128 # both models are dim 128
     
     baseline_config = IndexConfig(
             name="baseline",
@@ -170,10 +200,10 @@ def main():
         # iterate over each model configuration
         for model_type in model_configs.keys():
             # load embedding and augmented embedding dicts
-            if model_type == 'rel':
-                embeddings_dict = torch.load(r"data/exp2/embeddings/transformer_rel_1_pretrain_embeddings_0.pt") | torch.load(r"data/exp2/embeddings/transformer_rel_1_pretrain_embeddings_1.pt")
-            else:
-                embeddings_dict = torch.load(r"data/exp2/embeddings/transformer_pr_1_pretrain_embeddings_0.pt") | torch.load(r"data/exp2/embeddings/transformer_pr_1_pretrain_embeddings_1.pt")
+            if model_type == 'quant_rel_bigenc_best':
+                embeddings_dict = torch.load(r"data/exp2/embeddings/transformer_quant_rel_bigenc_best_1_pretrain_embeddings_0.pt") | torch.load(r"data/exp2/embeddings/transformer_quant_rel_bigenc_best_1_pretrain_embeddings_1.pt")
+            elif model_type == 'quant_rel_bigenc_last':
+                embeddings_dict = torch.load(r"data/exp2/embeddings/transformer_quant_rel_bigenc_last_1_pretrain_embeddings_0.pt") | torch.load(r"data/exp2/embeddings/transformer_quant_rel_bigenc_last_1_pretrain_embeddings_1.pt")
 
             embeddings_dict = {key: embeddings_dict[key] for key in sub_keys}
             augmented_embeddings_nested_dict = torch.load(model_configs[model_type].model_dump()['aug_embeddings_paths'][size])
