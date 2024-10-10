@@ -96,12 +96,42 @@ def main(db_size: int, scales_to_use: List[float], K: int, index_type: str, inde
     torch.save(top_k_results, output_path)
 
 if __name__ == "__main__":
+    db_size = 200
+    scales_to_use = [1.0]
+    K = 10
+    dim = 64
+    index_type="IndexPQ"
+    index_args=[dim, 8, 8]  # nbits=64
+    index_kwargs={}
+    output_path = f"sms/exp3/results/top_{K}_results_db_{db_size}_index_{index_type}_singlescale.pt"
+    main(db_size, scales_to_use, K, index_type, index_args, index_kwargs, output_path)
+
+    db_size = 200
+    scales_to_use = [0.5,1.0,2.0]
+    K = 10
+    dim = 64
+    index_type="IndexPQ"
+    index_args=[dim, 8, 8]  # nbits=64
+    index_kwargs={}
+    output_path = f"sms/exp3/results/top_{K}_results_db_{db_size}_index_{index_type}_allscales.pt"
+    main(db_size, scales_to_use, K, index_type, index_args, index_kwargs, output_path)
+
     db_size = 1000
     scales_to_use = [1.0]
-    K = 20
+    K = 50
     dim = 64
-    index_type="IndexLSH"
-    index_args=[dim, 64]  # nbits=64
+    index_type="IndexPQ"
+    index_args=[dim, 8, 8]  # nbits=64
     index_kwargs={}
-    output_path = f"data/exp3/top_{K}_results_db_{db_size}_index_{index_type}.pt"
+    output_path = f"sms/exp3/results/top_{K}_results_db_{db_size}_index_{index_type}_singlescale.pt"
+    main(db_size, scales_to_use, K, index_type, index_args, index_kwargs, output_path)
+
+    db_size = 1000
+    scales_to_use = [0.5,1.0,2.0]
+    K = 50
+    dim = 64
+    index_type="IndexPQ"
+    index_args=[dim, 8, 8]  # nbits=64
+    index_kwargs={}
+    output_path = f"sms/exp3/results/top_{K}_results_db_{db_size}_index_{index_type}_allscales.pt"
     main(db_size, scales_to_use, K, index_type, index_args, index_kwargs, output_path)

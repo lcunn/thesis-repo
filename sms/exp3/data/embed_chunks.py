@@ -48,19 +48,32 @@ def main():
 
     # create_and_save_embeddings(data_dict, model, lp_config.model_dump(), "data/exp3/embeddings/transformer_rel_1.pt")
 
-    data_path = Path("data/exp3/maestro_chunks.pt")
+    # data_path = Path("data/exp3/maestro_chunks.pt")
+    # data_dict = torch.load(data_path)
+
+    # lp_config=load_config_from_launchplan("sms/exp1/runs/transformer_quant_rel_bigenc_1/original_launchplan.yaml"),
+    # mod_path="sms/exp1/runs/transformer_quant_rel_bigenc_1/pretrain_saved_model.pth",
+
+    # model = build_model(lp_config.model_dump(), full_model_path=mod_path, use_full_model=True)
+
+    # create_and_save_embeddings(data_dict, model, lp_config.model_dump(), "data/exp3/embeddings/transformer_quant_rel_bigenc_best_1.pt")
+
+    # lp_config=load_config_from_launchplan("sms/exp1/runs/transformer_quant_rel_bigenc_1/original_launchplan.yaml"),
+    # mod_path="sms/exp1/runs/transformer_quant_rel_bigenc_1/pretrain_saved_model_last.pt",
+
+    # model = build_model(lp_config.model_dump(), full_model_path=mod_path, use_full_model=True)
+
+    # create_and_save_embeddings(data_dict, model, lp_config.model_dump(), "data/exp3/embeddings/transformer_quant_rel_bigenc_last_1.pt")
+
+    data_path = Path("data/exp3/all_plag_chunks.pt")
     data_dict = torch.load(data_path)
 
-    lp_config=load_config_from_launchplan("sms/exp1/runs/transformer_quant_rel_bigenc_1/original_launchplan.yaml"),
-    mod_path="sms/exp1/runs/transformer_quant_rel_bigenc_1/pretrain_saved_model.pth",
+    lp_config=load_config_from_launchplan("sms/exp1/runs/transformer_quant_rel_bigenc_1/original_launchplan.yaml")
+    mod_path="sms/exp1/runs/transformer_quant_rel_bigenc_1/pretrain_saved_model.pth"
 
     model = build_model(lp_config.model_dump(), full_model_path=mod_path, use_full_model=True)
 
-    create_and_save_embeddings(data_dict, model, lp_config.model_dump(), "data/exp3/embeddings/transformer_quant_rel_bigenc_best_1.pt")
+    create_and_save_embeddings(data_dict, model, lp_config.model_dump(), "data/exp3/all_plag_chunks_embeddings_qrb_best.pt")
 
-    lp_config=load_config_from_launchplan("sms/exp1/runs/transformer_quant_rel_bigenc_1/original_launchplan.yaml"),
-    mod_path="sms/exp1/runs/transformer_quant_rel_bigenc_1/pretrain_saved_model_last.pt",
-
-    model = build_model(lp_config.model_dump(), full_model_path=mod_path, use_full_model=True)
-
-    create_and_save_embeddings(data_dict, model, lp_config.model_dump(), "data/exp3/embeddings/transformer_quant_rel_bigenc_last_1.pt")
+if __name__ == "__main__":
+    main()
